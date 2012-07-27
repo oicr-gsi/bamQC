@@ -24,7 +24,6 @@ public class BamQCDecider extends BasicDecider {
     @Override
     public ReturnValue init() {
         Log.debug("INIT");
-	this.setTemplateIniPath("templateworkflow.ini");
         this.setHeader(Header.IUS_SWA);
         this.setMetaType(Arrays.asList("application/bam"));
 
