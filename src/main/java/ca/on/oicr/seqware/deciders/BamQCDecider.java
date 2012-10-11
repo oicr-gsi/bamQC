@@ -153,12 +153,12 @@ public class BamQCDecider extends BasicDecider {
         sb.append("\n\t\"library\":\"").append(libraryName).append("\"");
         sb.append("\n\t\"sample\":\"").append(sample).append("\"");
         sb.append("\n\t\"sample group\":\"").append(sampleGroup).append("\"");
-        sb.append("\n\t\"lane\":\"").append(atts.get(Header.LANE_NUM.getTitle())).append("\"");
+        sb.append("\n\t\"lane\":").append(atts.get(Header.LANE_NUM.getTitle()));
         sb.append("\n\t\"sequencing type\":\"").append(atts.get(Header.SAMPLE_TAG_PREFIX + "geo_library_source_template_type")).append("\"");
         sb.append("\n\t\"last modified\":\"").append(atts.get(Header.PROCESSING_DATE.getTitle())).append("\"");
 
         sb.append("\n}");
-
+        Log.debug(sb.toString());
 
         File file = new File(filePath.substring(0, filePath.lastIndexOf("/") + 1) + libraryName + ".json");
         try {
