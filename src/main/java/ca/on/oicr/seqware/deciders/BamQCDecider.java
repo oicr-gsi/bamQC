@@ -1,6 +1,7 @@
 package ca.on.oicr.seqware.deciders;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
@@ -26,12 +27,12 @@ public class BamQCDecider extends BasicDecider {
 
     public BamQCDecider() {
         super();
-        parser.accepts("sample_rate", "Optional. Set the sampling rate in the decider "
+        parser.accepts("sample-rate", "Optional. Set the sampling rate in the decider "
                 + "(only 1/sample_rate reads are used for memory-intensive sampling) "
                 + "This needs to be set lower for mate-pair libraries. Default: 1000").withRequiredArg();
-        parser.accepts("normal_insert_max", "Optional. Set the maximum insert size "
+        parser.accepts("normal-insert-max", "Optional. Set the maximum insert size "
                 + "to prevent skewing of insert statistics. Default:1500").withRequiredArg();
-        parser.accepts("map_qual_cut", "Optional. Set the mapQ value (quality of the "
+        parser.accepts("map-qual-cut", "Optional. Set the mapQ value (quality of the "
                 + "alignment of the read to the reference). Default: 30").withRequiredArg();
     }
 
@@ -42,14 +43,14 @@ public class BamQCDecider extends BasicDecider {
         this.setMetaType(Arrays.asList("application/bam"));
 
 
-        if (options.has("sample_rate")) {
-            sampleRate = options.valueOf("sample_rate").toString();
+        if (options.has("sample-rate")) {
+            sampleRate = options.valueOf("sample-rate").toString();
         }
-        if (options.has("normal_insert_max")) {
-            normalInsertMax = options.valueOf("normal_insert_max").toString();
+        if (options.has("normal-insert-max")) {
+            normalInsertMax = options.valueOf("normal-insert-max").toString();
         }
-        if (options.has("map_qual_cut")) {
-            mapQualCut = options.valueOf("map_qual_cut").toString();
+        if (options.has("map-qual-cut")) {
+            mapQualCut = options.valueOf("map-qual-cut").toString();
         }
 
         //allows anything defined on the command line to override the 'defaults' here.
@@ -68,11 +69,11 @@ public class BamQCDecider extends BasicDecider {
     protected boolean checkFileDetails(ReturnValue returnValue, FileMetadata fm) {
         Log.debug("CHECK FILE DETAILS:" + fm);
 
-        String templateType = returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX + "geo_library_source_template_type");
+        String templateType = returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_library_source_template_type");
         if ("WG".equals(templateType)) {
             returnValue.setAttribute("target_bed", "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed");
         } else if ("EX".equals(templateType)) {
-            String targetResequencingType = returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX + "sample.geo_targeted_resequencing");
+            String targetResequencingType = returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_targeted_resequencing");
             if ("Illumina TruSeq Exome".equals(targetResequencingType)) {
                 returnValue.setAttribute("target_bed", "/oicr/data/reference/genomes/homo_sapiens_mc/TruSeq/TruSeq-Exome-Targeted-Regions-BED-file");
             } else if ("Agilent SureSelect ICGC/Sanger Exon".equals(targetResequencingType)) {
@@ -80,11 +81,11 @@ public class BamQCDecider extends BasicDecider {
             } else if ("Nimblegen 2.1M Human Exome (21191)".equals(targetResequencingType)) {
                 returnValue.setAttribute("target_bed", "/oicr/data/reference/genomes/homo_sapiens/Nimblegen/2.1M_Human_Exome_Annotation_21191/hg19/080904_ccds_exome_rebalfocus_hg19/processed/2.1M_Human_Exome.bed");
             } else {
-                Log.error("The targeted resequencing type does not have an associated BED file. Modify the decider to include this type:" + targetResequencingType);
+                Log.error("The targeted resequencing type does not have an associated BED file. Modify the decider to include this type:" + targetResequencingType + " for file " + fm.getFilePath());
                 return false;
             }
         } else {
-            Log.error("This template type is not supported for the BAM QC decider: " + templateType);
+            Log.error("This template type is not supported for the BAM QC decider: " + templateType + " for file " + fm.getFilePath());
             return false;
         }
         pathToAttributes.put(fm.getFilePath(), returnValue);
@@ -154,13 +155,26 @@ public class BamQCDecider extends BasicDecider {
         sb.append("\n\t\"sample\":\"").append(sample).append("\"");
         sb.append("\n\t\"sample group\":\"").append(sampleGroup).append("\"");
         sb.append("\n\t\"lane\":").append(atts.get(Header.LANE_NUM.getTitle()));
-        sb.append("\n\t\"sequencing type\":\"").append(atts.get(Header.SAMPLE_TAG_PREFIX + "geo_library_source_template_type")).append("\"");
+        sb.append("\n\t\"sequencing type\":\"").append(atts.get(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_library_source_template_type")).append("\"");
         sb.append("\n\t\"last modified\":\"").append(atts.get(Header.PROCESSING_DATE.getTitle())).append("\"");
 
         sb.append("\n}");
         Log.debug(sb.toString());
 
         File file = new File(filePath.substring(0, filePath.lastIndexOf("/") + 1) + libraryName + ".json");
+        if (file.canWrite()) {
+            writeFile(file, sb);
+        }
+        else {
+            file = new File(libraryName+".json");
+            writeFile(file, sb);
+        }
+
+        return file.getAbsolutePath();
+
+    }
+
+    private void writeFile(File file, StringBuilder sb){
         try {
             FileWriter writer = new FileWriter(file);
             writer.append(sb);
@@ -170,7 +184,5 @@ public class BamQCDecider extends BasicDecider {
         } catch (IOException ex) {
             Log.error("Error writing JSON file:" + file.getAbsolutePath(), ex);
         }
-        return file.getAbsolutePath();
-
     }
 }
