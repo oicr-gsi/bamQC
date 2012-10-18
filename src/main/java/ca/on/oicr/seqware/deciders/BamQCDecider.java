@@ -1,7 +1,6 @@
 package ca.on.oicr.seqware.deciders;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
@@ -12,6 +11,7 @@ import net.sourceforge.seqware.common.hibernate.FindAllTheFiles.Header;
 import net.sourceforge.seqware.common.module.FileMetadata;
 import net.sourceforge.seqware.common.module.ReturnValue;
 import net.sourceforge.seqware.common.util.Log;
+import net.sourceforge.seqware.common.util.maptools.MapTools;
 import net.sourceforge.seqware.pipeline.deciders.BasicDecider;
 
 /**
@@ -24,6 +24,9 @@ public class BamQCDecider extends BasicDecider {
     private String sampleRate = "1000";
     private String normalInsertMax = "1500";
     private String mapQualCut = "30";
+    private String iniFile = null;
+    private String folder = "seqware-results";
+    private String path = "./";
 
     public BamQCDecider() {
         super();
@@ -32,8 +35,13 @@ public class BamQCDecider extends BasicDecider {
                 + "This needs to be set lower for mate-pair libraries. Default: 1000").withRequiredArg();
         parser.accepts("normal-insert-max", "Optional. Set the maximum insert size "
                 + "to prevent skewing of insert statistics. Default:1500").withRequiredArg();
-        parser.accepts("map-qual-cut", "Optional. Set the mapQ value (quality of the "
-                + "alignment of the read to the reference). Default: 30").withRequiredArg();
+        parser.accepts("map-qual-cut", "Optional. Set the mapQ value. Default: 30").withRequiredArg();
+        parser.accepts("ini-file", "Optional: an INI file with parameters to override the "
+                + "installed INI file. ").withRequiredArg();
+        parser.accepts("output-folder", "Optional: the name of the folder to put the output into relative to the output-path. "
+                + "Corresponds to output-dir in INI file. Default: seqware-results").withRequiredArg();
+        parser.accepts("output-path", "Optional: the path where the files should be copied to "
+                + "after analysis. Corresponds to output-prefix in INI file. Default: ./").withRequiredArg();
     }
 
     @Override
@@ -52,6 +60,25 @@ public class BamQCDecider extends BasicDecider {
         if (options.has("map-qual-cut")) {
             mapQualCut = options.valueOf("map-qual-cut").toString();
         }
+        if (options.has("ini-file")) {
+            File f = new File(options.valueOf("ini-file").toString());
+            if (!f.exists()) {
+                Log.error("The given INI file does not exist: " + f.getAbsolutePath());
+                System.exit(1);
+            } else {
+                iniFile = f.getAbsolutePath();
+            }
+        }
+        if (options.has("output-folder")) {
+            folder = options.valueOf("output-folder").toString();
+        }
+        if (options.has("output-path")) {
+            path = options.valueOf("output-path").toString();
+            if (!path.endsWith("/")) {
+                path += "/";
+            }
+        }
+
 
         //allows anything defined on the command line to override the 'defaults' here.
         ReturnValue val = super.init();
@@ -96,6 +123,9 @@ public class BamQCDecider extends BasicDecider {
     protected Map<String, String> modifyIniFile(String commaSeparatedFilePaths, String commaSeparatedParentAccessions) {
         Log.debug("INI FILE:" + commaSeparatedFilePaths);
         Map<String, String> iniFileMap = new TreeMap<String, String>();
+        if (iniFile != null) {
+            MapTools.ini2Map(iniFile, iniFileMap);
+        }
 
         if (commaSeparatedFilePaths.contains(",")) {
             Log.fatal("The BAM QC workflow only accepts one BAM file at a time. Try another grouping strategy, e.g. FILE_SWA. Files = " + commaSeparatedFilePaths);
@@ -104,7 +134,8 @@ public class BamQCDecider extends BasicDecider {
 
         ReturnValue r = pathToAttributes.get(commaSeparatedFilePaths);
 
-
+        iniFileMap.put("output_dir", folder);
+        iniFileMap.put("output_prefix", path);
         iniFileMap.put("input_file", commaSeparatedFilePaths);
         iniFileMap.put("sample_rate", sampleRate);
         iniFileMap.put("normal_insert_max", normalInsertMax);
@@ -164,9 +195,8 @@ public class BamQCDecider extends BasicDecider {
         File file = new File(filePath.substring(0, filePath.lastIndexOf("/") + 1) + libraryName + ".json");
         if (file.canWrite()) {
             writeFile(file, sb);
-        }
-        else {
-            file = new File(libraryName+".json");
+        } else {
+            file = new File(libraryName + ".json");
             writeFile(file, sb);
         }
 
@@ -174,7 +204,7 @@ public class BamQCDecider extends BasicDecider {
 
     }
 
-    private void writeFile(File file, StringBuilder sb){
+    private void writeFile(File file, StringBuilder sb) {
         try {
             FileWriter writer = new FileWriter(file);
             writer.append(sb);
