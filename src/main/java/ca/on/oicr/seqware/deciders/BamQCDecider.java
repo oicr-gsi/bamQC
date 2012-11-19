@@ -47,7 +47,7 @@ public class BamQCDecider extends BasicDecider {
     @Override
     public ReturnValue init() {
         Log.debug("INIT");
-        this.setHeader(Header.IUS_SWA);
+        this.setHeader(Header.FILE_SWA);
         this.setMetaType(Arrays.asList("application/bam"));
 
 
@@ -174,22 +174,29 @@ public class BamQCDecider extends BasicDecider {
         } else {
             sampleGroup = "NA";
         }
-
+	long time=1000;
+	try {
+	    String dateString = atts.get(Header.PROCESSING_DATE.getTitle());
+	    java.util.Date date = (new java.text.SimpleDateFormat("yyyy-MM-dd H:mm:ss.S")).parse(dateString);
+	    time *= (date.getTime());
+	} catch(java.text.ParseException e) {
+	    e.printStackTrace();
+	}
 
         StringBuilder sb = new StringBuilder();
         sb.append("{");
 
-        sb.append("\n\t\"run name\":\"").append(runName).append("\"");
-        sb.append("\n\t\"instrument\":\"").append(instrument).append("\"");
-        sb.append("\n\t\"barcode\":\"").append(atts.get(Header.IUS_TAG.getTitle())).append("\"");
-        sb.append("\n\t\"library\":\"").append(libraryName).append("\"");
-        sb.append("\n\t\"sample\":\"").append(sample).append("\"");
-        sb.append("\n\t\"sample group\":\"").append(sampleGroup).append("\"");
-        sb.append("\n\t\"lane\":").append(atts.get(Header.LANE_NUM.getTitle()));
-        sb.append("\n\t\"sequencing type\":\"").append(atts.get(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_library_source_template_type")).append("\"");
-        sb.append("\n\t\"last modified\":\"").append(atts.get(Header.PROCESSING_DATE.getTitle())).append("\"");
+        sb.append("\"run name\":\"").append(runName).append("\",");
+        sb.append("\"instrument\":\"").append(instrument).append("\",");
+        sb.append("\"barcode\":\"").append(atts.get(Header.IUS_TAG.getTitle())).append("\",");
+        sb.append("\"library\":\"").append(libraryName).append("\",");
+        sb.append("\"sample\":\"").append(sample).append("\",");
+        sb.append("\"sample group\":\"").append(sampleGroup).append("\",");
+        sb.append("\"lane\":").append(atts.get(Header.LANE_NUM.getTitle())).append(",");
+        sb.append("\"sequencing type\":\"").append(atts.get(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_library_source_template_type")).append("\",");
+        sb.append("\"last modified\":\"").append(""+time).append("\"");
 
-        sb.append("\n}");
+        sb.append("}");
         Log.debug(sb.toString());
 
         File file = new File(filePath.substring(0, filePath.lastIndexOf("/") + 1) + libraryName + ".json");
