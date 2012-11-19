@@ -61,14 +61,19 @@ public class BamQCDecider extends BasicDecider {
             mapQualCut = options.valueOf("map-qual-cut").toString();
         }
         if (options.has("ini-file")) {
-            File f = new File(options.valueOf("ini-file").toString());
-            if (!f.exists()) {
-                Log.error("The given INI file does not exist: " + f.getAbsolutePath());
-                System.exit(1);
+            File file = new File(options.valueOf("ini-file").toString());
+            if (file.exists()) {
+                iniFile = file.getAbsolutePath();
+                Map<String, String> iniFileMap = MapTools.iniString2Map(iniFile);
+                folder = iniFileMap.get("output_dir");
+                path = iniFileMap.get("output_path");
             } else {
-                iniFile = f.getAbsolutePath();
+                Log.error("The given INI file does not exist: " + file.getAbsolutePath());
+                System.exit(1);
             }
+
         }
+
         if (options.has("output-folder")) {
             folder = options.valueOf("output-folder").toString();
         }
