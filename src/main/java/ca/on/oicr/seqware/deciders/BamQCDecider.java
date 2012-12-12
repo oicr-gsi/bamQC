@@ -40,7 +40,7 @@ public class BamQCDecider extends BasicDecider {
                 + "Corresponds to output-dir in INI file. Default: seqware-results").withRequiredArg();
         parser.accepts("output-path", "Optional: the path where the files should be copied to "
                 + "after analysis. Corresponds to output-prefix in INI file. Default: ./").withRequiredArg();
-        parser.accepts("tmp", "Optional: specify the temporary directory where the JSON snippets will be stored during processing. Default: /tmp");
+        parser.accepts("tmp", "Optional: specify the temporary directory where the JSON snippets will be stored during processing. Default: /tmp").withRequiredArg();
     }
 
     @Override
