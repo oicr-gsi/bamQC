@@ -5,7 +5,7 @@
 
     <groupId>ca.on.oicr.seqware.deciders</groupId>
     <artifactId>bam-qc</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>decider-bam-qc</name>
@@ -14,7 +14,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <seqware-version>0.12.5-SNAPSHOT</seqware-version>
+        <seqware-version>0.13.6</seqware-version>
     </properties>
 
     <build>
@@ -39,9 +39,10 @@
         <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>net.sourceforge.seqware</groupId>
+        <groupId>com.github.seqware</groupId>
         <artifactId>seqware-distribution</artifactId>
         <version>${seqware-version}</version>
+        <classifier>full</classifier>
         <scope>provided</scope>
     </dependency>
 </dependencies>

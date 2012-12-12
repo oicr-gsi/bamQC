@@ -3,10 +3,7 @@ package ca.on.oicr.seqware.deciders;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import net.sourceforge.seqware.common.hibernate.FindAllTheFiles.Header;
 import net.sourceforge.seqware.common.module.FileMetadata;
 import net.sourceforge.seqware.common.module.ReturnValue;
@@ -27,7 +24,8 @@ public class BamQCDecider extends BasicDecider {
     private String iniFile = null;
     private String folder = "seqware-results";
     private String path = "./";
-
+    private String tmp = "/tmp";
+    private Random random = new Random(System.currentTimeMillis());
     public BamQCDecider() {
         super();
         parser.accepts("sample-rate", "Optional. Set the sampling rate in the decider "
@@ -42,6 +40,7 @@ public class BamQCDecider extends BasicDecider {
                 + "Corresponds to output-dir in INI file. Default: seqware-results").withRequiredArg();
         parser.accepts("output-path", "Optional: the path where the files should be copied to "
                 + "after analysis. Corresponds to output-prefix in INI file. Default: ./").withRequiredArg();
+        parser.accepts("tmp", "Optional: specify the temporary directory where the JSON snippets will be stored during processing. Default: /tmp");
     }
 
     @Override
@@ -69,11 +68,25 @@ public class BamQCDecider extends BasicDecider {
                 path = iniFileMap.get("output_path");
             } else {
                 Log.error("The given INI file does not exist: " + file.getAbsolutePath());
-                System.exit(1);
+                ret.setExitStatus(ReturnValue.INVALIDPARAMETERS);
             }
 
         }
 
+        if (options.has("tmp")) {
+            String temp = (String)options.valueOf("tmp");
+            File tempDir = new File(temp);
+            if (tempDir.exists())
+            {
+                tmp=tempDir.getAbsolutePath();
+            }
+            else {
+                Log.warn("The temporary directory "+tempDir.getAbsolutePath()+ " does not exist.");
+                ret.setExitStatus(ReturnValue.INVALIDPARAMETERS);
+                
+            }
+        }
+        
         if (options.has("output-folder")) {
             folder = options.valueOf("output-folder").toString();
         }
@@ -86,8 +99,8 @@ public class BamQCDecider extends BasicDecider {
 
 
         //allows anything defined on the command line to override the 'defaults' here.
-        ReturnValue val = super.init();
-        return val;
+        ret = super.init();
+        return ret;
 
     }
 
@@ -141,6 +154,8 @@ public class BamQCDecider extends BasicDecider {
 
         iniFileMap.put("output_dir", folder);
         iniFileMap.put("output_prefix", path);
+        //use the default output path
+        iniFileMap.put("output_path","NA");
         iniFileMap.put("input_file", commaSeparatedFilePaths);
         iniFileMap.put("sample_rate", sampleRate);
         iniFileMap.put("normal_insert_max", normalInsertMax);
@@ -199,18 +214,15 @@ public class BamQCDecider extends BasicDecider {
         sb.append("\"sample group\":\"").append(sampleGroup).append("\",");
         sb.append("\"lane\":").append(atts.get(Header.LANE_NUM.getTitle())).append(",");
         sb.append("\"sequencing type\":\"").append(atts.get(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_library_source_template_type")).append("\",");
-        sb.append("\"last modified\":\"").append(""+time).append("\"");
+        sb.append("\"last modified\":\"").append(time).append("\"");
 
         sb.append("}");
         Log.debug(sb.toString());
-
-        File file = new File(filePath.substring(0, filePath.lastIndexOf("/") + 1) + libraryName + ".json");
-        if (file.canWrite()) {
-            writeFile(file, sb);
-        } else {
-            file = new File(libraryName + ".json");
-            writeFile(file, sb);
-        }
+        int rand = random.nextInt();
+        File file = new File(tmp + File.separator + libraryName + rand + ".json");
+        writeFile(file, sb);
+        
+        Log.debug("Wrote to "+file.getAbsolutePath());
 
         return file.getAbsolutePath();
 
