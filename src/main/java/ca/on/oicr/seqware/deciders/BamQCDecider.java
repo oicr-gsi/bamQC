@@ -41,6 +41,8 @@ public class BamQCDecider extends BasicDecider {
         parser.accepts("output-path", "Optional: the path where the files should be copied to "
                 + "after analysis. Corresponds to output-prefix in INI file. Default: ./").withRequiredArg();
         parser.accepts("tmp", "Optional: specify the temporary directory where the JSON snippets will be stored during processing. Default: /tmp").withRequiredArg();
+        parser.accepts("check-file-exists", "Optional: Flag to check whether or not the file exists before launching the workflow. WARNING! Will "
+                + "not work if you are not on the same filesystem or do not have appropriate permissions!");
     }
 
     @Override
@@ -132,6 +134,19 @@ public class BamQCDecider extends BasicDecider {
         } else {
             Log.error("This template type is not supported for the BAM QC decider: " + templateType + " for file " + fm.getFilePath());
             return false;
+        }
+        if (options.has("check-file-exists")) {
+            File file = new File(fm.getFilePath());
+            if (!file.exists()) {                
+                file = new File(fm.getFilePath()+".bak");
+                if (file.exists()) {
+                    Log.error("File does not exist! "+fm.getFilePath()+"\t .bak file exists: "+file.getAbsolutePath());
+                }
+                else {
+                    Log.error("File does not exist! "+fm.getFilePath());
+                }
+                return false;
+            }
         }
         pathToAttributes.put(fm.getFilePath(), returnValue);
         return super.checkFileDetails(returnValue, fm);
@@ -234,6 +249,7 @@ public class BamQCDecider extends BasicDecider {
             writer.append(sb);
             writer.flush();
             writer.close();
+            file.setReadable(true, false);
 
         } catch (IOException ex) {
             Log.error("Error writing JSON file:" + file.getAbsolutePath(), ex);
