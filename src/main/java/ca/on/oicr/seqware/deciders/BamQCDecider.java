@@ -26,6 +26,7 @@ public class BamQCDecider extends BasicDecider {
     private String path = "./";
     private String tmp = "/tmp";
     private Random random = new Random(System.currentTimeMillis());
+
     public BamQCDecider() {
         super();
         parser.accepts("sample-rate", "Optional. Set the sampling rate in the decider "
@@ -76,19 +77,17 @@ public class BamQCDecider extends BasicDecider {
         }
 
         if (options.has("tmp")) {
-            String temp = (String)options.valueOf("tmp");
+            String temp = (String) options.valueOf("tmp");
             File tempDir = new File(temp);
-            if (tempDir.exists())
-            {
-                tmp=tempDir.getAbsolutePath();
-            }
-            else {
-                Log.warn("The temporary directory "+tempDir.getAbsolutePath()+ " does not exist.");
+            if (tempDir.exists()) {
+                tmp = tempDir.getAbsolutePath();
+            } else {
+                Log.warn("The temporary directory " + tempDir.getAbsolutePath() + " does not exist.");
                 ret.setExitStatus(ReturnValue.INVALIDPARAMETERS);
-                
+
             }
         }
-        
+
         if (options.has("output-folder")) {
             folder = options.valueOf("output-folder").toString();
         }
@@ -137,13 +136,12 @@ public class BamQCDecider extends BasicDecider {
         }
         if (options.has("check-file-exists")) {
             File file = new File(fm.getFilePath());
-            if (!file.exists()) {                
-                file = new File(fm.getFilePath()+".bak");
+            if (!file.exists()) {
+                file = new File(fm.getFilePath() + ".bak");
                 if (file.exists()) {
-                    Log.error("File does not exist! "+fm.getFilePath()+"\t .bak file exists: "+file.getAbsolutePath());
-                }
-                else {
-                    Log.error("File does not exist! "+fm.getFilePath());
+                    Log.error("File does not exist! " + fm.getFilePath() + "\t .bak file exists: " + file.getAbsolutePath());
+                } else {
+                    Log.error("File does not exist! " + fm.getFilePath());
                 }
                 return false;
             }
@@ -170,7 +168,7 @@ public class BamQCDecider extends BasicDecider {
         iniFileMap.put("output_dir", folder);
         iniFileMap.put("output_prefix", path);
         //use the default output path
-        iniFileMap.put("output_path","NA");
+        iniFileMap.put("output_path", "NA");
         iniFileMap.put("input_file", commaSeparatedFilePaths);
         iniFileMap.put("sample_rate", sampleRate);
         iniFileMap.put("normal_insert_max", normalInsertMax);
@@ -209,16 +207,43 @@ public class BamQCDecider extends BasicDecider {
         } else {
             sampleGroup = "NA";
         }
-	long time=1000;
-	try {
-	    String dateString = atts.get(Header.PROCESSING_DATE.getTitle());
-	    java.util.Date date = (new java.text.SimpleDateFormat("yyyy-MM-dd H:mm:ss.S")).parse(dateString);
-	    time *= (date.getTime());
-	} catch(java.text.ParseException e) {
-	    e.printStackTrace();
-	}
+        long time = 1000;
+        try {
+            String dateString = atts.get(Header.PROCESSING_DATE.getTitle());
+            java.util.Date date = (new java.text.SimpleDateFormat("yyyy-MM-dd H:mm:ss.S")).parse(dateString);
+            time *= (date.getTime());
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
 
-        StringBuilder sb = new StringBuilder();
+        String groupId = null;
+        for (String key : atts.keySet()) {
+            if (key.contains("geo_group_id")) {
+                groupId = atts.get(key);
+                break;
+            }
+        }
+
+        String groupIdDescription = null;
+        for (String key : atts.keySet()) {
+            if (key.contains("geo_group_id_description")) {
+                groupIdDescription = atts.get(key);
+                break;
+            }
+        }
+
+
+        String externalName = null;
+        for (String key : atts.keySet()) {
+            if (key.contains("geo_tube_id")) {
+                externalName = atts.get(key);
+                break;
+            }
+        }
+        String workflowName = atts.get(Header.WORKFLOW_NAME.getTitle());
+        String workflowVersion = atts.get(Header.WORKFLOW_VERSION.getTitle());
+ 
+       StringBuilder sb = new StringBuilder();
         sb.append("{");
 
         sb.append("\"run name\":\"").append(runName).append("\",");
@@ -229,6 +254,17 @@ public class BamQCDecider extends BasicDecider {
         sb.append("\"sample group\":\"").append(sampleGroup).append("\",");
         sb.append("\"lane\":").append(atts.get(Header.LANE_NUM.getTitle())).append(",");
         sb.append("\"sequencing type\":\"").append(atts.get(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_library_source_template_type")).append("\",");
+        if (groupId != null) {
+            sb.append("\"group id\":\"").append(groupId).append("\",");
+        }
+        if (groupIdDescription!=null)
+            sb.append("\"group id description\":\"").append(groupIdDescription).append("\",");
+        if (externalName !=null)
+            sb.append("\"external name\":\"").append(externalName).append("\",");
+        if (workflowName!=null)
+            sb.append("\"workflow name\":\"").append(workflowName).append("\",");
+        if (workflowVersion!=null)
+            sb.append("\"workflow version\":\"").append(workflowVersion).append("\",");
         sb.append("\"last modified\":\"").append(time).append("\"");
 
         sb.append("}");
@@ -236,8 +272,8 @@ public class BamQCDecider extends BasicDecider {
         int rand = random.nextInt();
         File file = new File(tmp + File.separator + libraryName + rand + ".json");
         writeFile(file, sb);
-        
-        Log.debug("Wrote to "+file.getAbsolutePath());
+
+        Log.debug("Wrote to " + file.getAbsolutePath());
 
         return file.getAbsolutePath();
 
