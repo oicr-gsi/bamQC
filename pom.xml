@@ -4,20 +4,22 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ca.on.oicr.seqware.deciders</groupId>
-    <artifactId>bam-qc</artifactId>
+    <artifactId>BamQC</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>decider-bam-qc</name>
+    <name>Decider_BamQC</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <seqware-version>0.13.6</seqware-version>
+        <seqware-version>0.13.6.2</seqware-version>
+	<workflow-version>1.0</workflow-version>
     </properties>
 
     <build>
+	<finalName>Decider_${project.version}_${project.artifactId}_${workflow-version}_SeqWare_${seqware-version}</finalName>
         <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
