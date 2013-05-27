@@ -1,4 +1,4 @@
-package com.github.seqware;
+package ca.on.oicr.pde.workflows;
 
 import java.util.Map;
 import java.util.logging.Level;
