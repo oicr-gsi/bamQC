@@ -63,30 +63,30 @@ public class WorkflowClient extends AbstractWorkflowDataModel {
     @Override
     public Map<String, SqwFile> setupFiles() {
 
-            SqwFile file0 = this.createFile("file_in_0");
-            file0.setSourcePath(inputFile);
-            file0.setType("application/bam");
-            file0.setIsInput(true);
+        SqwFile file0 = this.createFile("file_in_0");
+        file0.setSourcePath(inputFile);
+        file0.setType("application/bam");
+        file0.setIsInput(true);
 
-            return this.getFiles();
+        return this.getFiles();
 
     }
 
     @Override
     public void buildWorkflow() {
 
-            Job job00 = getBamQcJob();
-            job00.setMaxMemory("2000");
-            job00.setQueue(queue);
+        Job job00 = getBamQcJob();
+        job00.setMaxMemory("2000");
+        job00.setQueue(queue);
 
     }
-    
-    private Job getBamQcJob(){
-        
+
+    private Job getBamQcJob() {
+
         Job job = getWorkflow().createBashJob("BamToJsonStats");
-        
+
         String jsonOutputFileName = inputFile.substring(inputFile.lastIndexOf("/") + 1) + ".BamQC.json";
-        
+
         Command command = job.getCommand();
         command.addArgument(getWorkflowBaseDir() + "/bin" + "/samtools-0.1.19/samtools " + "view " + inputFile);
         command.addArgument("|"); //pipe to
@@ -99,12 +99,12 @@ public class WorkflowClient extends AbstractWorkflowDataModel {
         command.addArgument("-j " + jsonMetadataFile);
         command.addArgument(">"); //redirect to
         command.addArgument(dataDir + jsonOutputFileName);
-        
+
         SqwFile sqwJsonOutputFile = createOutFile(dataDir + jsonOutputFileName, "text/json", finalOutputDir + jsonOutputFileName, true);
         job.addFile(sqwJsonOutputFile);
-        
+
         return job;
-        
+
     }
 
     private SqwFile createOutFile(String sourcePath, String sourceType, String outputPath, boolean forceCopy) {
