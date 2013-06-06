@@ -1,5 +1,6 @@
 package ca.on.oicr.pde.workflows;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +18,7 @@ public class WorkflowClient extends AbstractWorkflowDataModel {
     private String inputFile = null;
     private String outputPrefix = null;
     private String outputDir = null;
+    private String outputPath = null;
     //private String jsonOutputFile = null;
     private String sampleRate = null;
     private String normalInsertMax = null;
@@ -35,11 +37,22 @@ public class WorkflowClient extends AbstractWorkflowDataModel {
         dataDir = "data/";
 
         try {
+            
+            
             queue = getProperty("queue");
             inputFile = getProperty("input_file");
             outputDir = getProperty("output_dir");
             outputPrefix = getProperty("output_prefix");
-            finalOutputDir = outputPrefix + outputDir + "/seqware-" + getSeqware_version() + "_" + getName() + "_" + getVersion() + "/" + getRandom() + "/";
+            outputPath = getProperty("output_path");
+            
+            if (Arrays.asList("na", "").contains(outputPath.toLowerCase().trim())) {
+                finalOutputDir = outputPrefix + outputDir + "/seqware-" + getSeqware_version() + "_" + getName() + "_" + getVersion() + "/" + getRandom() + "/";
+            } else {
+                //make sure the path ends with a "/"
+                outputPath = outputPath.lastIndexOf("/") == (outputPath.length() - 1) ? outputPath : outputPath + "/";
+                finalOutputDir = outputPath;
+            }
+            
             sampleRate = getProperty("sample_rate");
             normalInsertMax = getProperty("normal_insert_max");
             mapQualCut = getProperty("map_qual_cut");
@@ -47,6 +60,8 @@ public class WorkflowClient extends AbstractWorkflowDataModel {
             jsonMetadataFile = getProperty("json_metadata_file");
         } catch (Exception ex) {
             logger.log(Level.SEVERE, "Expected parameter missing", ex);
+            System.exit(-1);
+            //throw new RuntimeException(ex);
         }
 
     }
