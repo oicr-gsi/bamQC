@@ -103,7 +103,7 @@ public class WorkflowClient extends AbstractWorkflowDataModel {
         String jsonOutputFileName = inputFile.substring(inputFile.lastIndexOf("/") + 1) + ".BamQC.json";
 
         Command command = job.getCommand();
-        command.addArgument(getWorkflowBaseDir() + "/bin" + "/samtools-0.1.19/samtools " + "view " + inputFile);
+        command.addArgument(getWorkflowBaseDir() + "/bin" + "/samtools-0.1.19/samtools " + "view " + getFiles().get("file_in_0").getProvisionedPath());
         command.addArgument("|"); //pipe to
         command.addArgument(getWorkflowBaseDir() + "/bin" + "/perl-5.14.1/perl");
         command.addArgument(getWorkflowBaseDir() + "/bin" + "/samStats.pl");
