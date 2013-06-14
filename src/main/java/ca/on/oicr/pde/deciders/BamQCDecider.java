@@ -1,5 +1,6 @@
-package ca.on.oicr.seqware.deciders;
+package ca.on.oicr.pde.deciders;
 
+import ca.on.oicr.pde.deciders.OicrDecider;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,13 +10,12 @@ import net.sourceforge.seqware.common.module.FileMetadata;
 import net.sourceforge.seqware.common.module.ReturnValue;
 import net.sourceforge.seqware.common.util.Log;
 import net.sourceforge.seqware.common.util.maptools.MapTools;
-import net.sourceforge.seqware.pipeline.deciders.BasicDecider;
 
 /**
  * @author mtaschuk@oicr.on.ca
  *
  */
-public class BamQCDecider extends BasicDecider {
+public class BamQCDecider extends OicrDecider {
 
     private Map<String, ReturnValue> pathToAttributes = new HashMap<String, ReturnValue>();
     private String sampleRate = "1000";
@@ -291,4 +291,5 @@ public class BamQCDecider extends BasicDecider {
             Log.error("Error writing JSON file:" + file.getAbsolutePath(), ex);
         }
     }
+    
 }
