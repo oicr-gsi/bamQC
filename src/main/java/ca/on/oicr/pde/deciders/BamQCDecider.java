@@ -175,39 +175,9 @@ public class BamQCDecider extends OicrDecider {
         iniFileMap.put("map_qual_cut", mapQualCut);
         iniFileMap.put("target_bed", r.getAttribute("target_bed"));
         iniFileMap.put("json_metadata_file", makeJsonSnippet(commaSeparatedFilePaths, r));
-        iniFileMap.put("group_id", this.getMetadataAttribute("geo_group_id", r));
-        iniFileMap.put("group_id_description", this.getMetadataAttribute("geo_group_id_description", r));
-        iniFileMap.put("external_name", this.getMetadataAttribute("geo_tube_id", r));
+
 
         return iniFileMap;
-    }
-
-    //taken from coverage analyis decider
-    private String getMetadataAttribute(String attribute, ReturnValue r) {
-        // We can get null (when multiple .bam files are passed, for example
-        if (null == r) {
-            return "NA";
-        }
-        Map<String, String> atts = r.getAttributes();
-        String results = "";
-        for (String key : atts.keySet()) {
-            if (key.contains(attribute)) {
-                String value = atts.get(key);
-                // Special rules for group_id and group_id_description (pick the first one)
-                if (results.length() == 0) {
-                    results = value;
-                } else if (!results.contains(value) && !attribute.contains("group_id")) {
-                    results = results + "," + value;
-                }
-            }
-        }
-        System.out.println("");
-        //Set to NA if no values retrieved
-        if (results.length() == 0) {
-            results = "NA";
-        }
-
-        return results;
     }
 
     private String makeJsonSnippet(String filePath, ReturnValue r) {
@@ -272,8 +242,8 @@ public class BamQCDecider extends OicrDecider {
         }
         String workflowName = atts.get(Header.WORKFLOW_NAME.getTitle());
         String workflowVersion = atts.get(Header.WORKFLOW_VERSION.getTitle());
-
-        StringBuilder sb = new StringBuilder();
+ 
+       StringBuilder sb = new StringBuilder();
         sb.append("{");
 
         sb.append("\"run name\":\"").append(runName).append("\",");
@@ -287,18 +257,14 @@ public class BamQCDecider extends OicrDecider {
         if (groupId != null) {
             sb.append("\"group id\":\"").append(groupId).append("\",");
         }
-        if (groupIdDescription != null) {
+        if (groupIdDescription!=null)
             sb.append("\"group id description\":\"").append(groupIdDescription).append("\",");
-        }
-        if (externalName != null) {
+        if (externalName !=null)
             sb.append("\"external name\":\"").append(externalName).append("\",");
-        }
-        if (workflowName != null) {
+        if (workflowName!=null)
             sb.append("\"workflow name\":\"").append(workflowName).append("\",");
-        }
-        if (workflowVersion != null) {
+        if (workflowVersion!=null)
             sb.append("\"workflow version\":\"").append(workflowVersion).append("\",");
-        }
         sb.append("\"last modified\":\"").append(time).append("\"");
 
         sb.append("}");
@@ -325,4 +291,5 @@ public class BamQCDecider extends OicrDecider {
             Log.error("Error writing JSON file:" + file.getAbsolutePath(), ex);
         }
     }
+    
 }
