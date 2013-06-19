@@ -219,7 +219,7 @@ public class BamQCDecider extends OicrDecider {
         String groupId = null;
         for (String key : atts.keySet()) {
             if (key.contains("geo_group_id")) {
-                groupId = atts.get(key);
+                groupId = escapeString(atts.get(key));
                 break;
             }
         }
@@ -227,7 +227,7 @@ public class BamQCDecider extends OicrDecider {
         String groupIdDescription = null;
         for (String key : atts.keySet()) {
             if (key.contains("geo_group_id_description")) {
-                groupIdDescription = atts.get(key);
+                groupIdDescription = escapeString(atts.get(key));
                 break;
             }
         }
@@ -236,7 +236,7 @@ public class BamQCDecider extends OicrDecider {
         String externalName = null;
         for (String key : atts.keySet()) {
             if (key.contains("geo_tube_id")) {
-                externalName = atts.get(key);
+                externalName = escapeString(atts.get(key));
                 break;
             }
         }
