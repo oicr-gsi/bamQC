@@ -1,11 +1,9 @@
 package ca.on.oicr.pde.workflows;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
 import net.sourceforge.seqware.pipeline.workflowV2.AbstractWorkflowDataModel;
 import net.sourceforge.seqware.pipeline.workflowV2.model.Command;
 import net.sourceforge.seqware.pipeline.workflowV2.model.Job;
@@ -27,9 +25,6 @@ public class WorkflowClient extends AbstractWorkflowDataModel {
     private String mapQualCut = null;
     private String targetBed = null;
     private String jsonMetadataFile = null;
-    private String groupId = null;
-    private String groupIdDescription = null;
-    private String externalName = null;
     //workflow directories
     private String binDir = null;
     private String dataDir = null;
@@ -42,14 +37,14 @@ public class WorkflowClient extends AbstractWorkflowDataModel {
         dataDir = "data/";
 
         try {
-
-
+            
+            
             queue = getProperty("queue");
             inputFile = getProperty("input_file");
             outputDir = getProperty("output_dir");
             outputPrefix = getProperty("output_prefix");
             outputPath = getProperty("output_path");
-
+            
             if (Arrays.asList("na", "").contains(outputPath.toLowerCase().trim())) {
                 finalOutputDir = outputPrefix + outputDir + "/seqware-" + getSeqware_version() + "_" + getName() + "_" + getVersion() + "/" + getRandom() + "/";
             } else {
@@ -57,16 +52,12 @@ public class WorkflowClient extends AbstractWorkflowDataModel {
                 outputPath = outputPath.lastIndexOf("/") == (outputPath.length() - 1) ? outputPath : outputPath + "/";
                 finalOutputDir = outputPath;
             }
-
+            
             sampleRate = getProperty("sample_rate");
             normalInsertMax = getProperty("normal_insert_max");
             mapQualCut = getProperty("map_qual_cut");
             targetBed = getProperty("target_bed");
             jsonMetadataFile = getProperty("json_metadata_file");
-            groupId = getProperty("group_id");
-            groupIdDescription = getProperty("group_id_description");
-            externalName = getProperty("external_name");
-
         } catch (Exception ex) {
             logger.log(Level.SEVERE, "Expected parameter missing", ex);
             System.exit(-1);
@@ -121,23 +112,6 @@ public class WorkflowClient extends AbstractWorkflowDataModel {
         command.addArgument("-q " + mapQualCut);
         command.addArgument("-r " + targetBed);
         command.addArgument("-j " + jsonMetadataFile);
-
-        if (isPropertySet(groupId)) {
-            command.addArgument("-g " + escapeStringForSeqwareShellCommand(groupId));
-        }
-
-        if (isPropertySet(groupIdDescription)) {
-            command.addArgument("-d " + escapeStringForSeqwareShellCommand(groupIdDescription));
-        }
-
-        if (isPropertySet(externalName)) {
-            command.addArgument("-n " + escapeStringForSeqwareShellCommand(externalName));
-        }
-
-//        command.addArgument("-w " + getName());  //workflow name of workflow that generated bam file?
-//        command.addArgument("-v " + getVersion()); //workflow version of workflow that generated bam file?
-//        command.addArgument("-t " + Long.toString(System.currentTimeMillis()/1000L)); // workflow run creation timestamp (number of seconds since epoch/1970)
-//        command.addArgument("-b " + inputFile); //-b records bam path and last modification data
         command.addArgument(">"); //redirect to
         command.addArgument(dataDir + jsonOutputFileName);
 
@@ -159,49 +133,5 @@ public class WorkflowClient extends AbstractWorkflowDataModel {
 
         return file;
 
-    }
-
-    private boolean isPropertySet(String property) {
-
-        List unsetPropertyValueSet = Arrays.asList("na", "", "null");
-
-        return !(unsetPropertyValueSet.contains(property.toLowerCase().trim()));
-
-    }
-
-    private String escapeStringForSeqwareShellCommand(String input) {
-
-        //don't escape characters defined by the regex
-        Pattern allowedUnescapedCharactersRegex = Pattern.compile("[0-9A-Za-z _]");
-
-        //prefix/suffix used to create html code
-        String escapedCharacterPrefix = "&#";
-        String escapedCharacterSuffix = ";";
-
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < input.length(); i++) {
-            if (allowedUnescapedCharactersRegex.matcher(input.subSequence(i, i + 1)).find()) {
-                sb.append(input.charAt(i));
-            } else {
-                sb.append(escapedCharacterPrefix);
-                sb.append(input.codePointAt(i));
-                sb.append(escapedCharacterSuffix);
-            }
-        }
-
-        String result = sb.toString();
-        
-        //Escape all characters for bash.
-        //Escape backslash for java, and then escape backslash for seqware/pegasus/condor.
-        // ie, (java) \\\\X -> (seqware) \\X -> (bash) \X
-        result = result.replaceAll(".", "\\\\$0");
-        
-        //Group together for seqware/pegasus/condor arg using single quotes
-        //Note: seqware/pegasus/condor converts double quotes to single quotes
-        //Note: These quotes will note be seen by bash.
-        result = "'" + result + "'";
-        
-        return result;
     }
 }

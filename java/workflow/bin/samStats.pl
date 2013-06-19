@@ -27,12 +27,6 @@ sub usage
 	print "\t\tNOTE: target.bed file MUST be sorted in the same order as the bam file.\n";
 	print "\t-c enables % base covered reporting. Sets sample rate to 1 (overrides -s), and runs long.\n";
 	print "\t-j additional JSON formatted data string FILEPATH!!. e.g. '{\"sample\":\"TLCR2C10n\",\"library\":\"TLCR_2C10_nn_n_PE_501_nn\",\"barcode\":\"TAGCTT\",\"instrument\":\"h802\",\"run name\":\"110616_SN802_0060_AC00FWACXX\",\"lane\":\"4\"}'\n";
-	print "\t-g group id. Group ID provided by the investigator to guide sample grouping.\n";
-	print "\t-d group id description. Text to describe the purpose of the Group ID. This string may be supplied by the investigator.\n";
-	print "\t-n external name. The name the investigator uses to refer to the sample.\n";
-	print "\t-w workflow name. Name of the workflow used to generate the bam file.\n";
-	print "\t-v workflow version. Version of the workflow used to generate the bam file.\n";
-	print "\t-t workflow timestamp. Workflow run creation timestamp (number of seconds since epoch).\n";
 	print "\t-h displays this usage message.\n";
 
 	die "\n@_\n\n";
@@ -45,17 +39,10 @@ my $qualCut = $defaultQualCut;
 my %jsonHash;
 my $reportBasesCovered = 0;
 
-my $group_id;
-my $group_id_description;
-my $external_name;
-my $workflow_name;
-my $workflow_version;
-my $workflow_timestamp;
-
 my $line;
 my @fields;
 
-my $opt_string = "s:i:l:r:j:q:c:g:d:n:w:v:t:h";
+my $opt_string = "s:i:l:r:j:q:ch";
 getopts ($opt_string, \%opt) or usage("Incorrect arguments.");
 
 if (exists $opt{h})
@@ -89,31 +76,6 @@ if (exists $opt{j})
 	}
 	close JSONFILE;
 }
-
-if (exists $opt{g}) {
-	$group_id =  $opt{g};
-}
-
-if (exists $opt{d}) {
-	$group_id_description = $opt{d};
-}
-
-if (exists $opt{n}) {
-	$external_name = $opt{n};
-}
-
-if (exists $opt{w}) {
-	$workflow_name = $opt{w};
-}
-
-if (exists $opt{v}) {
-	$workflow_version = $opt{v};
-}
-
-if (exists $opt{t}) {
-	$workflow_timestamp = $opt{t};
-}
-
 
 if (exists $opt{c})
 {
@@ -889,30 +851,6 @@ my $numEnds = "single end";
 if ($properPairReadCount > 0)
 {
 	$numEnds = "paired end";
-}
-
-if ($group_id) {
-	$jsonHash{"group id"} = $group_id;
-}
-
-if ($group_id_description) {
-	$jsonHash{"group id description"} = $group_id_description;
-}
-
-if ($external_name) {
-	$jsonHash{"external name"} = $external_name;
-}
-
-if ($workflow_name) {
-	$jsonHash{"workflow name"} = $workflow_name;
-}
-
-if ($workflow_version) {
-	$jsonHash{"workflow version"} = $workflow_version;
-}
-
-if ($workflow_timestamp) {
-	$jsonHash{"workflow run creation timestamp"} = $workflow_timestamp;
 }
 
 $jsonHash{"number of ends"} = $numEnds;
