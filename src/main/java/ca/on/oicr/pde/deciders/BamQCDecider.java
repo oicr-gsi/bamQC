@@ -1,6 +1,5 @@
 package ca.on.oicr.pde.deciders;
 
-import ca.on.oicr.pde.deciders.OicrDecider;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,8 +21,9 @@ public class BamQCDecider extends OicrDecider {
     private String normalInsertMax = "1500";
     private String mapQualCut = "30";
     private String iniFile = null;
-    private String folder = "seqware-results";
-    private String path = "./";
+//    private String outputDir = "seqware-results";
+//    private String outputPrefix = "./";
+//    private String outputPath = "NA";
     private String tmp = "/tmp";
     private Random random = new Random(System.currentTimeMillis());
 
@@ -37,10 +37,10 @@ public class BamQCDecider extends OicrDecider {
         parser.accepts("map-qual-cut", "Optional. Set the mapQ value. Default: 30").withRequiredArg();
         parser.accepts("ini-file", "Optional: an INI file with parameters to override the "
                 + "installed INI file. ").withRequiredArg();
-        parser.accepts("output-folder", "Optional: the name of the folder to put the output into relative to the output-path. "
-                + "Corresponds to output-dir in INI file. Default: seqware-results").withRequiredArg();
-        parser.accepts("output-path", "Optional: the path where the files should be copied to "
-                + "after analysis. Corresponds to output-prefix in INI file. Default: ./").withRequiredArg();
+//        parser.accepts("output-folder", "Optional: the name of the folder to put the output into relative to the output-path. "
+//                + "Corresponds to output-dir in INI file. Default: seqware-results").withRequiredArg();
+//        parser.accepts("output-path", "Optional: the path where the files should be copied to "
+//                + "after analysis. Corresponds to output-prefix in INI file. Default: ./").withRequiredArg();
         parser.accepts("tmp", "Optional: specify the temporary directory where the JSON snippets will be stored during processing. Default: /tmp").withRequiredArg();
         parser.accepts("check-file-exists", "Optional: Flag to check whether or not the file exists before launching the workflow. WARNING! Will "
                 + "not work if you are not on the same filesystem or do not have appropriate permissions!");
@@ -67,8 +67,9 @@ public class BamQCDecider extends OicrDecider {
             if (file.exists()) {
                 iniFile = file.getAbsolutePath();
                 Map<String, String> iniFileMap = MapTools.iniString2Map(iniFile);
-                folder = iniFileMap.get("output_dir");
-                path = iniFileMap.get("output_path");
+//                outputDir = iniFileMap.get("output_dir");
+//                outputPrefix = iniFileMap.get("output_prefix");
+//                outputPath = iniFileMap.get("output_path");
             } else {
                 Log.error("The given INI file does not exist: " + file.getAbsolutePath());
                 ret.setExitStatus(ReturnValue.INVALIDPARAMETERS);
@@ -84,19 +85,18 @@ public class BamQCDecider extends OicrDecider {
             } else {
                 Log.warn("The temporary directory " + tempDir.getAbsolutePath() + " does not exist.");
                 ret.setExitStatus(ReturnValue.INVALIDPARAMETERS);
-
             }
         }
 
-        if (options.has("output-folder")) {
-            folder = options.valueOf("output-folder").toString();
-        }
-        if (options.has("output-path")) {
-            path = options.valueOf("output-path").toString();
-            if (!path.endsWith("/")) {
-                path += "/";
-            }
-        }
+//        if (options.has("output-folder")) {
+//            outputDir = options.valueOf("output-folder").toString();
+//        }
+//        if (options.has("output-path")) {
+//            path = options.valueOf("output-path").toString();
+//            if (!path.endsWith("/")) {
+//                path += "/";
+//            }
+//        }
 
 
         //allows anything defined on the command line to override the 'defaults' here.
@@ -152,12 +152,19 @@ public class BamQCDecider extends OicrDecider {
 
     @Override
     protected Map<String, String> modifyIniFile(String commaSeparatedFilePaths, String commaSeparatedParentAccessions) {
-        Log.debug("INI FILE:" + commaSeparatedFilePaths);
-        Map<String, String> iniFileMap = new TreeMap<String, String>();
+        Log.debug("INI FILE: " + iniFile);
+        Log.debug("Input file: " + commaSeparatedFilePaths);
+        //Map<String, String> iniFileMap = new TreeMap<String, String>();
+        Map<String, String> iniFileMap = super.modifyIniFile(commaSeparatedFilePaths, commaSeparatedParentAccessions);
+
         if (iniFile != null) {
             MapTools.ini2Map(iniFile, iniFileMap);
         }
-
+        
+        //Remove "input_files" from ini file - BamQC workflow only accepts one BAM file at a time.
+        //"input_files" is added to the iniFileMap by BasicDecider (parent of OicrDecider).
+        iniFileMap.remove("input_files");
+        
         if (commaSeparatedFilePaths.contains(",")) {
             Log.fatal("The BAM QC workflow only accepts one BAM file at a time. Try another grouping strategy, e.g. FILE_SWA. Files = " + commaSeparatedFilePaths);
             System.exit(1);
@@ -165,17 +172,12 @@ public class BamQCDecider extends OicrDecider {
 
         ReturnValue r = pathToAttributes.get(commaSeparatedFilePaths);
 
-        iniFileMap.put("output_dir", folder);
-        iniFileMap.put("output_prefix", path);
-        //use the default output path
-        iniFileMap.put("output_path", "NA");
         iniFileMap.put("input_file", commaSeparatedFilePaths);
         iniFileMap.put("sample_rate", sampleRate);
         iniFileMap.put("normal_insert_max", normalInsertMax);
         iniFileMap.put("map_qual_cut", mapQualCut);
         iniFileMap.put("target_bed", r.getAttribute("target_bed"));
         iniFileMap.put("json_metadata_file", makeJsonSnippet(commaSeparatedFilePaths, r));
-
 
         return iniFileMap;
     }
