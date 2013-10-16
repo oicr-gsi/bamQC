@@ -1,0 +1,37 @@
+{
+    "defaults": {
+        "description": "BamQC workflow test",
+        "metrics_command": "/compare.sh",
+        "input_config_dir": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/input_config/",
+        "output_metrics_dir": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/output_expectation/"
+    },
+    "tests": [
+        {
+            "input_config": "workflow_test_01.ini"
+        },
+        {
+            "input_config": "workflow_test_02.ini"
+        },
+        {
+            "input_config": "workflow_test_03.ini"
+        },
+        {
+            "input_config": "workflow_test_04.ini"
+        },
+        {
+            "input_config": "workflow_test_05.ini"
+        },
+        {
+            "input_config": "workflow_test_06.ini"
+        },
+        {
+            "input_config": "workflow_test_07.ini"
+        },
+        {
+            "input_config": "workflow_test_08.ini"
+        },
+        {
+            "input_config": "workflow_test_09.ini"
+        }
+    ]
+}
