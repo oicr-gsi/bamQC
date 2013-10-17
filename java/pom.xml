@@ -22,8 +22,8 @@
         <skipITs>true</skipITs>
         <skipITs2>true</skipITs2>
         <skipBinChmod>false</skipBinChmod>
-        <workingDir>/u/sqwci/_working/</workingDir>
-        <seqwareDir>/u/sqwci/_seqware/</seqwareDir>
+        <workingDir>/u/sqwci/_working</workingDir>
+        <seqwareDir>/u/sqwci/_seqware</seqwareDir>
         <webserviceUrl>https://pipedev.hpc.oicr.on.ca:8043/seqware-webservice-0.13.6.7</webserviceUrl>
         <schedulingSystem>pegasus</schedulingSystem>
     </properties>
