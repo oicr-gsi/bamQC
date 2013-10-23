@@ -4,11 +4,21 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import net.sourceforge.seqware.common.hibernate.FindAllTheFiles.Header;
 import net.sourceforge.seqware.common.module.FileMetadata;
 import net.sourceforge.seqware.common.module.ReturnValue;
 import net.sourceforge.seqware.common.util.Log;
 import net.sourceforge.seqware.common.util.maptools.MapTools;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * @author mtaschuk@oicr.on.ca
@@ -118,6 +128,37 @@ public class BamQCDecider extends OicrDecider {
         String templateType = returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_library_source_template_type");
         if ("WG".equals(templateType)) {
             returnValue.setAttribute("target_bed", "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed");
+        } else if ("TS".equals(templateType)) {
+
+            String targetResequencingType = returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_targeted_resequencing");
+            if (targetResequencingType == null) {
+                Log.error("The targeted resequencing type is null");
+                return false;
+            }
+
+            String target_bed = null;
+            try {
+                target_bed = configFromParsedXML("/.mounts/labs/PDE/data/TargetedSequencingQC/rsconfig.xml", targetResequencingType);
+            } catch (ParserConfigurationException ex) {
+                Logger.getLogger(BamQCDecider.class.getName()).log(Level.SEVERE, null, ex);
+                //ret.setExitStatus(ReturnValue.
+            } catch (SAXException ex) {
+                Logger.getLogger(BamQCDecider.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(BamQCDecider.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DuplicatesException ex) {
+                Logger.getLogger(BamQCDecider.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (target_bed == null) {
+                Log.error("The targeted resequencing type"
+                        +returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_targeted_resequencing")
+                        +" does not have an associated BED file"
+                        );
+                return false;
+            }
+            returnValue.setAttribute("target_bed", target_bed);
+
+
         } else if ("EX".equals(templateType)) {
             String targetResequencingType = returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_targeted_resequencing");
             if ("Illumina TruSeq Exome".equals(targetResequencingType)) {
@@ -127,7 +168,7 @@ public class BamQCDecider extends OicrDecider {
             } else if ("Nimblegen 2.1M Human Exome (21191)".equals(targetResequencingType)) {
                 returnValue.setAttribute("target_bed", "/oicr/data/reference/genomes/homo_sapiens/Nimblegen/2.1M_Human_Exome_Annotation_21191/hg19/080904_ccds_exome_rebalfocus_hg19/processed/2.1M_Human_Exome.bed");
             } else {
-                Log.error("The targeted resequencing type does not have an associated BED file. Modify the decider to include this type:" + targetResequencingType + " for file " + fm.getFilePath());
+                Log.error("The targeted resequencing type does not have an associated BED file." + templateType + (" ") + targetResequencingType + " Modify the decider to include this type:" + targetResequencingType + " for file " + fm.getFilePath());
                 return false;
             }
         } else {
@@ -150,6 +191,50 @@ public class BamQCDecider extends OicrDecider {
         return super.checkFileDetails(returnValue, fm);
     }
 
+    protected static String configFromParsedXML(String fileName, String resequencingType) throws ParserConfigurationException, SAXException, IOException, DuplicatesException {
+        Element eElement = null;
+        File fXmlFile = new File(fileName);
+        System.out.println("Still alive past file: ");
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document doc = dBuilder.parse(fXmlFile);
+        doc.getDocumentElement().normalize();
+        NodeList nList = doc.getElementsByTagName("resequencing_type");
+        if (nList.getLength() == 0) {
+            System.out.println("ERROR: NO RESEQUENCING TYPES IN THIS FILE");
+            throw new NullPointerException();
+        }
+
+        Map<String, String> h = new HashMap<String, String>();
+
+        for (int i = 0; i < nList.getLength(); i++) {
+
+            Node nNode = nList.item(i);
+
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                eElement = (Element) nNode;
+                if (h.containsKey(eElement.getAttribute("id"))) {
+                    throw new DuplicatesException();
+
+                } else {
+                    h.put(eElement.getAttribute("id"),
+                            eElement.getElementsByTagName("interval_file").item(0).getTextContent());
+
+                }
+            }
+        }
+
+        if (!(eElement == null)) {
+            if (resequencingType.equals(eElement.getAttribute("id"))) {
+                return h.get(resequencingType);
+
+            }
+        }
+        return null;
+
+    }
+
     @Override
     protected Map<String, String> modifyIniFile(String commaSeparatedFilePaths, String commaSeparatedParentAccessions) {
         Log.debug("INI FILE: " + iniFile);
@@ -160,11 +245,11 @@ public class BamQCDecider extends OicrDecider {
         if (iniFile != null) {
             MapTools.ini2Map(iniFile, iniFileMap);
         }
-        
+
         //Remove "input_files" from ini file - BamQC workflow only accepts one BAM file at a time.
         //"input_files" is added to the iniFileMap by BasicDecider (parent of OicrDecider).
         iniFileMap.remove("input_files");
-        
+
         if (commaSeparatedFilePaths.contains(",")) {
             Log.fatal("The BAM QC workflow only accepts one BAM file at a time. Try another grouping strategy, e.g. FILE_SWA. Files = " + commaSeparatedFilePaths);
             System.exit(1);
@@ -244,8 +329,8 @@ public class BamQCDecider extends OicrDecider {
         }
         String workflowName = atts.get(Header.WORKFLOW_NAME.getTitle());
         String workflowVersion = atts.get(Header.WORKFLOW_VERSION.getTitle());
- 
-       StringBuilder sb = new StringBuilder();
+
+        StringBuilder sb = new StringBuilder();
         sb.append("{");
 
         sb.append("\"run name\":\"").append(runName).append("\",");
@@ -259,14 +344,18 @@ public class BamQCDecider extends OicrDecider {
         if (groupId != null) {
             sb.append("\"group id\":\"").append(groupId).append("\",");
         }
-        if (groupIdDescription!=null)
+        if (groupIdDescription != null) {
             sb.append("\"group id description\":\"").append(groupIdDescription).append("\",");
-        if (externalName !=null)
+        }
+        if (externalName != null) {
             sb.append("\"external name\":\"").append(externalName).append("\",");
-        if (workflowName!=null)
+        }
+        if (workflowName != null) {
             sb.append("\"workflow name\":\"").append(workflowName).append("\",");
-        if (workflowVersion!=null)
+        }
+        if (workflowVersion != null) {
             sb.append("\"workflow version\":\"").append(workflowVersion).append("\",");
+        }
         sb.append("\"last modified\":\"").append(time).append("\"");
 
         sb.append("}");
@@ -293,5 +382,4 @@ public class BamQCDecider extends OicrDecider {
             Log.error("Error writing JSON file:" + file.getAbsolutePath(), ex);
         }
     }
-    
 }
