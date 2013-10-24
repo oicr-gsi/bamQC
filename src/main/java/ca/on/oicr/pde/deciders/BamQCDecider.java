@@ -131,7 +131,7 @@ public class BamQCDecider extends OicrDecider {
         } else if ("TS".equals(templateType)) {
 
             String targetResequencingType = returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_targeted_resequencing");
-            if (targetResequencingType == null) {
+            if (targetResequencingType == null || targetResequencingType.isEmpty()) {
                 Log.error("The targeted resequencing type is null");
                 return false;
             }
@@ -150,9 +150,9 @@ public class BamQCDecider extends OicrDecider {
                 Logger.getLogger(BamQCDecider.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (target_bed == null) {
-                Log.error("The targeted resequencing type"
-                        +returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_targeted_resequencing")
-                        +" does not have an associated BED file"
+                Log.error("The targeted resequencing type "
+                        +targetResequencingType
+                        +" (TS) does not have an associated BED file"
                         );
                 return false;
             }

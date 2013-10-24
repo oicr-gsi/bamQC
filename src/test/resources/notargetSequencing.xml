@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- This file is for using with TargetedSequencingQC workflow -->
+<references>
+	
+		<interval_file>/.mounts/labs/PDE/data/TargetedSequencingQC/HALT/halt_coding.bed</interval_file>
+		<offtarget_file>/.mounts/labs/PDE/data/TargetedSequencingQC/HALT/halt_offtarget500b.bed</offtarget_file>
+		<cg_content_file>/.mounts/labs/PDE/data/TargetedSequencingQC/HALT/halt_coding.cg</cg_content_file>
+		<repeatmasker_file>/.mounts/labs/PDE/data/TargetedSequencingQC/hg19.repeatmasker.bed</repeatmasker_file>
+                <segmentaldups_file>/.mounts/labs/PDE/data/TargetedSequencingQC/GRCh37GenomicSuperDup.bed</segmentaldups_file>
+	
+        
+                <interval_file>/.mounts/labs/PDE/data/TargetedSequencingQC/Illumina.TruSeq/TruSeq-Exome-Targeted-Regions-BED-file.bed</interval_file>
+                <offtarget_file>/.mounts/labs/PDE/data/TargetedSequencingQC/Illumina.TruSeq/TruSeq-Exome-Targeted-Regions-BED-file.500b.bed</offtarget_file>
+                <cg_content_file>/.mounts/labs/PDE/data/TargetedSequencingQC/Illumina.TruSeq/TruSeq-Exome-Targeted-Regions-BED-file.cg</cg_content_file>
+		<targets_per_bin>100</targets_per_bin>
+                <repeatmasker_file>/.mounts/labs/PDE/data/TargetedSequencingQC/hg19.repeatmasker.bed</repeatmasker_file>
+                <segmentaldups_file>/.mounts/labs/PDE/data/TargetedSequencingQC/GRCh37GenomicSuperDup.bed</segmentaldups_file>
+        
+        
+                <interval_file>/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.ICGC/sanger.exons.hg19.bed</interval_file>
+                <offtarget_file>/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.ICGC/sanger.exons.hg19.500b.bed</offtarget_file>
+                <cg_content_file>/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.ICGC/sanger.exons.hg19.cg</cg_content_file>
+		<targets_per_bin>100</targets_per_bin>
+                <repeatmasker_file>/.mounts/labs/PDE/data/TargetedSequencingQC/hg19.repeatmasker.bed</repeatmasker_file>
+                <segmentaldups_file>/.mounts/labs/PDE/data/TargetedSequencingQC/GRCh37GenomicSuperDup.bed</segmentaldups_file>
+     
+       
+                <interval_file>/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.G3362/SureSelect_All_Exon_G3362_with_names.v2.bed</interval_file>
+                <offtarget_file>/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.G3362/SureSelect_All_Exon_G3362_with_names.v2.500b.bed</offtarget_file>
+                <cg_content_file>/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.G3362/SureSelect_All_Exon_G3362_with_names.v2.cg</cg_content_file>
+                <targets_per_bin>70</targets_per_bin>
+                <repeatmasker_file>/.mounts/labs/PDE/data/TargetedSequencingQC/hg19.repeatmasker.bed</repeatmasker_file>
+                <segmentaldups_file>/.mounts/labs/PDE/data/TargetedSequencingQC/GRCh37GenomicSuperDup.bed</segmentaldups_file>
+       
+                <interval_file>/.mounts/labs/PDE/data/TargetedSequencingQC/Nimblegen.2.1M.Human.Exome/2.1M_Human_Exome.bed</interval_file>
+                <offtarget_file>/.mounts/labs/PDE/data/TargetedSequencingQC/Nimblegen.2.1M.Human.Exome/2.1M_Human_Exome.500b.bed</offtarget_file>
+                <cg_content_file>/.mounts/labs/PDE/data/TargetedSequencingQC/Nimblegen.2.1M.Human.Exome/2.1M_Human_Exome.cg</cg_content_file>
+		<targets_per_bin>75</targets_per_bin>
+                <repeatmasker_file>/.mounts/labs/PDE/data/TargetedSequencingQC/hg19.repeatmasker.bed</repeatmasker_file>
+                <segmentaldups_file>/.mounts/labs/PDE/data/TargetedSequencingQC/GRCh37GenomicSuperDup.bed</segmentaldups_file>
+       
+                <interval_file>/.mounts/labs/PDE/data/TargetedSequencingQC/TruSeqCancerPanel/TruSeq_Cancer_Panel_Targets_Regions_sorted.bed</interval_file>
+                <offtarget_file>/.mounts/labs/PDE/data/TargetedSequencingQC/TruSeqCancerPanel/TruSeq_Cancer_Panel_Targets_Regions_sorted.500b.bed</offtarget_file>
+                <cg_content_file>/.mounts/labs/PDE/data/TargetedSequencingQC/TruSeqCancerPanel/TruSeq_Cancer_Panel_Targets_Regions_sorted.cg</cg_content_file>
+                <repeatmasker_file>/.mounts/labs/PDE/data/TargetedSequencingQC/hg19.repeatmasker.bed</repeatmasker_file>
+                <segmentaldups_file>/.mounts/labs/PDE/data/TargetedSequencingQC/GRCh37GenomicSuperDup.bed</segmentaldups_file>
+        
+</references>
+
