@@ -36,6 +36,10 @@ public class BamQCDecider extends OicrDecider {
 //    private String outputPath = "NA";
     private String tmp = "/tmp";
     private Random random = new Random(System.currentTimeMillis());
+    private String rsconfigXmlPath = "/.mounts/labs/PDE/data/TargetedSequencingQC/rsconfig.xml";
+    private boolean forceType = false;
+    private String forcedResequencingType = "";
+    private String forcedIntervalFile = "";
 
     public BamQCDecider() {
         super();
@@ -54,6 +58,14 @@ public class BamQCDecider extends OicrDecider {
         parser.accepts("tmp", "Optional: specify the temporary directory where the JSON snippets will be stored during processing. Default: /tmp").withRequiredArg();
         parser.accepts("check-file-exists", "Optional: Flag to check whether or not the file exists before launching the workflow. WARNING! Will "
                 + "not work if you are not on the same filesystem or do not have appropriate permissions!");
+        parser.accepts("interval-file", "Optional: path to a file with target coordinates.").withRequiredArg();
+        parser.accepts("resequencing-type", "Optional: specify resequencing type which should use the supplied interval-file. Will use the supplied interval file for this type only, "
+                + "will works when interval-file is also set.").withRequiredArg();
+        parser.accepts("rsconfig-file", "Optional: specify location of .xml file which should be used to configure references, "
+                + "will be used if resequencing-type is different from the default."
+                + "Default: " + rsconfigXmlPath).withRequiredArg();
+        parser.accepts("force-type", "Optional: will process only bams without resequencing type set, "
+                + " Need to have resequencing-type passed as well.").withOptionalArg();
     }
 
     @Override
@@ -77,11 +89,8 @@ public class BamQCDecider extends OicrDecider {
             if (file.exists()) {
                 iniFile = file.getAbsolutePath();
                 Map<String, String> iniFileMap = MapTools.iniString2Map(iniFile);
-//                outputDir = iniFileMap.get("output_dir");
-//                outputPrefix = iniFileMap.get("output_prefix");
-//                outputPath = iniFileMap.get("output_path");
             } else {
-                Log.error("The given INI file does not exist: " + file.getAbsolutePath());
+                Log.stdout("The given INI file does not exist: " + file.getAbsolutePath());
                 ret.setExitStatus(ReturnValue.INVALIDPARAMETERS);
             }
 
@@ -93,21 +102,48 @@ public class BamQCDecider extends OicrDecider {
             if (tempDir.exists()) {
                 tmp = tempDir.getAbsolutePath();
             } else {
-                Log.warn("The temporary directory " + tempDir.getAbsolutePath() + " does not exist.");
+                Log.stdout("The temporary directory " + tempDir.getAbsolutePath() + " does not exist.");
                 ret.setExitStatus(ReturnValue.INVALIDPARAMETERS);
             }
         }
 
-//        if (options.has("output-folder")) {
-//            outputDir = options.valueOf("output-folder").toString();
-//        }
-//        if (options.has("output-path")) {
-//            path = options.valueOf("output-path").toString();
-//            if (!path.endsWith("/")) {
-//                path += "/";
-//            }
-//        }
+        if (options.has("force-type")
+                && !((options.has("resequencing-type") && options.has("interval-file"))
+                || (options.has("resequencing-type")))) {
+            Log.stdout("--force-type requires either --resequencing-type OR --resequencing-type and --interval-file to be set.");
+            System.exit(1);
+        }
 
+        if (options.has("resequencing-type")) {
+            if (!options.has("force-type")) {
+                Log.stdout("Forcing --resequencing-type requires --resequencing-type to have an argument and --force-type be set.");
+                System.exit(1);
+            } else {
+                forceType = true;
+                forcedResequencingType = options.valueOf("resequencing-type").toString();
+            }
+        }
+
+        if (options.has("interval-file")) {
+            if (!options.has("resequencing-type") || !options.has("force-type")) {
+                Log.stdout("Forcing --interval-file requires --interval-file to have an argument, --resequencing-type be set, and --force-type to be set.");
+                System.exit(1);
+            } else {
+                forcedIntervalFile = options.valueOf("interval-file").toString();
+                if (!fileExistsAndIsAccessible(forcedIntervalFile)) {
+                    Log.stdout("ERROR: interval-file is not valid");
+                    System.exit(1);
+                }
+            }
+        }
+
+        if (options.has("rsconfig-file")) {
+            rsconfigXmlPath = options.valueOf("rsconfig-file").toString();
+            if (!fileExistsAndIsAccessible(rsconfigXmlPath)) {
+                Log.stdout("ERROR: rsconfig-file is not valid");
+                System.exit(1);
+            }
+        }
 
         //allows anything defined on the command line to override the 'defaults' here.
         ret = super.init();
@@ -126,41 +162,31 @@ public class BamQCDecider extends OicrDecider {
         Log.debug("CHECK FILE DETAILS:" + fm);
 
         String templateType = returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_library_source_template_type");
-        if ("WG".equals(templateType)) {
-            returnValue.setAttribute("target_bed", "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed");
-        } else if ("TS".equals(templateType)) {
+        String targetResequencingType = returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_targeted_resequencing");
 
-            String targetResequencingType = returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_targeted_resequencing");
-            if (targetResequencingType == null || targetResequencingType.isEmpty()) {
-                Log.error("The targeted resequencing type is null");
-                return false;
-            }
+        if (forceType && !forcedResequencingType.isEmpty() && !forcedIntervalFile.isEmpty()) {
+            returnValue.setAttribute("target_bed", forcedIntervalFile);
+        } else if (forceType && !forcedResequencingType.isEmpty()) {
 
             String target_bed = null;
             try {
-                target_bed = configFromParsedXML("/.mounts/labs/PDE/data/TargetedSequencingQC/rsconfig.xml", targetResequencingType);
-            } catch (ParserConfigurationException ex) {
-                Logger.getLogger(BamQCDecider.class.getName()).log(Level.SEVERE, null, ex);
-                //ret.setExitStatus(ReturnValue.
-            } catch (SAXException ex) {
-                Logger.getLogger(BamQCDecider.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(BamQCDecider.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (DuplicatesException ex) {
-                Logger.getLogger(BamQCDecider.class.getName()).log(Level.SEVERE, null, ex);
+                target_bed = configFromParsedXML(rsconfigXmlPath, forcedResequencingType);
+            } catch (Exception e) {
+                Log.stdout(e.getMessage());
+                System.exit(1);
             }
+
             if (target_bed == null) {
-                Log.error("The targeted resequencing type "
-                        +targetResequencingType
-                        +" (TS) does not have an associated BED file"
-                        );
-                return false;
+                //throw new Error("ERROR: FORCED TEMPLATE TYPE DOES NOT EXIST IN RSCONFIG");
+                Log.stdout("ERROR: FORCED TEMPLATE TYPE DOES NOT EXIST IN RSCONFIG");
+                System.exit(1);
             }
+
             returnValue.setAttribute("target_bed", target_bed);
-
-
+        } else if ("WG".equals(templateType)) {
+            returnValue.setAttribute("target_bed", "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed");
         } else if ("EX".equals(templateType)) {
-            String targetResequencingType = returnValue.getAttribute(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_targeted_resequencing");
+
             if ("Illumina TruSeq Exome".equals(targetResequencingType)) {
                 returnValue.setAttribute("target_bed", "/oicr/data/reference/genomes/homo_sapiens_mc/TruSeq/TruSeq-Exome-Targeted-Regions-BED-file");
             } else if ("Agilent SureSelect ICGC/Sanger Exon".equals(targetResequencingType)) {
@@ -168,11 +194,31 @@ public class BamQCDecider extends OicrDecider {
             } else if ("Nimblegen 2.1M Human Exome (21191)".equals(targetResequencingType)) {
                 returnValue.setAttribute("target_bed", "/oicr/data/reference/genomes/homo_sapiens/Nimblegen/2.1M_Human_Exome_Annotation_21191/hg19/080904_ccds_exome_rebalfocus_hg19/processed/2.1M_Human_Exome.bed");
             } else {
-                Log.error("The targeted resequencing type does not have an associated BED file." + templateType + (" ") + targetResequencingType + " Modify the decider to include this type:" + targetResequencingType + " for file " + fm.getFilePath());
+                Log.stdout("ERROR: The targeted resequencing type does not have an associated BED file." + templateType + (" ") + targetResequencingType + " Modify the decider to include this type:" + targetResequencingType + " for file " + fm.getFilePath());
                 return false;
             }
+
+        } else if ("TS".equals(templateType)) {
+
+            if (targetResequencingType == null || targetResequencingType.isEmpty()) {
+                Log.stdout("ERROR: The targeted resequencing is not set.." + templateType + (" ") + "NULL" + " Set the targeted resequencing type for file " + fm.getFilePath());
+                return false;
+            }
+
+            String target_bed = null;
+            try {
+                target_bed = configFromParsedXML(rsconfigXmlPath, targetResequencingType);
+            } catch (Exception ex) {
+                Log.stdout(ex.getMessage());
+                System.exit(1);
+            }
+            if (target_bed == null) {
+                Log.stdout("The targeted resequencing type does not have an associated BED file." + templateType + (" ") + targetResequencingType + " Modify the decider to include this type:" + targetResequencingType + " for file " + fm.getFilePath());
+                return false;
+            }
+            returnValue.setAttribute("target_bed", target_bed);
         } else {
-            Log.error("This template type is not supported for the BAM QC decider: " + templateType + " for file " + fm.getFilePath());
+            Log.stdout("This template type is not supported for the BAM QC decider: " + templateType + " for file " + fm.getFilePath());
             return false;
         }
         if (options.has("check-file-exists")) {
@@ -180,9 +226,9 @@ public class BamQCDecider extends OicrDecider {
             if (!file.exists()) {
                 file = new File(fm.getFilePath() + ".bak");
                 if (file.exists()) {
-                    Log.error("File does not exist! " + fm.getFilePath() + "\t .bak file exists: " + file.getAbsolutePath());
+                    Log.stdout("File does not exist! " + fm.getFilePath() + "\t .bak file exists: " + file.getAbsolutePath());
                 } else {
-                    Log.error("File does not exist! " + fm.getFilePath());
+                    Log.stdout("File does not exist! " + fm.getFilePath());
                 }
                 return false;
             }
@@ -191,18 +237,26 @@ public class BamQCDecider extends OicrDecider {
         return super.checkFileDetails(returnValue, fm);
     }
 
-    protected static String configFromParsedXML(String fileName, String resequencingType) throws ParserConfigurationException, SAXException, IOException, DuplicatesException {
+    protected static String configFromParsedXML(String filePath, String resequencingType) throws ParserConfigurationException, SAXException, IOException, Exception {
+
+        //TODO: call this function more efficiently
+
         Element eElement = null;
-        File fXmlFile = new File(fileName);
-        System.out.println("Still alive past file: ");
+        File fXmlFile = new File(filePath);
+        if (!fXmlFile.exists()) {
+            //would be better if unchecked, but seqware catches unchecked :(
+            throw new Exception("ERROR: XML FILE DOES NOT EXIST: " + fXmlFile.getCanonicalPath());
+        }
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(fXmlFile);
         doc.getDocumentElement().normalize();
+
         NodeList nList = doc.getElementsByTagName("resequencing_type");
+
         if (nList.getLength() == 0) {
-            System.out.println("ERROR: NO RESEQUENCING TYPES IN THIS FILE");
-            throw new NullPointerException();
+            //would be better if unchecked, but seqware catches unchecked :(
+            throw new Exception("ERROR: NO RESEQUENCING TYPES LOCATED IN: " + filePath);
         }
 
         Map<String, String> h = new HashMap<String, String>();
@@ -214,24 +268,29 @@ public class BamQCDecider extends OicrDecider {
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                 eElement = (Element) nNode;
-                if (h.containsKey(eElement.getAttribute("id"))) {
-                    throw new DuplicatesException();
 
-                } else {
-                    h.put(eElement.getAttribute("id"),
-                            eElement.getElementsByTagName("interval_file").item(0).getTextContent());
+                String resequencingTypeId = eElement.getAttribute("id");
+                String resequencingTypeBedFile = eElement.getElementsByTagName("interval_file").item(0).getTextContent();
 
+                //validate key
+                if (h.containsKey(resequencingTypeId)) {
+                    //would be better if unchecked, but seqware catches unchecked :(
+                    throw new Exception("ERROR: DUPLICATE RESEQUENCING_TYPE ID FOUND: " + resequencingTypeId);
                 }
+
+                //validate value
+                if (resequencingTypeBedFile == null || resequencingTypeBedFile.isEmpty()) {
+                    //would be better if unchecked, but seqware catches unchecked :(
+                    throw new Exception("ERROR: INVALID INTERVAL FILE: " + resequencingTypeBedFile); 
+                }
+
+                h.put(resequencingTypeId, resequencingTypeBedFile);
+
             }
+
         }
 
-        if (!(eElement == null)) {
-            if (resequencingType.equals(eElement.getAttribute("id"))) {
-                return h.get(resequencingType);
-
-            }
-        }
-        return null;
+        return h.get(resequencingType);
 
     }
 
@@ -379,7 +438,26 @@ public class BamQCDecider extends OicrDecider {
             file.setReadable(true, false);
 
         } catch (IOException ex) {
-            Log.error("Error writing JSON file:" + file.getAbsolutePath(), ex);
+            Log.stdout("Error writing JSON file:" + file.getAbsolutePath());
         }
+    }
+
+    public static boolean fileExistsAndIsAccessible(String filePath) {
+
+        File file = new File(filePath);
+        return (file.exists() && file.canRead() && file.isFile());
+
+    }
+
+    public static void main(String args[]) {
+
+        List<String> params = new ArrayList<String>();
+        params.add("--plugin");
+        params.add(BamQCDecider.class.getCanonicalName());
+        params.add("--");
+        params.addAll(Arrays.asList(args));
+        System.out.println("Parameters: " + Arrays.deepToString(params.toArray()));
+        net.sourceforge.seqware.pipeline.runner.PluginRunner.main(params.toArray(new String[params.size()]));
+
     }
 }

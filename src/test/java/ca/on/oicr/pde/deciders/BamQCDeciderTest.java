@@ -1,22 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.on.oicr.pde.deciders;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Map;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import net.sourceforge.seqware.common.hibernate.FindAllTheFiles;
 import net.sourceforge.seqware.common.module.FileMetadata;
 import net.sourceforge.seqware.common.module.ReturnValue;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -24,10 +17,6 @@ import static org.junit.Assert.*;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
@@ -121,134 +110,64 @@ public class BamQCDeciderTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of configFromParsedXML method, of class BamQCDecider.
-     */
-//    @Test
-//    @Ignore
-//    public void testConfigFromParsedXML() {
-//        System.out.println("configFromParsedXML");
-//        String fileName = "";
-//        String resequencingType = "";
-//        BamQCDecider instance = new BamQCDecider();
-//        String expResult = "";
-//        String result = instance.configFromParsedXML(fileName, resequencingType);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-    /**
-     *
-     */
-    @Test
-    @Ignore
-      
-    public void XMLfileExists_ConfigFromParsedXML() throws ParserConfigurationException, SAXException, IOException, DuplicatesException {
-        
-       exception.expect(IOException.class);
-        
-        String e = BamQCDecider.configFromParsedXML(
-                (FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig-doesNotExist.xml")).getPath() == null) ? "" 
-                : BamQCDeciderTest.class.getResource("/rsconfig-doesNotExist.xml").getPath(),
-                "random");
-      
-    }
+    
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @Test
-    @Ignore
+    public void configFromParsedXML_missingXMLFile() throws ParserConfigurationException, SAXException, IOException, Exception {
 
-   
-    public void targetSequencingExists_ConfigFromParsedXML() throws ParserConfigurationException, SAXException, IOException, DuplicatesException {
-
-        exception.expect(NullPointerException.class);
-         
-         System.out.println((BamQCDeciderTest.class.getResource("/notargetSequencing.xml")).getPath());
-         BamQCDecider.configFromParsedXML(
-                 FileUtils.toFile(BamQCDeciderTest.class.getResource("/notargetSequencing.xml")).getPath(), 
-                 "HALT");
-
-        
-        
-//        
-//        File fXmlFile = FileUtils.toFile(this.getClass().getResource("/rsconfig.xml"));
-//        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-//        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-//        Document doc = dBuilder.parse(fXmlFile);
-//        doc.getDocumentElement().normalize();
-//        NodeList nList = doc.getElementsByTagName("resequencing_type");
-//        assertTrue(nList.getLength() > 0);
-
+        exception.expect(Exception.class);
+        BamQCDecider.configFromParsedXML("doesNotExist.xml", "");
 
     }
 
     @Test
-      @Ignore
-    public void targetSequencingMatchesExpectations_ConfigFromParsedXML() {
-        
-        
-        
-        
-        try {
-            File fXmlFile = FileUtils.toFile(this.getClass().getResource("/rsconfig.xml"));
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
-            doc.getDocumentElement().normalize();
-            NodeList nList = doc.getElementsByTagName("resequencing_type");
+    public void configFromParsedXML_missingResequencingTag() throws ParserConfigurationException, SAXException, IOException, Exception {
 
+        exception.expect(Exception.class);
+        BamQCDecider.configFromParsedXML(FileUtils.toFile(BamQCDeciderTest.class.getResource("/missingTargetResequencingTag.xml")).getPath(), "");
 
-            for (int temp = 0; temp < nList.getLength(); temp++) {
+    }
 
-                Node nNode = nList.item(temp);
+    @Test
+    public void configFromParsedXML_getAllIntervalFilePaths() throws IOException, ParserConfigurationException, SAXException, Exception {
 
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+        Assert.assertEquals("/.mounts/labs/PDE/data/TargetedSequencingQC/HALT/halt_coding.bed",
+                BamQCDecider.configFromParsedXML(FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig.xml")).getPath(), "HALT"));
+        Assert.assertEquals("/.mounts/labs/PDE/data/TargetedSequencingQC/Illumina.TruSeq/TruSeq-Exome-Targeted-Regions-BED-file.bed",
+                BamQCDecider.configFromParsedXML(FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig.xml")).getPath(), "Illumina TruSeq Exome"));
+        Assert.assertEquals("/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.ICGC/sanger.exons.hg19.bed",
+                BamQCDecider.configFromParsedXML(FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig.xml")).getPath(), "Agilent SureSelect ICGC/Sanger Exon"));
+        Assert.assertEquals("/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.G3362/SureSelect_All_Exon_G3362_with_names.v2.bed",
+                BamQCDecider.configFromParsedXML(FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig.xml")).getPath(), "Agilent SureSelect All Exon G3362"));
+        Assert.assertEquals("/.mounts/labs/PDE/data/TargetedSequencingQC/Nimblegen.2.1M.Human.Exome/2.1M_Human_Exome.bed",
+                BamQCDecider.configFromParsedXML(FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig.xml")).getPath(), "Nimblegen 2.1M Human Exome (21191)"));
+        Assert.assertEquals("/.mounts/labs/PDE/data/TargetedSequencingQC/TruSeqCancerPanel/TruSeq_Cancer_Panel_Targets_Regions_sorted.bed",
+                BamQCDecider.configFromParsedXML(FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig.xml")).getPath(), "TruSeq Amplicon - Cancer Panel"));
 
-                    Element eElement = (Element) nNode;
-                    assertTrue((eElement.getAttribute("id").equals("HALT"))
-                            || (eElement.getAttribute("id").equals("Illumina TruSeq Exome"))
-                            || (eElement.getAttribute("id").equals("Agilent SureSelect ICGC/Sanger Exon"))
-                            || (eElement.getAttribute("id").equals("Agilent SureSelect All Exon G3362"))
-                            || (eElement.getAttribute("id").equals("Nimblegen 2.1M Human Exome (21191)"))
-                            || (eElement.getAttribute("id").equals("TruSeq Amplicon - Cancer Panel")));
-                }
-            }
+    }
 
-        } catch (Exception e) {
-        }
+    @Test
+    public void configFromParsedXML_duplicateTargetSequencingCheck() throws ParserConfigurationException, SAXException, IOException, Exception {
+
+        exception.expect(Exception.class);
+        BamQCDecider.configFromParsedXML(FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig-duplicates-bottom.xml")).getPath(), "");
+
+    }
+
+    @Test
+    public void configFromParsedXML_returnsNullWhenMissing() throws ParserConfigurationException, SAXException, IOException, Exception {
+
+        Assert.assertNull(BamQCDecider.configFromParsedXML(FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig.xml")).getPath(), "ThisDoesNotExist"));
 
     }
     
-    @Rule
-	public ExpectedException exception = ExpectedException.none();
-
     @Test
-    public void duplicateTargetSequencingCheck_configFromParsedXML() 
-            throws ParserConfigurationException, SAXException, IOException, DuplicatesException {
-         
-        exception.expect(DuplicatesException.class);
-         
-         System.out.println((BamQCDeciderTest.class.getResource("/rsconfig-duplicates-bottom.xml")).getPath());
-         BamQCDecider.configFromParsedXML(
-                 FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig-duplicates-bottom.xml")).getPath(), 
-                 "TruSeq Amplicon - Cancer Panel");
-    }
-
-    @Test
-    @Ignore
-    public void checksIfDesiredTargetSequencingExists_inXMLFile() throws ParserConfigurationException, SAXException, IOException, DuplicatesException {
-       
-        String returnVal = BamQCDecider.configFromParsedXML(FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig.xml")).getPath(), "TruSeq Amplicon - Cancer Panel");
-        assertFalse(returnVal == null);
-    }
-
-    @Test
-    @Ignore
-      
-    public void checksIftargetBEDexists_inXMLFile() throws ParserConfigurationException, SAXException, IOException, DuplicatesException {
-       
-        System.out.println(FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig.xml")).getPath());
-        String returnVal = BamQCDecider.configFromParsedXML(FileUtils.toFile(BamQCDeciderTest.class.getResource("/rsconfig.xml")).getPath(), "HALT");
-        assertTrue(returnVal.equals("/.mounts/labs/PDE/data/TargetedSequencingQC/HALT/halt_coding.bed"));
+    public void configFromParsedXML_noneXmlFile() throws ParserConfigurationException, SAXException, IOException, Exception {
+        
+        exception.expect(SAXException.class);
+        BamQCDecider.configFromParsedXML(FileUtils.toFile(BamQCDeciderTest.class.getResource("/notAnXmlFile.txt")).getPath(), "");
+        
     }
 }
