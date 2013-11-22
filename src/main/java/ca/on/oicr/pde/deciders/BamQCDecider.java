@@ -438,7 +438,8 @@ public class BamQCDecider extends OicrDecider {
             file.setReadable(true, false);
 
         } catch (IOException ex) {
-            Log.stdout("Error writing JSON file:" + file.getAbsolutePath());
+            Log.fatal("Error writing JSON file:" + file.getAbsolutePath());
+	    System.exit(1);
         }
     }
 
