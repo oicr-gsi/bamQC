@@ -40,7 +40,7 @@ public class WorkflowClient extends OicrWorkflow {
         //try {
             
             
-            queue = getProperty("queue");
+            queue = getOptionalProperty("queue", "");
             inputFile = getProperty("input_file");
             
             manualOutput = Boolean.valueOf(getProperty("manual_output"));
@@ -123,7 +123,7 @@ public class WorkflowClient extends OicrWorkflow {
         SqwFile sqwJsonOutputFile = createOutputFile(dataDir + jsonOutputFileName, "text/json", manualOutput);
 
         job.addFile(sqwJsonOutputFile);
-
+        job.setQueue(queue);
         return job;
 
     }
