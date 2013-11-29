@@ -19,7 +19,7 @@ SW_REST_URL=$2
 
 SCHEDULING_SYSTEM=$3
 
-SW_CLUSTER=sqwuser.hpc.oicr.on.ca
+SW_CLUSTER=$4
 SW_DAX_DIR="${BASE_DIR}"/dax
 
 SW_BUNDLE_DIR="${BASE_DIR}"/provisionedBundles
