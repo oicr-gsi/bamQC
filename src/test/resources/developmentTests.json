@@ -1,8 +1,8 @@
 {
     "defaults": {
         "description": "BamQC workflow test",
-        "metrics_calculate": "/calculate.sh",
-        "metrics_compare": "/compare.sh",
+        "metrics_calculate": "calculate.sh",
+        "metrics_compare": "compare.sh",
         "input_config_dir": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/input_config/",
         "output_metrics_dir": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/output_expectation/"
     },
