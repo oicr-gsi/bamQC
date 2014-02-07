@@ -47,7 +47,7 @@
                     </execution>
                 </executions>
             </plugin>
-                        <plugin>
+            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
@@ -78,12 +78,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.github.seqware</groupId>
             <artifactId>seqware-distribution</artifactId>
             <version>${seqware-version}</version>
@@ -93,6 +87,13 @@
             <groupId>ca.on.oicr.pde</groupId>
             <artifactId>decider-utilities</artifactId>
             <version>1.4.3</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8.7</version>
+            <scope>test</scope>
             <type>jar</type>
         </dependency>
     </dependencies>
