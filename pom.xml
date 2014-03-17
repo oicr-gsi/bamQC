@@ -96,6 +96,11 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>ca.on.oicr.pde.workflows</groupId>
+            <artifactId>workflow-bam-qc</artifactId>
+            <version>${workflow-version}</version>
+        </dependency>
     </dependencies>
 
     <repositories>
