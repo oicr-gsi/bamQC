@@ -15,11 +15,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <seqware-version>0.13.6.15</seqware-version>
-        <workflow-version>2.0</workflow-version>
+        <decider-utilities-version>1.4.3</decider-utilities-version>
+        <workflow-version>2.1</workflow-version>
+        <main-class>ca.on.oicr.pde.deciders.BamQCDecider</main-class>
+        <final-name>Decider_${project.version}_${project.artifactId}_${workflow-version}_SeqWare_${seqware-version}</final-name>
+        <skipITs>true</skipITs>
     </properties>
 
     <build>
-        <finalName>Decider_${project.version}_${project.artifactId}_${workflow-version}_SeqWare_${seqware-version}</finalName>
+        <finalName>${final-name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -73,6 +77,20 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.16</version>
+                <configuration>
+                    <skip>${skipITs}</skip>
+                    <systemPropertyVariables>
+                        <deciderJar>${project.build.directory}/${final-name}-jar-with-dependencies.jar</deciderJar>
+                    </systemPropertyVariables>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/tests/runtest.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -86,8 +104,15 @@
         <dependency>
             <groupId>ca.on.oicr.pde</groupId>
             <artifactId>decider-utilities</artifactId>
-            <version>1.4.3</version>
+            <version>${decider-utilities-version}</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>ca.on.oicr.pde</groupId>
+            <artifactId>decider-utilities</artifactId>
+            <version>${decider-utilities-version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
