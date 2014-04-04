@@ -74,7 +74,6 @@ public class BamQCDecider extends OicrDecider {
         this.setHeader(Header.FILE_SWA);
         this.setMetaType(Arrays.asList("application/bam"));
 
-
         if (options.has("sample-rate")) {
             sampleRate = options.valueOf("sample-rate").toString();
         }
@@ -193,6 +192,8 @@ public class BamQCDecider extends OicrDecider {
                 returnValue.setAttribute("target_bed", "/oicr/data/genomes/homo_sapiens/Agilent/SureSelect_Whole_Exome_ICGC_Sanger/GRCh37hg19/sanger.exons.bed.hg19");
             } else if ("Nimblegen 2.1M Human Exome (21191)".equals(targetResequencingType)) {
                 returnValue.setAttribute("target_bed", "/oicr/data/reference/genomes/homo_sapiens/Nimblegen/2.1M_Human_Exome_Annotation_21191/hg19/080904_ccds_exome_rebalfocus_hg19/processed/2.1M_Human_Exome.bed");
+            } else if ("Ion AmpliSeq Exome".equals(targetResequencingType)) {
+                returnValue.setAttribute("target_bed", "/.mounts/labs/PDE/data/TargetedSequencingQC/IonAmpliSeqExome/Ion-TargetSeq-Exome-50Mb-hg19_revA.bed");
             } else {
                 Log.stdout("ERROR: The targeted resequencing type does not have an associated BED file." + templateType + (" ") + targetResequencingType + " Modify the decider to include this type:" + targetResequencingType + " for file " + fm.getFilePath());
                 return false;
@@ -240,7 +241,6 @@ public class BamQCDecider extends OicrDecider {
     protected static String configFromParsedXML(String filePath, String resequencingType) throws ParserConfigurationException, SAXException, IOException, Exception {
 
         //TODO: call this function more efficiently
-
         Element eElement = null;
         File fXmlFile = new File(filePath);
         if (!fXmlFile.exists()) {
@@ -281,7 +281,7 @@ public class BamQCDecider extends OicrDecider {
                 //validate value
                 if (resequencingTypeBedFile == null || resequencingTypeBedFile.isEmpty()) {
                     //would be better if unchecked, but seqware catches unchecked :(
-                    throw new Exception("ERROR: INVALID INTERVAL FILE: " + resequencingTypeBedFile); 
+                    throw new Exception("ERROR: INVALID INTERVAL FILE: " + resequencingTypeBedFile);
                 }
 
                 h.put(resequencingTypeId, resequencingTypeBedFile);
@@ -378,7 +378,6 @@ public class BamQCDecider extends OicrDecider {
             }
         }
 
-
         String externalName = null;
         for (String key : atts.keySet()) {
             if (key.contains("geo_tube_id")) {
@@ -439,7 +438,7 @@ public class BamQCDecider extends OicrDecider {
 
         } catch (IOException ex) {
             Log.fatal("Error writing JSON file:" + file.getAbsolutePath());
-	    System.exit(1);
+            System.exit(1);
         }
     }
 
