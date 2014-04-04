@@ -108,13 +108,6 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>ca.on.oicr.pde</groupId>
-            <artifactId>decider-utilities</artifactId>
-            <version>${decider-utilities-version}</version>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.8.7</version>
