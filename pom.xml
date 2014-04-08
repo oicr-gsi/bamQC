@@ -3,7 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ca.on.oicr.pde.deciders</groupId>
+    <parent>
+        <groupId>ca.on.oicr.pde.deciders</groupId>
+        <artifactId>deciders</artifactId>
+        <version>2014.1.0</version>
+        <relativePath>../deciders-pom.xml</relativePath>
+    </parent>
+
     <artifactId>BamQC</artifactId>
     <version>2.2</version>
     <packaging>jar</packaging>
@@ -12,132 +18,16 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <seqware-version>0.13.6.15</seqware-version>
-        <decider-utilities-version>1.4.3</decider-utilities-version>
         <workflow-version>2.1</workflow-version>
         <main-class>ca.on.oicr.pde.deciders.BamQCDecider</main-class>
-        <final-name>Decider_${project.version}_${project.artifactId}_${workflow-version}_SeqWare_${seqware-version}</final-name>
-        <skipITs>true</skipITs>
     </properties>
-
-    <build>
-        <finalName>${final-name}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.7</version>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <includeArtifactIds>seqware-distribution,decider-utilities</includeArtifactIds>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>ca.on.oicr.pde.deciders.BamQCDecider</mainClass>
-                        </manifest>
-                        <manifestEntries>
-                            <Implementation-Version>${seqware-version}</Implementation-Version>
-                        </manifestEntries>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.16</version>
-                <configuration>
-                    <skip>${skipITs}</skip>
-                    <systemPropertyVariables>
-                        <deciderJar>${project.build.directory}/${final-name}-jar-with-dependencies.jar</deciderJar>
-                    </systemPropertyVariables>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/tests/runtest.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
+    
     <dependencies>
-        <dependency>
-            <groupId>com.github.seqware</groupId>
-            <artifactId>seqware-distribution</artifactId>
-            <version>${seqware-version}</version>
-            <classifier>full</classifier>
-        </dependency>
-        <dependency>
-            <groupId>ca.on.oicr.pde</groupId>
-            <artifactId>decider-utilities</artifactId>
-            <version>${decider-utilities-version}</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.8.7</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
         <dependency>
             <groupId>ca.on.oicr.pde.workflows</groupId>
             <artifactId>workflow-bam-qc</artifactId>
             <version>${workflow-version}</version>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>com.github.seqware</id>
-            <name>SeqWare Maven Repository</name>
-            <url>http://seqwaremaven.oicr.on.ca/artifactory/seqware-release</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>seqwaremaven.oicr.on.ca</id>
-            <name>seqwaremaven.oicr.on.ca-dependencies</name>
-            <url>http://seqwaremaven.oicr.on.ca/artifactory/seqware-dependencies</url>
-        </repository>
-    </repositories>
-    
+     
 </project>
