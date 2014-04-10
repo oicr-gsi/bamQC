@@ -7,7 +7,7 @@
         <groupId>ca.on.oicr.pde.deciders</groupId>
         <artifactId>deciders</artifactId>
         <version>2014.1.0</version>
-        <relativePath>../deciders-pom.xml</relativePath>
+        <relativePath>../decider-parent-pom.xml</relativePath>
     </parent>
 
     <artifactId>BamQC</artifactId>
@@ -15,7 +15,6 @@
     <packaging>jar</packaging>
 
     <name>decider-bam-qc</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <workflow-version>2.1</workflow-version>
@@ -27,6 +26,16 @@
             <groupId>ca.on.oicr.pde.workflows</groupId>
             <artifactId>workflow-bam-qc</artifactId>
             <version>${workflow-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.github.seqware</groupId>
+                    <artifactId>seqware-distribution</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.github.seqware</groupId>
+                    <artifactId>seqware-pipeline</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
      
