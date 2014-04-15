@@ -118,6 +118,16 @@
             <groupId>ca.on.oicr.pde.workflows</groupId>
             <artifactId>workflow-bam-qc</artifactId>
             <version>${workflow-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.github.seqware</groupId>
+                    <artifactId>seqware-distribution</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.github.seqware</groupId>
+                    <artifactId>seqware-pipeline</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
