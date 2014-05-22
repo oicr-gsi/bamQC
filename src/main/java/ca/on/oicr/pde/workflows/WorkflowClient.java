@@ -1,9 +1,7 @@
 package ca.on.oicr.pde.workflows;
 
 import ca.on.oicr.pde.utilities.workflows.OicrWorkflow;
-import java.util.Arrays;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sourceforge.seqware.pipeline.workflowV2.model.Command;
 import net.sourceforge.seqware.pipeline.workflowV2.model.Job;
@@ -12,7 +10,7 @@ import net.sourceforge.seqware.pipeline.workflowV2.model.SqwFile;
 public class WorkflowClient extends OicrWorkflow {
 
     String outdir = null;
-    private static final Logger logger = Logger.getLogger(WorkflowClient.class.getName());
+   // private static final Logger logger = Logger.getLogger(WorkflowClient.class.getName());
     //workflow parameters
     private String queue = null;
     private String inputFile = null;
@@ -107,10 +105,10 @@ public class WorkflowClient extends OicrWorkflow {
         String jsonOutputFileName = inputFile.substring(inputFile.lastIndexOf("/") + 1) + ".BamQC.json";
 
         Command command = job.getCommand();
-        command.addArgument(getWorkflowBaseDir() + "/bin" + "/samtools-0.1.19/samtools " + "view " + getFiles().get("file_in_0").getProvisionedPath());
+        command.addArgument(binDir + "samtools-0.1.19/samtools " + "view " + getFiles().get("file_in_0").getProvisionedPath());
         command.addArgument("|"); //pipe to
-        command.addArgument(getWorkflowBaseDir() + "/bin" + "/perl-5.14.1/perl");
-        command.addArgument(getWorkflowBaseDir() + "/bin" + "/samStats.pl");
+        command.addArgument(binDir + "perl-5.14.1/perl");
+        command.addArgument(binDir + "samStats.pl");
         command.addArgument("-s " + sampleRate);
         command.addArgument("-i " + normalInsertMax);
         command.addArgument("-q " + mapQualCut);
