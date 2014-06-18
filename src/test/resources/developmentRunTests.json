@@ -36,14 +36,6 @@
                 "--root-sample-name": "OBC_0001",
 		"--before-date": "2013-11-19"
             }
-        },
-        {
-            "id": "HALT study test",
-            "studies": ["HALT"],
-            "parameters": {
-                "--before-date": "2013-11-19"
-            }
-
         }
     ]
 }
