@@ -192,9 +192,9 @@ public class BamQCDecider extends OicrDecider {
         }
 
         if (target_bed == null) {
-            Log.error("For the file with SWID = [ " + returnValue.getAttribute(Header.FILE_SWA.getTitle())
-                    + "The template type (lims attribute = geo_library_source_template_type) = [" + templateType
-                    + "] and resequencing type (lims attribute = geo_targeted_resequencing) = [" + targetResequencingType
+            Log.error("For the file with SWID = [" + returnValue.getAttribute(Header.FILE_SWA.getTitle())
+                    + "], the template type/geo_library_source_template_type = [" + templateType
+                    + "] and resequencing type/geo_targeted_resequencing = [" + targetResequencingType
                     + "] could not be found in rsconfig.xml (path = [" + rsconfigXmlPath + "])");
             return false;
         }
