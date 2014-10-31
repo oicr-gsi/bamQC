@@ -17,7 +17,7 @@
     <name>decider-bam-qc</name>
 
     <properties>
-        <workflow-version>2.1</workflow-version>
+        <workflow-version>2.2</workflow-version>
         <main-class>ca.on.oicr.pde.deciders.BamQCDecider</main-class>
     </properties>
     
