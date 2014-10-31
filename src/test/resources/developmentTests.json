@@ -33,6 +33,9 @@
         },
         {
             "input_config": "workflow_test_09.ini"
-        }
+        },
+	{
+	    "input_config": "pde-806.ini"
+	}
     ]
 }

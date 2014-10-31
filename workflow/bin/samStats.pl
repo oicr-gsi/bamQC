@@ -6,7 +6,7 @@ use warnings;
 use Getopt::Std;
 use vars qw/ %opt /;
 
-use JSON::PP; # imports encode_json, decode_json, to_json and from_json
+use JSON; # imports encode_json, decode_json, to_json and from_json
 
 my $defaultSampleRate = 1000;
 my $defaultInsertMax = 1500;
@@ -26,7 +26,8 @@ sub usage
 	print "\t-r target.bed.  Bed file containing targets to calculate coverage against (default $defaultBedFile).\n";
 	print "\t\tNOTE: target.bed file MUST be sorted in the same order as the bam file.\n";
 	print "\t-c enables % base covered reporting. Sets sample rate to 1 (overrides -s), and runs long.\n";
-	print "\t-j additional JSON formatted data string FILEPATH!!. e.g. '{\"sample\":\"TLCR2C10n\",\"library\":\"TLCR_2C10_nn_n_PE_501_nn\",\"barcode\":\"TAGCTT\",\"instrument\":\"h802\",\"run name\":\"110616_SN802_0060_AC00FWACXX\",\"lane\":\"4\"}'\n";
+	print "\t-b bam path (for recording path and timestamp).\n";
+	print "\t-j additional JSON formatted data string. e.g. '{\"sample\":\"TLCR2C10n\",\"library\":\"TLCR_2C10_nn_n_PE_501_nn\",\"barcode\":\"TAGCTT\",\"instrument\":\"h802\",\"run name\":\"110616_SN802_0060_AC00FWACXX\",\"lane\":\"4\"}'\n";
 	print "\t-h displays this usage message.\n";
 
 	die "\n@_\n\n";
@@ -38,11 +39,9 @@ my $bedFile = $defaultBedFile;
 my $qualCut = $defaultQualCut;
 my %jsonHash;
 my $reportBasesCovered = 0;
-
+my $bamPath = "nopath";
 my $line;
-my @fields;
-
-my $opt_string = "s:i:l:r:j:q:ch";
+my $opt_string = "s:i:l:r:b:j:q:ch";
 getopts ($opt_string, \%opt) or usage("Incorrect arguments.");
 
 if (exists $opt{h})
@@ -68,14 +67,22 @@ if (exists $opt{q})
 
 if (exists $opt{j})
 {
-	open(JSONFILE, "$opt{j}") or usage("Couldn't open $opt{j}\n");
-	while($line = <JSONFILE>)
-	{
-		chomp $line;
-		%jsonHash = %{ decode_json($line) };
-	}
-	close JSONFILE;
+        open(JSONFILE, "$opt{j}") or usage("Couldn't open $opt{j}\n");
+        while($line = <JSONFILE>)
+        {
+                chomp $line;
+                %jsonHash = %{ decode_json($line) };
+        }
+        close JSONFILE;
 }
+
+if (exists $opt{b})
+{
+	$bamPath = $opt{b};
+	$jsonHash{"bam path"} = $bamPath;
+	$jsonHash{"last modified"} = (stat($bamPath))[9];
+}
+
 
 if (exists $opt{c})
 {
@@ -93,6 +100,8 @@ else
 }
 
 
+my @fields;
+
 my %bedStart;
 my %bedStop;
 my $bedPos = 0;
@@ -107,14 +116,17 @@ open (BEDFILE, $bedFile) or usage("Couldn't open target file: $bedFile.\n");
 while ($line = <BEDFILE>)
 {
 	chomp $line;
-	@fields = split(/\t/, $line);
+	unless ($line =~ /^#/)
+	{
+		@fields = split(/\t/, $line);
 
-	push (@{ $bedStart{$fields[0]} }, $fields[1]);
-	push (@{ $bedStop{$fields[0]} }, $fields[2]);
+		push (@{ $bedStart{$fields[0]} }, $fields[1]);
+		push (@{ $bedStop{$fields[0]} }, $fields[2]);
 
-	$targetSize += $fields[2] - $fields[1];
+		$targetSize += $fields[2] - $fields[1];
 
-	$bedHist{"$fields[0]\t$fields[1]\t$fields[2]"} = 0;
+		$bedHist{"$fields[0]\t$fields[1]\t$fields[2]"} = 0;
+	}
 }
 close BEDFILE;
 
@@ -309,28 +321,6 @@ while ($line = <STDIN>)
 				$firstOrSecondRead = "R?";
 			}
 
-			$onTarget = 0;
-			if (exists $bedStart{$fields[2]})
-			{
-				if ($bedCurrentChr ne $fields[2])
-				{
-					$bedPos = 0;
-					$bedCurrentChr = $fields[2];
-				}
-
-				while (($bedPos < scalar @{ $bedStop{$fields[2]} }) and ($fields[3] > $bedStop{$fields[2]}[$bedPos]))		# need to advance current bed target region
-				{
-					$bedPos++;
-				}
-
-				if (($bedPos < scalar @{ $bedStop{$fields[2]} }) and (($fields[3] <= $bedStop{$fields[2]}[$bedPos]) and (($fields[3] + $mappedBases) >= $bedStart{$fields[2]}[$bedPos])))
-				{
-					$readsOnTarget++;
-					$onTarget = 1;
-					$bedHist{"$fields[2]\t$bedStart{$fields[2]}[$bedPos]\t$bedStop{$fields[2]}[$bedPos]"} += $mappedBases;
-				}
-			}
-
 			$startPoint = $fields[3];
 			$readLength = 0;
 			foreach my $c (@cigarOp)
@@ -345,16 +335,10 @@ while ($line = <STDIN>)
 					}
 					if ($reportBasesCovered == 1)
 					{
-						if ($onTarget == 1)
+						for (my $i = 0; $i < $1; $i++)
 						{
-							for (my $i = 0; $i < $1; $i++)
-							{
-								if ((($startPoint + $posOffset) >= $bedStart{$fields[2]}[$bedPos]) and (($startPoint + $posOffset) <= $bedStop{$fields[2]}[$bedPos]))
-								{
-									$runningBaseCoverage{$fields[2]}{$startPoint + $posOffset}{"$fields[2]\t$fields[3]\t$fields[7]"}++;
-									$posOffset++;
-								}
-							}
+							$runningBaseCoverage{$fields[2]}{$startPoint + $posOffset}{"$fields[2]\t$fields[3]\t$fields[7]"}++;
+							$posOffset++;
 						}
 					}
 					$readLength += $1;
@@ -399,16 +383,10 @@ while ($line = <STDIN>)
 					}
 					if ($reportBasesCovered == 1)
 					{
-						if ($onTarget == 1)
+						for (my $i = 0; $i < $1; $i++)
 						{
-							for (my $i = 0; $i < $1; $i++)
-							{
-								if ((($startPoint + $posOffset) >= $bedStart{$fields[2]}[$bedPos]) and (($startPoint + $posOffset) <= $bedStop{$fields[2]}[$bedPos]))
-								{
-									$runningBaseCoverage{$fields[2]}{$startPoint + $posOffset}{"$fields[2]\t$fields[3]\t$fields[7]"}++;
-									$posOffset++;
-								}
-							}
+							$runningBaseCoverage{$fields[2]}{$startPoint + $posOffset}{"$fields[2]\t$fields[3]\t$fields[7]"}++;
+							$posOffset++;
 						}
 					}
 
@@ -417,6 +395,28 @@ while ($line = <STDIN>)
 				else
 				{
 					die "Can't handle CIGAR operation: $c\n";
+				}
+			}
+
+			$onTarget = 0;
+			if (exists $bedStart{$fields[2]})
+			{
+				if ($bedCurrentChr ne $fields[2])
+				{
+					$bedPos = 0;
+					$bedCurrentChr = $fields[2];
+				}
+
+				while (($bedPos <= scalar @{ $bedStop{$fields[2]} }) and ($fields[3] > $bedStop{$fields[2]}[$bedPos]))		# need to advance current bed target region
+				{
+					$bedPos++;
+				}
+
+				if (($bedPos <= scalar @{ $bedStop{$fields[2]} }) and (($fields[3] <= $bedStop{$fields[2]}[$bedPos]) and (($fields[3] + $mappedBases) >= $bedStart{$fields[2]}[$bedPos])))
+				{
+					$readsOnTarget++;
+					$onTarget = 1;
+					$bedHist{"$fields[2]\t$bedStart{$fields[2]}[$bedPos]\t$bedStop{$fields[2]}[$bedPos]"} += $mappedBases;
 				}
 			}
 
@@ -839,7 +839,10 @@ for my $reg (sort keys %bedHist)
 	($chr, $start, $end) = split(/\t/, $reg);
 
 
-	$coverage = int(($bedHist{$reg} / ($end - $start)) * $sampleRate);
+	unless ($start == $end)
+	{
+		$coverage = int(($bedHist{$reg} / ($end - $start)) * $sampleRate);
+	}
 
 	if ($coverage > 0)
 	{
@@ -852,6 +855,7 @@ if ($properPairReadCount > 0)
 {
 	$numEnds = "paired end";
 }
+
 
 $jsonHash{"number of ends"} = $numEnds;
 
