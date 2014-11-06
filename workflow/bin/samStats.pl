@@ -6,7 +6,7 @@ use warnings;
 use Getopt::Std;
 use vars qw/ %opt /;
 
-use JSON; # imports encode_json, decode_json, to_json and from_json
+use JSON::PP; # imports encode_json, decode_json, to_json and from_json
 
 my $defaultSampleRate = 1000;
 my $defaultInsertMax = 1500;

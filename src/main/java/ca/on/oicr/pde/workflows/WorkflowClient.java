@@ -107,7 +107,7 @@ public class WorkflowClient extends OicrWorkflow {
         Command command = job.getCommand();
         command.addArgument(binDir + "samtools-0.1.19/samtools " + "view " + getFiles().get("file_in_0").getProvisionedPath());
         command.addArgument("|"); //pipe to
-        command.addArgument("perl");
+        command.addArgument(binDir + "perl-5.14.1/perl");
         command.addArgument(getProperty("samstats_script"));
         command.addArgument("-s " + sampleRate);
         command.addArgument("-i " + normalInsertMax);
