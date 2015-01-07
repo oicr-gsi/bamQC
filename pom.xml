@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>workflow-bam-qc</artifactId>
-    <version>2.2</version>
+    <version>2.3</version>
     <packaging>jar</packaging>
 
     <name>workflow-bam-qc</name>
@@ -30,6 +30,12 @@
             <artifactId>jackson-core-asl</artifactId>
             <version>1.9.5</version>
         </dependency>
+	<dependency>
+	    <groupId>ca.on.oicr.git.spb-analysis-tools</groupId>
+	    <artifactId>bamqc</artifactId>
+	    <version>0.01</version>
+	    <type>zip</type>
+	</dependency>
     </dependencies>
     
     <build>

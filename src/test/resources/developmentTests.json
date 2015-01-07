@@ -4,7 +4,7 @@
         "metrics_calculate": "calculate.sh",
         "metrics_compare": "compare.sh",
         "input_config_dir": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_config/",
-        "output_metrics_dir": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/output_expectation/"
+        "output_metrics_dir": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/output_expectation_v0.01"
     },
     "tests": [
         {
