@@ -27,12 +27,13 @@
             <type>zip</type>
             <scope>provided</scope>
         </dependency>
-	<dependency>
-	    <groupId>ca.on.oicr.git.spb-analysis-tools</groupId>
-	    <artifactId>bamqc</artifactId>
-	    <version>0.01</version>
-	    <type>zip</type>
-	</dependency>
+        <dependency>
+            <groupId>ca.on.oicr.git.spb-analysis-tools</groupId>
+            <artifactId>bamqc</artifactId>
+            <version>0.01</version>
+            <type>zip</type>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     
     <build>
