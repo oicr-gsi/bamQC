@@ -1,6 +1,6 @@
 {
     "defaultDescription": "BamQC decider test",
-    "defaultMetricsDirectory": "/.mounts/labs/PDE/data/RegressionTests/BamQC/decider/development",
+    "defaultMetricsResources": "/expected_output/development/",
     "defaultParameters": {
         "--tmp": "/tmp",
         "--rsconfig-file": "/.mounts/labs/PDE/data/rsconfig.xml"
@@ -12,21 +12,21 @@
         {
             "id": "AshPC study test",
             "studies": ["AshPC"],
-	    "parameters": {
-		"--before-date": "2013-11-19"
-	    }
+            "parameters": {
+                "--before-date": "2013-11-19"
+            }
         },
         {
             "id": "PCSI sample test",
             "parameters": {
                 "--root-sample-name": "PCSI_0005",
-	        "--before-date": "2013-11-19"
+                "--before-date": "2013-11-19"
             }
         },
         {
             "id": "sequencer run test",
             "sequencerRuns": ["120912_h804_0094_BD181GACXX"],
-	    "parameters": {
+            "parameters": {
                 "--before-date": "2013-11-19"
             }
         },
@@ -34,7 +34,7 @@
             "id": "OBC sample test",
             "parameters": {
                 "--root-sample-name": "OBC_0001",
-		"--before-date": "2013-11-19"
+                "--before-date": "2013-11-19"
             }
         }
     ]
