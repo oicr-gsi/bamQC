@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ca.on.oicr.pde.config</groupId>
+        <artifactId>workflows</artifactId>
+        <version>3</version>
+    </parent>
+
+    <groupId>ca.on.oicr.pde.workflows</groupId>
+    <artifactId>workflow-bam-qc</artifactId>
+    <version>2.4</version>
+    <packaging>jar</packaging>
+
+    <name>${display-name}</name>
+
+    <properties>
+        <workflow-name>BamQC</workflow-name>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>samtools</groupId>
+            <artifactId>samtools</artifactId>
+            <version>0.1.19</version>
+            <type>zip</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>ca.on.oicr.git.spb-analysis-tools</groupId>
+            <artifactId>bamqc</artifactId>
+            <version>0.01</version>
+            <type>zip</type>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.pyx4j</groupId>
+                <artifactId>maven-junction-plugin</artifactId>
+                <configuration>
+                    <links>
+                        <link>
+                            <dst>${project.build.directory}/Workflow_Bundle_${workflow-name}_${project.version}_SeqWare_${seqware-version}/Workflow_Bundle_${workflow-directory-name}/${project.version}/data/testdata</dst>
+                            <src>${basedir}/links/testdata</src>
+                        </link>
+                    </links>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
