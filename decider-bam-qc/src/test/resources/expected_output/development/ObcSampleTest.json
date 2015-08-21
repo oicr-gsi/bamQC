@@ -12,6 +12,7 @@
   "totalInputFiles" : 4,
   "workflowRuns" : [ {
     "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"111212_h1080_0086_AC045BACXX\\\",\\\"instrument\\\":\\\"h1080\\\",\\\"barcode\\\":\\\"ATCACG\\\",\\\"library\\\":\\\"OBC_0001_Ov_X_PE_389_EX\\\",\\\"sample\\\":\\\"OBC_0001_Ov_X_PE\\\",\\\"sample group\\\":\\\"OBC_0001\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1331161850757000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -58,52 +59,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "manual_output" : "false",
-      "map_qual_cut" : "30",
-      "metadata" : "metadata",
-      "normal_insert_max" : "1500",
-      "output_dir" : "seqware-results",
-      "output_path" : "NA",
-      "sample_rate" : "1000",
-      "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed"
-    },
-    "files" : [ {
-      "studyTitle" : [ "Ovarian_Brain_Colon_Exome_Seq" ],
-      "studyAttributes" : {
-        "study.geo_lab_group_id" : [ [ "121" ] ]
-      },
-      "experimentName" : [ "Geo_Ovarian_Brain_Colon_Exome_Seq_ILLUMINA_EX_{F*101}{..}{R*101}" ],
-      "experimentAttributes" : { },
-      "sampleName" : [ "OBC_0001_Ov_X_PE_389_EX" ],
-      "sampleAttributes" : {
-        "sample.geo_library_source_template_type" : [ [ "EX" ] ],
-        "sample.geo_reaction_id" : [ [ "5581", "5773" ] ],
-        "sample.geo_run_id_and_position_and_slot" : [ [ "866_1_1", "889_1_1" ] ],
-        "sample.geo_targeted_resequencing" : [ [ "Agilent SureSelect ICGC/Sanger Exon" ] ],
-        "sample.geo_template_id" : [ [ "15687" ] ],
-        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
-        "sample.geo_tissue_origin" : [ [ "Ov" ] ],
-        "sample.geo_tissue_type" : [ [ "X" ] ]
-      },
-      "sequencerRunName" : [ "120106_h804_0076_AD0LFWACXX" ],
-      "sequencerRunAttributes" : {
-        "sequencerrun.geo_instrument_run_id" : [ [ "889" ] ]
-      },
-      "laneName" : [ "120106_h804_0076_AD0LFWACXX_lane_1" ],
-      "laneAttributes" : {
-        "lane.geo_lane" : [ [ "1" ] ]
-      },
-      "iusTag" : [ "ATCACG" ],
-      "iusAttributes" : { },
-      "workflowName" : [ "GenomicAlignmentNovoalign" ],
-      "processingAlgorithm" : [ "PicardAddReadGroups" ],
-      "processingAttributes" : { },
-      "fileMetaType" : [ "application/bam" ],
-      "fileAttributes" : { },
-      "fileId" : 1006413682
-    } ]
-  }, {
-    "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"111212_h1080_0086_AC045BACXX\\\",\\\"instrument\\\":\\\"h1080\\\",\\\"barcode\\\":\\\"GATCAG\\\",\\\"library\\\":\\\"OBC_0001_nn_R_PE_388_EX\\\",\\\"sample\\\":\\\"OBC_0001_nn_R_PE\\\",\\\"sample group\\\":\\\"OBC_0001\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1331145905759000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -150,6 +106,54 @@
     } ]
   }, {
     "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"120106_h804_0076_AD0LFWACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"ATCACG\\\",\\\"library\\\":\\\"OBC_0001_Ov_X_PE_389_EX\\\",\\\"sample\\\":\\\"OBC_0001_Ov_X_PE\\\",\\\"sample group\\\":\\\"OBC_0001\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1327231116462000\\\"}",
+      "manual_output" : "false",
+      "map_qual_cut" : "30",
+      "metadata" : "metadata",
+      "normal_insert_max" : "1500",
+      "output_dir" : "seqware-results",
+      "output_path" : "NA",
+      "sample_rate" : "1000",
+      "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed"
+    },
+    "files" : [ {
+      "studyTitle" : [ "Ovarian_Brain_Colon_Exome_Seq" ],
+      "studyAttributes" : {
+        "study.geo_lab_group_id" : [ [ "121" ] ]
+      },
+      "experimentName" : [ "Geo_Ovarian_Brain_Colon_Exome_Seq_ILLUMINA_EX_{F*101}{..}{R*101}" ],
+      "experimentAttributes" : { },
+      "sampleName" : [ "OBC_0001_Ov_X_PE_389_EX" ],
+      "sampleAttributes" : {
+        "sample.geo_library_source_template_type" : [ [ "EX" ] ],
+        "sample.geo_reaction_id" : [ [ "5581", "5773" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "866_1_1", "889_1_1" ] ],
+        "sample.geo_targeted_resequencing" : [ [ "Agilent SureSelect ICGC/Sanger Exon" ] ],
+        "sample.geo_template_id" : [ [ "15687" ] ],
+        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
+        "sample.geo_tissue_origin" : [ [ "Ov" ] ],
+        "sample.geo_tissue_type" : [ [ "X" ] ]
+      },
+      "sequencerRunName" : [ "120106_h804_0076_AD0LFWACXX" ],
+      "sequencerRunAttributes" : {
+        "sequencerrun.geo_instrument_run_id" : [ [ "889" ] ]
+      },
+      "laneName" : [ "120106_h804_0076_AD0LFWACXX_lane_1" ],
+      "laneAttributes" : {
+        "lane.geo_lane" : [ [ "1" ] ]
+      },
+      "iusTag" : [ "ATCACG" ],
+      "iusAttributes" : { },
+      "workflowName" : [ "GenomicAlignmentNovoalign" ],
+      "processingAlgorithm" : [ "PicardAddReadGroups" ],
+      "processingAttributes" : { },
+      "fileMetaType" : [ "application/bam" ],
+      "fileAttributes" : { },
+      "fileId" : 1006413682
+    } ]
+  }, {
+    "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"120106_h804_0076_AD0LFWACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"GATCAG\\\",\\\"library\\\":\\\"OBC_0001_nn_R_PE_388_EX\\\",\\\"sample\\\":\\\"OBC_0001_nn_R_PE\\\",\\\"sample group\\\":\\\"OBC_0001\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1327236462624000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",

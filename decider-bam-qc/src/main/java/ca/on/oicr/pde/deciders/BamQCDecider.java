@@ -1,14 +1,13 @@
 package ca.on.oicr.pde.deciders;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 import net.sourceforge.seqware.common.hibernate.FindAllTheFiles.Header;
 import net.sourceforge.seqware.common.module.FileMetadata;
 import net.sourceforge.seqware.common.module.ReturnValue;
 import net.sourceforge.seqware.common.util.Log;
 import net.sourceforge.seqware.common.util.maptools.MapTools;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
  * @author mtaschuk@oicr.on.ca
@@ -244,7 +243,7 @@ public class BamQCDecider extends OicrDecider {
         iniFileMap.put("normal_insert_max", normalInsertMax);
         iniFileMap.put("map_qual_cut", mapQualCut);
         iniFileMap.put("target_bed", r.getAttribute("target_bed"));
-        iniFileMap.put("json_metadata_file", makeJsonSnippet(commaSeparatedFilePaths, r));
+        iniFileMap.put("json_metadata", escapeForSeqwareIni(makeJsonSnippet(commaSeparatedFilePaths, r)));
 
         return iniFileMap;
     }
@@ -308,6 +307,7 @@ public class BamQCDecider extends OicrDecider {
                 break;
             }
         }
+
         String workflowName = atts.get(Header.WORKFLOW_NAME.getTitle());
         String workflowVersion = atts.get(Header.WORKFLOW_VERSION.getTitle());
 
@@ -340,40 +340,20 @@ public class BamQCDecider extends OicrDecider {
         sb.append("\"last modified\":\"").append(time).append("\"");
 
         sb.append("}");
-        Log.debug(sb.toString());
-        int rand = random.nextInt();
-        File file = new File(tmp + File.separator + libraryName + rand + ".json");
-        writeFile(file, sb);
 
-        Log.debug("Wrote to " + file.getAbsolutePath());
-
-        return file.getAbsolutePath();
-
+        return sb.toString();
     }
 
-    private void writeFile(File file, StringBuilder sb) {
-        try {
-            FileWriter writer = new FileWriter(file);
-            writer.append(sb);
-            writer.flush();
-            writer.close();
-            file.setReadable(true, false);
-
-        } catch (IOException ex) {
-            Log.fatal("Error writing JSON file:" + file.getAbsolutePath());
-            System.exit(1);
-        }
+    public static String escapeForSeqwareIni(String s) {
+        return StringEscapeUtils.escapeJava(StringEscapeUtils.escapeJava(s.replace("=", "&#61;")));
     }
 
     public static boolean fileExistsAndIsAccessible(String filePath) {
-
         File file = new File(filePath);
         return (file.exists() && file.canRead() && file.isFile());
-
     }
 
     public static void main(String args[]) {
-
         List<String> params = new ArrayList<String>();
         params.add("--plugin");
         params.add(BamQCDecider.class.getCanonicalName());
@@ -381,6 +361,5 @@ public class BamQCDecider extends OicrDecider {
         params.addAll(Arrays.asList(args));
         System.out.println("Parameters: " + Arrays.deepToString(params.toArray()));
         net.sourceforge.seqware.pipeline.runner.PluginRunner.main(params.toArray(new String[params.size()]));
-
     }
 }

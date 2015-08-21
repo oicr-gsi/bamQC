@@ -1,0 +1,428 @@
+{
+  "workflowRunCount" : 9,
+  "studies" : [ "Liposarcoma_Sequencing" ],
+  "sequencerRuns" : [ "150529_D00353_0104_AC6DBAANXX", "150617_D00331_0137_BC6VU3ANXX", "150721_D00355_0089_AC6C9UANXX" ],
+  "lanes" : [ "150529_D00353_0104_AC6DBAANXX_lane_4", "150617_D00331_0137_BC6VU3ANXX_lane_8", "150721_D00355_0089_AC6C9UANXX_lane_4", "150721_D00355_0089_AC6C9UANXX_lane_5", "150721_D00355_0089_AC6C9UANXX_lane_6", "150721_D00355_0089_AC6C9UANXX_lane_7" ],
+  "samples" : [ "LSP_0001_Ad_P_PE_305_WG", "LSP_0001_Ad_P_PE_314_WG", "LSP_0001_Ad_P_PE_315_WG", "LSP_0001_Ad_P_PE_316_WG" ],
+  "workflows" : [ "GenomicAlignmentNovoalign_V2.07.15b" ],
+  "processingAlgorithms" : [ "ProvisionFiles" ],
+  "fileMetaTypes" : [ "application/bam" ],
+  "maxInputFiles" : 1,
+  "minInputFiles" : 1,
+  "totalInputFiles" : 9,
+  "workflowRuns" : [ {
+    "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"ACAGTG\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_315_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"group id description\\\":\\\"De-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439463815713000\\\"}",
+      "manual_output" : "false",
+      "map_qual_cut" : "30",
+      "metadata" : "metadata",
+      "normal_insert_max" : "1500",
+      "output_dir" : "seqware-results",
+      "output_path" : "NA",
+      "sample_rate" : "1000",
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+    },
+    "files" : [ {
+      "studyTitle" : [ "Liposarcoma_Sequencing" ],
+      "studyAttributes" : {
+        "study.geo_lab_group_id" : [ [ "201" ] ]
+      },
+      "experimentName" : [ "Geo_Liposarcoma_Sequencing_ILLUMINA_WG_{F*126}{..}{R*126}" ],
+      "experimentAttributes" : { },
+      "sampleName" : [ "LSP_0001_Ad_P_PE_315_WG" ],
+      "sampleAttributes" : {
+        "sample.geo_library_source_template_type" : [ [ "WG" ] ],
+        "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_6_1" ] ],
+        "sample.geo_template_id" : [ [ "77525" ] ],
+        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
+        "sample.geo_tissue_origin" : [ [ "Ad" ] ],
+        "sample.geo_tissue_type" : [ [ "P" ] ]
+      },
+      "sequencerRunName" : [ "150529_D00353_0104_AC6DBAANXX" ],
+      "sequencerRunAttributes" : {
+        "sequencerrun.geo_instrument_run_id" : [ [ "2281" ] ]
+      },
+      "laneName" : [ "150529_D00353_0104_AC6DBAANXX_lane_4" ],
+      "laneAttributes" : {
+        "lane.geo_lane" : [ [ "4" ] ]
+      },
+      "iusTag" : [ "ACAGTG" ],
+      "iusAttributes" : { },
+      "workflowName" : [ "GenomicAlignmentNovoalign_V2.07.15b" ],
+      "processingAlgorithm" : [ "ProvisionFiles" ],
+      "processingAttributes" : { },
+      "fileMetaType" : [ "application/bam" ],
+      "fileAttributes" : { },
+      "fileId" : 1487291536
+    } ]
+  }, {
+    "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"CGATGT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_305_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"Well-differentiated Themo\\\",\\\"group id description\\\":\\\"Well-differentiated Themo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1433602051463000\\\"}",
+      "manual_output" : "false",
+      "map_qual_cut" : "30",
+      "metadata" : "metadata",
+      "normal_insert_max" : "1500",
+      "output_dir" : "seqware-results",
+      "output_path" : "NA",
+      "sample_rate" : "1000",
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+    },
+    "files" : [ {
+      "studyTitle" : [ "Liposarcoma_Sequencing" ],
+      "studyAttributes" : {
+        "study.geo_lab_group_id" : [ [ "201" ] ]
+      },
+      "experimentName" : [ "Geo_Liposarcoma_Sequencing_ILLUMINA_WG_{F*126}{..}{R*126}" ],
+      "experimentAttributes" : { },
+      "sampleName" : [ "LSP_0001_Ad_P_PE_305_WG" ],
+      "sampleAttributes" : {
+        "sample.geo_library_source_template_type" : [ [ "WG" ] ],
+        "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2283_8_2", "2286_8_2", "2296_4_1" ] ],
+        "sample.geo_template_id" : [ [ "77523" ] ],
+        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
+        "sample.geo_tissue_origin" : [ [ "Ad" ] ],
+        "sample.geo_tissue_type" : [ [ "P" ] ]
+      },
+      "sequencerRunName" : [ "150529_D00353_0104_AC6DBAANXX" ],
+      "sequencerRunAttributes" : {
+        "sequencerrun.geo_instrument_run_id" : [ [ "2281" ] ]
+      },
+      "laneName" : [ "150529_D00353_0104_AC6DBAANXX_lane_4" ],
+      "laneAttributes" : {
+        "lane.geo_lane" : [ [ "4" ] ]
+      },
+      "iusTag" : [ "CGATGT" ],
+      "iusAttributes" : { },
+      "workflowName" : [ "GenomicAlignmentNovoalign_V2.07.15b" ],
+      "processingAlgorithm" : [ "ProvisionFiles" ],
+      "processingAttributes" : { },
+      "fileMetaType" : [ "application/bam" ],
+      "fileAttributes" : { },
+      "fileId" : 923101898
+    } ]
+  }, {
+    "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"GCCAAT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_316_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"group id description\\\":\\\"De-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439477208476000\\\"}",
+      "manual_output" : "false",
+      "map_qual_cut" : "30",
+      "metadata" : "metadata",
+      "normal_insert_max" : "1500",
+      "output_dir" : "seqware-results",
+      "output_path" : "NA",
+      "sample_rate" : "1000",
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+    },
+    "files" : [ {
+      "studyTitle" : [ "Liposarcoma_Sequencing" ],
+      "studyAttributes" : {
+        "study.geo_lab_group_id" : [ [ "201" ] ]
+      },
+      "experimentName" : [ "Geo_Liposarcoma_Sequencing_ILLUMINA_WG_{F*126}{..}{R*126}" ],
+      "experimentAttributes" : { },
+      "sampleName" : [ "LSP_0001_Ad_P_PE_316_WG" ],
+      "sampleAttributes" : {
+        "sample.geo_library_source_template_type" : [ [ "WG" ] ],
+        "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_7_1" ] ],
+        "sample.geo_template_id" : [ [ "77526" ] ],
+        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
+        "sample.geo_tissue_origin" : [ [ "Ad" ] ],
+        "sample.geo_tissue_type" : [ [ "P" ] ]
+      },
+      "sequencerRunName" : [ "150529_D00353_0104_AC6DBAANXX" ],
+      "sequencerRunAttributes" : {
+        "sequencerrun.geo_instrument_run_id" : [ [ "2281" ] ]
+      },
+      "laneName" : [ "150529_D00353_0104_AC6DBAANXX_lane_4" ],
+      "laneAttributes" : {
+        "lane.geo_lane" : [ [ "4" ] ]
+      },
+      "iusTag" : [ "GCCAAT" ],
+      "iusAttributes" : { },
+      "workflowName" : [ "GenomicAlignmentNovoalign_V2.07.15b" ],
+      "processingAlgorithm" : [ "ProvisionFiles" ],
+      "processingAttributes" : { },
+      "fileMetaType" : [ "application/bam" ],
+      "fileAttributes" : { },
+      "fileId" : -1232214712
+    } ]
+  }, {
+    "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"TGACCA\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_314_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"Well-differentiated Qiagen\\\",\\\"group id description\\\":\\\"Well-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439497495343000\\\"}",
+      "manual_output" : "false",
+      "map_qual_cut" : "30",
+      "metadata" : "metadata",
+      "normal_insert_max" : "1500",
+      "output_dir" : "seqware-results",
+      "output_path" : "NA",
+      "sample_rate" : "1000",
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+    },
+    "files" : [ {
+      "studyTitle" : [ "Liposarcoma_Sequencing" ],
+      "studyAttributes" : {
+        "study.geo_lab_group_id" : [ [ "201" ] ]
+      },
+      "experimentName" : [ "Geo_Liposarcoma_Sequencing_ILLUMINA_WG_{F*126}{..}{R*126}" ],
+      "experimentAttributes" : { },
+      "sampleName" : [ "LSP_0001_Ad_P_PE_314_WG" ],
+      "sampleAttributes" : {
+        "sample.geo_library_source_template_type" : [ [ "WG" ] ],
+        "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_5_1" ] ],
+        "sample.geo_template_id" : [ [ "77524" ] ],
+        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
+        "sample.geo_tissue_origin" : [ [ "Ad" ] ],
+        "sample.geo_tissue_type" : [ [ "P" ] ]
+      },
+      "sequencerRunName" : [ "150529_D00353_0104_AC6DBAANXX" ],
+      "sequencerRunAttributes" : {
+        "sequencerrun.geo_instrument_run_id" : [ [ "2281" ] ]
+      },
+      "laneName" : [ "150529_D00353_0104_AC6DBAANXX_lane_4" ],
+      "laneAttributes" : {
+        "lane.geo_lane" : [ [ "4" ] ]
+      },
+      "iusTag" : [ "TGACCA" ],
+      "iusAttributes" : { },
+      "workflowName" : [ "GenomicAlignmentNovoalign_V2.07.15b" ],
+      "processingAlgorithm" : [ "ProvisionFiles" ],
+      "processingAttributes" : { },
+      "fileMetaType" : [ "application/bam" ],
+      "fileAttributes" : { },
+      "fileId" : -379209101
+    } ]
+  }, {
+    "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"150617_D00331_0137_BC6VU3ANXX\\\",\\\"instrument\\\":\\\"D00331\\\",\\\"barcode\\\":\\\"CGATGT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_305_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"Well-differentiated Themo\\\",\\\"group id description\\\":\\\"Well-differentiated Themo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1436790827713000\\\"}",
+      "manual_output" : "false",
+      "map_qual_cut" : "30",
+      "metadata" : "metadata",
+      "normal_insert_max" : "1500",
+      "output_dir" : "seqware-results",
+      "output_path" : "NA",
+      "sample_rate" : "1000",
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+    },
+    "files" : [ {
+      "studyTitle" : [ "Liposarcoma_Sequencing" ],
+      "studyAttributes" : {
+        "study.geo_lab_group_id" : [ [ "201" ] ]
+      },
+      "experimentName" : [ "Geo_Liposarcoma_Sequencing_ILLUMINA_WG_{F*126}{..}{R*126}" ],
+      "experimentAttributes" : { },
+      "sampleName" : [ "LSP_0001_Ad_P_PE_305_WG" ],
+      "sampleAttributes" : {
+        "sample.geo_library_source_template_type" : [ [ "WG" ] ],
+        "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2283_8_2", "2286_8_2", "2296_4_1" ] ],
+        "sample.geo_template_id" : [ [ "77523" ] ],
+        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
+        "sample.geo_tissue_origin" : [ [ "Ad" ] ],
+        "sample.geo_tissue_type" : [ [ "P" ] ]
+      },
+      "sequencerRunName" : [ "150617_D00331_0137_BC6VU3ANXX" ],
+      "sequencerRunAttributes" : {
+        "sequencerrun.geo_instrument_run_id" : [ [ "2286" ] ]
+      },
+      "laneName" : [ "150617_D00331_0137_BC6VU3ANXX_lane_8" ],
+      "laneAttributes" : {
+        "lane.geo_lane" : [ [ "8" ] ]
+      },
+      "iusTag" : [ "CGATGT" ],
+      "iusAttributes" : { },
+      "workflowName" : [ "GenomicAlignmentNovoalign_V2.07.15b" ],
+      "processingAlgorithm" : [ "ProvisionFiles" ],
+      "processingAttributes" : { },
+      "fileMetaType" : [ "application/bam" ],
+      "fileAttributes" : { },
+      "fileId" : -89284017
+    } ]
+  }, {
+    "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"ACAGTG\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_315_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"group id description\\\":\\\"De-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439663105601000\\\"}",
+      "manual_output" : "false",
+      "map_qual_cut" : "30",
+      "metadata" : "metadata",
+      "normal_insert_max" : "1500",
+      "output_dir" : "seqware-results",
+      "output_path" : "NA",
+      "sample_rate" : "1000",
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+    },
+    "files" : [ {
+      "studyTitle" : [ "Liposarcoma_Sequencing" ],
+      "studyAttributes" : {
+        "study.geo_lab_group_id" : [ [ "201" ] ]
+      },
+      "experimentName" : [ "Geo_Liposarcoma_Sequencing_ILLUMINA_WG_{F*126}{..}{R*126}" ],
+      "experimentAttributes" : { },
+      "sampleName" : [ "LSP_0001_Ad_P_PE_315_WG" ],
+      "sampleAttributes" : {
+        "sample.geo_library_source_template_type" : [ [ "WG" ] ],
+        "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_6_1" ] ],
+        "sample.geo_template_id" : [ [ "77525" ] ],
+        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
+        "sample.geo_tissue_origin" : [ [ "Ad" ] ],
+        "sample.geo_tissue_type" : [ [ "P" ] ]
+      },
+      "sequencerRunName" : [ "150721_D00355_0089_AC6C9UANXX" ],
+      "sequencerRunAttributes" : {
+        "sequencerrun.geo_instrument_run_id" : [ [ "2296" ] ]
+      },
+      "laneName" : [ "150721_D00355_0089_AC6C9UANXX_lane_6" ],
+      "laneAttributes" : {
+        "lane.geo_lane" : [ [ "6" ] ]
+      },
+      "iusTag" : [ "ACAGTG" ],
+      "iusAttributes" : { },
+      "workflowName" : [ "GenomicAlignmentNovoalign_V2.07.15b" ],
+      "processingAlgorithm" : [ "ProvisionFiles" ],
+      "processingAttributes" : { },
+      "fileMetaType" : [ "application/bam" ],
+      "fileAttributes" : { },
+      "fileId" : 430400017
+    } ]
+  }, {
+    "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"CGATGT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_305_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"Well-differentiated Themo\\\",\\\"group id description\\\":\\\"Well-differentiated Themo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1438434808371000\\\"}",
+      "manual_output" : "false",
+      "map_qual_cut" : "30",
+      "metadata" : "metadata",
+      "normal_insert_max" : "1500",
+      "output_dir" : "seqware-results",
+      "output_path" : "NA",
+      "sample_rate" : "1000",
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+    },
+    "files" : [ {
+      "studyTitle" : [ "Liposarcoma_Sequencing" ],
+      "studyAttributes" : {
+        "study.geo_lab_group_id" : [ [ "201" ] ]
+      },
+      "experimentName" : [ "Geo_Liposarcoma_Sequencing_ILLUMINA_WG_{F*126}{..}{R*126}" ],
+      "experimentAttributes" : { },
+      "sampleName" : [ "LSP_0001_Ad_P_PE_305_WG" ],
+      "sampleAttributes" : {
+        "sample.geo_library_source_template_type" : [ [ "WG" ] ],
+        "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2283_8_2", "2286_8_2", "2296_4_1" ] ],
+        "sample.geo_template_id" : [ [ "77523" ] ],
+        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
+        "sample.geo_tissue_origin" : [ [ "Ad" ] ],
+        "sample.geo_tissue_type" : [ [ "P" ] ]
+      },
+      "sequencerRunName" : [ "150721_D00355_0089_AC6C9UANXX" ],
+      "sequencerRunAttributes" : {
+        "sequencerrun.geo_instrument_run_id" : [ [ "2296" ] ]
+      },
+      "laneName" : [ "150721_D00355_0089_AC6C9UANXX_lane_4" ],
+      "laneAttributes" : {
+        "lane.geo_lane" : [ [ "4" ] ]
+      },
+      "iusTag" : [ "CGATGT" ],
+      "iusAttributes" : { },
+      "workflowName" : [ "GenomicAlignmentNovoalign_V2.07.15b" ],
+      "processingAlgorithm" : [ "ProvisionFiles" ],
+      "processingAttributes" : { },
+      "fileMetaType" : [ "application/bam" ],
+      "fileAttributes" : { },
+      "fileId" : 180761585
+    } ]
+  }, {
+    "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"GCCAAT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_316_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"group id description\\\":\\\"De-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439633873518000\\\"}",
+      "manual_output" : "false",
+      "map_qual_cut" : "30",
+      "metadata" : "metadata",
+      "normal_insert_max" : "1500",
+      "output_dir" : "seqware-results",
+      "output_path" : "NA",
+      "sample_rate" : "1000",
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+    },
+    "files" : [ {
+      "studyTitle" : [ "Liposarcoma_Sequencing" ],
+      "studyAttributes" : {
+        "study.geo_lab_group_id" : [ [ "201" ] ]
+      },
+      "experimentName" : [ "Geo_Liposarcoma_Sequencing_ILLUMINA_WG_{F*126}{..}{R*126}" ],
+      "experimentAttributes" : { },
+      "sampleName" : [ "LSP_0001_Ad_P_PE_316_WG" ],
+      "sampleAttributes" : {
+        "sample.geo_library_source_template_type" : [ [ "WG" ] ],
+        "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_7_1" ] ],
+        "sample.geo_template_id" : [ [ "77526" ] ],
+        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
+        "sample.geo_tissue_origin" : [ [ "Ad" ] ],
+        "sample.geo_tissue_type" : [ [ "P" ] ]
+      },
+      "sequencerRunName" : [ "150721_D00355_0089_AC6C9UANXX" ],
+      "sequencerRunAttributes" : {
+        "sequencerrun.geo_instrument_run_id" : [ [ "2296" ] ]
+      },
+      "laneName" : [ "150721_D00355_0089_AC6C9UANXX_lane_7" ],
+      "laneAttributes" : {
+        "lane.geo_lane" : [ [ "7" ] ]
+      },
+      "iusTag" : [ "GCCAAT" ],
+      "iusAttributes" : { },
+      "workflowName" : [ "GenomicAlignmentNovoalign_V2.07.15b" ],
+      "processingAlgorithm" : [ "ProvisionFiles" ],
+      "processingAttributes" : { },
+      "fileMetaType" : [ "application/bam" ],
+      "fileAttributes" : { },
+      "fileId" : -1611621100
+    } ]
+  }, {
+    "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"TGACCA\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_314_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"Well-differentiated Qiagen\\\",\\\"group id description\\\":\\\"Well-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439758308212000\\\"}",
+      "manual_output" : "false",
+      "map_qual_cut" : "30",
+      "metadata" : "metadata",
+      "normal_insert_max" : "1500",
+      "output_dir" : "seqware-results",
+      "output_path" : "NA",
+      "sample_rate" : "1000",
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+    },
+    "files" : [ {
+      "studyTitle" : [ "Liposarcoma_Sequencing" ],
+      "studyAttributes" : {
+        "study.geo_lab_group_id" : [ [ "201" ] ]
+      },
+      "experimentName" : [ "Geo_Liposarcoma_Sequencing_ILLUMINA_WG_{F*126}{..}{R*126}" ],
+      "experimentAttributes" : { },
+      "sampleName" : [ "LSP_0001_Ad_P_PE_314_WG" ],
+      "sampleAttributes" : {
+        "sample.geo_library_source_template_type" : [ [ "WG" ] ],
+        "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_5_1" ] ],
+        "sample.geo_template_id" : [ [ "77524" ] ],
+        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
+        "sample.geo_tissue_origin" : [ [ "Ad" ] ],
+        "sample.geo_tissue_type" : [ [ "P" ] ]
+      },
+      "sequencerRunName" : [ "150721_D00355_0089_AC6C9UANXX" ],
+      "sequencerRunAttributes" : {
+        "sequencerrun.geo_instrument_run_id" : [ [ "2296" ] ]
+      },
+      "laneName" : [ "150721_D00355_0089_AC6C9UANXX_lane_5" ],
+      "laneAttributes" : {
+        "lane.geo_lane" : [ [ "5" ] ]
+      },
+      "iusTag" : [ "TGACCA" ],
+      "iusAttributes" : { },
+      "workflowName" : [ "GenomicAlignmentNovoalign_V2.07.15b" ],
+      "processingAlgorithm" : [ "ProvisionFiles" ],
+      "processingAttributes" : { },
+      "fileMetaType" : [ "application/bam" ],
+      "fileAttributes" : { },
+      "fileId" : 2047421056
+    } ]
+  } ]
+}

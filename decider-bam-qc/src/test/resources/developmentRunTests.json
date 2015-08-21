@@ -36,6 +36,13 @@
                 "--root-sample-name": "OBC_0001",
                 "--before-date": "2013-11-19"
             }
+        },
+        {
+            "id": "GP-453",
+            "parameters": {
+                "--root-sample-name": "LSP_0001",
+                "--before-date": "2015-08-21"
+            }
         }
     ]
 }
