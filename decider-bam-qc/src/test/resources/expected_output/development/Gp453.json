@@ -12,7 +12,7 @@
   "totalInputFiles" : 9,
   "workflowRuns" : [ {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"ACAGTG\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_315_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"group id description\\\":\\\"De-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439463815713000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"ACAGTG\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_315_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3&#44;2\\\",\\\"group id description\\\":\\\"De-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439463815713000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -58,7 +58,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"CGATGT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_305_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"Well-differentiated Themo\\\",\\\"group id description\\\":\\\"Well-differentiated Themo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1433602051463000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"CGATGT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_305_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"group id description\\\":\\\"Well-differentiated Themo&#44;Well-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1433602051463000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -104,7 +104,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"GCCAAT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_316_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"group id description\\\":\\\"De-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439477208476000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"GCCAAT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_316_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4&#44;2\\\",\\\"group id description\\\":\\\"De-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439477208476000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -150,7 +150,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"TGACCA\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_314_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"Well-differentiated Qiagen\\\",\\\"group id description\\\":\\\"Well-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439497495343000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"TGACCA\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_314_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1&#44;2\\\",\\\"group id description\\\":\\\"Well-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439497495343000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -196,7 +196,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150617_D00331_0137_BC6VU3ANXX\\\",\\\"instrument\\\":\\\"D00331\\\",\\\"barcode\\\":\\\"CGATGT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_305_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"Well-differentiated Themo\\\",\\\"group id description\\\":\\\"Well-differentiated Themo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1436790827713000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150617_D00331_0137_BC6VU3ANXX\\\",\\\"instrument\\\":\\\"D00331\\\",\\\"barcode\\\":\\\"CGATGT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_305_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"group id description\\\":\\\"Well-differentiated Themo&#44;Well-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1436790827713000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -242,7 +242,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"ACAGTG\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_315_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"group id description\\\":\\\"De-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439663105601000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"ACAGTG\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_315_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3&#44;2\\\",\\\"group id description\\\":\\\"De-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439663105601000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -288,7 +288,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"CGATGT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_305_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"Well-differentiated Themo\\\",\\\"group id description\\\":\\\"Well-differentiated Themo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1438434808371000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"CGATGT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_305_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"group id description\\\":\\\"Well-differentiated Themo&#44;Well-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1438434808371000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -334,7 +334,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"GCCAAT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_316_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"group id description\\\":\\\"De-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439633873518000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"GCCAAT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_316_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4&#44;2\\\",\\\"group id description\\\":\\\"De-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439633873518000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -380,7 +380,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"TGACCA\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_314_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"Well-differentiated Qiagen\\\",\\\"group id description\\\":\\\"Well-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439758308212000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"TGACCA\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_314_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1&#44;2\\\",\\\"group id description\\\":\\\"Well-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439758308212000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",

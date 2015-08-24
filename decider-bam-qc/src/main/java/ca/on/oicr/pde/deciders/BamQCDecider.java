@@ -250,6 +250,7 @@ public class BamQCDecider extends OicrDecider {
 
     private String makeJsonSnippet(String filePath, ReturnValue r) {
 
+        FileAttributes fa = new FileAttributes(r, r.getFiles().get(0));
         Map<String, String> atts = r.getAttributes();
 
         String runName = atts.get(Header.SEQUENCER_RUN_NAME.getTitle()), instrument;
@@ -284,28 +285,19 @@ public class BamQCDecider extends OicrDecider {
             e.printStackTrace();
         }
 
-        String groupId = null;
-        for (String key : atts.keySet()) {
-            if (key.contains("geo_group_id")) {
-                groupId = escapeString(atts.get(key));
-                break;
-            }
+        String groupId = fa.getLimsValue(Lims.GROUP_ID);
+        if (groupId != null) {
+            groupId = escapeString(groupId);
         }
 
-        String groupIdDescription = null;
-        for (String key : atts.keySet()) {
-            if (key.contains("geo_group_id_description")) {
-                groupIdDescription = escapeString(atts.get(key));
-                break;
-            }
+        String groupIdDescription = fa.getLimsValue(Lims.GROUP_DESC);
+        if (groupIdDescription != null) {
+            groupIdDescription = escapeString(groupIdDescription);
         }
 
-        String externalName = null;
-        for (String key : atts.keySet()) {
-            if (key.contains("geo_tube_id")) {
-                externalName = escapeString(atts.get(key));
-                break;
-            }
+        String externalName = fa.getLimsValue(Lims.TUBE_ID);
+        if (externalName != null) {
+            externalName = escapeString(externalName);
         }
 
         String workflowName = atts.get(Header.WORKFLOW_NAME.getTitle());
@@ -321,7 +313,7 @@ public class BamQCDecider extends OicrDecider {
         sb.append("\"sample\":\"").append(sample).append("\",");
         sb.append("\"sample group\":\"").append(sampleGroup).append("\",");
         sb.append("\"lane\":").append(atts.get(Header.LANE_NUM.getTitle())).append(",");
-        sb.append("\"sequencing type\":\"").append(atts.get(Header.SAMPLE_TAG_PREFIX.getTitle() + "geo_library_source_template_type")).append("\",");
+        sb.append("\"sequencing type\":\"").append(fa.getLimsValue(Lims.LIBRARY_TEMPLATE_TYPE)).append("\",");
         if (groupId != null) {
             sb.append("\"group id\":\"").append(groupId).append("\",");
         }
