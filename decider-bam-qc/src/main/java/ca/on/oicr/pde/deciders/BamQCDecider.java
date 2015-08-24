@@ -22,7 +22,6 @@ public class BamQCDecider extends OicrDecider {
     private String normalInsertMax = "1500";
     private String mapQualCut = "30";
     private String iniFile = null;
-    private String tmp = "/tmp";
     private String rsconfigXmlPath = "/.mounts/labs/PDE/data/rsconfig.xml";
     private boolean forceType = false;
     private String forcedResequencingType = "";
@@ -43,7 +42,6 @@ public class BamQCDecider extends OicrDecider {
 //                + "Corresponds to output-dir in INI file. Default: seqware-results").withRequiredArg();
 //        parser.accepts("output-path", "Optional: the path where the files should be copied to "
 //                + "after analysis. Corresponds to output-prefix in INI file. Default: ./").withRequiredArg();
-        parser.accepts("tmp", "Optional: specify the temporary directory where the JSON snippets will be stored during processing. Default: /tmp").withRequiredArg();
         parser.accepts("check-file-exists", "Optional: Flag to check whether or not the file exists before launching the workflow. WARNING! Will "
                 + "not work if you are not on the same filesystem or do not have appropriate permissions!");
         parser.accepts("interval-file", "Optional: path to a file with target coordinates.").withRequiredArg();
@@ -81,18 +79,6 @@ public class BamQCDecider extends OicrDecider {
                 Map<String, String> iniFileMap = MapTools.iniString2Map(iniFile);
             } else {
                 Log.error("The given INI file does not exist: " + file.getAbsolutePath());
-                rv.setExitStatus(ReturnValue.INVALIDPARAMETERS);
-                return rv;
-            }
-        }
-
-        if (options.has("tmp")) {
-            String temp = (String) options.valueOf("tmp");
-            File tempDir = new File(temp);
-            if (tempDir.exists()) {
-                tmp = tempDir.getAbsolutePath();
-            } else {
-                Log.error("The temporary directory " + tempDir.getAbsolutePath() + " does not exist.");
                 rv.setExitStatus(ReturnValue.INVALIDPARAMETERS);
                 return rv;
             }
