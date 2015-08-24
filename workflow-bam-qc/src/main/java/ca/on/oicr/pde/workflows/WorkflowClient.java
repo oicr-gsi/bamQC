@@ -40,8 +40,10 @@ public class WorkflowClient extends OicrWorkflow {
         mapQualCut = getProperty("map_qual_cut");
         targetBed = getProperty("target_bed");
 
-        jsonMetadata = StringEscapeUtils.unescapeJava(getProperty("json_metadata")).replace("&#61;", "=");
-        jsonMetadataFile = dataDir + "metadata.json";
+        if (hasPropertyAndNotNull("json_metadata")) {
+            jsonMetadata = StringEscapeUtils.unescapeJava(getProperty("json_metadata")).replace("&#61;", "=");
+            jsonMetadataFile = dataDir + "metadata.json";
+        }
     }
 
     @Override
@@ -62,14 +64,19 @@ public class WorkflowClient extends OicrWorkflow {
 
     @Override
     public void buildWorkflow() {
-        Job job0 = getWriteToFileJob(jsonMetadata, jsonMetadataFile);
-        job0.setMaxMemory("1000");
-        job0.setQueue(queue);
+        Job job0 = null;
+        if (jsonMetadata != null) {
+            job0 = getWriteToFileJob(jsonMetadata, jsonMetadataFile);
+            job0.setMaxMemory("1000");
+            job0.setQueue(queue);
+        }
 
         Job job1 = getBamQcJob();
         job1.setMaxMemory("2000");
         job1.setQueue(queue);
-        job1.addParent(job0);
+        if (job0 != null) {
+            job1.addParent(job0);
+        }
     }
 
     private Job getWriteToFileJob(String fileContents, String outputFile) {
@@ -105,7 +112,9 @@ public class WorkflowClient extends OicrWorkflow {
         command.addArgument("-i " + normalInsertMax);
         command.addArgument("-q " + mapQualCut);
         command.addArgument("-r " + targetBed);
-        command.addArgument("-j " + jsonMetadataFile);
+        if (jsonMetadataFile != null) {
+            command.addArgument("-j " + jsonMetadataFile);
+        }
         command.addArgument(">"); //redirect to
         command.addArgument(dataDir + jsonOutputFileName);
 
