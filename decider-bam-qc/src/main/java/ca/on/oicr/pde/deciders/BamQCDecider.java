@@ -1,5 +1,7 @@
 package ca.on.oicr.pde.deciders;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.util.*;
 import net.sourceforge.seqware.common.hibernate.FindAllTheFiles.Header;
@@ -243,97 +245,97 @@ public class BamQCDecider extends OicrDecider {
         iniFileMap.put("normal_insert_max", normalInsertMax);
         iniFileMap.put("map_qual_cut", mapQualCut);
         iniFileMap.put("target_bed", r.getAttribute("target_bed"));
-        iniFileMap.put("json_metadata", escapeForSeqwareIni(makeJsonSnippet(commaSeparatedFilePaths, r)));
+        try {
+            iniFileMap.put("json_metadata", escapeForSeqwareIni(makeJsonSnippet(commaSeparatedFilePaths, r)));
+        } catch (JsonProcessingException jpe) {
+            throw new RuntimeException(jpe);
+        }
 
         return iniFileMap;
     }
 
-    private String makeJsonSnippet(String filePath, ReturnValue r) {
+    private final ObjectMapper mapper = new ObjectMapper();
+
+    private String makeJsonSnippet(String filePath, ReturnValue r) throws JsonProcessingException {
 
         FileAttributes fa = new FileAttributes(r, r.getFiles().get(0));
-        Map<String, String> atts = r.getAttributes();
 
-        String runName = atts.get(Header.SEQUENCER_RUN_NAME.getTitle()), instrument;
+        Map<String, Object> j = new LinkedHashMap<>();
+
+        String runName = fa.getSequencerRun();
+        String instrument;
         String[] tokens = runName.split("_");
         if (tokens.length >= 2) {
             instrument = tokens[1];
         } else {
             instrument = "NA";
         }
+        j.put("run name", runName);
+        j.put("instrument", instrument);
 
-        String libraryName = atts.get(Header.SAMPLE_NAME.getTitle()), sample = "";
+        j.put("barcode", fa.getOtherAttribute(Header.IUS_TAG));
+
+        String libraryName = fa.getLibrarySample();
+        String sample;
         tokens = libraryName.split("_");
         if (tokens.length > 2) {
             sample = libraryName.substring(0, libraryName.lastIndexOf(tokens[tokens.length - 2]) - 1);
         } else {
             sample = "NA";
         }
+        j.put("library", libraryName);
+        j.put("sample", sample);
 
-        String pSample = atts.get(Header.PARENT_SAMPLE_NAME.getTitle()), sampleGroup;
+        String pSample = fa.getOtherAttribute(Header.PARENT_SAMPLE_NAME);
+        String sampleGroup;
         tokens = pSample.split(":");
         if (tokens.length >= 1) {
             sampleGroup = tokens[tokens.length - 1];
         } else {
             sampleGroup = "NA";
         }
+        j.put("sample group", sampleGroup);
+
+        j.put("lane", Integer.parseInt(fa.getOtherAttribute(Header.LANE_NUM)));
+
+        j.put("sequencing type", fa.getLimsValue(Lims.LIBRARY_TEMPLATE_TYPE));
+
+        String groupId = fa.getLimsValue(Lims.GROUP_ID);
+        if (groupId != null) {
+            j.put("group id", escapeString(groupId));
+        }
+
+        String groupIdDescription = fa.getLimsValue(Lims.GROUP_DESC);
+        if (groupIdDescription != null) {
+            j.put("group id description", escapeString(groupIdDescription));
+        }
+
+        String externalName = fa.getLimsValue(Lims.TUBE_ID);
+        if (externalName != null) {
+            j.put("external name", escapeString(externalName));
+        }
+
+        String workflowName = fa.getOtherAttribute(Header.WORKFLOW_NAME);
+        if (workflowName != null) {
+            j.put("workflow name", workflowName);
+        }
+
+        String workflowVersion = fa.getOtherAttribute(Header.WORKFLOW_VERSION);
+        if (workflowVersion != null) {
+            j.put("workflow version", workflowVersion);
+        }
+
         long time = 1000;
         try {
-            String dateString = atts.get(Header.PROCESSING_DATE.getTitle());
+            String dateString = fa.getOtherAttribute(Header.PROCESSING_DATE);
             java.util.Date date = (new java.text.SimpleDateFormat("yyyy-MM-dd H:mm:ss.S")).parse(dateString);
             time *= (date.getTime());
         } catch (java.text.ParseException e) {
             e.printStackTrace();
         }
+        j.put("last modified", Long.toString(time));
 
-        String groupId = fa.getLimsValue(Lims.GROUP_ID);
-        if (groupId != null) {
-            groupId = escapeString(groupId);
-        }
-
-        String groupIdDescription = fa.getLimsValue(Lims.GROUP_DESC);
-        if (groupIdDescription != null) {
-            groupIdDescription = escapeString(groupIdDescription);
-        }
-
-        String externalName = fa.getLimsValue(Lims.TUBE_ID);
-        if (externalName != null) {
-            externalName = escapeString(externalName);
-        }
-
-        String workflowName = atts.get(Header.WORKFLOW_NAME.getTitle());
-        String workflowVersion = atts.get(Header.WORKFLOW_VERSION.getTitle());
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("{");
-
-        sb.append("\"run name\":\"").append(runName).append("\",");
-        sb.append("\"instrument\":\"").append(instrument).append("\",");
-        sb.append("\"barcode\":\"").append(atts.get(Header.IUS_TAG.getTitle())).append("\",");
-        sb.append("\"library\":\"").append(libraryName).append("\",");
-        sb.append("\"sample\":\"").append(sample).append("\",");
-        sb.append("\"sample group\":\"").append(sampleGroup).append("\",");
-        sb.append("\"lane\":").append(atts.get(Header.LANE_NUM.getTitle())).append(",");
-        sb.append("\"sequencing type\":\"").append(fa.getLimsValue(Lims.LIBRARY_TEMPLATE_TYPE)).append("\",");
-        if (groupId != null) {
-            sb.append("\"group id\":\"").append(groupId).append("\",");
-        }
-        if (groupIdDescription != null) {
-            sb.append("\"group id description\":\"").append(groupIdDescription).append("\",");
-        }
-        if (externalName != null) {
-            sb.append("\"external name\":\"").append(externalName).append("\",");
-        }
-        if (workflowName != null) {
-            sb.append("\"workflow name\":\"").append(workflowName).append("\",");
-        }
-        if (workflowVersion != null) {
-            sb.append("\"workflow version\":\"").append(workflowVersion).append("\",");
-        }
-        sb.append("\"last modified\":\"").append(time).append("\"");
-
-        sb.append("}");
-
-        return sb.toString();
+        return mapper.writeValueAsString(j);
     }
 
     public static String escapeForSeqwareIni(String s) {
