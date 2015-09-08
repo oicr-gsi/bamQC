@@ -12,13 +12,13 @@
 
     <groupId>ca.on.oicr.pde.deciders</groupId>
     <artifactId>BamQC</artifactId>
-    <version>2.5-SNAPSHOT</version>
+    <version>2.5</version>
     <packaging>jar</packaging>
 
     <name>${display-name}</name>
 
     <properties>
-        <workflow-version>2.5-SNAPSHOT</workflow-version>
+        <workflow-version>2.5</workflow-version>
         <main-class>ca.on.oicr.pde.deciders.BamQCDecider</main-class>
     </properties>
     
