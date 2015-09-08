@@ -2,7 +2,6 @@
     "defaultDescription": "BamQC decider test",
     "defaultMetricsResources": "/expected_output/development/",
     "defaultParameters": {
-        "--tmp": "/tmp",
         "--rsconfig-file": "/.mounts/labs/PDE/data/rsconfig.xml"
     },
     "defaultIniExclusions": ["parent-accessions", "json_metadata_file", "workflow_run_accession", "workflow-run-accession",
@@ -35,6 +34,13 @@
             "parameters": {
                 "--root-sample-name": "OBC_0001",
                 "--before-date": "2013-11-19"
+            }
+        },
+        {
+            "id": "GP-453",
+            "parameters": {
+                "--root-sample-name": "LSP_0001",
+                "--before-date": "2015-08-21"
             }
         }
     ]

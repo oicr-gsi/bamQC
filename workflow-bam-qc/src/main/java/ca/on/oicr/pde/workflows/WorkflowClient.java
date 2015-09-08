@@ -1,11 +1,13 @@
 package ca.on.oicr.pde.workflows;
 
 import ca.on.oicr.pde.utilities.workflows.OicrWorkflow;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 import net.sourceforge.seqware.pipeline.workflowV2.model.Command;
 import net.sourceforge.seqware.pipeline.workflowV2.model.Job;
 import net.sourceforge.seqware.pipeline.workflowV2.model.SqwFile;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 public class WorkflowClient extends OicrWorkflow {
 
@@ -18,6 +20,7 @@ public class WorkflowClient extends OicrWorkflow {
     private String normalInsertMax = null;
     private String mapQualCut = null;
     private String targetBed = null;
+    private String jsonMetadata = null;
     private String jsonMetadataFile = null;
     //workflow directories
     private String binDir = null;
@@ -36,8 +39,11 @@ public class WorkflowClient extends OicrWorkflow {
         normalInsertMax = getProperty("normal_insert_max");
         mapQualCut = getProperty("map_qual_cut");
         targetBed = getProperty("target_bed");
-        jsonMetadataFile = getProperty("json_metadata_file");
 
+        if (hasPropertyAndNotNull("json_metadata")) {
+            jsonMetadata = StringEscapeUtils.unescapeJava(getProperty("json_metadata")).replace("&#61;", "=");
+            jsonMetadataFile = dataDir + "metadata.json";
+        }
     }
 
     @Override
@@ -58,9 +64,38 @@ public class WorkflowClient extends OicrWorkflow {
 
     @Override
     public void buildWorkflow() {
-        Job job00 = getBamQcJob();
-        job00.setMaxMemory("2000");
-        job00.setQueue(queue);
+        Job job0 = null;
+        if (jsonMetadata != null) {
+            job0 = getWriteToFileJob(jsonMetadata, jsonMetadataFile);
+            job0.setMaxMemory("1000");
+            job0.setQueue(queue);
+        }
+
+        Job job1 = getBamQcJob();
+        job1.setMaxMemory("2000");
+        job1.setQueue(queue);
+        if (job0 != null) {
+            job1.addParent(job0);
+        }
+    }
+
+    private Job getWriteToFileJob(String fileContents, String outputFile) {
+        Job job = getWorkflow().createBashJob("WriteToFile");
+
+        List<String> c = new LinkedList<>();
+        c.add("set -o pipefail;");
+        c.add("set -o errexit;");
+
+        c.add("cat << END_OF_FILE_CONTENTS");
+        c.add(">");
+        c.add(outputFile);
+        c.add("\n");
+        c.add(fileContents);
+        c.add("\nEND_OF_FILE_CONTENTS\n");
+
+        job.getCommand().setArguments(c);
+
+        return job;
     }
 
     private Job getBamQcJob() {
@@ -77,7 +112,9 @@ public class WorkflowClient extends OicrWorkflow {
         command.addArgument("-i " + normalInsertMax);
         command.addArgument("-q " + mapQualCut);
         command.addArgument("-r " + targetBed);
-        command.addArgument("-j " + jsonMetadataFile);
+        if (jsonMetadataFile != null) {
+            command.addArgument("-j " + jsonMetadataFile);
+        }
         command.addArgument(">"); //redirect to
         command.addArgument(dataDir + jsonOutputFileName);
 
