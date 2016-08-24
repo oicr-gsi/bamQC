@@ -12,7 +12,7 @@
   "totalInputFiles" : 9,
   "workflowRuns" : [ {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"ACAGTG\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_315_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3&#44;2\\\",\\\"group id description\\\":\\\"De-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439463815713000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"ACAGTG\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_315_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"group id description\\\":\\\"De-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439463815713000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -33,7 +33,7 @@
       "sampleAttributes" : {
         "sample.geo_library_source_template_type" : [ [ "WG" ] ],
         "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
-        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_6_1" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_6_1", "2371_2_1" ] ],
         "sample.geo_template_id" : [ [ "77525" ] ],
         "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "sample.geo_tissue_origin" : [ [ "Ad" ] ],
@@ -104,7 +104,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"GCCAAT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_316_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4&#44;2\\\",\\\"group id description\\\":\\\"De-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439477208476000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"GCCAAT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_316_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"group id description\\\":\\\"De-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439477208476000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -125,7 +125,7 @@
       "sampleAttributes" : {
         "sample.geo_library_source_template_type" : [ [ "WG" ] ],
         "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
-        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_7_1" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_7_1", "2371_1_1" ] ],
         "sample.geo_template_id" : [ [ "77526" ] ],
         "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "sample.geo_tissue_origin" : [ [ "Ad" ] ],
@@ -150,7 +150,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"TGACCA\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_314_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1&#44;2\\\",\\\"group id description\\\":\\\"Well-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439497495343000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150529_D00353_0104_AC6DBAANXX\\\",\\\"instrument\\\":\\\"D00353\\\",\\\"barcode\\\":\\\"TGACCA\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_314_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"group id description\\\":\\\"Well-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439497495343000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -242,7 +242,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"ACAGTG\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_315_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3&#44;2\\\",\\\"group id description\\\":\\\"De-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439663105601000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"ACAGTG\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_315_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"group id description\\\":\\\"De-differentiated Thermo\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439663105601000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -263,7 +263,7 @@
       "sampleAttributes" : {
         "sample.geo_library_source_template_type" : [ [ "WG" ] ],
         "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
-        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_6_1" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_6_1", "2371_2_1" ] ],
         "sample.geo_template_id" : [ [ "77525" ] ],
         "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "sample.geo_tissue_origin" : [ [ "Ad" ] ],
@@ -334,7 +334,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"GCCAAT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_316_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4&#44;2\\\",\\\"group id description\\\":\\\"De-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439633873518000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"GCCAAT\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_316_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"group id description\\\":\\\"De-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439633873518000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -355,7 +355,7 @@
       "sampleAttributes" : {
         "sample.geo_library_source_template_type" : [ [ "WG" ] ],
         "sample.geo_prep_kit" : [ [ "KAPA BC OnBead" ] ],
-        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_7_1" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "2281_4_1", "2296_7_1", "2371_1_1" ] ],
         "sample.geo_template_id" : [ [ "77526" ] ],
         "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ] ],
         "sample.geo_tissue_origin" : [ [ "Ad" ] ],
@@ -380,7 +380,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"TGACCA\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_314_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1&#44;2\\\",\\\"group id description\\\":\\\"Well-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439758308212000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"150721_D00355_0089_AC6C9UANXX\\\",\\\"instrument\\\":\\\"D00355\\\",\\\"barcode\\\":\\\"TGACCA\\\",\\\"library\\\":\\\"LSP_0001_Ad_P_PE_314_WG\\\",\\\"sample\\\":\\\"LSP_0001_Ad_P_PE\\\",\\\"sample group\\\":\\\"LSP_0001\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"group id description\\\":\\\"Well-differentiated Qiagen\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign_V2.07.15b\\\",\\\"workflow version\\\":\\\"2.2.1\\\",\\\"last modified\\\":\\\"1439758308212000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",

@@ -4508,6 +4508,54 @@
     } ]
   }, {
     "workflowIni" : {
+      "json_metadata" : "{\\\"run name\\\":\\\"110310_SN393_0116_A81ML9ABXX\\\",\\\"instrument\\\":\\\"SN393\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"PCSI_0005_Ly_R_PE_350_EX\\\",\\\"sample\\\":\\\"PCSI_0005_Ly_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0005\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GATKRecalibrationAndVariantCallingHg19Exomes\\\",\\\"workflow version\\\":\\\"1.3.16-6\\\",\\\"last modified\\\":\\\"1357198657991000\\\"}",
+      "manual_output" : "false",
+      "map_qual_cut" : "30",
+      "metadata" : "metadata",
+      "normal_insert_max" : "1500",
+      "output_dir" : "seqware-results",
+      "output_path" : "NA",
+      "sample_rate" : "1000",
+      "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed"
+    },
+    "files" : [ {
+      "studyTitle" : [ "PCSI", "WGA_test" ],
+      "studyAttributes" : {
+        "study.geo_lab_group_id" : [ [ "33" ], [ "94" ] ]
+      },
+      "experimentName" : [ "Geo_PCSI_ILLUMINA_EX_{F*101}{..}{R*101}", "Geo_WGA_test_ILLUMINA_EX_{F*101}{..}{R*101}" ],
+      "experimentAttributes" : { },
+      "sampleName" : [ "PCSI_0005_Ly_R_PE_250_EX", "PCSI_0005_Ly_R_PE_350_EX", "PCSI_0005_Pa_C_PE_250_EX", "PCSI_0005_Pa_P_PE_250_EX", "PCSI_0005_Pa_X_PE_250_EX" ],
+      "sampleAttributes" : {
+        "sample.geo_library_source_template_type" : [ [ "EX" ] ],
+        "sample.geo_prep_kit" : [ [ "GA_PE" ] ],
+        "sample.geo_reaction_id" : [ [ "1651", "1662", "1663", "1664" ], [ "1652", "1665", "1666", "1667" ], [ "1653", "1668" ], [ "1654", "1669" ], [ "1670" ], [ "1671" ], [ "3987" ], [ "3988" ] ],
+        "sample.geo_run_id_and_position_and_slot" : [ [ "260_1_1", "260_2_1", "260_3_1", "260_4_1" ], [ "260_5_1", "260_6_1", "260_7_1", "260_8_1" ], [ "261_3_1" ], [ "261_4_1", "261_5_1" ], [ "261_6_1" ], [ "261_7_1", "261_8_1" ], [ "609_5_1" ], [ "609_6_1" ] ],
+        "sample.geo_targeted_resequencing" : [ [ "Agilent SureSelect ICGC/Sanger Exon" ], [ "Nimblegen OICR Test (13668) " ] ],
+        "sample.geo_template_id" : [ [ "1885" ], [ "1888" ], [ "1889" ], [ "1890" ], [ "1891" ], [ "1892" ], [ "7021" ], [ "7025" ] ],
+        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ], [ "Illumina PE Library" ] ],
+        "sample.geo_tissue_origin" : [ [ "Ly" ], [ "Pa" ] ],
+        "sample.geo_tissue_type" : [ [ "C" ], [ "P" ], [ "R" ], [ "X" ] ]
+      },
+      "sequencerRunName" : [ "091214_i277_61AML_LT", "091214_i278_616JH_LT", "110310_SN393_0116_A81ML9ABXX" ],
+      "sequencerRunAttributes" : {
+        "sequencerrun.geo_instrument_run_id" : [ [ "260" ], [ "261" ], [ "609" ] ]
+      },
+      "laneName" : [ "091214_i277_61AML_LT_lane_3", "091214_i277_61AML_LT_lane_4", "091214_i277_61AML_LT_lane_5", "091214_i277_61AML_LT_lane_6", "091214_i277_61AML_LT_lane_7", "091214_i277_61AML_LT_lane_8", "091214_i278_616JH_LT_lane_1", "091214_i278_616JH_LT_lane_2", "091214_i278_616JH_LT_lane_3", "091214_i278_616JH_LT_lane_4", "091214_i278_616JH_LT_lane_5", "091214_i278_616JH_LT_lane_6", "091214_i278_616JH_LT_lane_7", "091214_i278_616JH_LT_lane_8", "110310_SN393_0116_A81ML9ABXX_lane_5", "110310_SN393_0116_A81ML9ABXX_lane_6" ],
+      "laneAttributes" : {
+        "lane.geo_lane" : [ [ "1" ], [ "2" ], [ "3" ], [ "4" ], [ "5" ], [ "6" ], [ "7" ], [ "8" ] ]
+      },
+      "iusTag" : [ "NoIndex" ],
+      "iusAttributes" : { },
+      "workflowName" : [ "GATKRecalibrationAndVariantCallingHg19Exomes" ],
+      "processingAlgorithm" : [ "SummaryOfWorkflowOutputs" ],
+      "processingAttributes" : { },
+      "fileMetaType" : [ "application/bam" ],
+      "fileAttributes" : { },
+      "fileId" : -1131235572
+    } ]
+  }, {
+    "workflowIni" : {
       "json_metadata" : "{\\\"run name\\\":\\\"110310_SN393_0116_A81ML9ABXX\\\",\\\"instrument\\\":\\\"SN393\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"PCSI_0005_Ly_R_PE_350_EX\\\",\\\"sample\\\":\\\"PCSI_0005_Ly_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0005\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1356138551554000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
@@ -4553,54 +4601,6 @@
       "fileMetaType" : [ "application/bam" ],
       "fileAttributes" : { },
       "fileId" : 1703433587
-    } ]
-  }, {
-    "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"110310_SN393_0116_A81ML9ABXX\\\",\\\"instrument\\\":\\\"SN393\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"PCSI_0005_Ly_R_PE_350_EX\\\",\\\"sample\\\":\\\"PCSI_0005_Ly_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0005\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GATKRecalibrationAndVariantCallingHg19Exomes\\\",\\\"workflow version\\\":\\\"1.3.16-6\\\",\\\"last modified\\\":\\\"1357198657991000\\\"}",
-      "manual_output" : "false",
-      "map_qual_cut" : "30",
-      "metadata" : "metadata",
-      "normal_insert_max" : "1500",
-      "output_dir" : "seqware-results",
-      "output_path" : "NA",
-      "sample_rate" : "1000",
-      "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed"
-    },
-    "files" : [ {
-      "studyTitle" : [ "PCSI", "WGA_test" ],
-      "studyAttributes" : {
-        "study.geo_lab_group_id" : [ [ "33" ], [ "94" ] ]
-      },
-      "experimentName" : [ "Geo_PCSI_ILLUMINA_EX_{F*101}{..}{R*101}", "Geo_WGA_test_ILLUMINA_EX_{F*101}{..}{R*101}" ],
-      "experimentAttributes" : { },
-      "sampleName" : [ "PCSI_0005_Ly_R_PE_250_EX", "PCSI_0005_Ly_R_PE_350_EX", "PCSI_0005_Pa_C_PE_250_EX", "PCSI_0005_Pa_P_PE_250_EX", "PCSI_0005_Pa_X_PE_250_EX" ],
-      "sampleAttributes" : {
-        "sample.geo_library_source_template_type" : [ [ "EX" ] ],
-        "sample.geo_prep_kit" : [ [ "GA_PE" ] ],
-        "sample.geo_reaction_id" : [ [ "1651", "1662", "1663", "1664" ], [ "1652", "1665", "1666", "1667" ], [ "1653", "1668" ], [ "1654", "1669" ], [ "1670" ], [ "1671" ], [ "3987" ], [ "3988" ] ],
-        "sample.geo_run_id_and_position_and_slot" : [ [ "260_1_1", "260_2_1", "260_3_1", "260_4_1" ], [ "260_5_1", "260_6_1", "260_7_1", "260_8_1" ], [ "261_3_1" ], [ "261_4_1", "261_5_1" ], [ "261_6_1" ], [ "261_7_1", "261_8_1" ], [ "609_5_1" ], [ "609_6_1" ] ],
-        "sample.geo_targeted_resequencing" : [ [ "Agilent SureSelect ICGC/Sanger Exon" ], [ "Nimblegen OICR Test (13668) " ] ],
-        "sample.geo_template_id" : [ [ "1885" ], [ "1888" ], [ "1889" ], [ "1890" ], [ "1891" ], [ "1892" ], [ "7021" ], [ "7025" ] ],
-        "sample.geo_template_type" : [ [ "Illumina PE Library Seq" ], [ "Illumina PE Library" ] ],
-        "sample.geo_tissue_origin" : [ [ "Ly" ], [ "Pa" ] ],
-        "sample.geo_tissue_type" : [ [ "C" ], [ "P" ], [ "R" ], [ "X" ] ]
-      },
-      "sequencerRunName" : [ "091214_i277_61AML_LT", "091214_i278_616JH_LT", "110310_SN393_0116_A81ML9ABXX" ],
-      "sequencerRunAttributes" : {
-        "sequencerrun.geo_instrument_run_id" : [ [ "260" ], [ "261" ], [ "609" ] ]
-      },
-      "laneName" : [ "091214_i277_61AML_LT_lane_3", "091214_i277_61AML_LT_lane_4", "091214_i277_61AML_LT_lane_5", "091214_i277_61AML_LT_lane_6", "091214_i277_61AML_LT_lane_7", "091214_i277_61AML_LT_lane_8", "091214_i278_616JH_LT_lane_1", "091214_i278_616JH_LT_lane_2", "091214_i278_616JH_LT_lane_3", "091214_i278_616JH_LT_lane_4", "091214_i278_616JH_LT_lane_5", "091214_i278_616JH_LT_lane_6", "091214_i278_616JH_LT_lane_7", "091214_i278_616JH_LT_lane_8", "110310_SN393_0116_A81ML9ABXX_lane_5", "110310_SN393_0116_A81ML9ABXX_lane_6" ],
-      "laneAttributes" : {
-        "lane.geo_lane" : [ [ "1" ], [ "2" ], [ "3" ], [ "4" ], [ "5" ], [ "6" ], [ "7" ], [ "8" ] ]
-      },
-      "iusTag" : [ "NoIndex" ],
-      "iusAttributes" : { },
-      "workflowName" : [ "GATKRecalibrationAndVariantCallingHg19Exomes" ],
-      "processingAlgorithm" : [ "SummaryOfWorkflowOutputs" ],
-      "processingAttributes" : { },
-      "fileMetaType" : [ "application/bam" ],
-      "fileAttributes" : { },
-      "fileId" : -1131235572
     } ]
   }, {
     "workflowIni" : {
