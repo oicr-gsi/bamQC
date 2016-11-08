@@ -1,12 +1,14 @@
 {
-    "defaultDescription": "BamQC decider test",
-    "defaultMetricsResources": "/expected_output/development/",
-    "defaultParameters": {
-        "--rsconfig-file": "/.mounts/labs/PDE/data/rsconfig.xml"
+    "defaults": {
+        "description": "BamQC decider test",
+        "metricsResources": "/expected_output/development/",
+        "parameters": {
+            "--rsconfig-file": "/.mounts/labs/PDE/data/rsconfig.xml"
+        },
+        "iniExclusions": ["parent-accessions", "json_metadata_file", "workflow_run_accession", "workflow-run-accession",
+            "unique_string", "parent_accessions", "parent_accession", "input_file", "input_files", "workflow_bundle_dir",
+            "output_prefix", "samstats_script"]
     },
-    "defaultIniExclusions": ["parent-accessions", "json_metadata_file", "workflow_run_accession", "workflow-run-accession",
-        "unique_string", "parent_accessions", "parent_accession", "input_file", "input_files", "workflow_bundle_dir",
-        "output_prefix", "samstats_script"],
     "tests": [
         {
             "id": "AshPC study test",

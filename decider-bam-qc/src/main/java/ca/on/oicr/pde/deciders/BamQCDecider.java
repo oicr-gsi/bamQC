@@ -60,7 +60,7 @@ public class BamQCDecider extends OicrDecider {
         rv.setExitStatus(ReturnValue.SUCCESS);
 
         Log.debug("INIT");
-        this.setGroupingStrategy(Header.FILE_SWA);
+        this.setHeadersToGroupBy(Arrays.asList(Header.FILE_SWA));
         this.setMetaType(Arrays.asList("application/bam"));
 
         if (options.has("sample-rate")) {
