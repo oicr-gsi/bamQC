@@ -12,8 +12,8 @@
     "tests": [
         {
             "id": "AshPC study test",
-            "studies": ["AshPC"],
             "parameters": {
+		"--study-name": "AshPC",
                 "--before-date": "2013-11-19"
             }
         },
@@ -26,8 +26,8 @@
         },
         {
             "id": "sequencer run test",
-            "sequencerRuns": ["120912_h804_0094_BD181GACXX"],
             "parameters": {
+		"--sequencer-run-name": "120912_h804_0094_BD181GACXX",
                 "--before-date": "2013-11-19"
             }
         },
