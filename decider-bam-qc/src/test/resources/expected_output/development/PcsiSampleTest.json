@@ -12,7 +12,7 @@
   "totalInputFiles" : 2,
   "workflowRuns" : [ {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"110310_SN393_0116_A81ML9ABXX\\\",\\\"instrument\\\":\\\"SN393\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"PCSI_0005_Ly_R_PE_350_EX\\\",\\\"sample\\\":\\\"PCSI_0005_Ly_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0005\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1356138551554000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"110310_SN393_0116_A81ML9ABXX\\\",\\\"instrument\\\":\\\"SN393\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"PCSI_0005_Ly_R_PE_350_EX\\\",\\\"sample\\\":\\\"PCSI_0005_Ly_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0005\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1356120551554000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -62,7 +62,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"110310_SN393_0116_A81ML9ABXX\\\",\\\"instrument\\\":\\\"SN393\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"PCSI_0005_Ly_R_PE_350_EX\\\",\\\"sample\\\":\\\"PCSI_0005_Ly_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0005\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1356176438143000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"110310_SN393_0116_A81ML9ABXX\\\",\\\"instrument\\\":\\\"SN393\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"PCSI_0005_Ly_R_PE_350_EX\\\",\\\"sample\\\":\\\"PCSI_0005_Ly_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0005\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1356158438143000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",

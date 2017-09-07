@@ -12,7 +12,7 @@
   "totalInputFiles" : 134,
   "workflowRuns" : [ {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359531470745000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359513470745000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -63,7 +63,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360377219683000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360359219683000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -114,7 +114,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360861943775000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360843943775000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -165,7 +165,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360401849878000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360383849878000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -216,7 +216,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360371731025000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360353731025000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -267,7 +267,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359615895772000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359597895772000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -318,7 +318,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360537215416000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360519215416000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -369,7 +369,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360364009096000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360346009096000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -420,7 +420,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360427357826000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360409357826000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -471,7 +471,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360363323032000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0169_BD1NM7ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360345323032000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -522,7 +522,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359456297319000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359438297319000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -573,7 +573,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360423393224000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360405393224000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -624,7 +624,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360358298920000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360340298920000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -675,7 +675,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360359487264000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360341487264000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -726,7 +726,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360360600701000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360342600701000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -777,7 +777,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359557902258000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359539902258000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -828,7 +828,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360380560876000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360362560876000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -879,7 +879,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360411569541000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360393569541000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -930,7 +930,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360387382459000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360369382459000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -981,7 +981,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360366486038000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130111_SN203_0168_AC1E18ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0001_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0001_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0348\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360348486038000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1032,7 +1032,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359783420233000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359765420233000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1083,7 +1083,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359900553683000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359882553683000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1134,7 +1134,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359918254213000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359900254213000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1185,7 +1185,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359894568689000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359876568689000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1236,7 +1236,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359967425039000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359949425039000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1287,7 +1287,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360298741270000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360280741270000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1338,7 +1338,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360441807453000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360423807453000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1389,7 +1389,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360427119283000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360409119283000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1440,7 +1440,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360427277140000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360409277140000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1491,7 +1491,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360792769003000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"3\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360774769003000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1542,7 +1542,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359529585611000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359511585611000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1593,7 +1593,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360548329164000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360530329164000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1644,7 +1644,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360474478571000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360456478571000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1695,7 +1695,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360422089321000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360404089321000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1746,7 +1746,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360437776506000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0108_BC1K2TACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"4\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360419776506000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1797,7 +1797,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359621461236000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130109_SN801_0093_AC1G4FACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359603461236000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1848,7 +1848,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359853915535000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359835915535000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1899,7 +1899,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359890645746000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359872645746000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -1950,7 +1950,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359858824950000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359840824950000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2001,7 +2001,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359868473748000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130116_h803_0107_AC1FYNACXX\\\",\\\"instrument\\\":\\\"h803\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0002_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0002_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0347\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359850473748000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2052,7 +2052,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360394524847000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360376524847000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2103,7 +2103,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360090193671000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360072193671000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2154,7 +2154,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360620613360000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360602613360000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2205,7 +2205,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360088980661000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360070980661000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2256,7 +2256,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360094489367000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360076489367000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2307,7 +2307,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359643995134000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359625995134000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2358,7 +2358,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360103003221000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360085003221000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2409,7 +2409,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360118549582000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360100549582000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2460,7 +2460,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360646640328000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360628640328000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2511,7 +2511,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360101826659000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0169_AC1FM0ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0003_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0003_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0301\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360083826659000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2562,7 +2562,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359554050944000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359536050944000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2613,7 +2613,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359825207290000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359807207290000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2664,7 +2664,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359849461959000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359831461959000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2715,7 +2715,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360040114055000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360022114055000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2766,7 +2766,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359836824642000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359818824642000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2817,7 +2817,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359628615820000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359610615820000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2868,7 +2868,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359835829662000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359817829662000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2919,7 +2919,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359833691205000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359815691205000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -2970,7 +2970,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359846459049000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359828459049000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3021,7 +3021,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359828013526000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130118_h239_0170_BC1JR4ACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0004_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0004_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0349\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359810013526000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3072,7 +3072,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1358774470061000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1358756470061000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3091,14 +3091,14 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0005_Pa_P_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69245", "FN7873" ] ],
+        "geo_external_name" : [ [ "2011-04-19", "69245", "69245  PIMO-0019", "69245 PP019", "FN7873" ] ],
         "geo_group_id" : [ [ "1" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
-        "geo_purpose" : [ [ "Research" ] ],
+        "geo_purpose" : [ [ "2011-04-19", "Research" ] ],
         "geo_reaction_id" : [ [ "8558", "8645", "8646", "8647", "8648" ] ],
         "geo_run_id_and_position_and_slot" : [ [ "1273_5_1", "1287_1_1", "1287_2_1", "1287_3_1", "1287_4_1" ] ],
-        "geo_str_result" : [ [ "Not Submitted" ] ],
+        "geo_str_result" : [ [ "2011-04-19", "Not Submitted" ] ],
         "geo_template_id" : [ [ "26254", "26270", "26286", "26956", "26972", "27836" ] ],
         "geo_template_type" : [ [ "Identity", "Illumina PE Library", "Illumina PE Library Seq", "Primary Tumor Tissue", "gDNA" ] ],
         "geo_tissue_origin" : [ [ "Pa" ] ],
@@ -3123,7 +3123,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360238355677000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360220355677000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3142,14 +3142,14 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0005_Pa_P_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69245", "FN7873" ] ],
+        "geo_external_name" : [ [ "2011-04-19", "69245", "69245  PIMO-0019", "69245 PP019", "FN7873" ] ],
         "geo_group_id" : [ [ "1" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
-        "geo_purpose" : [ [ "Research" ] ],
+        "geo_purpose" : [ [ "2011-04-19", "Research" ] ],
         "geo_reaction_id" : [ [ "8558", "8645", "8646", "8647", "8648" ] ],
         "geo_run_id_and_position_and_slot" : [ [ "1273_5_1", "1287_1_1", "1287_2_1", "1287_3_1", "1287_4_1" ] ],
-        "geo_str_result" : [ [ "Not Submitted" ] ],
+        "geo_str_result" : [ [ "2011-04-19", "Not Submitted" ] ],
         "geo_template_id" : [ [ "26254", "26270", "26286", "26956", "26972", "27836" ] ],
         "geo_template_type" : [ [ "Identity", "Illumina PE Library", "Illumina PE Library Seq", "Primary Tumor Tissue", "gDNA" ] ],
         "geo_tissue_origin" : [ [ "Pa" ] ],
@@ -3174,7 +3174,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360241431328000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360223431328000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3193,14 +3193,14 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0005_Pa_P_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69245", "FN7873" ] ],
+        "geo_external_name" : [ [ "2011-04-19", "69245", "69245  PIMO-0019", "69245 PP019", "FN7873" ] ],
         "geo_group_id" : [ [ "1" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
-        "geo_purpose" : [ [ "Research" ] ],
+        "geo_purpose" : [ [ "2011-04-19", "Research" ] ],
         "geo_reaction_id" : [ [ "8558", "8645", "8646", "8647", "8648" ] ],
         "geo_run_id_and_position_and_slot" : [ [ "1273_5_1", "1287_1_1", "1287_2_1", "1287_3_1", "1287_4_1" ] ],
-        "geo_str_result" : [ [ "Not Submitted" ] ],
+        "geo_str_result" : [ [ "2011-04-19", "Not Submitted" ] ],
         "geo_template_id" : [ [ "26254", "26270", "26286", "26956", "26972", "27836" ] ],
         "geo_template_type" : [ [ "Identity", "Illumina PE Library", "Illumina PE Library Seq", "Primary Tumor Tissue", "gDNA" ] ],
         "geo_tissue_origin" : [ [ "Pa" ] ],
@@ -3225,7 +3225,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360236379783000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360218379783000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3244,14 +3244,14 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0005_Pa_P_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69245", "FN7873" ] ],
+        "geo_external_name" : [ [ "2011-04-19", "69245", "69245  PIMO-0019", "69245 PP019", "FN7873" ] ],
         "geo_group_id" : [ [ "1" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
-        "geo_purpose" : [ [ "Research" ] ],
+        "geo_purpose" : [ [ "2011-04-19", "Research" ] ],
         "geo_reaction_id" : [ [ "8558", "8645", "8646", "8647", "8648" ] ],
         "geo_run_id_and_position_and_slot" : [ [ "1273_5_1", "1287_1_1", "1287_2_1", "1287_3_1", "1287_4_1" ] ],
-        "geo_str_result" : [ [ "Not Submitted" ] ],
+        "geo_str_result" : [ [ "2011-04-19", "Not Submitted" ] ],
         "geo_template_id" : [ [ "26254", "26270", "26286", "26956", "26972", "27836" ] ],
         "geo_template_type" : [ [ "Identity", "Illumina PE Library", "Illumina PE Library Seq", "Primary Tumor Tissue", "gDNA" ] ],
         "geo_tissue_origin" : [ [ "Pa" ] ],
@@ -3276,7 +3276,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360255642084000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360237642084000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3295,14 +3295,14 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0005_Pa_P_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69245", "FN7873" ] ],
+        "geo_external_name" : [ [ "2011-04-19", "69245", "69245  PIMO-0019", "69245 PP019", "FN7873" ] ],
         "geo_group_id" : [ [ "1" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
-        "geo_purpose" : [ [ "Research" ] ],
+        "geo_purpose" : [ [ "2011-04-19", "Research" ] ],
         "geo_reaction_id" : [ [ "8558", "8645", "8646", "8647", "8648" ] ],
         "geo_run_id_and_position_and_slot" : [ [ "1273_5_1", "1287_1_1", "1287_2_1", "1287_3_1", "1287_4_1" ] ],
-        "geo_str_result" : [ [ "Not Submitted" ] ],
+        "geo_str_result" : [ [ "2011-04-19", "Not Submitted" ] ],
         "geo_template_id" : [ [ "26254", "26270", "26286", "26956", "26972", "27836" ] ],
         "geo_template_type" : [ [ "Identity", "Illumina PE Library", "Illumina PE Library Seq", "Primary Tumor Tissue", "gDNA" ] ],
         "geo_tissue_origin" : [ [ "Pa" ] ],
@@ -3327,7 +3327,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359642611718000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359624611718000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3346,14 +3346,14 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0005_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69245", "FN7873" ] ],
+        "geo_external_name" : [ [ "2011-04-19", "69245", "69245  PIMO-0019", "69245 PP019", "FN7873" ] ],
         "geo_group_id" : [ [ "2" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
-        "geo_purpose" : [ [ "Research" ] ],
+        "geo_purpose" : [ [ "2011-04-19", "Research" ] ],
         "geo_reaction_id" : [ [ "8557", "8649", "8650", "8651", "8652" ] ],
         "geo_run_id_and_position_and_slot" : [ [ "1273_6_1", "1287_5_1", "1287_6_1", "1287_7_1", "1287_8_1" ] ],
-        "geo_str_result" : [ [ "Not Submitted" ] ],
+        "geo_str_result" : [ [ "2011-04-19", "Not Submitted" ] ],
         "geo_template_id" : [ [ "26255", "26271", "26287", "26957", "26973", "27836" ] ],
         "geo_template_type" : [ [ "Identity", "Illumina PE Library", "Illumina PE Library Seq", "Primary Tumor Tissue", "gDNA" ] ],
         "geo_tissue_origin" : [ [ "Pa" ] ],
@@ -3378,7 +3378,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360287519982000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360269519982000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3397,14 +3397,14 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0005_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69245", "FN7873" ] ],
+        "geo_external_name" : [ [ "2011-04-19", "69245", "69245  PIMO-0019", "69245 PP019", "FN7873" ] ],
         "geo_group_id" : [ [ "2" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
-        "geo_purpose" : [ [ "Research" ] ],
+        "geo_purpose" : [ [ "2011-04-19", "Research" ] ],
         "geo_reaction_id" : [ [ "8557", "8649", "8650", "8651", "8652" ] ],
         "geo_run_id_and_position_and_slot" : [ [ "1273_6_1", "1287_5_1", "1287_6_1", "1287_7_1", "1287_8_1" ] ],
-        "geo_str_result" : [ [ "Not Submitted" ] ],
+        "geo_str_result" : [ [ "2011-04-19", "Not Submitted" ] ],
         "geo_template_id" : [ [ "26255", "26271", "26287", "26957", "26973", "27836" ] ],
         "geo_template_type" : [ [ "Identity", "Illumina PE Library", "Illumina PE Library Seq", "Primary Tumor Tissue", "gDNA" ] ],
         "geo_tissue_origin" : [ [ "Pa" ] ],
@@ -3429,7 +3429,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360354674325000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360336674325000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3448,14 +3448,14 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0005_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69245", "FN7873" ] ],
+        "geo_external_name" : [ [ "2011-04-19", "69245", "69245  PIMO-0019", "69245 PP019", "FN7873" ] ],
         "geo_group_id" : [ [ "2" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
-        "geo_purpose" : [ [ "Research" ] ],
+        "geo_purpose" : [ [ "2011-04-19", "Research" ] ],
         "geo_reaction_id" : [ [ "8557", "8649", "8650", "8651", "8652" ] ],
         "geo_run_id_and_position_and_slot" : [ [ "1273_6_1", "1287_5_1", "1287_6_1", "1287_7_1", "1287_8_1" ] ],
-        "geo_str_result" : [ [ "Not Submitted" ] ],
+        "geo_str_result" : [ [ "2011-04-19", "Not Submitted" ] ],
         "geo_template_id" : [ [ "26255", "26271", "26287", "26957", "26973", "27836" ] ],
         "geo_template_type" : [ [ "Identity", "Illumina PE Library", "Illumina PE Library Seq", "Primary Tumor Tissue", "gDNA" ] ],
         "geo_tissue_origin" : [ [ "Pa" ] ],
@@ -3480,7 +3480,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360406802175000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360388802175000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3499,14 +3499,14 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0005_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69245", "FN7873" ] ],
+        "geo_external_name" : [ [ "2011-04-19", "69245", "69245  PIMO-0019", "69245 PP019", "FN7873" ] ],
         "geo_group_id" : [ [ "2" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
-        "geo_purpose" : [ [ "Research" ] ],
+        "geo_purpose" : [ [ "2011-04-19", "Research" ] ],
         "geo_reaction_id" : [ [ "8557", "8649", "8650", "8651", "8652" ] ],
         "geo_run_id_and_position_and_slot" : [ [ "1273_6_1", "1287_5_1", "1287_6_1", "1287_7_1", "1287_8_1" ] ],
-        "geo_str_result" : [ [ "Not Submitted" ] ],
+        "geo_str_result" : [ [ "2011-04-19", "Not Submitted" ] ],
         "geo_template_id" : [ [ "26255", "26271", "26287", "26957", "26973", "27836" ] ],
         "geo_template_type" : [ [ "Identity", "Illumina PE Library", "Illumina PE Library Seq", "Primary Tumor Tissue", "gDNA" ] ],
         "geo_tissue_origin" : [ [ "Pa" ] ],
@@ -3531,7 +3531,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360292677173000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0094_AC1KW7ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0005_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0005_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0350\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360274677173000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3550,14 +3550,14 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0005_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69245", "FN7873" ] ],
+        "geo_external_name" : [ [ "2011-04-19", "69245", "69245  PIMO-0019", "69245 PP019", "FN7873" ] ],
         "geo_group_id" : [ [ "2" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
-        "geo_purpose" : [ [ "Research" ] ],
+        "geo_purpose" : [ [ "2011-04-19", "Research" ] ],
         "geo_reaction_id" : [ [ "8557", "8649", "8650", "8651", "8652" ] ],
         "geo_run_id_and_position_and_slot" : [ [ "1273_6_1", "1287_5_1", "1287_6_1", "1287_7_1", "1287_8_1" ] ],
-        "geo_str_result" : [ [ "Not Submitted" ] ],
+        "geo_str_result" : [ [ "2011-04-19", "Not Submitted" ] ],
         "geo_template_id" : [ [ "26255", "26271", "26287", "26957", "26973", "27836" ] ],
         "geo_template_type" : [ [ "Identity", "Illumina PE Library", "Illumina PE Library Seq", "Primary Tumor Tissue", "gDNA" ] ],
         "geo_tissue_origin" : [ [ "Pa" ] ],
@@ -3582,7 +3582,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359631078587000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359613078587000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3633,7 +3633,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360357356266000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360339356266000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3684,7 +3684,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360369179441000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360351179441000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3735,7 +3735,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360390080222000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360372080222000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3786,7 +3786,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360837838870000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"2\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360819838870000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3837,7 +3837,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359531651523000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130110_SN804_0104_AD1NPCACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1359513651523000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3888,7 +3888,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360431006246000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360413006246000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3939,7 +3939,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360572223097000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360554223097000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -3990,7 +3990,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360568017316000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360550017316000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4041,7 +4041,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360469269210000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130122_SN801_0095_BD1N56ACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0006_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0006_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0383\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"group id\\\":\\\"1\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360451269210000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4092,7 +4092,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130131_SN7001179_0106_BD1NLRACXX\\\",\\\"instrument\\\":\\\"SN7001179\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360796479809000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130131_SN7001179_0106_BD1NLRACXX\\\",\\\"instrument\\\":\\\"SN7001179\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360778479809000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4142,7 +4142,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362752575830000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362734575830000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4192,7 +4192,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362782093316000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362764093316000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4242,7 +4242,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362768458991000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362750458991000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4292,7 +4292,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362755548857000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362737548857000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4342,7 +4342,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130131_SN7001179_0106_BD1NLRACXX\\\",\\\"instrument\\\":\\\"SN7001179\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360798267576000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130131_SN7001179_0106_BD1NLRACXX\\\",\\\"instrument\\\":\\\"SN7001179\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360780267576000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4392,7 +4392,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362771251440000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362753251440000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4442,7 +4442,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362766090470000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362748090470000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4492,7 +4492,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362768644998000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362750644998000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4542,7 +4542,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362769145537000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130226_SN804_0108_BD1RPDACXX\\\",\\\"instrument\\\":\\\"SN804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0007_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0007_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0351\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362751145537000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4592,7 +4592,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130131_SN7001179_0106_BD1NLRACXX\\\",\\\"instrument\\\":\\\"SN7001179\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360802780957000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130131_SN7001179_0106_BD1NLRACXX\\\",\\\"instrument\\\":\\\"SN7001179\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360784780957000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4642,7 +4642,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362681243389000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362663243389000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4692,7 +4692,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130131_SN7001179_0106_BD1NLRACXX\\\",\\\"instrument\\\":\\\"SN7001179\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360829611174000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130131_SN7001179_0106_BD1NLRACXX\\\",\\\"instrument\\\":\\\"SN7001179\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360811611174000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4742,7 +4742,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362698944964000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362680944964000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4792,7 +4792,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362712948715000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362694948715000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4842,7 +4842,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362764318233000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362746318233000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4892,7 +4892,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130129_SN203_0170_AD1PRDACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361676722506000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130129_SN203_0170_AD1PRDACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361658722506000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4942,7 +4942,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362683706758000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362665706758000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -4992,7 +4992,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362667599231000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362649599231000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5042,7 +5042,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362677602508000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362659602508000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5092,7 +5092,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362678949056000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362660949056000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5142,7 +5142,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130131_SN7001179_0106_BD1NLRACXX\\\",\\\"instrument\\\":\\\"SN7001179\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360802684998000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130131_SN7001179_0106_BD1NLRACXX\\\",\\\"instrument\\\":\\\"SN7001179\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1360784684998000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5192,7 +5192,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362666875485000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362648875485000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5242,7 +5242,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362680191019000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362662191019000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5292,7 +5292,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362678882677000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362660882677000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5342,7 +5342,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362678962420000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130221_SN802_0105_AC1MVPACXX\\\",\\\"instrument\\\":\\\"SN802\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0008_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0008_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0352\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362660962420000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5392,7 +5392,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130129_SN203_0170_AD1PRDACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361787667244000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130129_SN203_0170_AD1PRDACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361769667244000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5411,7 +5411,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_E_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -5442,7 +5442,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130212_SN203_0171_BD1PP9ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361593377452000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130212_SN203_0171_BD1PP9ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361575377452000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5461,7 +5461,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_E_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -5492,7 +5492,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130212_SN203_0171_BD1PP9ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361601999806000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130212_SN203_0171_BD1PP9ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361583999806000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5511,7 +5511,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_E_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -5542,7 +5542,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362681389740000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362663389740000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5561,7 +5561,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_E_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -5592,7 +5592,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362676910825000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_E_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_E_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362658910825000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5611,7 +5611,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_E_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -5642,7 +5642,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130129_SN203_0170_AD1PRDACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361640210533000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130129_SN203_0170_AD1PRDACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361622210533000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5661,7 +5661,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_P_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -5692,7 +5692,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362070422340000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362052422340000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5711,7 +5711,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_P_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -5742,7 +5742,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362071323145000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362053323145000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5761,7 +5761,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_P_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -5792,7 +5792,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362068950264000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362050950264000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5811,7 +5811,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_P_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -5842,7 +5842,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362070703471000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362052703471000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5861,7 +5861,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_P_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -5892,7 +5892,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130129_SN203_0170_AD1PRDACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361659176862000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130129_SN203_0170_AD1PRDACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361641176862000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5911,7 +5911,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -5942,7 +5942,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362075279399000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362057279399000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -5961,7 +5961,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -5992,7 +5992,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362072469633000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362054469633000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6011,7 +6011,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -6042,7 +6042,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362075012053000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362057012053000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6061,7 +6061,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -6092,7 +6092,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362073834412000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130215_SN1068_0110_BD1RT7ACXX\\\",\\\"instrument\\\":\\\"SN1068\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0009_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0009_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0353\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362055834412000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6111,7 +6111,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0009_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69544", "FN3458" ] ],
+        "geo_external_name" : [ [ "69544", "69544  PIMO-0020", "69544 PP020", "FN3458" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -6142,7 +6142,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130212_SN203_0171_BD1PP9ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0010_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0010_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0354\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361674786781000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130212_SN203_0171_BD1PP9ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0010_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0010_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0354\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361656786781000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6192,7 +6192,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130214_SN801_0098_BD1RRHACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0010_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0010_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0354\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361967676456000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130214_SN801_0098_BD1RRHACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0010_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0010_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0354\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361949676456000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6242,7 +6242,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130214_SN801_0098_BD1RRHACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0010_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0010_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0354\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361965937548000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130214_SN801_0098_BD1RRHACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0010_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0010_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0354\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361947937548000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6292,7 +6292,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130214_SN801_0098_BD1RRHACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0010_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0010_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0354\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361949042320000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130214_SN801_0098_BD1RRHACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0010_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0010_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0354\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361931042320000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6342,7 +6342,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130214_SN801_0098_BD1RRHACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0010_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0010_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0354\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361963790263000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130214_SN801_0098_BD1RRHACXX\\\",\\\"instrument\\\":\\\"SN801\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0010_Pa_P_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0010_Pa_P_PE\\\",\\\"sample group\\\":\\\"PCSI_0354\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361945790263000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6392,7 +6392,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130212_SN203_0171_BD1PP9ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361602178957000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130212_SN203_0171_BD1PP9ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361584178957000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6411,7 +6411,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0011_Pa_F_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69713", "FN4137" ] ],
+        "geo_external_name" : [ [ "69713", "69713  PIMO-0021", "69713 PP021", "FN4137" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -6442,7 +6442,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362758214557000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362740214557000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6461,7 +6461,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0011_Pa_F_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69713", "FN4137" ] ],
+        "geo_external_name" : [ [ "69713", "69713  PIMO-0021", "69713 PP021", "FN4137" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -6492,7 +6492,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362733949965000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0177_AC1N1LACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_F_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_F_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362715949965000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6511,7 +6511,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0011_Pa_F_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69713", "FN4137" ] ],
+        "geo_external_name" : [ [ "69713", "69713  PIMO-0021", "69713 PP021", "FN4137" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -6542,7 +6542,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130212_SN203_0171_BD1PP9ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361628297174000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130212_SN203_0171_BD1PP9ACXX\\\",\\\"instrument\\\":\\\"SN203\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1361610297174000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6561,7 +6561,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0011_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69713", "FN4137" ] ],
+        "geo_external_name" : [ [ "69713", "69713  PIMO-0021", "69713 PP021", "FN4137" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -6592,7 +6592,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0178_BD1R1TACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362696785874000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0178_BD1R1TACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362678785874000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6611,7 +6611,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0011_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69713", "FN4137" ] ],
+        "geo_external_name" : [ [ "69713", "69713  PIMO-0021", "69713 PP021", "FN4137" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -6642,7 +6642,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0178_BD1R1TACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362706351488000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0178_BD1R1TACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362688351488000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6661,7 +6661,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0011_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69713", "FN4137" ] ],
+        "geo_external_name" : [ [ "69713", "69713  PIMO-0021", "69713 PP021", "FN4137" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -6692,7 +6692,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0178_BD1R1TACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362717694235000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0178_BD1R1TACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362699694235000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6711,7 +6711,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0011_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69713", "FN4137" ] ],
+        "geo_external_name" : [ [ "69713", "69713  PIMO-0021", "69713 PP021", "FN4137" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
@@ -6742,7 +6742,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0178_BD1R1TACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362698115554000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"130222_h239_0178_BD1R1TACXX\\\",\\\"instrument\\\":\\\"h239\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"ASHPC_0011_Pa_R_PE_700_WG\\\",\\\"sample\\\":\\\"ASHPC_0011_Pa_R_PE\\\",\\\"sample group\\\":\\\"PCSI_0355\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.4\\\",\\\"last modified\\\":\\\"1362680115554000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -6761,7 +6761,7 @@
       "experimentAttributes" : { },
       "sampleName" : [ "ASHPC_0011_Pa_R_PE_700_WG" ],
       "sampleAttributes" : {
-        "geo_external_name" : [ [ "69713", "FN4137" ] ],
+        "geo_external_name" : [ [ "69713", "69713  PIMO-0021", "69713 PP021", "FN4137" ] ],
         "geo_library_source_template_type" : [ [ "WG" ] ],
         "geo_organism" : [ [ "Homo sapiens" ] ],
         "geo_purpose" : [ [ "Library" ] ],
