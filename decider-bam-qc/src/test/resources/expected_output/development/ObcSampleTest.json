@@ -12,7 +12,7 @@
   "totalInputFiles" : 4,
   "workflowRuns" : [ {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"111212_h1080_0086_AC045BACXX\\\",\\\"instrument\\\":\\\"h1080\\\",\\\"barcode\\\":\\\"ATCACG\\\",\\\"library\\\":\\\"OBC_0001_Ov_X_PE_389_EX\\\",\\\"sample\\\":\\\"OBC_0001_Ov_X_PE\\\",\\\"sample group\\\":\\\"OBC_0001\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1331160882968000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"111212_h1080_0086_AC045BACXX\\\",\\\"instrument\\\":\\\"h1080\\\",\\\"barcode\\\":\\\"ATCACG\\\",\\\"library\\\":\\\"OBC_0001_Ov_X_PE_389_EX\\\",\\\"sample\\\":\\\"OBC_0001_Ov_X_PE\\\",\\\"sample group\\\":\\\"OBC_0001\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1331142882968000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -67,7 +67,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"120106_h804_0076_AD0LFWACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"ATCACG\\\",\\\"library\\\":\\\"OBC_0001_Ov_X_PE_389_EX\\\",\\\"sample\\\":\\\"OBC_0001_Ov_X_PE\\\",\\\"sample group\\\":\\\"OBC_0001\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1327230916200000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"120106_h804_0076_AD0LFWACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"ATCACG\\\",\\\"library\\\":\\\"OBC_0001_Ov_X_PE_389_EX\\\",\\\"sample\\\":\\\"OBC_0001_Ov_X_PE\\\",\\\"sample group\\\":\\\"OBC_0001\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1327212916200000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -122,7 +122,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"111212_h1080_0086_AC045BACXX\\\",\\\"instrument\\\":\\\"h1080\\\",\\\"barcode\\\":\\\"GATCAG\\\",\\\"library\\\":\\\"OBC_0001_nn_R_PE_388_EX\\\",\\\"sample\\\":\\\"OBC_0001_nn_R_PE\\\",\\\"sample group\\\":\\\"OBC_0001\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1331145814917000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"111212_h1080_0086_AC045BACXX\\\",\\\"instrument\\\":\\\"h1080\\\",\\\"barcode\\\":\\\"GATCAG\\\",\\\"library\\\":\\\"OBC_0001_nn_R_PE_388_EX\\\",\\\"sample\\\":\\\"OBC_0001_nn_R_PE\\\",\\\"sample group\\\":\\\"OBC_0001\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1331127814917000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -177,7 +177,7 @@
     } ]
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"120106_h804_0076_AD0LFWACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"GATCAG\\\",\\\"library\\\":\\\"OBC_0001_nn_R_PE_388_EX\\\",\\\"sample\\\":\\\"OBC_0001_nn_R_PE\\\",\\\"sample group\\\":\\\"OBC_0001\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1327236334128000\\\"}",
+      "json_metadata" : "{\\\"run name\\\":\\\"120106_h804_0076_AD0LFWACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"GATCAG\\\",\\\"library\\\":\\\"OBC_0001_nn_R_PE_388_EX\\\",\\\"sample\\\":\\\"OBC_0001_nn_R_PE\\\",\\\"sample group\\\":\\\"OBC_0001\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"EX\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1327218334128000\\\"}",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",

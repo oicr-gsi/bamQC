@@ -1,3 +1,3 @@
 #!/bin/bash
 
-diff $1 $2
+diff -b  $1 $2
