@@ -19,19 +19,6 @@
             },
             "iterations": "10"
         },
-	{
-	    "id": "Test1_with_sampling",
-            "parameters": {
-                "input_file": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/test_set_01/test_ion_DH10B_lane.bam",
-                "sample_rate": "1000",
-		"sample_threshold": "250",
-                "normal_insert_max": "1500",
-                "map_qual_cut": "5",
-                "target_bed": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/test_set_01/DH10B.target.bed",
-                "json_metadata": "{\\\"sample\\\":\\\"DH10B\\\",\\\"sample group\\\":\\\"DH10B\\\",\\\"library\\\":\\\"Ion_Torrent_DH10B\\\",\\\"barcode\\\":\\\"noIndex\\\",\\\"instrument\\\":\\\"it1\\\",\\\"run name\\\":\\\"R_2011_10_21_11_46_36_user_10212011\\\",\\\"lane\\\":\\\"1\\\",\\\"last modified\\\":\\\"1319895924\\\",\\\"sequencing type\\\":\\\"wgs\\\"}"
-            },
-            "iterations": "10"
-        },
         {
             "id": "pde-806",
             "parameters": {
