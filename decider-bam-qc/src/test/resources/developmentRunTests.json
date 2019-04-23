@@ -39,6 +39,14 @@
                 "--before-date": "2013-11-19"
             }
         },
+	{
+	    "id": "OBC sample test with downsampling",
+            "parameters": {
+                "--root-sample-name": "OBC_0001",
+                "--before-date": "2013-11-19",
+                "--sample-threshold": "1",
+            }
+        },
         {
             "id": "GP-453",
             "parameters": {
