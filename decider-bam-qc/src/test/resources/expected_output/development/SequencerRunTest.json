@@ -10,9 +10,14 @@
   "maxInputFiles" : 1,
   "minInputFiles" : 1,
   "totalInputFiles" : 8,
+  "maxOutputFileProvenanceRecords" : 1,
+  "minOutputFileProvenanceRecords" : 1,
+  "totalOutputFileProvenanceRecords" : 8,
   "workflowRuns" : [ {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"120912_h804_0094_BD181GACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"SCS_0006_nn_n_PE_300_WG\\\",\\\"sample\\\":\\\"SCS_0006_nn_n_PE\\\",\\\"sample group\\\":\\\"SCS_0006\\\",\\\"lane\\\":1,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1349877005451000\\\"}",
+      "bamqc_job_mem" : "8000",
+      "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0006_nn_n_PE_300_WG\",\"sample\":\"SCS_0006_nn_n_PE\",\"sample group\":\"SCS_0006\",\"lane\":1,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1349877005451000\"}",
+      "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -58,10 +63,13 @@
       "fileMetaType" : [ "application/bam" ],
       "fileAttributes" : { },
       "fileId" : -1065943906
-    } ]
+    } ],
+    "outputFileProvenanceRecords" : 1
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"120912_h804_0094_BD181GACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"SCS_0006_nn_n_PE_300_WG\\\",\\\"sample\\\":\\\"SCS_0006_nn_n_PE\\\",\\\"sample group\\\":\\\"SCS_0006\\\",\\\"lane\\\":2,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1349414363385000\\\"}",
+      "bamqc_job_mem" : "8000",
+      "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0006_nn_n_PE_300_WG\",\"sample\":\"SCS_0006_nn_n_PE\",\"sample group\":\"SCS_0006\",\"lane\":2,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1349414363385000\"}",
+      "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -107,10 +115,13 @@
       "fileMetaType" : [ "application/bam" ],
       "fileAttributes" : { },
       "fileId" : -183673678
-    } ]
+    } ],
+    "outputFileProvenanceRecords" : 1
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"120912_h804_0094_BD181GACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"SCS_0006_nn_n_PE_300_WG\\\",\\\"sample\\\":\\\"SCS_0006_nn_n_PE\\\",\\\"sample group\\\":\\\"SCS_0006\\\",\\\"lane\\\":3,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1350108255743000\\\"}",
+      "bamqc_job_mem" : "8000",
+      "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0006_nn_n_PE_300_WG\",\"sample\":\"SCS_0006_nn_n_PE\",\"sample group\":\"SCS_0006\",\"lane\":3,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1350108255743000\"}",
+      "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -156,10 +167,13 @@
       "fileMetaType" : [ "application/bam" ],
       "fileAttributes" : { },
       "fileId" : 1013662556
-    } ]
+    } ],
+    "outputFileProvenanceRecords" : 1
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"120912_h804_0094_BD181GACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"SCS_0007_nn_n_PE_300_WG\\\",\\\"sample\\\":\\\"SCS_0007_nn_n_PE\\\",\\\"sample group\\\":\\\"SCS_0007\\\",\\\"lane\\\":4,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1349514811025000\\\"}",
+      "bamqc_job_mem" : "8000",
+      "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0007_nn_n_PE_300_WG\",\"sample\":\"SCS_0007_nn_n_PE\",\"sample group\":\"SCS_0007\",\"lane\":4,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1349514811025000\"}",
+      "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -205,10 +219,13 @@
       "fileMetaType" : [ "application/bam" ],
       "fileAttributes" : { },
       "fileId" : -1312368166
-    } ]
+    } ],
+    "outputFileProvenanceRecords" : 1
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"120912_h804_0094_BD181GACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"SCS_0007_nn_n_PE_300_WG\\\",\\\"sample\\\":\\\"SCS_0007_nn_n_PE\\\",\\\"sample group\\\":\\\"SCS_0007\\\",\\\"lane\\\":5,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1349408959676000\\\"}",
+      "bamqc_job_mem" : "8000",
+      "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0007_nn_n_PE_300_WG\",\"sample\":\"SCS_0007_nn_n_PE\",\"sample group\":\"SCS_0007\",\"lane\":5,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1349408959676000\"}",
+      "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -254,10 +271,13 @@
       "fileMetaType" : [ "application/bam" ],
       "fileAttributes" : { },
       "fileId" : 1697166438
-    } ]
+    } ],
+    "outputFileProvenanceRecords" : 1
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"120912_h804_0094_BD181GACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"SCS_0007_nn_n_PE_300_WG\\\",\\\"sample\\\":\\\"SCS_0007_nn_n_PE\\\",\\\"sample group\\\":\\\"SCS_0007\\\",\\\"lane\\\":6,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1349410401304000\\\"}",
+      "bamqc_job_mem" : "8000",
+      "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0007_nn_n_PE_300_WG\",\"sample\":\"SCS_0007_nn_n_PE\",\"sample group\":\"SCS_0007\",\"lane\":6,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1349410401304000\"}",
+      "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -303,10 +323,13 @@
       "fileMetaType" : [ "application/bam" ],
       "fileAttributes" : { },
       "fileId" : 625928507
-    } ]
+    } ],
+    "outputFileProvenanceRecords" : 1
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"120912_h804_0094_BD181GACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"SCS_0008_nn_n_PE_300_WG\\\",\\\"sample\\\":\\\"SCS_0008_nn_n_PE\\\",\\\"sample group\\\":\\\"SCS_0008\\\",\\\"lane\\\":7,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1350054349760000\\\"}",
+      "bamqc_job_mem" : "8000",
+      "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0008_nn_n_PE_300_WG\",\"sample\":\"SCS_0008_nn_n_PE\",\"sample group\":\"SCS_0008\",\"lane\":7,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1350054349760000\"}",
+      "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -352,10 +375,13 @@
       "fileMetaType" : [ "application/bam" ],
       "fileAttributes" : { },
       "fileId" : -1832690829
-    } ]
+    } ],
+    "outputFileProvenanceRecords" : 1
   }, {
     "workflowIni" : {
-      "json_metadata" : "{\\\"run name\\\":\\\"120912_h804_0094_BD181GACXX\\\",\\\"instrument\\\":\\\"h804\\\",\\\"barcode\\\":\\\"NoIndex\\\",\\\"library\\\":\\\"SCS_0008_nn_n_PE_300_WG\\\",\\\"sample\\\":\\\"SCS_0008_nn_n_PE\\\",\\\"sample group\\\":\\\"SCS_0008\\\",\\\"lane\\\":8,\\\"sequencing type\\\":\\\"WG\\\",\\\"workflow name\\\":\\\"GenomicAlignmentNovoalign\\\",\\\"workflow version\\\":\\\"0.10.1\\\",\\\"last modified\\\":\\\"1349422840149000\\\"}",
+      "bamqc_job_mem" : "8000",
+      "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0008_nn_n_PE_300_WG\",\"sample\":\"SCS_0008_nn_n_PE\",\"sample group\":\"SCS_0008\",\"lane\":8,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1349422840149000\"}",
+      "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
@@ -401,6 +427,7 @@
       "fileMetaType" : [ "application/bam" ],
       "fileAttributes" : { },
       "fileId" : 1513304839
-    } ]
+    } ],
+    "outputFileProvenanceRecords" : 1
   } ]
 }

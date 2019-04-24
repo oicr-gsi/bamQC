@@ -19,6 +19,8 @@ public class BamQCDecider extends OicrDecider {
 
     private Map<String, ReturnValue> pathToAttributes = new HashMap<String, ReturnValue>();
     private String sampleRate = "1000";
+    private String sampleThreshold = "100";
+    private boolean noSample = false;
     private String normalInsertMax = "1500";
     private String mapQualCut = "30";
     private String iniFile = null;
@@ -26,6 +28,7 @@ public class BamQCDecider extends OicrDecider {
     private boolean forceType = false;
     private String forcedResequencingType = "";
     private String forcedIntervalFile = "";
+    private Long bamSize = null;
     private Rsconfig rs;
 
     public BamQCDecider() {
@@ -33,6 +36,10 @@ public class BamQCDecider extends OicrDecider {
         parser.accepts("sample-rate", "Optional. Set the sampling rate in the decider "
                 + "(only 1/sample_rate reads are used for memory-intensive sampling) "
                 + "This needs to be set lower for mate-pair libraries. Default: 1000").withRequiredArg();
+        parser.accepts("sample-threshold", "Minimum size of input BAM file (in MB) to turn on sampling, "
+                + "at the level given by sample-rate. To activate sampling regardless of "
+                + "file size, set value to 0. Default: 100.").withRequiredArg();
+        parser.accepts("no-sample", "Disable sampling. Overrides sample-rate and sample-threshold").withOptionalArg();
         parser.accepts("normal-insert-max", "Optional. Set the maximum insert size "
                 + "to prevent skewing of insert statistics. Default:1500").withRequiredArg();
         parser.accepts("map-qual-cut", "Optional. Set the mapQ value. Default: 30").withRequiredArg();
@@ -42,8 +49,9 @@ public class BamQCDecider extends OicrDecider {
 //                + "Corresponds to output-dir in INI file. Default: seqware-results").withRequiredArg();
 //        parser.accepts("output-path", "Optional: the path where the files should be copied to "
 //                + "after analysis. Corresponds to output-prefix in INI file. Default: ./").withRequiredArg();
-        parser.accepts("check-file-exists", "Optional: Flag to check whether or not the file exists before launching the workflow. WARNING! Will "
-                + "not work if you are not on the same filesystem or do not have appropriate permissions!");
+        parser.accepts("check-file-exists", "Optional: Flag to check whether or not the file exists before launching the workflow. "
+                + "If file size is not in the file metadata, will also check size of file to determine sampling status. "
+                + "WARNING! Will not work if you are not on the same filesystem or do not have appropriate permissions!");
         parser.accepts("interval-file", "Optional: path to a file with target coordinates.").withRequiredArg();
         parser.accepts("resequencing-type", "Optional: specify resequencing type which should use the supplied interval-file. Will use the supplied interval file for this type only, "
                 + "will works when interval-file is also set.").withRequiredArg();
@@ -65,6 +73,12 @@ public class BamQCDecider extends OicrDecider {
 
         if (options.has("sample-rate")) {
             sampleRate = options.valueOf("sample-rate").toString();
+        }
+        if (options.has("sample-threshold")) {
+            sampleThreshold = options.valueOf("sample-threshold").toString();
+        }
+        if (options.has("no-sample")) {
+            noSample = true;
         }
         if (options.has("normal-insert-max")) {
             normalInsertMax = options.valueOf("normal-insert-max").toString();
@@ -188,6 +202,8 @@ public class BamQCDecider extends OicrDecider {
 
         returnValue.setAttribute("target_bed", target_bed);
 
+        bamSize = fm.getSize();
+
         if (options.has("check-file-exists")) {
             File file = new File(fm.getFilePath());
             if (!file.exists()) {
@@ -199,6 +215,13 @@ public class BamQCDecider extends OicrDecider {
                 }
                 return false;
             }
+            if (bamSize == null) { // size not defined in metadata
+                Log.debug("File size not found in metadata, querying filesystem path " + fm.getFilePath());
+                bamSize = file.length();
+            }
+        } else if (bamSize == null) {
+            Log.warn("For input file with path \"" + fm.getFilePath() + "\", file size not found in metadata. Sampling will be applied. "
+                    + "Run with --check-file-exists to query filesystem for the file size.");
         }
         pathToAttributes.put(fm.getFilePath(), returnValue);
         return super.checkFileDetails(returnValue, fm);
@@ -227,7 +250,7 @@ public class BamQCDecider extends OicrDecider {
         ReturnValue r = pathToAttributes.get(commaSeparatedFilePaths);
 
         iniFileMap.put("input_file", commaSeparatedFilePaths);
-        iniFileMap.put("sample_rate", sampleRate);
+        iniFileMap.put("sample_rate", findSampleRate());
         iniFileMap.put("normal_insert_max", normalInsertMax);
         iniFileMap.put("map_qual_cut", mapQualCut);
         iniFileMap.put("target_bed", r.getAttribute("target_bed"));
@@ -238,6 +261,16 @@ public class BamQCDecider extends OicrDecider {
         }
 
         return iniFileMap;
+    }
+
+    private String findSampleRate() {
+        String rate = sampleRate;
+        Long threshold = Long.parseLong(sampleThreshold) * 1024 * 1024; // convert from MB to bytes
+        // sampling is enabled if the file size is unknown
+        if (noSample || (bamSize != null && bamSize < threshold)) {
+            rate = "1";
+        }
+        return rate;
     }
 
     private final ObjectMapper mapper = new ObjectMapper();

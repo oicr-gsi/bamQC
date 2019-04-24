@@ -67,12 +67,12 @@ public class WorkflowClient extends OicrWorkflow {
         Job job0 = null;
         if (jsonMetadata != null) {
             job0 = getWriteToFileJob(jsonMetadata, jsonMetadataFile);
-            job0.setMaxMemory("1000");
+            job0.setMaxMemory(getProperty("json_metadata_job_mem"));
             job0.setQueue(queue);
         }
 
         Job job1 = getBamQcJob();
-        job1.setMaxMemory("2000");
+        job1.setMaxMemory(getProperty("bamqc_job_mem"));
         job1.setQueue(queue);
         if (job0 != null) {
             job1.addParent(job0);
