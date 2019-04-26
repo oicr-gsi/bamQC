@@ -20,6 +20,8 @@
     <properties>
         <workflow-version>2.5</workflow-version>
         <main-class>ca.on.oicr.pde.deciders.BamQCDecider</main-class>
+        <runTestThreads>5</runTestThreads>
+        <testSuite>target/test-classes/development.xml</testSuite>
     </properties>
     
     <dependencies>
