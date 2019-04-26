@@ -44,7 +44,7 @@
             "parameters": {
                 "--root-sample-name": "OBC_0001",
                 "--before-date": "2013-11-19",
-                "--sample-threshold": "1",
+                "--sample-threshold": "30000"
             }
         },
         {
