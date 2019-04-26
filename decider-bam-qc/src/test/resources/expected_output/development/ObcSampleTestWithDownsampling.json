@@ -24,7 +24,7 @@
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
-      "sample_rate" : "1000",
+      "sample_rate" : "1",
       "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed"
     },
     "files" : [ {
@@ -82,7 +82,7 @@
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
-      "sample_rate" : "1000",
+      "sample_rate" : "1",
       "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed"
     },
     "files" : [ {
@@ -140,7 +140,7 @@
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
-      "sample_rate" : "1000",
+      "sample_rate" : "1",
       "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed"
     },
     "files" : [ {
@@ -198,7 +198,7 @@
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
-      "sample_rate" : "1000",
+      "sample_rate" : "1",
       "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed"
     },
     "files" : [ {
