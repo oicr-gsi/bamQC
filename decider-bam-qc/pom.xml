@@ -18,7 +18,7 @@
     <name>${display-name}</name>
 
     <properties>
-        <workflow-version>2.5</workflow-version>
+        <workflow-version>2.6</workflow-version>
         <main-class>ca.on.oicr.pde.deciders.BamQCDecider</main-class>
         <runTestThreads>5</runTestThreads>
         <testSuite>target/test-classes/development.xml</testSuite>
