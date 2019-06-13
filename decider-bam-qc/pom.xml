@@ -12,13 +12,13 @@
 
     <groupId>ca.on.oicr.pde.deciders</groupId>
     <artifactId>BamQC</artifactId>
-    <version>2.6</version>
+    <version>2.7</version>
     <packaging>jar</packaging>
 
     <name>${display-name}</name>
 
     <properties>
-        <workflow-version>2.5</workflow-version>
+        <workflow-version>2.6</workflow-version>
         <main-class>ca.on.oicr.pde.deciders.BamQCDecider</main-class>
         <runTestThreads>5</runTestThreads>
         <testSuite>target/test-classes/development.xml</testSuite>
