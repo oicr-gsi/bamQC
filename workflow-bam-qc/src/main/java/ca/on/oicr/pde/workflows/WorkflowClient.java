@@ -22,19 +22,25 @@ public class WorkflowClient extends OicrWorkflow {
     private String targetBed = null;
     private String jsonMetadata = null;
     private String jsonMetadataFile = null;
+    private String markDuplicatesTextFile = null;
+    private String markDuplicatesBamFile = null;
     //workflow directories
-    private String binDir = null;
+    private String binDir = null; // TODO is this needed for Python executable?
     private String dataDir = null;
+    private String tmpDir = null;
     private Boolean manualOutput = false;
+    private Boolean markDuplicates = true;
 
     //Constructor - called in setupDirectory()
     private void WorkflowClient() {
 
         binDir = getWorkflowBaseDir() + "/bin/";
         dataDir = "data/";
+        tmpDir = "tmp/";
         queue = getOptionalProperty("queue", "");
         inputFile = getProperty("input_file");
         manualOutput = Boolean.valueOf(getProperty("manual_output"));
+        markDuplicates = Boolean.valueOf(getOptionalProperty("mark_duplicates", "true"));
         sampleRate = getProperty("sample_rate");
         normalInsertMax = getProperty("normal_insert_max");
         mapQualCut = getProperty("map_qual_cut");
@@ -50,6 +56,7 @@ public class WorkflowClient extends OicrWorkflow {
     public void setupDirectory() {
         WorkflowClient(); //Constructor call
         addDirectory(dataDir);
+        addDirectory(tmpDir);
     }
 
     @Override
@@ -71,15 +78,26 @@ public class WorkflowClient extends OicrWorkflow {
             job0.setQueue(queue);
         }
 
-        Job job1 = getBamQcJob();
-        job1.setMaxMemory(getProperty("bamqc_job_mem"));
-        job1.setQueue(queue);
-        if (job0 != null) {
-            job1.addParent(job0);
+        Job job1 = null;
+        if (markDuplicates) {
+            job1 = getPicardMarkDuplicatesJob();
+            if (job0 != null) {
+                job1.addParent(job0);
+            }
+        }
+
+        Job job2 = getBamQcJob();
+        job2.setMaxMemory(getProperty("bamqc_job_mem"));
+        job2.setQueue(queue);
+        if (job1 != null) {
+            job2.addParent(job1);
+        } else if (job0 != null) {
+            job2.addParent(job0);
         }
     }
 
     private Job getWriteToFileJob(String fileContents, String outputFile) {
+        // if metadata was supplied as a JSON blob in the INI, write to file
         Job job = getWorkflow().createBashJob("WriteToFile");
 
         List<String> c = new LinkedList<>();
@@ -98,25 +116,60 @@ public class WorkflowClient extends OicrWorkflow {
         return job;
     }
 
+    private Job getPicardMarkDuplicatesJob() {
+
+        String java = null;
+        String picard = null;
+        Integer picardMaxMemMb = null;
+
+        java = getProperty("java");
+        picard = getProperty("picard");
+        picardMaxMemMb = Integer.parseInt(getProperty("picard_memory"));
+
+        markDuplicatesTextFile = dataDir + "mark_duplicates.txt";
+        markDuplicatesBamFile = tmpDir + "marked_duplicates.bam";
+        Job job = getWorkflow().createBashJob("PicardMarkDuplicates");
+        Command command = job.getCommand();
+
+        command.addArgument(java);
+        command.addArgument("-Xmx" + picardMaxMemMb + "M");
+        command.addArgument("-jar " + picard + "/MarkDuplicates.jar");
+        command.addArgument("I=" + getFiles().get("file_in_0").getProvisionedPath());
+        command.addArgument("O=" + markDuplicatesBamFile);
+        command.addArgument("M=" + markDuplicatesTextFile);
+        return job;
+    }
+
     private Job getBamQcJob() {
         Job job = getWorkflow().createBashJob("BamToJsonStats");
 
+        String python = getProperty("python");
+        String pythonpath = getProperty("pythonpath");
         String jsonOutputFileName = inputFile.substring(inputFile.lastIndexOf("/") + 1) + ".BamQC.json";
+        String inputBamFile;
+        if (markDuplicatesBamFile != null) {
+            inputBamFile = markDuplicatesBamFile;
+        } else {
+            inputBamFile = getFiles().get("file_in_0").getProvisionedPath();
+        }
 
         Command command = job.getCommand();
-        command.addArgument(binDir + "samtools-0.1.19/samtools " + "view " + getFiles().get("file_in_0").getProvisionedPath());
-        command.addArgument("|"); //pipe to
-        command.addArgument(binDir + "perl-5.14.1/perl");
-        command.addArgument(getProperty("samstats_script"));
+        command.addArgument("PYTHONPATH=" + pythonpath);
+        command.addArgument(python);
+        command.addArgument(getProperty("metrics_script"));
+        command.addArgument("-b " + inputBamFile);
         command.addArgument("-s " + sampleRate);
         command.addArgument("-i " + normalInsertMax);
+        command.addArgument("-o " + dataDir + jsonOutputFileName);
         command.addArgument("-q " + mapQualCut);
-        command.addArgument("-r " + targetBed);
+        command.addArgument("-t " + targetBed);
+        command.addArgument("-T " + tmpDir);
         if (jsonMetadataFile != null) {
-            command.addArgument("-j " + jsonMetadataFile);
+            command.addArgument("-m " + jsonMetadataFile);
         }
-        command.addArgument(">"); //redirect to
-        command.addArgument(dataDir + jsonOutputFileName);
+        if (markDuplicatesTextFile != null) {
+            command.addArgument("-d" + markDuplicatesTextFile);
+        }
 
         SqwFile sqwJsonOutputFile = createOutputFile(dataDir + jsonOutputFileName, "text/json", manualOutput);
 
