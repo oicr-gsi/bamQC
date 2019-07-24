@@ -30,12 +30,6 @@
             <version>${samtools-version}</version>
             <type>zip</type>
         </dependency>
-        <dependency>
-            <groupId>ca.on.oicr.git.spb-analysis-tools</groupId>
-            <artifactId>bamqc</artifactId>
-            <version>${bamqc-version}</version>
-            <type>zip</type>
-        </dependency>
     </dependencies>
     
 </project>
