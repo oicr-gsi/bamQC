@@ -25,7 +25,6 @@ public class WorkflowClient extends OicrWorkflow {
     private String markDuplicatesTextFile = null;
     private String markDuplicatesBamFile = null;
     //workflow directories
-    private String binDir = null; // TODO is this needed for Python executable?
     private String dataDir = null;
     private String tmpDir = null;
     private Boolean manualOutput = false;
@@ -34,7 +33,6 @@ public class WorkflowClient extends OicrWorkflow {
     //Constructor - called in setupDirectory()
     private void WorkflowClient() {
 
-        binDir = getWorkflowBaseDir() + "/bin/";
         dataDir = "data/";
         tmpDir = "tmp/";
         queue = getOptionalProperty("queue", "");
@@ -117,20 +115,15 @@ public class WorkflowClient extends OicrWorkflow {
     }
 
     private Job getPicardMarkDuplicatesJob() {
-
-        String java = null;
-        String picard = null;
-        Integer picardMaxMemMb = null;
-
-        java = getProperty("java");
-        picard = getProperty("picard");
-        picardMaxMemMb = Integer.parseInt(getProperty("picard_memory"));
-
+        String java = getProperty("java");
+        String picard = getProperty("picard");
+        Integer picardMaxMemMb = Integer.parseInt(getProperty("picard_memory"));
         markDuplicatesTextFile = dataDir + "mark_duplicates.txt";
         markDuplicatesBamFile = tmpDir + "marked_duplicates.bam";
         Job job = getWorkflow().createBashJob("PicardMarkDuplicates");
+        job.setMaxMemory(getProperty("picard_job_memory"));
+        job.setQueue(queue);
         Command command = job.getCommand();
-
         command.addArgument(java);
         command.addArgument("-Xmx" + picardMaxMemMb + "M");
         command.addArgument("-jar " + picard + "/MarkDuplicates.jar");
@@ -142,8 +135,6 @@ public class WorkflowClient extends OicrWorkflow {
 
     private Job getBamQcJob() {
         Job job = getWorkflow().createBashJob("BamToJsonStats");
-
-        String python = getProperty("python");
         String pythonpath = getProperty("pythonpath");
         String jsonOutputFileName = inputFile.substring(inputFile.lastIndexOf("/") + 1) + ".BamQC.json";
         String inputBamFile;
@@ -154,8 +145,8 @@ public class WorkflowClient extends OicrWorkflow {
         }
 
         Command command = job.getCommand();
+        command.addArgument("source /u/ibancarz/installed/miniconda3/bin/activate &&"); //temporary for testing
         command.addArgument("PYTHONPATH=" + pythonpath);
-        command.addArgument(python);
         command.addArgument(getProperty("metrics_script"));
         command.addArgument("-b " + inputBamFile);
         command.addArgument("-s " + sampleRate);
@@ -168,7 +159,7 @@ public class WorkflowClient extends OicrWorkflow {
             command.addArgument("-m " + jsonMetadataFile);
         }
         if (markDuplicatesTextFile != null) {
-            command.addArgument("-d" + markDuplicatesTextFile);
+            command.addArgument("-d " + markDuplicatesTextFile);
         }
 
         SqwFile sqwJsonOutputFile = createOutputFile(dataDir + jsonOutputFileName, "text/json", manualOutput);
