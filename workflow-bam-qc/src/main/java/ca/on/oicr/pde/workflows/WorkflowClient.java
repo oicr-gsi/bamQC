@@ -145,7 +145,7 @@ public class WorkflowClient extends OicrWorkflow {
         }
 
         Command command = job.getCommand();
-        command.addArgument("source /u/ibancarz/installed/miniconda3/bin/activate &&"); //temporary for testing
+        command.addArgument("source /.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/activate &&"); // TODO setup with modulator instead
         command.addArgument("PYTHONPATH=" + pythonpath);
         command.addArgument(getProperty("metrics_script"));
         command.addArgument("-b " + inputBamFile);
