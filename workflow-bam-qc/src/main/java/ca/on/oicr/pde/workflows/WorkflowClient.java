@@ -30,6 +30,7 @@ public class WorkflowClient extends OicrWorkflow {
     private String tmpDir = null;
     private Boolean manualOutput = false;
     private Boolean markDuplicates = true;
+    private String workflowVersion = null;
 
     //Constructor - called in setupDirectory()
     private void WorkflowClient() {
@@ -45,6 +46,7 @@ public class WorkflowClient extends OicrWorkflow {
         mapQualCut = getProperty("map_qual_cut");
 	reference = getProperty("reference");
         targetBed = getProperty("target_bed");
+	workflowVersion = getProperty("workflow_version"); // bam-qc-metrics requires 3-part version, eg. 0.1.2
 
         if (hasPropertyAndNotNull("json_metadata")) {
             jsonMetadata = StringEscapeUtils.unescapeJava(getProperty("json_metadata")).replace("&#61;", "=");
@@ -161,6 +163,7 @@ public class WorkflowClient extends OicrWorkflow {
         command.addArgument("-s " + sampleRate);
         command.addArgument("-t " + targetBed);
         command.addArgument("-T " + tmpDir);
+	command.addArgument("-w " + workflowVersion);
         if (jsonMetadataFile != null) {
             command.addArgument("-m " + jsonMetadataFile);
         }
