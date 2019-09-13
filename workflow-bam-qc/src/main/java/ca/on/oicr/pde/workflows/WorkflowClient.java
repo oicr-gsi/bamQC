@@ -24,6 +24,7 @@ public class WorkflowClient extends OicrWorkflow {
     private String jsonMetadataFile = null;
     private String markDuplicatesTextFile = null;
     private String markDuplicatesBamFile = null;
+    private String reference = null;
     //workflow directories
     private String dataDir = null;
     private String tmpDir = null;
@@ -42,6 +43,7 @@ public class WorkflowClient extends OicrWorkflow {
         sampleRate = getProperty("sample_rate");
         normalInsertMax = getProperty("normal_insert_max");
         mapQualCut = getProperty("map_qual_cut");
+	reference = getProperty("reference");
         targetBed = getProperty("target_bed");
 
         if (hasPropertyAndNotNull("json_metadata")) {
@@ -137,6 +139,7 @@ public class WorkflowClient extends OicrWorkflow {
         Job job = getWorkflow().createBashJob("BamToJsonStats");
         String pythonpath = getProperty("pythonpath");
         String jsonOutputFileName = inputFile.substring(inputFile.lastIndexOf("/") + 1) + ".BamQC.json";
+	String logFileName = "run_bam_qc.log";
         String inputBamFile;
         if (markDuplicatesBamFile != null) {
             inputBamFile = markDuplicatesBamFile;
@@ -149,10 +152,13 @@ public class WorkflowClient extends OicrWorkflow {
         command.addArgument("PYTHONPATH=" + pythonpath);
         command.addArgument(getProperty("metrics_script"));
         command.addArgument("-b " + inputBamFile);
-        command.addArgument("-s " + sampleRate);
+	command.addArgument("--debug ");
         command.addArgument("-i " + normalInsertMax);
+	command.addArgument("-l " + dataDir + logFileName);
         command.addArgument("-o " + dataDir + jsonOutputFileName);
         command.addArgument("-q " + mapQualCut);
+	command.addArgument("-r " + reference);
+        command.addArgument("-s " + sampleRate);
         command.addArgument("-t " + targetBed);
         command.addArgument("-T " + tmpDir);
         if (jsonMetadataFile != null) {
