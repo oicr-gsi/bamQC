@@ -16,16 +16,25 @@
   "workflowRuns" : [ {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0006_nn_n_PE_300_WG\",\"sample\":\"SCS_0006_nn_n_PE\",\"sample group\":\"SCS_0006\",\"lane\":1,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1349877005451000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "SingleCellSeq" ],
@@ -68,16 +77,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0006_nn_n_PE_300_WG\",\"sample\":\"SCS_0006_nn_n_PE\",\"sample group\":\"SCS_0006\",\"lane\":2,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1349414363385000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "SingleCellSeq" ],
@@ -120,16 +138,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0006_nn_n_PE_300_WG\",\"sample\":\"SCS_0006_nn_n_PE\",\"sample group\":\"SCS_0006\",\"lane\":3,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1350108255743000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "SingleCellSeq" ],
@@ -172,16 +199,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0007_nn_n_PE_300_WG\",\"sample\":\"SCS_0007_nn_n_PE\",\"sample group\":\"SCS_0007\",\"lane\":4,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1349514811025000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "SingleCellSeq" ],
@@ -224,16 +260,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0007_nn_n_PE_300_WG\",\"sample\":\"SCS_0007_nn_n_PE\",\"sample group\":\"SCS_0007\",\"lane\":5,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1349408959676000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "SingleCellSeq" ],
@@ -276,16 +321,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0007_nn_n_PE_300_WG\",\"sample\":\"SCS_0007_nn_n_PE\",\"sample group\":\"SCS_0007\",\"lane\":6,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1349410401304000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "SingleCellSeq" ],
@@ -328,16 +382,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0008_nn_n_PE_300_WG\",\"sample\":\"SCS_0008_nn_n_PE\",\"sample group\":\"SCS_0008\",\"lane\":7,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1350054349760000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "SingleCellSeq" ],
@@ -380,16 +443,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"120912_h804_0094_BD181GACXX\",\"instrument\":\"h804\",\"barcode\":\"NoIndex\",\"library\":\"SCS_0008_nn_n_PE_300_WG\",\"sample\":\"SCS_0008_nn_n_PE\",\"sample group\":\"SCS_0008\",\"lane\":8,\"sequencing type\":\"WG\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1349422840149000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "SingleCellSeq" ],

@@ -16,16 +16,25 @@
   "workflowRuns" : [ {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"150529_D00353_0104_AC6DBAANXX\",\"instrument\":\"D00353\",\"barcode\":\"CGATGT\",\"library\":\"LSP_0001_Ad_P_PE_305_WG\",\"sample\":\"LSP_0001_Ad_P_PE\",\"sample group\":\"LSP_0001\",\"lane\":4,\"sequencing type\":\"WG\",\"group id\":\"1\",\"group id description\":\"Well-differentiated Themo&#38;Well-differentiated Thermo\",\"workflow name\":\"GenomicAlignmentNovoalign_V2.07.15b\",\"workflow version\":\"2.2.1\",\"last modified\":\"1433587562089000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Liposarcoma Sequencing" ],
@@ -73,16 +82,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"150617_D00331_0137_BC6VU3ANXX\",\"instrument\":\"D00331\",\"barcode\":\"CGATGT\",\"library\":\"LSP_0001_Ad_P_PE_305_WG\",\"sample\":\"LSP_0001_Ad_P_PE\",\"sample group\":\"LSP_0001\",\"lane\":8,\"sequencing type\":\"WG\",\"group id\":\"1\",\"group id description\":\"Well-differentiated Themo&#38;Well-differentiated Thermo\",\"workflow name\":\"GenomicAlignmentNovoalign_V2.07.15b\",\"workflow version\":\"2.2.1\",\"last modified\":\"1436776406217000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Liposarcoma Sequencing" ],
@@ -130,16 +148,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"150721_D00355_0089_AC6C9UANXX\",\"instrument\":\"D00355\",\"barcode\":\"CGATGT\",\"library\":\"LSP_0001_Ad_P_PE_305_WG\",\"sample\":\"LSP_0001_Ad_P_PE\",\"sample group\":\"LSP_0001\",\"lane\":4,\"sequencing type\":\"WG\",\"group id\":\"1\",\"group id description\":\"Well-differentiated Themo&#38;Well-differentiated Thermo\",\"workflow name\":\"GenomicAlignmentNovoalign_V2.07.15b\",\"workflow version\":\"2.2.1\",\"last modified\":\"1438419874534000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Liposarcoma Sequencing" ],
@@ -187,16 +214,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"150529_D00353_0104_AC6DBAANXX\",\"instrument\":\"D00353\",\"barcode\":\"TGACCA\",\"library\":\"LSP_0001_Ad_P_PE_314_WG\",\"sample\":\"LSP_0001_Ad_P_PE\",\"sample group\":\"LSP_0001\",\"lane\":4,\"sequencing type\":\"WG\",\"group id\":\"1\",\"group id description\":\"Well-differentiated Qiagen\",\"workflow name\":\"GenomicAlignmentNovoalign_V2.07.15b\",\"workflow version\":\"2.2.1\",\"last modified\":\"1439482471624000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Liposarcoma Sequencing" ],
@@ -244,16 +280,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"150721_D00355_0089_AC6C9UANXX\",\"instrument\":\"D00355\",\"barcode\":\"TGACCA\",\"library\":\"LSP_0001_Ad_P_PE_314_WG\",\"sample\":\"LSP_0001_Ad_P_PE\",\"sample group\":\"LSP_0001\",\"lane\":5,\"sequencing type\":\"WG\",\"group id\":\"1\",\"group id description\":\"Well-differentiated Qiagen\",\"workflow name\":\"GenomicAlignmentNovoalign_V2.07.15b\",\"workflow version\":\"2.2.1\",\"last modified\":\"1439743426482000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Liposarcoma Sequencing" ],
@@ -301,16 +346,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"150529_D00353_0104_AC6DBAANXX\",\"instrument\":\"D00353\",\"barcode\":\"ACAGTG\",\"library\":\"LSP_0001_Ad_P_PE_315_WG\",\"sample\":\"LSP_0001_Ad_P_PE\",\"sample group\":\"LSP_0001\",\"lane\":4,\"sequencing type\":\"WG\",\"group id\":\"2\",\"group id description\":\"De-differentiated Thermo\",\"workflow name\":\"GenomicAlignmentNovoalign_V2.07.15b\",\"workflow version\":\"2.2.1\",\"last modified\":\"1439448485930000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Liposarcoma Sequencing" ],
@@ -358,16 +412,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"150721_D00355_0089_AC6C9UANXX\",\"instrument\":\"D00355\",\"barcode\":\"ACAGTG\",\"library\":\"LSP_0001_Ad_P_PE_315_WG\",\"sample\":\"LSP_0001_Ad_P_PE\",\"sample group\":\"LSP_0001\",\"lane\":6,\"sequencing type\":\"WG\",\"group id\":\"2\",\"group id description\":\"De-differentiated Thermo\",\"workflow name\":\"GenomicAlignmentNovoalign_V2.07.15b\",\"workflow version\":\"2.2.1\",\"last modified\":\"1439647769936000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Liposarcoma Sequencing" ],
@@ -415,16 +478,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"150529_D00353_0104_AC6DBAANXX\",\"instrument\":\"D00353\",\"barcode\":\"GCCAAT\",\"library\":\"LSP_0001_Ad_P_PE_316_WG\",\"sample\":\"LSP_0001_Ad_P_PE\",\"sample group\":\"LSP_0001\",\"lane\":4,\"sequencing type\":\"WG\",\"group id\":\"2\",\"group id description\":\"De-differentiated Qiagen\",\"workflow name\":\"GenomicAlignmentNovoalign_V2.07.15b\",\"workflow version\":\"2.2.1\",\"last modified\":\"1439462166642000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Liposarcoma Sequencing" ],
@@ -472,16 +544,25 @@
   }, {
     "workflowIni" : {
       "bamqc_job_mem" : "8000",
+      "java" : "/.mounts/labs/PDE/Modules/sw/jvm/jdk1.8.0_91/bin/java",
       "json_metadata" : "{\"run name\":\"150721_D00355_0089_AC6C9UANXX\",\"instrument\":\"D00355\",\"barcode\":\"GCCAAT\",\"library\":\"LSP_0001_Ad_P_PE_316_WG\",\"sample\":\"LSP_0001_Ad_P_PE\",\"sample group\":\"LSP_0001\",\"lane\":7,\"sequencing type\":\"WG\",\"group id\":\"2\",\"group id description\":\"De-differentiated Qiagen\",\"workflow name\":\"GenomicAlignmentNovoalign_V2.07.15b\",\"workflow version\":\"2.2.1\",\"last modified\":\"1439618550923000\"}",
       "json_metadata_job_mem" : "4000",
       "manual_output" : "false",
       "map_qual_cut" : "30",
       "metadata" : "metadata",
+      "metrics_script" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/bin/run_bam_qc.py",
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
+      "picard" : "/oicr/local/sw/picard/picard-tools-1.92",
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
+      "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
       "sample_rate" : "1000",
-      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed"
+      "target_bed" : "/oicr/data/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19_random/hg19_random.genome.sizes.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Liposarcoma Sequencing" ],
