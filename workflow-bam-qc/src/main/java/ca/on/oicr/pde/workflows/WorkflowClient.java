@@ -16,7 +16,7 @@ public class WorkflowClient extends OicrWorkflow {
     //workflow parameters
     private String queue = null;
     private String inputFile = null;
-    private String sampleRate = null;
+    private String sampleLevel = null;
     private String normalInsertMax = null;
     private String mapQualCut = null;
     private String targetBed = null;
@@ -41,7 +41,7 @@ public class WorkflowClient extends OicrWorkflow {
         inputFile = getProperty("input_file");
         manualOutput = Boolean.valueOf(getProperty("manual_output"));
         markDuplicates = Boolean.valueOf(getOptionalProperty("mark_duplicates", "true"));
-        sampleRate = getProperty("sample_rate");
+        sampleLevel = getProperty("sample_level"); // total reads desired in sample; see bam-qc-metrics
         normalInsertMax = getProperty("normal_insert_max");
         mapQualCut = getProperty("map_qual_cut");
 	reference = getProperty("reference");
@@ -160,7 +160,7 @@ public class WorkflowClient extends OicrWorkflow {
         command.addArgument("-o " + dataDir + jsonOutputFileName);
         command.addArgument("-q " + mapQualCut);
 	command.addArgument("-r " + reference);
-        command.addArgument("-s " + sampleRate);
+        command.addArgument("-s " + sampleLevel);
         command.addArgument("-t " + targetBed);
         command.addArgument("-T " + tmpDir);
 	command.addArgument("-w " + workflowVersion);

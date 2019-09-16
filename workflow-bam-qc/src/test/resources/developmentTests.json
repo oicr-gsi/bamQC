@@ -11,7 +11,7 @@
             "id": "Test1",
             "parameters": {
                 "input_file": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/test_set_01/test_ion_DH10B_lane.bam",
-                "sample_rate": "1000",
+                "sample_level": "1000",
                 "normal_insert_max": "1500",
                 "map_qual_cut": "5",
                 "target_bed": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/test_set_01/DH10B.target.bed",
@@ -23,7 +23,8 @@
             "id": "pde-806",
             "parameters": {
                 "input_file": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/pde-806/SWID_1237537_THB_0004_nn_n_PE_329_TS_140926_M00146_0007_000000000-A55RY_TGACCA_L001_R1_001.annotated.bam",
-                "target_bed": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/pde-806/RainDance_Thunderbolts_Cancer_Panel_target_sorted.bed"
+                "target_bed": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/pde-806/RainDance_Thunderbolts_Cancer_Panel_target_sorted.bed",
+		"map_qual_cut": "5",
             }
         }
     ]
