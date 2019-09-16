@@ -32,7 +32,7 @@
       "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
       "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
       "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
-      "sample_rate" : "1000",
+      "sample_level" : "1100000",
       "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed",
       "workflow_version" : "3.0.0"
     },
@@ -99,7 +99,7 @@
       "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
       "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
       "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
-      "sample_rate" : "1000",
+      "sample_level" : "1100000",
       "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed",
       "workflow_version" : "3.0.0"
     },
@@ -166,7 +166,7 @@
       "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
       "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
       "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
-      "sample_rate" : "1000",
+      "sample_level" : "1100000",
       "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed",
       "workflow_version" : "3.0.0"
     },
@@ -233,7 +233,7 @@
       "python" : "/.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/python3",
       "pythonpath" : "/.mounts/labs/PDE/public/bam-qc-metrics/bam-qc-metrics-v1.0.8/lib/python3.7/site-packages/",
       "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
-      "sample_rate" : "1000",
+      "sample_level" : "1100000",
       "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed",
       "workflow_version" : "3.0.0"
     },
