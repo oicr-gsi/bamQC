@@ -24,7 +24,7 @@
             "parameters": {
                 "input_file": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/pde-806/SWID_1237537_THB_0004_nn_n_PE_329_TS_140926_M00146_0007_000000000-A55RY_TGACCA_L001_R1_001.annotated.bam",
                 "target_bed": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/pde-806/RainDance_Thunderbolts_Cancer_Panel_target_sorted.bed",
-		"map_qual_cut": "5",
+		"map_qual_cut": "5"
             }
         }
     ]
