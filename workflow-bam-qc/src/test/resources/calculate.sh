@@ -5,4 +5,4 @@ set -o pipefail
 set -o noclobber
 
 cd $1
-find . -type f -exec python -mjson.tool --sort-keys {} +
+source /.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/activate && find . -type f -exec python -mjson.tool --sort-keys {} +
