@@ -129,8 +129,6 @@ public class WorkflowClient extends OicrWorkflow {
     }
 
     private Job getPicardMarkDuplicatesJob() {
-        String java = getProperty("java");
-        String picard = getProperty("picard");
         Integer picardMaxMemMb = Integer.parseInt(getProperty("picard_memory"));
         markDuplicatesTextFile = dataDir + "mark_duplicates.txt";
         markDuplicatesBamFile = tmpDir + "marked_duplicates.bam";
@@ -150,7 +148,6 @@ public class WorkflowClient extends OicrWorkflow {
 
     private Job getBamQcJob() {
         Job job = getWorkflow().createBashJob("BamToJsonStats");
-        String pythonpath = getProperty("pythonpath");
         String jsonOutputFileName = inputFile.substring(inputFile.lastIndexOf("/") + 1) + ".BamQC.json";
 	String logFileName = "run_bam_qc.log";
         String inputBamFile;
