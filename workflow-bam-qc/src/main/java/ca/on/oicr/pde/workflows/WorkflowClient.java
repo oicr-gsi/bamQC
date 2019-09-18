@@ -31,6 +31,11 @@ public class WorkflowClient extends OicrWorkflow {
     private Boolean manualOutput = false;
     private Boolean markDuplicates = true;
     private String workflowVersion = null;
+    //module parameters
+    private String bamQcMetricsModule = null;
+    private String bamQcMetricsVersion = null;
+    private String picardToolsModule = null;
+    private String picardToolsVersion = null;
 
     //Constructor - called in setupDirectory()
     private void WorkflowClient() {
@@ -52,6 +57,11 @@ public class WorkflowClient extends OicrWorkflow {
             jsonMetadata = StringEscapeUtils.unescapeJava(getProperty("json_metadata")).replace("&#61;", "=");
             jsonMetadataFile = dataDir + "metadata.json";
         }
+
+	bamQcMetricsModule = getProperty("bam_qc_metrics_module");
+	bamQcMetricsVersion = getProperty("bam_qc_metrics_version");
+	picardToolsModule = getProperty("picard_tools_module");
+	picardToolsVersion = getProperty("picard_tools_version");
     }
 
     @Override
@@ -128,9 +138,10 @@ public class WorkflowClient extends OicrWorkflow {
         job.setMaxMemory(getProperty("picard_job_memory"));
         job.setQueue(queue);
         Command command = job.getCommand();
-        command.addArgument(java);
+        command.addArgument("module load "+picardToolsModule+"/"+picardToolsVersion+" && ");
+	command.addArgument("java"); // java module is loaded by Picard module
         command.addArgument("-Xmx" + picardMaxMemMb + "M");
-        command.addArgument("-jar " + picard + "/MarkDuplicates.jar");
+        command.addArgument("-jar ${PICARD_TOOLS_ROOT}/MarkDuplicates.jar");
         command.addArgument("I=" + getFiles().get("file_in_0").getProvisionedPath());
         command.addArgument("O=" + markDuplicatesBamFile);
         command.addArgument("M=" + markDuplicatesTextFile);
@@ -150,9 +161,8 @@ public class WorkflowClient extends OicrWorkflow {
         }
 
         Command command = job.getCommand();
-        command.addArgument("source /.mounts/labs/PDE/public/bam-qc-metrics/miniconda3/bin/activate &&"); // TODO setup with modulator instead
-        command.addArgument("PYTHONPATH=" + pythonpath);
-        command.addArgument(getProperty("metrics_script"));
+        command.addArgument("module load "+bamQcMetricsModule+"/"+bamQcMetricsVersion+" && ");
+        command.addArgument("run_bam_qc.py ");
         command.addArgument("-b " + inputBamFile);
 	command.addArgument("--debug ");
         command.addArgument("-i " + normalInsertMax);
