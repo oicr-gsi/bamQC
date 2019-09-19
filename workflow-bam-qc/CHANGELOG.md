@@ -1,5 +1,5 @@
 ## 3.0 - 2019-09-13
-- Move to bam-qc-metrics version 0.1.8; complete reimplementation of QC metrics
+- Move to bam-qc-metrics version 0.2.0; complete reimplementation of QC metrics
 ## 2.6 - 2019-06-11
 - Disable downsampling for smaller input files (default = 100 MB)
 ## 2.5 - 2015-09-08
