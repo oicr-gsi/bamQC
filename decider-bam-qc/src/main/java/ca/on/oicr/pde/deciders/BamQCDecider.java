@@ -18,9 +18,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 public class BamQCDecider extends OicrDecider {
 
     private Map<String, ReturnValue> pathToAttributes = new HashMap<String, ReturnValue>();
-    private String sampleRate = "1000";
-    private String sampleThreshold = "100";
-    private boolean noSample = false;
+    private String sampleLevel = "1100000";
     private String normalInsertMax = "1500";
     private String mapQualCut = "30";
     private String iniFile = null;
@@ -33,13 +31,9 @@ public class BamQCDecider extends OicrDecider {
 
     public BamQCDecider() {
         super();
-        parser.accepts("sample-rate", "Optional. Set the sampling rate in the decider "
-                + "(only 1/sample_rate reads are used for memory-intensive sampling) "
-                + "This needs to be set lower for mate-pair libraries. Default: 1000").withRequiredArg();
-        parser.accepts("sample-threshold", "Minimum size of input BAM file (in MB) to turn on sampling, "
-                + "at the level given by sample-rate. To activate sampling regardless of "
-                + "file size, set value to 0. Default: 100.").withRequiredArg();
-        parser.accepts("no-sample", "Disable sampling. Overrides sample-rate and sample-threshold").withOptionalArg();
+        parser.accepts("sample-level", "Optional. Set the sampling rate in the decider. "
+                + "At most sample_level reads are used for computation-intensive metrics; "
+                + "see bam-qc-metrics docs for details. Default: 1100000").withRequiredArg();
         parser.accepts("normal-insert-max", "Optional. Set the maximum insert size "
                 + "to prevent skewing of insert statistics. Default:1500").withRequiredArg();
         parser.accepts("map-qual-cut", "Optional. Set the mapQ value. Default: 30").withRequiredArg();
@@ -71,14 +65,8 @@ public class BamQCDecider extends OicrDecider {
         this.setHeadersToGroupBy(Arrays.asList(Header.FILE_SWA));
         this.setMetaType(Arrays.asList("application/bam"));
 
-        if (options.has("sample-rate")) {
-            sampleRate = options.valueOf("sample-rate").toString();
-        }
-        if (options.has("sample-threshold")) {
-            sampleThreshold = options.valueOf("sample-threshold").toString();
-        }
-        if (options.has("no-sample")) {
-            noSample = true;
+        if (options.has("sample-level")) {
+            sampleLevel = options.valueOf("sample-level").toString();
         }
         if (options.has("normal-insert-max")) {
             normalInsertMax = options.valueOf("normal-insert-max").toString();
@@ -250,9 +238,9 @@ public class BamQCDecider extends OicrDecider {
         ReturnValue r = pathToAttributes.get(commaSeparatedFilePaths);
 
         iniFileMap.put("input_file", commaSeparatedFilePaths);
-        iniFileMap.put("sample_rate", findSampleRate());
         iniFileMap.put("normal_insert_max", normalInsertMax);
         iniFileMap.put("map_qual_cut", mapQualCut);
+	iniFileMap.put("sample_level", sampleLevel);
         iniFileMap.put("target_bed", r.getAttribute("target_bed"));
         try {
             iniFileMap.put("json_metadata", escapeForSeqwareIni(makeJsonSnippet(commaSeparatedFilePaths, r)));
@@ -261,16 +249,6 @@ public class BamQCDecider extends OicrDecider {
         }
 
         return iniFileMap;
-    }
-
-    private String findSampleRate() {
-        String rate = sampleRate;
-        Long threshold = Long.parseLong(sampleThreshold) * 1024 * 1024; // convert from MB to bytes
-        // sampling is enabled if the file size is unknown
-        if (noSample || (bamSize != null && bamSize < threshold)) {
-            rate = "1";
-        }
-        return rate;
     }
 
     private final ObjectMapper mapper = new ObjectMapper();

@@ -15,6 +15,8 @@
   "totalOutputFileProvenanceRecords" : 4,
   "workflowRuns" : [ {
     "workflowIni" : {
+      "bam_qc_metrics_module" : "bam-qc-metrics",
+      "bam_qc_metrics_version" : "0.2.0",
       "bamqc_job_mem" : "8000",
       "json_metadata" : "{\"run name\":\"111212_h1080_0086_AC045BACXX\",\"instrument\":\"h1080\",\"barcode\":\"ATCACG\",\"library\":\"OBC_0001_Ov_X_PE_389_EX\",\"sample\":\"OBC_0001_Ov_X_PE\",\"sample group\":\"OBC_0001\",\"lane\":1,\"sequencing type\":\"EX\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1331142882968000\"}",
       "json_metadata_job_mem" : "4000",
@@ -24,8 +26,14 @@
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
-      "sample_rate" : "1",
-      "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed"
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "picard_tools_module" : "picard-tools",
+      "picard_tools_version" : "1.89",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
+      "sample_level" : "2000",
+      "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Ovarian Brain Colon Exome Seq" ],
@@ -73,6 +81,8 @@
     "outputFileProvenanceRecords" : 1
   }, {
     "workflowIni" : {
+      "bam_qc_metrics_module" : "bam-qc-metrics",
+      "bam_qc_metrics_version" : "0.2.0",
       "bamqc_job_mem" : "8000",
       "json_metadata" : "{\"run name\":\"120106_h804_0076_AD0LFWACXX\",\"instrument\":\"h804\",\"barcode\":\"ATCACG\",\"library\":\"OBC_0001_Ov_X_PE_389_EX\",\"sample\":\"OBC_0001_Ov_X_PE\",\"sample group\":\"OBC_0001\",\"lane\":1,\"sequencing type\":\"EX\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1327212916200000\"}",
       "json_metadata_job_mem" : "4000",
@@ -82,8 +92,14 @@
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
-      "sample_rate" : "1",
-      "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed"
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "picard_tools_module" : "picard-tools",
+      "picard_tools_version" : "1.89",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
+      "sample_level" : "2000",
+      "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Ovarian Brain Colon Exome Seq" ],
@@ -131,6 +147,8 @@
     "outputFileProvenanceRecords" : 1
   }, {
     "workflowIni" : {
+      "bam_qc_metrics_module" : "bam-qc-metrics",
+      "bam_qc_metrics_version" : "0.2.0",
       "bamqc_job_mem" : "8000",
       "json_metadata" : "{\"run name\":\"111212_h1080_0086_AC045BACXX\",\"instrument\":\"h1080\",\"barcode\":\"GATCAG\",\"library\":\"OBC_0001_nn_R_PE_388_EX\",\"sample\":\"OBC_0001_nn_R_PE\",\"sample group\":\"OBC_0001\",\"lane\":5,\"sequencing type\":\"EX\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1331127814917000\"}",
       "json_metadata_job_mem" : "4000",
@@ -140,8 +158,14 @@
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
-      "sample_rate" : "1",
-      "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed"
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "picard_tools_module" : "picard-tools",
+      "picard_tools_version" : "1.89",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
+      "sample_level" : "2000",
+      "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Ovarian Brain Colon Exome Seq" ],
@@ -189,6 +213,8 @@
     "outputFileProvenanceRecords" : 1
   }, {
     "workflowIni" : {
+      "bam_qc_metrics_module" : "bam-qc-metrics",
+      "bam_qc_metrics_version" : "0.2.0",
       "bamqc_job_mem" : "8000",
       "json_metadata" : "{\"run name\":\"120106_h804_0076_AD0LFWACXX\",\"instrument\":\"h804\",\"barcode\":\"GATCAG\",\"library\":\"OBC_0001_nn_R_PE_388_EX\",\"sample\":\"OBC_0001_nn_R_PE\",\"sample group\":\"OBC_0001\",\"lane\":5,\"sequencing type\":\"EX\",\"workflow name\":\"GenomicAlignmentNovoalign\",\"workflow version\":\"0.10.1\",\"last modified\":\"1327218334128000\"}",
       "json_metadata_job_mem" : "4000",
@@ -198,8 +224,14 @@
       "normal_insert_max" : "1500",
       "output_dir" : "seqware-results",
       "output_path" : "NA",
-      "sample_rate" : "1",
-      "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed"
+      "picard_job_memory" : "12000",
+      "picard_memory" : "8000",
+      "picard_tools_module" : "picard-tools",
+      "picard_tools_version" : "1.89",
+      "reference" : "/oicr/data/reference/genomes/homo_sapiens/UCSC/Genomic/UCSC_hg19/fasta/hg19.fa",
+      "sample_level" : "2000",
+      "target_bed" : "/.mounts/labs/PDE/data/TargetedSequencingQC/Agilent.SureSelect.All.Exon.V4/SureSelect_All_Exon_V4_Covered_Sorted.bed",
+      "workflow_version" : "3.0.0"
     },
     "files" : [ {
       "studyTitle" : [ "Ovarian Brain Colon Exome Seq" ],

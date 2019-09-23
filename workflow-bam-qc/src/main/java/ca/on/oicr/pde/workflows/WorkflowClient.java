@@ -16,40 +16,59 @@ public class WorkflowClient extends OicrWorkflow {
     //workflow parameters
     private String queue = null;
     private String inputFile = null;
-    private String sampleRate = null;
+    private String sampleLevel = null;
     private String normalInsertMax = null;
     private String mapQualCut = null;
     private String targetBed = null;
     private String jsonMetadata = null;
     private String jsonMetadataFile = null;
+    private String markDuplicatesTextFile = null;
+    private String markDuplicatesBamFile = null;
+    private String reference = null;
     //workflow directories
-    private String binDir = null;
     private String dataDir = null;
+    private String tmpDir = null;
     private Boolean manualOutput = false;
+    private Boolean markDuplicates = true;
+    private String workflowVersion = null;
+    //module parameters
+    private String bamQcMetricsModule = null;
+    private String bamQcMetricsVersion = null;
+    private String picardToolsModule = null;
+    private String picardToolsVersion = null;
 
     //Constructor - called in setupDirectory()
     private void WorkflowClient() {
 
-        binDir = getWorkflowBaseDir() + "/bin/";
         dataDir = "data/";
+        tmpDir = "tmp/";
         queue = getOptionalProperty("queue", "");
         inputFile = getProperty("input_file");
         manualOutput = Boolean.valueOf(getProperty("manual_output"));
-        sampleRate = getProperty("sample_rate");
+        markDuplicates = Boolean.valueOf(getOptionalProperty("mark_duplicates", "true"));
+        sampleLevel = getProperty("sample_level"); // total reads desired in sample; see bam-qc-metrics
         normalInsertMax = getProperty("normal_insert_max");
         mapQualCut = getProperty("map_qual_cut");
+	reference = getProperty("reference");
         targetBed = getProperty("target_bed");
+	workflowVersion = getProperty("workflow_version"); // bam-qc-metrics requires 3-part version, eg. 0.1.2
 
         if (hasPropertyAndNotNull("json_metadata")) {
             jsonMetadata = StringEscapeUtils.unescapeJava(getProperty("json_metadata")).replace("&#61;", "=");
             jsonMetadataFile = dataDir + "metadata.json";
         }
+
+	bamQcMetricsModule = getProperty("bam_qc_metrics_module");
+	bamQcMetricsVersion = getProperty("bam_qc_metrics_version");
+	picardToolsModule = getProperty("picard_tools_module");
+	picardToolsVersion = getProperty("picard_tools_version");
     }
 
     @Override
     public void setupDirectory() {
         WorkflowClient(); //Constructor call
         addDirectory(dataDir);
+        addDirectory(tmpDir);
     }
 
     @Override
@@ -71,15 +90,26 @@ public class WorkflowClient extends OicrWorkflow {
             job0.setQueue(queue);
         }
 
-        Job job1 = getBamQcJob();
-        job1.setMaxMemory(getProperty("bamqc_job_mem"));
-        job1.setQueue(queue);
-        if (job0 != null) {
-            job1.addParent(job0);
+        Job job1 = null;
+        if (markDuplicates) {
+            job1 = getPicardMarkDuplicatesJob();
+            if (job0 != null) {
+                job1.addParent(job0);
+            }
+        }
+
+        Job job2 = getBamQcJob();
+        job2.setMaxMemory(getProperty("bamqc_job_mem"));
+        job2.setQueue(queue);
+        if (job1 != null) {
+            job2.addParent(job1);
+        } else if (job0 != null) {
+            job2.addParent(job0);
         }
     }
 
     private Job getWriteToFileJob(String fileContents, String outputFile) {
+        // if metadata was supplied as a JSON blob in the INI, write to file
         Job job = getWorkflow().createBashJob("WriteToFile");
 
         List<String> c = new LinkedList<>();
@@ -98,25 +128,55 @@ public class WorkflowClient extends OicrWorkflow {
         return job;
     }
 
+    private Job getPicardMarkDuplicatesJob() {
+        Integer picardMaxMemMb = Integer.parseInt(getProperty("picard_memory"));
+        markDuplicatesTextFile = dataDir + "mark_duplicates.txt";
+        markDuplicatesBamFile = tmpDir + "marked_duplicates.bam";
+        Job job = getWorkflow().createBashJob("PicardMarkDuplicates");
+        job.setMaxMemory(getProperty("picard_job_memory"));
+        job.setQueue(queue);
+        Command command = job.getCommand();
+        command.addArgument("module load "+picardToolsModule+"/"+picardToolsVersion+" && ");
+	command.addArgument("java"); // java module is loaded by Picard module
+        command.addArgument("-Xmx" + picardMaxMemMb + "M");
+        command.addArgument("-jar ${PICARD_TOOLS_ROOT}/MarkDuplicates.jar");
+        command.addArgument("I=" + getFiles().get("file_in_0").getProvisionedPath());
+        command.addArgument("O=" + markDuplicatesBamFile);
+        command.addArgument("M=" + markDuplicatesTextFile);
+        return job;
+    }
+
     private Job getBamQcJob() {
         Job job = getWorkflow().createBashJob("BamToJsonStats");
-
         String jsonOutputFileName = inputFile.substring(inputFile.lastIndexOf("/") + 1) + ".BamQC.json";
+	String logFileName = "run_bam_qc.log";
+        String inputBamFile;
+        if (markDuplicatesBamFile != null) {
+            inputBamFile = markDuplicatesBamFile;
+        } else {
+            inputBamFile = getFiles().get("file_in_0").getProvisionedPath();
+        }
 
         Command command = job.getCommand();
-        command.addArgument(binDir + "samtools-0.1.19/samtools " + "view " + getFiles().get("file_in_0").getProvisionedPath());
-        command.addArgument("|"); //pipe to
-        command.addArgument(binDir + "perl-5.14.1/perl");
-        command.addArgument(getProperty("samstats_script"));
-        command.addArgument("-s " + sampleRate);
+        command.addArgument("module load "+bamQcMetricsModule+"/"+bamQcMetricsVersion+" && ");
+        command.addArgument("run_bam_qc.py ");
+        command.addArgument("-b " + inputBamFile);
+	command.addArgument("--debug ");
         command.addArgument("-i " + normalInsertMax);
+	command.addArgument("-l " + dataDir + logFileName);
+        command.addArgument("-o " + dataDir + jsonOutputFileName);
         command.addArgument("-q " + mapQualCut);
-        command.addArgument("-r " + targetBed);
+	command.addArgument("-r " + reference);
+        command.addArgument("-s " + sampleLevel);
+        command.addArgument("-t " + targetBed);
+        command.addArgument("-T " + tmpDir);
+	command.addArgument("-w " + workflowVersion);
         if (jsonMetadataFile != null) {
-            command.addArgument("-j " + jsonMetadataFile);
+            command.addArgument("-m " + jsonMetadataFile);
         }
-        command.addArgument(">"); //redirect to
-        command.addArgument(dataDir + jsonOutputFileName);
+        if (markDuplicatesTextFile != null) {
+            command.addArgument("-d " + markDuplicatesTextFile);
+        }
 
         SqwFile sqwJsonOutputFile = createOutputFile(dataDir + jsonOutputFileName, "text/json", manualOutput);
 
