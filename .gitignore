@@ -40,3 +40,6 @@ proguard/
 #UML diagrams
 *.mgc
 *.mgi
+
+.idea/
+*.iml
