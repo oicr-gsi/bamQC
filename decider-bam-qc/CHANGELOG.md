@@ -1,3 +1,7 @@
+## 3.0.1 - 2019-11-25
+- Update to BamQC 3.0.1
+## 3.0 - 2019-09-13
+- Update to BamQC 3.0
 ## 2.7 - 2019-06-11
 - Parameterize test threads
 ## 2.6 - 2017-01-30

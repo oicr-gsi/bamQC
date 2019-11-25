@@ -3,27 +3,47 @@
         "description": "BamQC workflow test",
         "metrics_calculate": "calculate.sh",
         "metrics_compare": "compare.sh",
-        "input_config_dir": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_config/",
-        "output_metrics_dir": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/output_expectation_v0.2.0"
+        "output_metrics_dir": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/output_expectation_v0.2.0"
     },
     "tests": [
         {
             "id": "Test1",
             "parameters": {
-                "input_file": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/test_set_01/test_ion_DH10B_lane.bam",
+                "input_file": "/.mounts/labs/gsi/testdata/bamqc/input_data/test_set_01/test_ion_DH10B_lane.bam",
                 "normal_insert_max": "1500",
                 "map_qual_cut": "5",
-                "target_bed": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/test_set_01/DH10B.target.bed",
+                "target_bed": "/.mounts/labs/gsi/testdata/bamqc/input_data/test_set_01/DH10B.target.bed",
                 "json_metadata": "{\\\"sample\\\":\\\"DH10B\\\",\\\"sample group\\\":\\\"DH10B\\\",\\\"library\\\":\\\"Ion_Torrent_DH10B\\\",\\\"barcode\\\":\\\"noIndex\\\",\\\"instrument\\\":\\\"it1\\\",\\\"run name\\\":\\\"R_2011_10_21_11_46_36_user_10212011\\\",\\\"lane\\\":\\\"1\\\",\\\"last modified\\\":\\\"1319895924\\\",\\\"sequencing type\\\":\\\"wgs\\\"}"
-            },
-            "iterations": "10"
+            }
         },
         {
             "id": "pde-806",
             "parameters": {
-                "input_file": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/pde-806/SWID_1237537_THB_0004_nn_n_PE_329_TS_140926_M00146_0007_000000000-A55RY_TGACCA_L001_R1_001.annotated.bam",
-                "target_bed": "/.mounts/labs/PDE/data/RegressionTests/BamQC/workflow/development/input_data/pde-806/RainDance_Thunderbolts_Cancer_Panel_target_sorted.bed",
-		"map_qual_cut": "5"
+                "input_file": "/.mounts/labs/gsi/testdata/bamqc/input_data/pde-806/SWID_1237537_THB_0004_nn_n_PE_329_TS_140926_M00146_0007_000000000-A55RY_TGACCA_L001_R1_001.annotated.bam",
+                "target_bed": "/.mounts/labs/gsi/testdata/bamqc/input_data/pde-806/RainDance_Thunderbolts_Cancer_Panel_target_sorted.bed",
+                "map_qual_cut": "5"
+            }
+        },
+        {
+            "id": "GP-2190_1",
+            "parameters": {
+                "input_file": "/.mounts/labs/gsi/testdata/bamqc/input_data/test_set_01/test_ion_DH10B_lane.bam",
+                "normal_insert_max": "1500",
+                "map_qual_cut": "5",
+                "target_bed": "/.mounts/labs/gsi/testdata/bamqc/input_data/test_set_01/DH10B.target.bed",
+                "json_metadata": "{\\\"sample\\\":\\\"DH10B\\\",\\\"sample group\\\":\\\"DH10B\\\",\\\"library\\\":\\\"Ion_Torrent_DH10B\\\",\\\"barcode\\\":\\\"noIndex\\\",\\\"instrument\\\":\\\"it1\\\",\\\"run name\\\":\\\"R_2011_10_21_11_46_36_user_10212011\\\",\\\"lane\\\":\\\"1\\\",\\\"last modified\\\":\\\"1319895924\\\",\\\"sequencing type\\\":\\\"wgs\\\"}",
+                "mark_duplicates": "false",
+                "input_mark_duplicates_metrics": "/.mounts/labs/gsi/testdata/bamqc/input_data/test_set_01/mark_duplicates.txt"
+            }
+        },
+        {
+            "id": "GP-2190_2",
+            "parameters": {
+                "input_file": "/.mounts/labs/gsi/testdata/bamqc/input_data/pde-806/SWID_1237537_THB_0004_nn_n_PE_329_TS_140926_M00146_0007_000000000-A55RY_TGACCA_L001_R1_001.annotated.bam",
+                "target_bed": "/.mounts/labs/gsi/testdata/bamqc/input_data/pde-806/RainDance_Thunderbolts_Cancer_Panel_target_sorted.bed",
+                "map_qual_cut": "5",
+                "mark_duplicates": "false",
+                "input_mark_duplicates_metrics": "/.mounts/labs/gsi/testdata/bamqc/input_data/pde-806/mark_duplicates.txt"
             }
         }
     ]

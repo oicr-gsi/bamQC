@@ -18,6 +18,7 @@ public class WorkflowClient extends OicrWorkflow {
     //workflow parameters
     private String queue = null;
     private String inputFile = null;
+    private String markDuplicatesMetricsFile = null;
     private String sampleLevel = null;
     private String normalInsertMax = null;
     private String mapQualCut = null;
@@ -38,6 +39,7 @@ public class WorkflowClient extends OicrWorkflow {
     private String bamQcMetricsVersion = null;
     private String picardToolsModule = null;
     private String picardToolsVersion = null;
+    private String picardMarkDuplicatesAdditionalParams = null;
 
     //Constructor - called in setupDirectory()
     private void WorkflowClient() {
@@ -46,6 +48,7 @@ public class WorkflowClient extends OicrWorkflow {
         tmpDir = "tmp/";
         queue = getOptionalProperty("queue", "");
         inputFile = getProperty("input_file");
+        markDuplicatesMetricsFile = getOptionalProperty("input_mark_duplicates_metrics", null);
         manualOutput = Boolean.valueOf(getProperty("manual_output"));
         markDuplicates = Boolean.valueOf(getOptionalProperty("mark_duplicates", "true"));
         sampleLevel = getProperty("sample_level"); // total reads desired in sample; see bam-qc-metrics
@@ -62,8 +65,9 @@ public class WorkflowClient extends OicrWorkflow {
 
         bamQcMetricsModule = getProperty("bam_qc_metrics_module");
         bamQcMetricsVersion = getProperty("bam_qc_metrics_version");
-        picardToolsModule = getProperty("picard_tools_module");
-        picardToolsVersion = getProperty("picard_tools_version");
+        picardToolsModule = getProperty("picard_module");
+        picardToolsVersion = getProperty("picard_version");
+        picardMarkDuplicatesAdditionalParams = getOptionalProperty("picard_mark_duplicates_additional_params", null);
     }
 
     @Override
@@ -79,6 +83,15 @@ public class WorkflowClient extends OicrWorkflow {
         file0.setSourcePath(inputFile);
         file0.setType("application/bam");
         file0.setIsInput(true);
+
+        if (markDuplicatesMetricsFile != null) {
+            SqwFile file1 = this.createFile("file_in_1");
+            file1.setSourcePath(markDuplicatesMetricsFile);
+            file1.setType("text/plain");
+            file1.setIsInput(true);
+
+            markDuplicatesTextFile = file1.getProvisionedPath();
+        }
 
         return this.getFiles();
     }
@@ -138,13 +151,19 @@ public class WorkflowClient extends OicrWorkflow {
         job.setMaxMemory(getProperty("picard_job_memory"));
         job.setQueue(queue);
         Command command = job.getCommand();
-        command.addArgument("module load " + picardToolsModule + "/" + picardToolsVersion + " && ");
+        command.addArgument("module load " + picardToolsModule + "/" + picardToolsVersion + ";");
         command.addArgument("java"); // java module is loaded by Picard module
         command.addArgument("-Xmx" + picardMaxMemMb + "M");
-        command.addArgument("-jar ${PICARD_TOOLS_ROOT}/MarkDuplicates.jar");
-        command.addArgument("I=" + getFiles().get("file_in_0").getProvisionedPath());
-        command.addArgument("O=" + markDuplicatesBamFile);
-        command.addArgument("M=" + markDuplicatesTextFile);
+        command.addArgument("-jar " + getOptionalProperty("picard_jar", "${PICARD_ROOT}/picard.jar"));
+        command.addArgument("MarkDuplicates");
+        command.addArgument("INPUT=" + getFiles().get("file_in_0").getProvisionedPath());
+        command.addArgument("OUTPUT=" + markDuplicatesBamFile);
+        command.addArgument("VALIDATION_STRINGENCY=SILENT");
+        command.addArgument("TMP_DIR=" + tmpDir);
+        command.addArgument("METRICS_FILE=" + markDuplicatesTextFile);
+        if (picardMarkDuplicatesAdditionalParams != null) {
+            command.addArgument(picardMarkDuplicatesAdditionalParams);
+        }
         return job;
     }
 
