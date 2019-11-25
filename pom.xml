@@ -6,7 +6,7 @@
     <version>1.0</version>
     <packaging>pom</packaging>
     <modules>
-        <module>decider-bam-qc</module>
+        <!--<module>decider-bam-qc</module>-->
         <module>workflow-bam-qc</module>
     </modules>
     <properties>
