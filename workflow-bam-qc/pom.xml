@@ -20,7 +20,6 @@
     <properties>
         <workflow-name>bam_qc_metrics</workflow-name>
         <samtools-version>0.1.19</samtools-version>
-        <bamqcmetrics-version>0.2.0</bamqcmetrics-version>
     </properties>
 
     <dependencies>

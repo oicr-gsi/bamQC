@@ -3,7 +3,7 @@
         "description": "BamQC workflow test",
         "metrics_calculate": "calculate.sh",
         "metrics_compare": "compare.sh",
-        "output_metrics_dir": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/output_expectation_v0.2.0"
+        "output_metrics_dir": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/output_expectation_v0.2.1"
     },
     "tests": [
         {
