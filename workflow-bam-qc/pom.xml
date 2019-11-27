@@ -19,16 +19,6 @@
 
     <properties>
         <workflow-name>bam_qc_metrics</workflow-name>
-        <samtools-version>0.1.19</samtools-version>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>samtools</groupId>
-            <artifactId>samtools</artifactId>
-            <version>${samtools-version}</version>
-            <type>zip</type>
-        </dependency>
-    </dependencies>
     
 </project>
