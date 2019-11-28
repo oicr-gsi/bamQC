@@ -1,9 +1,11 @@
 package ca.on.oicr.pde.workflows;
 
 import ca.on.oicr.pde.utilities.workflows.OicrWorkflow;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
 import net.sourceforge.seqware.pipeline.workflowV2.model.Command;
 import net.sourceforge.seqware.pipeline.workflowV2.model.Job;
 import net.sourceforge.seqware.pipeline.workflowV2.model.SqwFile;
@@ -16,6 +18,7 @@ public class WorkflowClient extends OicrWorkflow {
     //workflow parameters
     private String queue = null;
     private String inputFile = null;
+    private String markDuplicatesMetricsFile = null;
     private String sampleLevel = null;
     private String normalInsertMax = null;
     private String mapQualCut = null;
@@ -36,6 +39,7 @@ public class WorkflowClient extends OicrWorkflow {
     private String bamQcMetricsVersion = null;
     private String picardToolsModule = null;
     private String picardToolsVersion = null;
+    private String picardMarkDuplicatesAdditionalParams = null;
 
     //Constructor - called in setupDirectory()
     private void WorkflowClient() {
@@ -44,24 +48,26 @@ public class WorkflowClient extends OicrWorkflow {
         tmpDir = "tmp/";
         queue = getOptionalProperty("queue", "");
         inputFile = getProperty("input_file");
+        markDuplicatesMetricsFile = getOptionalProperty("input_mark_duplicates_metrics", null);
         manualOutput = Boolean.valueOf(getProperty("manual_output"));
         markDuplicates = Boolean.valueOf(getOptionalProperty("mark_duplicates", "true"));
         sampleLevel = getProperty("sample_level"); // total reads desired in sample; see bam-qc-metrics
         normalInsertMax = getProperty("normal_insert_max");
         mapQualCut = getProperty("map_qual_cut");
-	reference = getProperty("reference");
+        reference = getProperty("reference");
         targetBed = getProperty("target_bed");
-	workflowVersion = getProperty("workflow_version"); // bam-qc-metrics requires 3-part version, eg. 0.1.2
+        workflowVersion = getProperty("workflow_version"); // bam-qc-metrics requires 3-part version, eg. 0.1.2
 
         if (hasPropertyAndNotNull("json_metadata")) {
             jsonMetadata = StringEscapeUtils.unescapeJava(getProperty("json_metadata")).replace("&#61;", "=");
             jsonMetadataFile = dataDir + "metadata.json";
         }
 
-	bamQcMetricsModule = getProperty("bam_qc_metrics_module");
-	bamQcMetricsVersion = getProperty("bam_qc_metrics_version");
-	picardToolsModule = getProperty("picard_tools_module");
-	picardToolsVersion = getProperty("picard_tools_version");
+        bamQcMetricsModule = getProperty("bam_qc_metrics_module");
+        bamQcMetricsVersion = getProperty("bam_qc_metrics_version");
+        picardToolsModule = getProperty("picard_module");
+        picardToolsVersion = getProperty("picard_version");
+        picardMarkDuplicatesAdditionalParams = getOptionalProperty("picard_mark_duplicates_additional_params", null);
     }
 
     @Override
@@ -77,6 +83,15 @@ public class WorkflowClient extends OicrWorkflow {
         file0.setSourcePath(inputFile);
         file0.setType("application/bam");
         file0.setIsInput(true);
+
+        if (markDuplicatesMetricsFile != null) {
+            SqwFile file1 = this.createFile("file_in_1");
+            file1.setSourcePath(markDuplicatesMetricsFile);
+            file1.setType("text/plain");
+            file1.setIsInput(true);
+
+            markDuplicatesTextFile = file1.getProvisionedPath();
+        }
 
         return this.getFiles();
     }
@@ -136,20 +151,26 @@ public class WorkflowClient extends OicrWorkflow {
         job.setMaxMemory(getProperty("picard_job_memory"));
         job.setQueue(queue);
         Command command = job.getCommand();
-        command.addArgument("module load "+picardToolsModule+"/"+picardToolsVersion+" && ");
-	command.addArgument("java"); // java module is loaded by Picard module
+        command.addArgument("module load " + picardToolsModule + "/" + picardToolsVersion + ";");
+        command.addArgument("java"); // java module is loaded by Picard module
         command.addArgument("-Xmx" + picardMaxMemMb + "M");
-        command.addArgument("-jar ${PICARD_TOOLS_ROOT}/MarkDuplicates.jar");
-        command.addArgument("I=" + getFiles().get("file_in_0").getProvisionedPath());
-        command.addArgument("O=" + markDuplicatesBamFile);
-        command.addArgument("M=" + markDuplicatesTextFile);
+        command.addArgument("-jar " + getOptionalProperty("picard_jar", "${PICARD_ROOT}/picard.jar"));
+        command.addArgument("MarkDuplicates");
+        command.addArgument("INPUT=" + getFiles().get("file_in_0").getProvisionedPath());
+        command.addArgument("OUTPUT=" + markDuplicatesBamFile);
+        command.addArgument("VALIDATION_STRINGENCY=SILENT");
+        command.addArgument("TMP_DIR=" + tmpDir);
+        command.addArgument("METRICS_FILE=" + markDuplicatesTextFile);
+        if (picardMarkDuplicatesAdditionalParams != null) {
+            command.addArgument(picardMarkDuplicatesAdditionalParams);
+        }
         return job;
     }
 
     private Job getBamQcJob() {
         Job job = getWorkflow().createBashJob("BamToJsonStats");
         String jsonOutputFileName = inputFile.substring(inputFile.lastIndexOf("/") + 1) + ".BamQC.json";
-	String logFileName = "run_bam_qc.log";
+        String logFileName = "run_bam_qc.log";
         String inputBamFile;
         if (markDuplicatesBamFile != null) {
             inputBamFile = markDuplicatesBamFile;
@@ -158,19 +179,19 @@ public class WorkflowClient extends OicrWorkflow {
         }
 
         Command command = job.getCommand();
-        command.addArgument("module load "+bamQcMetricsModule+"/"+bamQcMetricsVersion+" && ");
+        command.addArgument("module load " + bamQcMetricsModule + "/" + bamQcMetricsVersion + " && ");
         command.addArgument("run_bam_qc.py ");
         command.addArgument("-b " + inputBamFile);
-	command.addArgument("--debug ");
+        command.addArgument("--debug ");
         command.addArgument("-i " + normalInsertMax);
-	command.addArgument("-l " + dataDir + logFileName);
+        command.addArgument("-l " + dataDir + logFileName);
         command.addArgument("-o " + dataDir + jsonOutputFileName);
         command.addArgument("-q " + mapQualCut);
-	command.addArgument("-r " + reference);
+        command.addArgument("-r " + reference);
         command.addArgument("-s " + sampleLevel);
         command.addArgument("-t " + targetBed);
         command.addArgument("-T " + tmpDir);
-	command.addArgument("-w " + workflowVersion);
+        command.addArgument("-w " + workflowVersion);
         if (jsonMetadataFile != null) {
             command.addArgument("-m " + jsonMetadataFile);
         }
