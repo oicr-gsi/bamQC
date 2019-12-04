@@ -1,3 +1,5 @@
+## 3.0.2 - 2019-12-04
+- [GR-908](https://jira.oicr.on.ca/browse/GR-908) - Update to bam-qc-metrics 0.2.2
 ## 3.0.1 - 2019-11-27
 - Update to bam-qc-metrics 0.2.1
 - [GP-2190](https://jira.oicr.on.ca/browse/GP-2190) - Use provided duplicate marked bam metrics input file (if provided) and update to picard 2.21.2
