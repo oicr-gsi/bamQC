@@ -11,8 +11,8 @@
     </parent>
 
     <groupId>ca.on.oicr.pde.workflows</groupId>
-    <artifactId>workflow-bam-qc</artifactId>
-    <version>3.0.1</version>
+    <artifactId>bam_qc_metrics</artifactId>
+    <version>3.0.2</version>
     <packaging>jar</packaging>
 
     <name>${display-name}</name>
