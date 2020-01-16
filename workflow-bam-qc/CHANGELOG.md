@@ -1,3 +1,5 @@
+## 3.0.3 - 2020-01-16
+- [GP-2245](https://jira.oicr.on.ca/browse/GP-2245) - Update to bam-qc-metrics 0.2.3
 ## 3.0.2 - 2019-12-04
 - [GR-908](https://jira.oicr.on.ca/browse/GR-908) - Update to bam-qc-metrics 0.2.2
 ## 3.0.1 - 2019-11-27
