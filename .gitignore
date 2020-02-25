@@ -43,3 +43,7 @@ proguard/
 
 .idea/
 *.iml
+
+# cromwell output
+cromwell-executions
+cromwell-workflow-logs
