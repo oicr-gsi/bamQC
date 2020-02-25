@@ -17,6 +17,11 @@ workflow bamQC {
 	bamFile = bamFile,
     }
 
+    call filter {
+	input:
+	bamFile = bamFile,
+    }
+
     call findDownsampleParams {
 	input:
 	bamFile = bamFile,
@@ -142,6 +147,69 @@ task downsample {
     
     meta {
 	output_meta: {
+            result: "BAM file downsampled to required number of reads"
+	}
+    }
+
+}
+
+task filter {
+
+    # filter out non-primary, unmapped, and low-quality aligned reads
+    # count the number of reads filtered out at each step
+    # return filtered read counts and the filtered BAM file
+
+    input {
+	File bamFile
+	String outputFileNamePrefix
+	Int minQuality = 30
+    }
+
+    String resultName = "~{outputFileNamePrefix}.filtered.bam"
+    String totalInputReadsFile = "total_input_reads.txt"
+    String totalNonPrimaryReadsFile = "total_non_primary_reads.txt"
+    String totalUnmappedReadsFile = "total_unmapped_reads.txt"
+    String totalLowQualityReadsFile = "total_low_quality_reads.txt"
+    String nonPrimaryReadsFile = "non_primary_reads.bam"
+    String unmappedReadsFile = "unmapped_reads.bam"
+    String lowQualityReadsFile = "low_quality_reads.bam"
+
+    # TODO use -f to specify filter flags
+
+    command <<<
+	set -e
+	set -o pipefail
+	samtools view -h -b -f foo -U ~{nonPrimaryReadsFile} ~{bamFile} | \
+	samtools view -h -b -f bar -U ~{unmappedReadsFile} | \
+	samtools view -h -b -q ~{minQuality} -U ~{lowQualityReadsFile} \
+	> ~{resultName}
+	samtools view -c ~{bamFile} > ~{totalInputReadsFile}
+	samtools view -c ~{nonPrimaryReadsFile} > ~{totalNonPrimaryReadsFile}
+	samtools view -c ~{unmappedReadsFile} > ~{totalUnmappedReadsFile}
+	samtools view -c ~{lowQualityReadsFile} > ~{totalLowQualityReadsFile}
+    >>>
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+    output {
+	Int totalInputReads = read_int("~{totalInputReadsFile}")
+	Int nonPrimaryReads = read_int("~{totalNonPrimaryReadsFile}")
+	Int unmappedReads = read_int("~{totalUnmappedReadsFile}")
+	Int lowQualityReads = read_int("~{totalLowQualityReadsFile}")
+	File filteredBam = "~{resultName}"
+    }
+
+    meta {
+	output_meta: {
+	    totalInputReads: "Total reads in original input BAM file",
+	    nonPrimaryReads: "Total reads excluded as non-primary",
+	    unmappedReads: "Total reads excluded as unmapped",
+	    lowQualityReads: "Total reads excluded as low alignment quality",
             result: "BAM file downsampled to required number of reads"
 	}
     }
