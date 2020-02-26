@@ -12,26 +12,27 @@ workflow bamQC {
 	outputFileNamePrefix: "Prefix for output files"
     }
 
-    call countInputReads {
-	input:
-	bamFile = bamFile,
-    }
-
     call filter {
 	input:
 	bamFile = bamFile,
+	outputFileNamePrefix = outputFileNamePrefix
+    }
+
+    call countInputReads {
+	input:
+	bamFile = filter.filteredBam,
     }
 
     call findDownsampleParams {
 	input:
-	bamFile = bamFile,
+	bamFile = filter.filteredBam,
 	outputFileNamePrefix = outputFileNamePrefix,
 	inputReads = countInputReads.result
     }
-    
+
     call downsample {
 	input:
-	bamFile = bamFile,
+	bamFile = filter.filteredBam,
 	outputFileNamePrefix = outputFileNamePrefix,
 	downsampleStatus = findDownsampleParams.status,
 	downsampleTargets = findDownsampleParams.targets,
@@ -123,15 +124,27 @@ task downsample {
 
     # unpack downsampleParams
     Boolean applyPreDownsample = downsampleStatus["pre_ds"]
-    Boolean applyDownsample = downsampleStatus["ds"]
     Int preDownsampleTarget = downsampleTargets["pre_ds"]
     Int downsampleTarget = downsampleTargets["ds"]
+
+    # generate downsample commands
+    # preDownsample = fast, random selection of approximate total with samtools view
+    String preDownsampleCommand = "samtools view -h -u -s ~{randomSeed}.~{preDownsampleTarget} - | "
+    # downsample = slow, deterministic selection of exact total with samtools collate and sort
+    # see https://github.com/samtools/samtools/issues/931
+    String dsCollate = "samtools collate -O --output-fmt sam - | "
+    String dsAwk = "awk '/^@/ { print; next } count < ~{downsampleTarget} || last == $1 { print; last = $1; count++ }' | "
+    String dsSort = "samtools sort -T downsample_sort - | "
+    String downsampleCommand = "~{dsCollate}~{dsAwk}~{dsSort}"
+
+    #${true="~{preDownsampleCommand}" false="" applyPreDownsample} \
     
     command <<<
-	echo "Pre-downsampling status ~{applyPreDownsample}" | tee ~{resultName}
-	echo "Downsampling status ~{applyDownsample}" | tee -a ~{resultName}
-	echo "Pre-downsampling target ~{preDownsampleTarget}" | tee -a ~{resultName}
-	echo "Downsampling target ~{downsampleTarget}" | tee -a ~{resultName}
+	set -e
+	set -o pipefail
+	samtools view -b -h ~{bamFile} | \
+	~{downsampleCommand} \
+	samtools view -b > ~{resultName}
     >>>
 
     runtime {
@@ -163,6 +176,10 @@ task filter {
 	File bamFile
 	String outputFileNamePrefix
 	Int minQuality = 30
+	String modules = "samtools/1.9"
+	Int jobMemory = 16
+	Int threads = 4
+	Int timeout = 4
     }
 
     String resultName = "~{outputFileNamePrefix}.filtered.bam"
@@ -174,13 +191,14 @@ task filter {
     String unmappedReadsFile = "unmapped_reads.bam"
     String lowQualityReadsFile = "low_quality_reads.bam"
 
-    # TODO use -f to specify filter flags
+    # -F 2304 excludes secondary and supplementary alignments
+    # -F 4 excludes unmapped reads
 
     command <<<
 	set -e
 	set -o pipefail
-	samtools view -h -b -f foo -U ~{nonPrimaryReadsFile} ~{bamFile} | \
-	samtools view -h -b -f bar -U ~{unmappedReadsFile} | \
+	samtools view -h -b -F 2304 -U ~{nonPrimaryReadsFile} ~{bamFile} | \
+	samtools view -h -b -F 4 -U ~{unmappedReadsFile} | \
 	samtools view -h -b -q ~{minQuality} -U ~{lowQualityReadsFile} \
 	> ~{resultName}
 	samtools view -c ~{bamFile} > ~{totalInputReadsFile}
@@ -210,7 +228,7 @@ task filter {
 	    nonPrimaryReads: "Total reads excluded as non-primary",
 	    unmappedReads: "Total reads excluded as unmapped",
 	    lowQualityReads: "Total reads excluded as low alignment quality",
-            result: "BAM file downsampled to required number of reads"
+            filteredBam: "Filtered BAM file"
 	}
     }
 
@@ -222,7 +240,7 @@ task findDownsampleParams {
 	File bamFile
 	String outputFileNamePrefix
 	Int inputReads
-	Int targetReads = 1000
+	Int targetReads = 10000
     }
 
     String statusFile = "status.json"
@@ -235,7 +253,7 @@ task findDownsampleParams {
         readsTarget = ~{targetReads}
         print("Input reads param =", readsIn, file=sys.stderr)
         print("Target reads param =", readsTarget, file=sys.stderr)
-        minReadsAbsolute = 10000
+        minReadsAbsolute = 50000
         minReadsRelative = 2
         preDownsampleMultiplier = 1.5
         if readsIn <= readsTarget:
