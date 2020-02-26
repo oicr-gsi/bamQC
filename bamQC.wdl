@@ -98,7 +98,7 @@ task downsample {
 	File bamFile
 	String outputFileNamePrefix
 	Map[String, Boolean] downsampleStatus
-	Map[String, Int] downsampleTargets
+	Map[String, String] downsampleTargets
 	String downsampleSuffix = "downsampled.bam"
 	Int randomSeed = 42
 	String modules = "samtools/1.9"
@@ -122,28 +122,27 @@ task downsample {
 
     String resultName = "~{outputFileNamePrefix}.~{downsampleSuffix}"
 
-    # unpack downsampleParams
+    # unpack downsample parameters
     Boolean applyPreDownsample = downsampleStatus["pre_ds"]
-    Int preDownsampleTarget = downsampleTargets["pre_ds"]
-    Int downsampleTarget = downsampleTargets["ds"]
+    String preDownsampleTarget = downsampleTargets["pre_ds"]
+    String downsampleTarget = downsampleTargets["ds"]
 
     # generate downsample commands
     # preDownsample = fast, random selection of approximate total with samtools view
-    String preDownsampleCommand = "samtools view -h -u -s ~{randomSeed}.~{preDownsampleTarget} - | "
+    String preDownsample = "samtools view -h -u -s ~{randomSeed}.~{preDownsampleTarget} | "
+    String preDownsampleCommand = if applyPreDownsample then "~{preDownsample}" else ""
     # downsample = slow, deterministic selection of exact total with samtools collate and sort
     # see https://github.com/samtools/samtools/issues/931
     String dsCollate = "samtools collate -O --output-fmt sam - | "
     String dsAwk = "awk '/^@/ { print; next } count < ~{downsampleTarget} || last == $1 { print; last = $1; count++ }' | "
     String dsSort = "samtools sort -T downsample_sort - | "
     String downsampleCommand = "~{dsCollate}~{dsAwk}~{dsSort}"
-
-    #${true="~{preDownsampleCommand}" false="" applyPreDownsample} \
     
     command <<<
 	set -e
 	set -o pipefail
 	samtools view -b -h ~{bamFile} | \
-	~{downsampleCommand} \
+	~{preDownsampleCommand} ~{downsampleCommand} \
 	samtools view -b > ~{resultName}
     >>>
 
@@ -241,10 +240,32 @@ task findDownsampleParams {
 	String outputFileNamePrefix
 	Int inputReads
 	Int targetReads = 10000
+	Int minReadsAbsolute = 500
+	Int minReadsRelative = 2
+	Float preDSMultiplier = 1.5
     }
 
     String statusFile = "status.json"
     String targetsFile = "targets.json"
+
+    parameter_meta {
+	bamFile: "Input BAM file, after filtering (if any)"
+	outputFileNamePrefix: "Prefix for output file"
+	inputReads: "Number of reads in bamFile"
+	targetReads: "Desired number of reads in downsampled output"
+	minReadsAbsolute: "Minimum value of targetReads to allow pre-downsampling"
+	minReadsRelative: "Minimum value of (inputReads)/(targetReads) to allow pre-downsampling"
+	preDSMultiplier: "Determines target size for pre-downsampled set (if any). Must have (preDSMultiplier) < (minReadsRelative)."
+    }
+
+    # see comments in "task downsample" for effect of predownsampling and downsampling
+
+    # target for predownsampling with "samtools view -s" is expressed as a probability
+    # eg. to choose approximately 200 reads out of 10000, target = 0.02
+    # we convert to a fixed-precision target string for easier handling in BASH
+    # eg. 0.02 -> "002000"
+    # subsequently, we concatenate in the form {$RANDOM_SEED}.${TARGET}, eg. "42.002000"
+    # for consistency, express downsampling target (integer number of reads) as a string also
     
     command <<<
         python3 <<CODE
@@ -253,27 +274,30 @@ task findDownsampleParams {
         readsTarget = ~{targetReads}
         print("Input reads param =", readsIn, file=sys.stderr)
         print("Target reads param =", readsTarget, file=sys.stderr)
-        minReadsAbsolute = 50000
-        minReadsRelative = 2
-        preDownsampleMultiplier = 1.5
+        minReadsAbsolute = ~{minReadsAbsolute}
+        minReadsRelative = ~{minReadsRelative}
+        preDownsampleMultiplier = ~{preDSMultiplier}
         if readsIn <= readsTarget:
           # absolutely no downsampling
           applyPreDownsample = False
           applyDownsample = False
-          preDownsampleTarget = 0
-          downSampleTarget = 0
+          preDownsampleTarget = "no_pre_downsample"
+          downSampleTarget = "no_downsample"
         elif readsIn < readsTarget * minReadsRelative or readsTarget < minReadsAbsolute:
           # no predownsampling
           applyPreDownsample = False
           applyDownsample = True
-          preDownSampleTarget = 0
-          downSampleTarget = readsTarget
+          preDownSampleTarget = "no_pre_downsample"
+          downSampleTarget = str(readsTarget)
         else:
           # predownsampling and downsampling
           applyPreDownsample = True
           applyDownsample = True
-          preDownSampleTarget = int(math.floor(readsTarget * preDownsampleMultiplier))
-          downSampleTarget = readsTarget
+          probability = (readsTarget * preDownsampleMultiplier)/readsIn
+          precision = 6 # number of decimal places to keep
+          formatString = "{:0"+str(precision)+"d}"
+          preDownSampleTarget = formatString.format(int(math.floor(probability * 10**precision)))
+          downSampleTarget = str(readsTarget)
         status = {
           "pre_ds": applyPreDownsample,
           "ds": applyDownsample
@@ -293,6 +317,6 @@ task findDownsampleParams {
 
     output {
 	Map[String, Boolean] status = read_json("~{statusFile}")
-	Map[String, Int] targets = read_json("~{targetsFile}")
+	Map[String, String] targets = read_json("~{targetsFile}")
     }
 }
