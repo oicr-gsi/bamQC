@@ -40,11 +40,11 @@ There are two ways of downsampling with samtools.
 
 This is done using `samtools view -s $FOO.$BAR`, where `$FOO` is a random seed and `$BAR` is a decimal expressing the probability of retaining a read. For example, to sample reads with a probability of 0.05 and random seed 99, use `samtools view -s 99.05`.
 
-This method is very fast. Because it is probabilistic in nature, it does not sample an exact number of reads. Given 1 million reads and a sampling parameter of 0.05, it will iterate over the reads one by one, with a 0.05 probability of keeping each one. This will retain approximately 50000 reads, but the final total could equally well be 49993 or 50010.
+This method is very fast. Because it is probabilistic in nature, it does not sample an exact number of reads. Given 1 million reads and a sampling parameter of 0.05, it will iterate over the reads one by one, with a 0.05 probability of keeping each read. This will retain approximately 50000 reads, but the final total could plausibly be 49993 or 50010.
 
 ##### Exact downsampling
 
-We would like to sample an exact number of reads. The procedure recommended by the samtools developers is to use `samtools collate`, `awk` and `samtools sort`. This is rather slow and inefficient, making it impractical for very large inputs.
+We would like to sample an exact number of reads. The procedure [recommended by the samtools developers](https://github.com/samtools/samtools/issues/931) is to use `samtools collate`, `awk` and `samtools sort`. This is rather slow and inefficient, making it impractical for very large inputs.
 
 Unlike random downsampling, this method cannot take a random seed as input; given an input BAM file and output size, it will always select the same subset of the input.
 
