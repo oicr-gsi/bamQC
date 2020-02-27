@@ -75,6 +75,10 @@ workflow bamQC {
 	    url: "https://broadinstitute.github.io/picard/command-line-overview.html"
 	},
 	{
+	    name: "python/3.6",
+	    url: "https://www.python.org/downloads/"
+	},
+	{
 	    name: "bam-qc-metrics/0.2.4",
 	    url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
 	}
@@ -89,8 +93,24 @@ task bamQCMetrics {
 	File bamFile
 	String outputFileNamePrefix
 	File markDuplicates
-	Boolean downsampled = false
+	Boolean downsampled
 	File? bamFileDownsampled
+	String modules = "bam-qc-metrics/0.2.4"
+	Int jobMemory = 16
+	Int threads = 4
+	Int timeout = 4
+    }
+
+    parameter_meta {
+	bamFile: "Input BAM file of aligned rnaSeqQC data. Not downsampled; may be filtered."
+	outputFileNamePrefix: "Prefix for output file"
+	markDuplicates: "Text file output from markDuplicates task"
+	downsampled: "True if downsampling has been applied"
+	bamFileDownsampled: "(Optional) downsampled subset of reads from bamFile."
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
     }
 
     String dsEcho = if downsampled then "echo 'Downsampled BAM file: ~{bamFileDownsampled}' | tee -a ~{outputFileNamePrefix}.placeholder.txt" else ""
@@ -103,9 +123,22 @@ task bamQCMetrics {
 	~{dsEcho}
     >>>
 
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
     output {
 	File result = "~{outputFileNamePrefix}.placeholder.txt"
     }
+
+    meta {
+	output_meta: {
+            output1: "Placeholder text file for BAMQC output; TODO replace with JSON"
+	}
+  }
 
 }
 
@@ -127,7 +160,6 @@ task countInputReads {
 	timeout: "hours before task timeout"
     }
 
-
     command <<<
 	samtools view -c ~{bamFile}
     >>>
@@ -135,6 +167,12 @@ task countInputReads {
     output {
 	Int result = read_int(stdout())
     }
+
+    meta {
+	output_meta: {
+            output1: "Number of reads in input BAM file"
+	}
+  }
 }
 
 task downsample {
@@ -226,6 +264,16 @@ task filter {
 	Int timeout = 4
     }
 
+    parameter_meta {
+	bamFile: "Input BAM file of aligned rnaSeqQC data"
+	outputFileNamePrefix: "Prefix for output file"
+	minQuality: "Minimum alignment quality to pass filter"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
     String resultName = "~{outputFileNamePrefix}.filtered.bam"
     String totalInputReadsFile = "total_input_reads.txt"
     String totalNonPrimaryReadsFile = "total_non_primary_reads.txt"
@@ -288,6 +336,10 @@ task findDownsampleParams {
 	Int minReadsAbsolute = 500
 	Int minReadsRelative = 2
 	Float preDSMultiplier = 1.5
+	String modules = "python/3.6"
+	Int jobMemory = 16
+	Int threads = 4
+	Int timeout = 4
     }
 
     String statusFile = "status.json"
@@ -301,6 +353,10 @@ task findDownsampleParams {
 	minReadsAbsolute: "Minimum value of targetReads to allow pre-downsampling"
 	minReadsRelative: "Minimum value of (inputReads)/(targetReads) to allow pre-downsampling"
 	preDSMultiplier: "Determines target size for pre-downsampled set (if any). Must have (preDSMultiplier) < (minReadsRelative)."
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
     }
 
     # see comments in "task downsample" for effect of predownsampling and downsampling
@@ -360,9 +416,23 @@ task findDownsampleParams {
         CODE
     >>>
 
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
     output {
 	Map[String, Boolean] status = read_json("~{statusFile}")
 	Map[String, String] targets = read_json("~{targetsFile}")
+    }
+
+    meta {
+	output_meta: {
+            status: "Boolean flags indicating whether to apply (pre)downsampling.",
+            output2: "Strings representing target number of reads for (pre)downsampling."
+	}
     }
 }
 
@@ -372,10 +442,14 @@ task markDuplicates {
 	File bamFile
 	String outputFileNamePrefix
 	Int picardMaxMemMb=6000
+	String modules = "picard/2.21.2"
+	Int jobMemory = 16
+	Int threads = 4
+	Int timeout = 4
     }
 
     parameter_meta {
-	bamFile: "Input BAM file, after filtering (if any)"
+	bamFile: "Input BAM file, after filtering and downsampling (if any)"
 	outputFileNamePrefix: "Prefix for output file"
     }
 
@@ -393,8 +467,21 @@ task markDuplicates {
 	METRICS_FILE=~{outFileText}
     >>>
 
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
     output {
 	File result = "~{outFileText}"
+    }
+
+    meta {
+	output_meta: {
+            result: "Text file with Picard markDuplicates metrics"
+	}
     }
 
 }
