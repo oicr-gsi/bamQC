@@ -334,8 +334,8 @@ task findDownsampleParams {
 	File bamFile
 	String outputFileNamePrefix
 	Int inputReads
-	Int targetReads = 10000
-	Int minReadsAbsolute = 500
+	Int targetReads = 100000
+	Int minReadsAbsolute = 10000
 	Int minReadsRelative = 2
 	Float preDSMultiplier = 1.5
 	String modules = "python/3.6"
