@@ -45,7 +45,9 @@ workflow bamQC {
     call markDuplicates {
 	input:
 	bamFile = filter.filteredBam,
-	outputFileNamePrefix = outputFileNamePrefix
+	outputFileNamePrefix = outputFileNamePrefix,
+	downsampled = ds,
+	bamFileDownsampled = downsample.result
     }
 
     call bamQCMetrics {
@@ -441,6 +443,8 @@ task markDuplicates {
     input {
 	File bamFile
 	String outputFileNamePrefix
+	Boolean downsampled
+	File? bamFileDownsampled
 	Int picardMaxMemMb=6000
 	String modules = "picard/2.21.2"
 	Int jobMemory = 16
@@ -451,16 +455,25 @@ task markDuplicates {
     parameter_meta {
 	bamFile: "Input BAM file, after filtering and downsampling (if any)"
 	outputFileNamePrefix: "Prefix for output file"
+	downsampled: "True if downsampling has been applied"
+	picardMaxMemMb: "Memory requirement in MB for running Picard JAR"
+	bamFileDownsampled: "(Optional) downsampled subset of reads from bamFile."
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
     }
 
     String outFileBam = "~{outputFileNamePrefix}.markDuplicates.bam"
     String outFileText = "~{outputFileNamePrefix}.markDuplicates.txt"
 
+    File inputBam = if downsampled then bamFileDownsampled else bamFile
+
     command <<<
 	java -Xmx~{picardMaxMemMb}M \
 	-jar ${PICARD_ROOT}/picard.jar \
 	MarkDuplicates \
-	INPUT=~{bamFile} \
+	INPUT=~{inputBam} \
 	OUTPUT=~{outFileBam} \
 	VALIDATION_STRINGENCY=SILENT \
 	TMP_DIR=${PWD} \
