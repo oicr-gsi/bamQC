@@ -42,10 +42,17 @@ workflow bamQC {
 	}
     }
 
+    call markDuplicates {
+	input:
+	bamFile = filter.filteredBam,
+	outputFileNamePrefix = outputFileNamePrefix
+    }
+
     call bamQCMetrics {
 	input:
 	bamFile = filter.filteredBam,
 	outputFileNamePrefix = outputFileNamePrefix,
+	markDuplicates = markDuplicates.result,
 	downsampled = ds,
 	bamFileDownsampled = downsample.result
     }
@@ -81,6 +88,7 @@ task bamQCMetrics {
     input {
 	File bamFile
 	String outputFileNamePrefix
+	File markDuplicates
 	Boolean downsampled = false
 	File? bamFileDownsampled
     }
@@ -91,6 +99,7 @@ task bamQCMetrics {
 	set -e
 	set -o pipefail
 	echo "BAM file: ~{bamFile}" | tee ~{outputFileNamePrefix}.placeholder.txt
+	echo "MarkDuplicates file: ~{markDuplicates}" | tee -a ~{outputFileNamePrefix}.placeholder.txt
 	~{dsEcho}
     >>>
 
@@ -355,4 +364,37 @@ task findDownsampleParams {
 	Map[String, Boolean] status = read_json("~{statusFile}")
 	Map[String, String] targets = read_json("~{targetsFile}")
     }
+}
+
+task markDuplicates {
+
+    input {
+	File bamFile
+	String outputFileNamePrefix
+	Int picardMaxMemMb=6000
+    }
+
+    parameter_meta {
+	bamFile: "Input BAM file, after filtering (if any)"
+	outputFileNamePrefix: "Prefix for output file"
+    }
+
+    String outFileBam = "~{outputFileNamePrefix}.markDuplicates.bam"
+    String outFileText = "~{outputFileNamePrefix}.markDuplicates.txt"
+
+    command <<<
+	java -Xmx~{picardMaxMemMb}M \
+	-jar ${PICARD_ROOT}/picard.jar \
+	MarkDuplicates \
+	INPUT=~{bamFile} \
+	OUTPUT=~{outFileBam} \
+	VALIDATION_STRINGENCY=SILENT \
+	TMP_DIR=${PWD} \
+	METRICS_FILE=~{outFileText}
+    >>>
+
+    output {
+	File result = "~{outFileText}"
+    }
+
 }
