@@ -30,16 +30,28 @@ workflow bamQC {
 	inputReads = countInputReads.result
     }
 
-    call downsample {
+    Boolean ds = findDownsampleParams.status["ds"]
+
+    if (ds) {
+	call downsample {
+	    input:
+	    bamFile = filter.filteredBam,
+	    outputFileNamePrefix = outputFileNamePrefix,
+	    downsampleStatus = findDownsampleParams.status,
+	    downsampleTargets = findDownsampleParams.targets,
+	}
+    }
+
+    call bamQCMetrics {
 	input:
 	bamFile = filter.filteredBam,
 	outputFileNamePrefix = outputFileNamePrefix,
-	downsampleStatus = findDownsampleParams.status,
-	downsampleTargets = findDownsampleParams.targets,
+	downsampled = ds,
+	bamFileDownsampled = downsample.result
     }
 
     output {
-	File result = downsample.result
+	File result = bamQCMetrics.result
     }
     
     meta {
@@ -60,6 +72,30 @@ workflow bamQC {
 	    url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
 	}
 	]
+    }
+
+}
+
+task bamQCMetrics {
+
+    input {
+	File bamFile
+	String outputFileNamePrefix
+	Boolean downsampled = false
+	File? bamFileDownsampled
+    }
+
+    String dsEcho = if downsampled then "echo 'Downsampled BAM file: ~{bamFileDownsampled}' | tee -a ~{outputFileNamePrefix}.placeholder.txt" else ""
+
+    command <<<
+	set -e
+	set -o pipefail
+	echo "BAM file: ~{bamFile}" | tee ~{outputFileNamePrefix}.placeholder.txt
+	~{dsEcho}
+    >>>
+
+    output {
+	File result = "~{outputFileNamePrefix}.placeholder.txt"
     }
 
 }
@@ -263,8 +299,8 @@ task findDownsampleParams {
     # target for predownsampling with "samtools view -s" is expressed as a probability
     # eg. to choose approximately 200 reads out of 10000, target = 0.02
     # we convert to a fixed-precision target string for easier handling in BASH
-    # eg. 0.02 -> "002000"
-    # subsequently, we concatenate in the form {$RANDOM_SEED}.${TARGET}, eg. "42.002000"
+    # eg. 0.02 -> "020000"
+    # subsequently, we concatenate in the form {$RANDOM_SEED}.${TARGET}, eg. "42.020000"
     # for consistency, express downsampling target (integer number of reads) as a string also
     
     command <<<
