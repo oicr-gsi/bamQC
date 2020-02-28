@@ -66,7 +66,7 @@ workflow bamQC {
     output {
 	File result = bamQCMetrics.result
     }
-    
+
     meta {
 	author: "Iain Bancarz"
 	email: "ibancarz@oicr.on.ca"
@@ -105,6 +105,10 @@ task bamQCMetrics {
 	Int nonPrimaryReads
 	Int unmappedReads
 	Int lowQualityReads
+	String refFasta
+	String refSizesBed
+	String workflowVersion
+	Int normalInsertMax = 1500
 	String modules = "bam-qc-metrics/0.2.4"
 	Int jobMemory = 16
 	Int threads = 4
@@ -121,20 +125,28 @@ task bamQCMetrics {
 	nonPrimaryReads: "Total reads excluded as non-primary"
 	unmappedReads: "Total reads excluded as unmapped"
 	lowQualityReads: "Total reads excluded as low alignment quality"
+	refFasta: "Path to human genome FASTA reference"
+	refSizesBed: "Path to human genome BED reference with chromosome sizes"
+	workflowVersion: "Workflow version string"
+	normalInsertMax: "Maximum of expected insert size range"
 	modules: "required environment modules"
 	jobMemory: "Memory allocated for this job"
 	threads: "Requested CPU threads"
 	timeout: "hours before task timeout"
     }
 
-    String dsEcho = if downsampled then "echo 'Downsampled BAM file: ~{bamFileDownsampled}' | tee -a ~{outputFileNamePrefix}.placeholder.txt" else ""
+    String resultName = "~{outputFileNamePrefix}.metrics.json"
 
     command <<<
-	set -e
-	set -o pipefail
-	echo "BAM file: ~{bamFile}" | tee ~{outputFileNamePrefix}.placeholder.txt
-	echo "MarkDuplicates file: ~{markDuplicates}" | tee -a ~{outputFileNamePrefix}.placeholder.txt
-	~{dsEcho}
+	run_bam_qc.py \
+	-b ~{bamFile} \
+	--debug \
+	-i ~{normalInsertMax} \
+	-o ~{resultName} \
+	-r ~{refFasta} \
+	-t ~{refSizesBed} \
+	-T . \
+	-w ~{workflowVersion}
     >>>
 
     runtime {
@@ -145,7 +157,7 @@ task bamQCMetrics {
     }
 
     output {
-	File result = "~{outputFileNamePrefix}.placeholder.txt"
+	File result = "~{resultName}"
     }
 
     meta {
