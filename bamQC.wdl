@@ -115,6 +115,8 @@ task bamQCMetrics {
 	Int timeout = 4
     }
 
+    # TODO include parameter for metadata path
+
     parameter_meta {
 	bamFile: "Input BAM file of aligned rnaSeqQC data. Not downsampled; may be filtered."
 	outputFileNamePrefix: "Prefix for output file"
@@ -135,6 +137,9 @@ task bamQCMetrics {
 	timeout: "hours before task timeout"
     }
 
+    # omit dsInput unless using version of run_bam_qc.py which supports -S argument
+    #String dsInput = if downsampled then "-S ~{bamFileDownsampled}" else ""
+    String dsInput = "" # placeholder, see above
     String resultName = "~{outputFileNamePrefix}.metrics.json"
 
     command <<<
@@ -146,7 +151,8 @@ task bamQCMetrics {
 	-r ~{refFasta} \
 	-t ~{refSizesBed} \
 	-T . \
-	-w ~{workflowVersion}
+	-w ~{workflowVersion} \
+	~{dsInput}
     >>>
 
     runtime {
