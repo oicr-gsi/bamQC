@@ -56,7 +56,11 @@ workflow bamQC {
 	outputFileNamePrefix = outputFileNamePrefix,
 	markDuplicates = markDuplicates.result,
 	downsampled = ds,
-	bamFileDownsampled = downsample.result
+	bamFileDownsampled = downsample.result,
+	rawInputReads = filter.totalInputReads,
+	nonPrimaryReads = filter.nonPrimaryReads,
+	unmappedReads = filter.unmappedReads,
+	lowQualityReads = filter.lowQualityReads
     }
 
     output {
@@ -97,6 +101,10 @@ task bamQCMetrics {
 	File markDuplicates
 	Boolean downsampled
 	File? bamFileDownsampled
+	Int rawInputReads
+	Int nonPrimaryReads
+	Int unmappedReads
+	Int lowQualityReads
 	String modules = "bam-qc-metrics/0.2.4"
 	Int jobMemory = 16
 	Int threads = 4
@@ -109,6 +117,10 @@ task bamQCMetrics {
 	markDuplicates: "Text file output from markDuplicates task"
 	downsampled: "True if downsampling has been applied"
 	bamFileDownsampled: "(Optional) downsampled subset of reads from bamFile."
+	rawInputReads: "Total reads in original input BAM file"
+	nonPrimaryReads: "Total reads excluded as non-primary"
+	unmappedReads: "Total reads excluded as unmapped"
+	lowQualityReads: "Total reads excluded as low alignment quality"
 	modules: "required environment modules"
 	jobMemory: "Memory allocated for this job"
 	threads: "Requested CPU threads"
@@ -390,7 +402,7 @@ task findDownsampleParams {
           # no predownsampling
           applyPreDownsample = False
           applyDownsample = True
-          preDownSampleTarget = "no_pre_downsample"
+          preDownsampleTarget = "no_pre_downsample"
           downSampleTarget = str(readsTarget)
         else:
           # predownsampling and downsampling
@@ -399,14 +411,14 @@ task findDownsampleParams {
           probability = (readsTarget * preDownsampleMultiplier)/readsIn
           precision = 6 # number of decimal places to keep
           formatString = "{:0"+str(precision)+"d}"
-          preDownSampleTarget = formatString.format(int(math.floor(probability * 10**precision)))
+          preDownsampleTarget = formatString.format(int(math.floor(probability * 10**precision)))
           downSampleTarget = str(readsTarget)
         status = {
           "pre_ds": applyPreDownsample,
           "ds": applyDownsample
         }
         targets = {
-          "pre_ds": preDownSampleTarget,
+          "pre_ds": preDownsampleTarget,
           "ds": downSampleTarget
         }
         statusFile = open("~{statusFile}", "w")
