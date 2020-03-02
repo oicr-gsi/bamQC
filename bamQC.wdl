@@ -4,11 +4,13 @@ workflow bamQC {
 
     input {
 	File bamFile
+	Map[String, String] metadata
 	String outputFileNamePrefix = "bamQC"
     }
 
     parameter_meta {
 	bamFile: "Input BAM file on which to compute QC metrics"
+	metadata: "JSON file containing metadata"
 	outputFileNamePrefix: "Prefix for output files"
     }
 
@@ -16,6 +18,18 @@ workflow bamQC {
 	input:
 	bamFile = bamFile,
 	outputFileNamePrefix = outputFileNamePrefix
+    }
+
+    File metadataJson = write_json(metadata)
+
+    call updateMetadata {
+	input:
+	metadata = metadataJson,
+	outputFileNamePrefix = outputFileNamePrefix,
+	totalInputReads = filter.totalInputReads,
+	nonPrimaryReads = filter.nonPrimaryReads,
+	unmappedReads = filter.unmappedReads,
+	lowQualityReads = filter.lowQualityReads
     }
 
     call countInputReads {
@@ -55,12 +69,9 @@ workflow bamQC {
 	bamFile = filter.filteredBam,
 	outputFileNamePrefix = outputFileNamePrefix,
 	markDuplicates = markDuplicates.result,
+	metadata = updateMetadata.result,
 	downsampled = ds,
-	bamFileDownsampled = downsample.result,
-	rawInputReads = filter.totalInputReads,
-	nonPrimaryReads = filter.nonPrimaryReads,
-	unmappedReads = filter.unmappedReads,
-	lowQualityReads = filter.lowQualityReads
+	bamFileDownsampled = downsample.result
     }
 
     output {
@@ -99,12 +110,9 @@ task bamQCMetrics {
 	File bamFile
 	String outputFileNamePrefix
 	File markDuplicates
+	File metadata
 	Boolean downsampled
 	File? bamFileDownsampled
-	Int rawInputReads
-	Int nonPrimaryReads
-	Int unmappedReads
-	Int lowQualityReads
 	String refFasta
 	String refSizesBed
 	String workflowVersion
@@ -120,13 +128,10 @@ task bamQCMetrics {
     parameter_meta {
 	bamFile: "Input BAM file of aligned rnaSeqQC data. Not downsampled; may be filtered."
 	outputFileNamePrefix: "Prefix for output file"
+	metadata: "JSON file containing metadata (including filtered read totals)"
 	markDuplicates: "Text file output from markDuplicates task"
 	downsampled: "True if downsampling has been applied"
 	bamFileDownsampled: "(Optional) downsampled subset of reads from bamFile."
-	rawInputReads: "Total reads in original input BAM file"
-	nonPrimaryReads: "Total reads excluded as non-primary"
-	unmappedReads: "Total reads excluded as unmapped"
-	lowQualityReads: "Total reads excluded as low alignment quality"
 	refFasta: "Path to human genome FASTA reference"
 	refSizesBed: "Path to human genome BED reference with chromosome sizes"
 	workflowVersion: "Workflow version string"
@@ -147,6 +152,7 @@ task bamQCMetrics {
 	-b ~{bamFile} \
 	--debug \
 	-i ~{normalInsertMax} \
+	-m ~{metadata} \
 	-o ~{resultName} \
 	-r ~{refFasta} \
 	-t ~{refSizesBed} \
@@ -532,4 +538,68 @@ task markDuplicates {
 	}
     }
 
+}
+
+task updateMetadata {
+
+    # add extra fields to the metadata JSON file
+
+    input {
+	File metadata
+	String outputFileNamePrefix
+	Int totalInputReads
+	Int nonPrimaryReads
+	Int unmappedReads
+	Int lowQualityReads
+	String modules = "python/3.6"
+	Int jobMemory = 16
+	Int threads = 4
+	Int timeout = 4
+    }
+
+    parameter_meta {
+	metadata: "Path to input JSON metadata"
+	outputFileNamePrefix: "Prefix for output file"
+	totalInputReads: "Total reads in original input BAM file"
+	nonPrimaryReads: "Total reads excluded as non-primary"
+	unmappedReads: "Total reads excluded as unmapped"
+	lowQualityReads: "Total reads excluded as low alignment quality"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+    String outFileName = "~{outputFileNamePrefix}.updated_metadata.json"
+
+    command <<<
+        python3 <<CODE
+        import json
+        metadata = json.loads(open("~{metadata}").read())
+        metadata["total input reads"] = ~{totalInputReads}
+        metadata["non primary reads"] = ~{nonPrimaryReads}
+        metadata["unmapped reads"] = ~{unmappedReads}
+        metadata["low quality reads"] = ~{lowQualityReads}
+        outFile = open("~{outFileName}", "w")
+        print(json.dumps(metadata), file=outFile)
+        outFile.close()
+        CODE
+    >>>
+
+    output {
+	File result = "~{outFileName}"
+    }
+
+    meta {
+	output_meta: {
+            result: "JSON file with updated metadata"
+	}
+    }
 }
