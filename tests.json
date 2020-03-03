@@ -30,6 +30,6 @@
 		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
 		}
 	    }
-	},
+	}
     ]
 }
