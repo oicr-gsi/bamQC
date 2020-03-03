@@ -96,7 +96,7 @@ workflow bamQC {
 	    url: "https://www.python.org/downloads/"
 	},
 	{
-	    name: "bam-qc-metrics/0.2.4",
+	    name: "bam-qc-metrics/0.2.5",
 	    url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
 	}
 	]
@@ -117,13 +117,11 @@ task bamQCMetrics {
 	String refSizesBed
 	String workflowVersion
 	Int normalInsertMax = 1500
-	String modules = "bam-qc-metrics/0.2.4"
+	String modules = "bam-qc-metrics/0.2.5"
 	Int jobMemory = 16
 	Int threads = 4
 	Int timeout = 4
     }
-
-    # TODO include parameter for metadata path
 
     parameter_meta {
 	bamFile: "Input BAM file of aligned rnaSeqQC data. Not downsampled; may be filtered."
@@ -142,9 +140,7 @@ task bamQCMetrics {
 	timeout: "hours before task timeout"
     }
 
-    # omit dsInput unless using version of run_bam_qc.py which supports -S argument
-    #String dsInput = if downsampled then "-S ~{bamFileDownsampled}" else ""
-    String dsInput = "" # placeholder, see above
+    String dsInput = if downsampled then "-S ~{bamFileDownsampled}" else ""
     String resultName = "~{outputFileNamePrefix}.metrics.json"
 
     command <<<
@@ -583,10 +579,10 @@ task updateMetadata {
         python3 <<CODE
         import json
         metadata = json.loads(open("~{metadata}").read())
-        metadata["total input reads"] = ~{totalInputReads}
-        metadata["non primary reads"] = ~{nonPrimaryReads}
-        metadata["unmapped reads"] = ~{unmappedReads}
-        metadata["low quality reads"] = ~{lowQualityReads}
+        metadata["total input reads meta"] = ~{totalInputReads}
+        metadata["non-primary reads meta"] = ~{nonPrimaryReads}
+        metadata["unmapped reads meta"] = ~{unmappedReads}
+        metadata["low-quality reads meta"] = ~{lowQualityReads}
         outFile = open("~{outFileName}", "w")
         print(json.dumps(metadata), file=outFile)
         outFile.close()
