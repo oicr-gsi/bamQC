@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ca.on.oicr.pde</groupId>
-    <artifactId>bam-qc</artifactId>
-    <version>1.0</version>
-    <packaging>pom</packaging>
-    <modules>
-        <!--<module>decider-bam-qc</module>-->
-        <module>workflow-bam-qc</module>
-    </modules>
+
+    <parent>
+        <groupId>ca.on.oicr.gsi</groupId>
+        <artifactId>pipedev-niassa-cromwell-parent</artifactId>
+        <version>2.5.10</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>bamQC</artifactId>
+    <version>4.0.0</version>
+    <packaging>jar</packaging>
+
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <workflow-description>Workflow to compute QC metrics on aligned BAM files.</workflow-description>
+	<wdl-workflow>bamQC.wdl</wdl-workflow>
+        <test-definition>tests.json</test-definition>
     </properties>
+
 </project>
