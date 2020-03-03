@@ -1,0 +1,35 @@
+{
+  "defaults": {
+    "description": "bamQC workflow test",
+    "metrics_calculate": "calculate.sh",
+    "metrics_compare": "compare.sh",
+    "output_metrics_dir": "/.mounts/labs/gsi/testdata/bamqc/output_expectation",
+    "parameters": {
+          "wdl_options": {
+            "write_to_cache": false,
+            "read_from_cache": false
+           }
+         }
+  },
+    "tests": [
+	{
+	    "id": "bamQC_test_with_downsample",
+	    "parameters": {
+		"wdl_inputs": {
+		    "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
+		    "bamQC.bamFile": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_with_downsample/neat_5x_EX_hg19_chr21.bam",
+		    "bamQC.findDownsampleParams.targetReads": 20000,
+		    "bamQC.metadata": {
+			"donor": "Xenomorph",
+			"group id": "Weyland-Yutani",
+			"library design": "WY-1001",
+			"tissue origin": "LV-426",
+			"tissue type": "Claw fragment"
+		    },
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		}
+	    }
+	},
+    ]
+}
