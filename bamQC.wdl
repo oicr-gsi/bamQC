@@ -20,11 +20,9 @@ workflow bamQC {
 	outputFileNamePrefix = outputFileNamePrefix
     }
 
-    File metadataJson = write_json(metadata)
-
     call updateMetadata {
 	input:
-	metadata = metadataJson,
+	metadata = metadata,
 	outputFileNamePrefix = outputFileNamePrefix,
 	totalInputReads = filter.totalInputReads,
 	nonPrimaryReads = filter.nonPrimaryReads,
@@ -192,6 +190,13 @@ task countInputReads {
 	jobMemory: "Memory allocated for this job"
 	threads: "Requested CPU threads"
 	timeout: "hours before task timeout"
+    }
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
     }
 
     command <<<
@@ -541,7 +546,7 @@ task updateMetadata {
     # add extra fields to the metadata JSON file
 
     input {
-	File metadata
+	Map[String, String] metadata
 	String outputFileNamePrefix
 	Int totalInputReads
 	Int nonPrimaryReads
@@ -554,7 +559,7 @@ task updateMetadata {
     }
 
     parameter_meta {
-	metadata: "Path to input JSON metadata"
+	metadata: "Key/value map of input metadata"
 	outputFileNamePrefix: "Prefix for output file"
 	totalInputReads: "Total reads in original input BAM file"
 	nonPrimaryReads: "Total reads excluded as non-primary"
@@ -573,6 +578,7 @@ task updateMetadata {
 	timeout: "~{timeout}"
     }
 
+    File metadataJson = write_json(metadata)
     String outFileName = "~{outputFileNamePrefix}.updated_metadata.json"
 
     command <<<
