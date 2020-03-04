@@ -584,7 +584,7 @@ task updateMetadata {
     command <<<
         python3 <<CODE
         import json
-        metadata = json.loads(open("~{metadata}").read())
+        metadata = json.loads(open("~{metadataJson}").read())
         metadata["total input reads meta"] = ~{totalInputReads}
         metadata["non-primary reads meta"] = ~{nonPrimaryReads}
         metadata["unmapped reads meta"] = ~{unmappedReads}
