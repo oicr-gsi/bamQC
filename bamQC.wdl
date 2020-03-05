@@ -144,6 +144,7 @@ task bamQCMetrics {
     command <<<
 	run_bam_qc.py \
 	-b ~{bamFile} \
+	-d ~{markDuplicates} \
 	--debug \
 	-i ~{normalInsertMax} \
 	-m ~{metadata} \
