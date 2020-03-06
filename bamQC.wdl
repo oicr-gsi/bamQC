@@ -307,6 +307,9 @@ task downsample {
 
 task downsampleChromosome {
 
+    # downsample a specific chromosomal region for MarkDuplicates
+    # this keeps a proportionate level of duplicates in the downsampled data
+
     input {
 	File bamFile
 	String outputFileNamePrefix
@@ -533,8 +536,15 @@ task findDownsampleParams {
 }
 
 task findDownsampleParamsMarkDup {
+
     # downsampling parameters for MarkDuplicates
     # choose a region of the genome instead of using random selection
+
+    # number of reads downsampled is not exact; will be:
+    # - approximately 1/12 for between 10**6 and 10**8 reads
+    # - approximately 1/300 for more than 10**8 reads
+    # - TODO could make this smoother and lessen the "cliff edge" at 10**8
+
     input {
 	String outputFileNamePrefix
 	Int inputReads
