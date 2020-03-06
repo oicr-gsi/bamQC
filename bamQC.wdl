@@ -37,12 +37,18 @@ workflow bamQC {
 
     call findDownsampleParams {
 	input:
-	bamFile = filter.filteredBam,
+	outputFileNamePrefix = outputFileNamePrefix,
+	inputReads = countInputReads.result
+    }
+
+    call findDownsampleParamsMarkDup {
+	input:
 	outputFileNamePrefix = outputFileNamePrefix,
 	inputReads = countInputReads.result
     }
 
     Boolean ds = findDownsampleParams.status["ds"]
+    Boolean dsMarkDup = findDownsampleParamsMarkDup.status
 
     if (ds) {
 	call downsample {
@@ -54,12 +60,21 @@ workflow bamQC {
 	}
     }
 
+    if (dsMarkDup) {
+	call downsampleChromosome {
+	    input:
+	    bamFile = filter.filteredBam,
+	    outputFileNamePrefix = outputFileNamePrefix,
+	    region = findDownsampleParamsMarkDup.region
+	}
+    }
+
     call markDuplicates {
 	input:
 	bamFile = filter.filteredBam,
 	outputFileNamePrefix = outputFileNamePrefix,
-	downsampled = ds,
-	bamFileDownsampled = downsample.result
+	downsampled = dsMarkDup,
+	bamFileDownsampled = downsampleChromosome.result
     }
 
     call bamQCMetrics {
@@ -217,6 +232,8 @@ task countInputReads {
 
 task downsample {
 
+    # random downsampling for QC metrics (excepting MarkDuplicates)
+
     input {
 	File bamFile
 	String outputFileNamePrefix
@@ -280,6 +297,47 @@ task downsample {
 	File result = "~{resultName}"
     }
     
+    meta {
+	output_meta: {
+            result: "BAM file downsampled to required number of reads"
+	}
+    }
+
+}
+
+task downsampleChromosome {
+
+    input {
+	File bamFile
+	String outputFileNamePrefix
+	String region
+	String modules = "samtools/1.9"
+	Int jobMemory = 16
+	Int threads = 4
+	Int timeout = 4
+    }
+
+    String resultName = "~{outputFileNamePrefix}.downsampledChromosome.bam"
+
+    # need to index the (filtered) BAM file before viewing a specific chromosome
+
+    command <<<
+	set -e
+	samtools index ~{bamFile}
+	samtools view -b -h ~{bamFile} ~{region} > ~{resultName}
+    >>>
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+    output {
+	File result = "~{resultName}"
+    }
+
     meta {
 	output_meta: {
             result: "BAM file downsampled to required number of reads"
@@ -369,7 +427,6 @@ task filter {
 task findDownsampleParams {
 
     input {
-	File bamFile
 	String outputFileNamePrefix
 	Int inputReads
 	Int targetReads = 100000
@@ -386,9 +443,8 @@ task findDownsampleParams {
     String targetsFile = "targets.json"
 
     parameter_meta {
-	bamFile: "Input BAM file, after filtering (if any)"
 	outputFileNamePrefix: "Prefix for output file"
-	inputReads: "Number of reads in bamFile"
+	inputReads: "Number of reads in input bamFile"
 	targetReads: "Desired number of reads in downsampled output"
 	minReadsAbsolute: "Minimum value of targetReads to allow pre-downsampling"
 	minReadsRelative: "Minimum value of (inputReads)/(targetReads) to allow pre-downsampling"
@@ -472,6 +528,71 @@ task findDownsampleParams {
 	output_meta: {
             status: "Boolean flags indicating whether to apply (pre)downsampling.",
             output2: "Strings representing target number of reads for (pre)downsampling."
+	}
+    }
+}
+
+task findDownsampleParamsMarkDup {
+    # downsampling parameters for MarkDuplicates
+    # choose a region of the genome instead of using random selection
+    input {
+	String outputFileNamePrefix
+	Int inputReads
+	String chromosome = "chr1"
+	Int width = 10000000
+	String modules = "python/3.6"
+	Int jobMemory = 16
+	Int threads = 4
+	Int timeout = 4
+    }
+
+    parameter_meta {
+	outputFileNamePrefix: "Prefix for output file"
+	inputReads: "Number of reads in input bamFile"
+	chromosome: "Chromosome identifier for downsampled subset"
+	width: "Width of range within chromosome (if required)"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
+    String outputStatus = "~{outputFileNamePrefix}_status.txt"
+    String outputRegion = "~{outputFileNamePrefix}_region.txt"
+
+    command <<<
+        python3 <<CODE
+        readsIn = ~{inputReads}
+        chromosome = "~{chromosome}"
+        if readsIn <= 10**6:
+            status = "false"
+            region = ""
+        elif readsIn <= 10**8:
+            status = "true"
+            region = chromosome
+        else:
+            status = "true"
+            start = 10**6 + 1
+            end = start + ~{width} - 1
+            region = "%s:%i-%i" % (chromosome, start, end)
+        outStatus = open("~{outputStatus}", "w")
+        print(status, file=outStatus)
+        outStatus.close()
+        outRegion = open("~{outputRegion}", "w")
+        print(region, file=outRegion)
+        outRegion.close()
+        CODE
+    >>>
+
+    output {
+	Boolean status = read_boolean("~{outputStatus}")
+	String region = read_string("~{outputRegion}")
+    }
+
+    meta {
+	output_meta: {
+	    status: "Boolean flag, indicates whether downsampling is required",
+	    region: "String to specify downsampled region for samtools"
 	}
     }
 }
