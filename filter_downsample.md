@@ -4,6 +4,13 @@
 
 This document describes filtering and downsampling which may be applied to BAM files before bamQC metric computation.
 
+_Filtering_ removes undesirable reads. _Downsampling_ obtains a subset of very large BAM files to enable faster processing. All downsampling operations, including checks of size thresholds, are applied after filtering. Read pairing is preserved; if read 1 of an aligned pair is downsampled, read 2 will be as well.
+
+Sections are as follows:
+- Filtering
+- Downsampling: MarkDuplicates
+- Downsampling: Other
+
 ## Filtering
 
 We remove the following undesirable read types:
@@ -13,11 +20,36 @@ We remove the following undesirable read types:
 
 Totals of non-primary, unmapped, and low-quality reads are recorded in workflow output. The excluded reads are not used for subsequent QC metric computation.
 
-## Downsampling
+## Downsampling: MarkDuplicates
 
-Very large BAM files are downsampled in order to enable faster QC. Downsampling consists of choosing a subset of reads at random. The downsampled file is used as input to the "slow" computationally intensive metrics. "Fast" metrics do not require downsampling, and are always computed on the full-sized filtered input.
+MarkDuplicates is not amenable to random downsampling. This is because the number of duplicate pairs retained scales as the square of the downsampled fraction. (Recall that read pairing is always preserved by downsampling; a "duplicate pair" is a pair of paired reads.)
 
-Picard MarkDuplicates is considered a "slow" metric. For other metrics, see the [bam-qc-metrics documentation](https://github.com/oicr-gsi/bam-qc-metrics/blob/master/metrics.md).
+For example, suppose we have a BAM file with 250 million reads and a 10% duplicate rate, giving 25 million duplicates. We downsample to 1 million reads, retaining `1/250` of the original input. So the probability of downsampling *both* members of a duplicate is `(1/250)*(1/250) = 1/62500`, and the downsampled set has approximately 400 duplicate pairs. But because of the random nature of this process, the number sampled may be significantly larger or smaller. In empirical tests, naively scaling up from a sample of `1/62500` has given results at least 25% off the true value.
+
+To obtain a more robust estimate, we use samtools to downsample reads aligned to a specific region of the human genome reference. Since both members of a duplicate should be aligned to the same locus, this method preserves duplicate pairs roughly in proportion to the fraction downsampled. (In fact there will be some variation as duplicates are not evenly distributed across the genome, but the result is still more robust than random downsampling.)
+
+We apply downsampling for MarkDuplicates by choosing some or all of chromosome 1, which comprises about 8% of the human genome. The number of reads downsampled is not exact, as it depends on the coverage of our chosen region. Thresholds have been chosen to retain roughly between 1 million and 10 million reads. The lower end of this range is large enough for an informative sample of duplicate metrics; the upper end is small enough for MarkDuplicates to be run quickly without excessive memory usage.
+
+### Downsampling MarkDuplicates thresholds
+
+| Total input reads      | Downsample range         | Approx. fraction of genome |
+| -----------------------|--------------------------|----------------------------|
+| <= 10<super>7</super>  | None                     | All                        |
+| <= 10<super>8</super>  | chr1                     | 1/12                       |
+| <= 10<super>9</super>  | chr1, 25 Mbase window    | 1/124                      |
+| <= 10<super>10</super> | chr1, 2.5 Mbase window   | 1/1240                     |
+| <= 10<super>11</super> | chr1, 0.25 Mbase window  | 1/12405                    |
+| > 10<super>11</super>  | chr1, 0.025 Mbase window | 1/124049                   |
+
+### TODO: Targeted sequencing
+
+For targeted sequencing which excludes chromosome 1, the above method will not work. See the relevant [Github issue](https://github.com/oicr-gsi/bam-qc/issues/13) for details.
+
+## Downsampling: Other
+
+For "slow" computationally intensive metrics other than MarkDuplicates, we downsample by choosing a subset of reads at random. "Fast" metrics do not require downsampling, and are always computed on the full-sized filtered input.
+
+The distinction between "fast" and "slow" metrics is covered in the [bam-qc-metrics documentation](https://github.com/oicr-gsi/bam-qc-metrics/blob/master/metrics.md).
 
 ### Threshold
 
@@ -34,7 +66,7 @@ Downsampling thresholds are always evaluated on the BAM file _after_ filtering.
 
 ### Methods
 
-There are two ways of downsampling with samtools.
+We use two ways of downsampling with samtools.
 
 #### Random downsampling
 
