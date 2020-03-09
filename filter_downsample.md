@@ -32,14 +32,14 @@ We apply downsampling for MarkDuplicates by choosing some or all of chromosome 1
 
 ### Downsampling MarkDuplicates thresholds
 
-| Total input reads      | Downsample range         | Approx. fraction of genome |
-| -----------------------|--------------------------|----------------------------|
-| <= 10<super>7</super>  | None                     | All                        |
-| <= 10<super>8</super>  | chr1                     | 1/12                       |
-| <= 10<super>9</super>  | chr1, 25 Mbase window    | 1/124                      |
-| <= 10<super>10</super> | chr1, 2.5 Mbase window   | 1/1240                     |
-| <= 10<super>11</super> | chr1, 0.25 Mbase window  | 1/12405                    |
-| > 10<super>11</super>  | chr1, 0.025 Mbase window | 1/124049                   |
+| Total input reads  | Downsample range         | Approx. fraction of genome |
+| -------------------|--------------------------|----------------------------|
+| <= 10<sup>7</sup>  | None                     | All                        |
+| <= 10<sup>8</sup>  | chr1                     | 1/12                       |
+| <= 10<sup>9</sup>  | chr1, 25 Mbase window    | 1/124                      |
+| <= 10<sup>10</sup> | chr1, 2.5 Mbase window   | 1/1240                     |
+| <= 10<sup>11</sup> | chr1, 0.25 Mbase window  | 1/12405                    |
+| > 10<sup>11</sup>  | chr1, 0.025 Mbase window | 1/124049                   |
 
 ### TODO: Targeted sequencing
 
