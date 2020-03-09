@@ -539,17 +539,17 @@ task findDownsampleParamsMarkDup {
 
     # downsampling parameters for MarkDuplicates
     # choose a region of the genome instead of using random selection
+    # number of reads downsampled is not exact; depends on coverage of chosen sub-region.
 
-    # number of reads downsampled is not exact; will be:
-    # - approximately 1/12 for between 10**6 and 10**8 reads
-    # - approximately 1/300 for more than 10**8 reads
-    # - TODO could make this smoother and lessen the "cliff edge" at 10**8
+    # downsampling params chosen so at least ~10M reads are kept if available
+    # empirically, about 100000 reads is sufficient to find duplicates
+    # but computationally, we can afford to use more, so we do
+    # a BAM file is *very* approximately 10M reads per GB
 
     input {
 	String outputFileNamePrefix
 	Int inputReads
 	String chromosome = "chr1"
-	Int width = 10000000
 	String modules = "python/3.6"
 	Int jobMemory = 16
 	Int threads = 4
@@ -560,7 +560,6 @@ task findDownsampleParamsMarkDup {
 	outputFileNamePrefix: "Prefix for output file"
 	inputReads: "Number of reads in input bamFile"
 	chromosome: "Chromosome identifier for downsampled subset"
-	width: "Width of range within chromosome (if required)"
 	modules: "required environment modules"
 	jobMemory: "Memory allocated for this job"
 	threads: "Requested CPU threads"
@@ -574,17 +573,30 @@ task findDownsampleParamsMarkDup {
         python3 <<CODE
         readsIn = ~{inputReads}
         chromosome = "~{chromosome}"
-        if readsIn <= 10**6:
+        ds = True
+        start = 10**6 + 1 # start of sub-chromosome window, if needed; excludes telomeres
+        end = None # end of window, if needed
+        if readsIn <= 10**7:
+            ds = False # no downsampling
+        elif readsIn <= 10**8:
+            pass # chr1 ~ 8% of genome
+        elif readsIn <= 10**9:
+            end = start + 25*10**6 - 1 # 25 million base window ~ 0.8% of genome
+        elif readsIn <= 10**10:
+            end = start + 25*10**5 - 1 # 2.5 million base window ~ 0.08% of genome
+        elif readsIn <= 10**11:
+            end = start + 25*10**4 - 1 # 0.25 million base window ~ 0.008% of genome
+        else:
+            end = start + 25*10**3 - 1 # 25000 base window ~ 0.0008% of genome
+        if ds:
+            status = "true"
+            if end == None:
+                region = chromosome
+            else:
+                region = "%s:%i-%i" % (chromosome, start, end)
+        else:
             status = "false"
             region = ""
-        elif readsIn <= 10**8:
-            status = "true"
-            region = chromosome
-        else:
-            status = "true"
-            start = 10**6 + 1
-            end = start + ~{width} - 1
-            region = "%s:%i-%i" % (chromosome, start, end)
         outStatus = open("~{outputStatus}", "w")
         print(status, file=outStatus)
         outStatus.close()
