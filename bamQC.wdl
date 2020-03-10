@@ -541,15 +541,26 @@ task findDownsampleParamsMarkDup {
     # choose a region of the genome instead of using random selection
     # number of reads downsampled is not exact; depends on coverage of chosen sub-region.
 
-    # downsampling params chosen so at least ~10M reads are kept if available
+    # we use chromosomes 12 & 13 by default
+    # these appear in all OICR targeted sequencing panels as of 2020-03-10
+    # See https://bitbucket.oicr.on.ca/projects/GSI/repos/interval-files/browse
+    # chromosomes are a configurable parameter
+    # default chromosomes also appear as Roman numerals, because UCSC_sacCer3 saw fit to use them
+    # see filter_downsample.md for details
+
+    # downsampling params chosen so at least ~1M reads are kept if available
     # empirically, about 100000 reads is sufficient to find duplicates
     # but computationally, we can afford to use more, so we do
     # a BAM file is *very* approximately 10M reads per GB
+    # Current merged BAM files are unlikely to exceed 10**9 reads; but we scale up higher just in case
+    # scaling behaviour can be customised by modifying "start", "chromsomes" and "baseInterval" params
 
     input {
 	String outputFileNamePrefix
 	Int inputReads
-	String chromosome = "chr1"
+	Array[String] chromosomes = ["chr12", "chr13", "chrXII", "chrXIII"]
+	Int baseInterval = 15000
+	Int intervalStart = 100000
 	String modules = "python/3.6"
 	Int jobMemory = 16
 	Int threads = 4
@@ -559,7 +570,9 @@ task findDownsampleParamsMarkDup {
     parameter_meta {
 	outputFileNamePrefix: "Prefix for output file"
 	inputReads: "Number of reads in input bamFile"
-	chromosome: "Chromosome identifier for downsampled subset"
+	chromosomes: "Array of chromosome identifiers for downsampled subset"
+	baseInterval: "Base width of interval in each chromosome, for BAMs with > 1 billion reads"
+	intervalStart: "Start of interval in each chromosome, for BAMs with > 1 billion reads"
 	modules: "required environment modules"
 	jobMemory: "Memory allocated for this job"
 	threads: "Requested CPU threads"
@@ -568,32 +581,35 @@ task findDownsampleParamsMarkDup {
 
     String outputStatus = "~{outputFileNamePrefix}_status.txt"
     String outputRegion = "~{outputFileNamePrefix}_region.txt"
+    File chromosomesText = write_lines(chromosomes)
 
     command <<<
         python3 <<CODE
         readsIn = ~{inputReads}
-        chromosome = "~{chromosome}"
+        interval = ~{baseInterval}
+        start = ~{intervalStart} + 1 # start of sub-chromosome window, if needed; exclude telomeres
+        chromosomes = [line.strip() for line in open("~{chromosomesText}").readlines()]
         ds = True
-        start = 10**6 + 1 # start of sub-chromosome window, if needed; excludes telomeres
         end = None # end of window, if needed
         if readsIn <= 10**7:
             ds = False # no downsampling
         elif readsIn <= 10**8:
-            pass # chr1 ~ 8% of genome
+            pass # chr12 + chr13 =~ 8% of genome
         elif readsIn <= 10**9:
-            end = start + 25*10**6 - 1 # 25 million base window ~ 0.8% of genome
+            end = start + interval*10**3 - 1 # default 2*15 million base window ~ 1% of genome
         elif readsIn <= 10**10:
-            end = start + 25*10**5 - 1 # 2.5 million base window ~ 0.08% of genome
+            end = start + interval*10**2 - 1
         elif readsIn <= 10**11:
-            end = start + 25*10**4 - 1 # 0.25 million base window ~ 0.008% of genome
+            end = start + interval*10 - 1
         else:
-            end = start + 25*10**3 - 1 # 25000 base window ~ 0.0008% of genome
+            end = start + interval - 1
         if ds:
             status = "true"
             if end == None:
-                region = chromosome
+                region = " ".join(chromosomes)
             else:
-                region = "%s:%i-%i" % (chromosome, start, end)
+                regions = ["%s:%i-%i" % (chromosome, start, end) for chromosome in chromosomes ]
+                region = " ".join(regions)
         else:
             status = "false"
             region = ""
