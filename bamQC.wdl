@@ -537,30 +537,20 @@ task findDownsampleParams {
 
 task findDownsampleParamsMarkDup {
 
-    # downsampling parameters for MarkDuplicates
+    # downsampling parameters for MarkDuplicates; see filter_downsample.md for details
     # choose a region of the genome instead of using random selection
-    # number of reads downsampled is not exact; depends on coverage of chosen sub-region.
 
-    # we use chromosomes 12 & 13 by default
-    # these appear in all OICR targeted sequencing panels as of 2020-03-10
-    # See https://bitbucket.oicr.on.ca/projects/GSI/repos/interval-files/browse
-    # chromosomes are a configurable parameter
-    # default chromosomes also appear as Roman numerals, because UCSC_sacCer3 saw fit to use them
-    # see filter_downsample.md for details
-
-    # downsampling params chosen so at least ~1M reads are kept if available
-    # empirically, about 100000 reads is sufficient to find duplicates
-    # but computationally, we can afford to use more, so we do
     # a BAM file is *very* approximately 10M reads per GB
     # Current merged BAM files are unlikely to exceed 10**9 reads; but we scale up higher just in case
-    # scaling behaviour can be customised by modifying "start", "chromsomes" and "baseInterval" params
 
     input {
 	String outputFileNamePrefix
 	Int inputReads
+	Int threshold = 10000000
 	Array[String] chromosomes = ["chr12", "chr13", "chrXII", "chrXIII"]
 	Int baseInterval = 15000
 	Int intervalStart = 100000
+	String customRegions = ""
 	String modules = "python/3.6"
 	Int jobMemory = 16
 	Int threads = 4
@@ -570,9 +560,11 @@ task findDownsampleParamsMarkDup {
     parameter_meta {
 	outputFileNamePrefix: "Prefix for output file"
 	inputReads: "Number of reads in input bamFile"
+	threshold: "Minimum number of reads to conduct downsampling"
 	chromosomes: "Array of chromosome identifiers for downsampled subset"
-	baseInterval: "Base width of interval in each chromosome, for BAMs with > 1 billion reads"
-	intervalStart: "Start of interval in each chromosome, for BAMs with > 1 billion reads"
+	baseInterval: "Base width of interval in each chromosome, for very large BAMs"
+	intervalStart: "Start of interval in each chromosome, for very large BAMs"
+	customRegions: "Custom downsample regions; overrides chromosome and interval parameters"
 	modules: "required environment modules"
 	jobMemory: "Memory allocated for this job"
 	threads: "Requested CPU threads"
@@ -586,26 +578,30 @@ task findDownsampleParamsMarkDup {
     command <<<
         python3 <<CODE
         readsIn = ~{inputReads}
+        threshold = ~{threshold}
         interval = ~{baseInterval}
         start = ~{intervalStart} + 1 # start of sub-chromosome window, if needed; exclude telomeres
         chromosomes = [line.strip() for line in open("~{chromosomesText}").readlines()]
-        ds = True
+        customRegions = "~{customRegions}" # overrides other chromosome/interval parameters
+        ds = True # True if downsampling, false otherwise
         end = None # end of window, if needed
-        if readsIn <= 10**7:
+        if readsIn <= threshold:
             ds = False # no downsampling
-        elif readsIn <= 10**8:
-            pass # chr12 + chr13 =~ 8% of genome
-        elif readsIn <= 10**9:
+        elif readsIn <= threshold*10:
+            pass # default to chr12 & chr13 =~ 8% of genome
+        elif readsIn <= threshold*10**2:
             end = start + interval*10**3 - 1 # default 2*15 million base window ~ 1% of genome
-        elif readsIn <= 10**10:
+        elif readsIn <= threshold*10**3:
             end = start + interval*10**2 - 1
-        elif readsIn <= 10**11:
+        elif readsIn <= threshold*10**4:
             end = start + interval*10 - 1
         else:
             end = start + interval - 1
         if ds:
             status = "true"
-            if end == None:
+            if customRegions:
+                region = customRegions
+            elif end == None:
                 region = " ".join(chromosomes)
             else:
                 regions = ["%s:%i-%i" % (chromosome, start, end) for chromosome in chromosomes ]

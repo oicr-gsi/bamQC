@@ -20,32 +20,82 @@ We remove the following undesirable read types:
 
 Totals of non-primary, unmapped, and low-quality reads are recorded in workflow output. The excluded reads are not used for subsequent QC metric computation.
 
-## Downsampling: MarkDuplicates
+## Regional Downsampling: MarkDuplicates
 
-MarkDuplicates is not amenable to random downsampling. This is because the number of duplicate pairs retained scales as the square of the downsampled fraction. (Recall that read pairing is always preserved by downsampling; a "duplicate pair" is a pair of paired reads.)
+### Motivation
+
+MarkDuplicates is not amenable to random downsampling. This is because the number of duplicate pairs retained scales as the square of the randomly downsampled fraction. (Recall that read pairing is always preserved by downsampling; a "duplicate pair" is a pair of paired reads.)
 
 For example, suppose we have a BAM file with 250 million reads and a 10% duplicate rate, giving 25 million duplicates. We downsample to 1 million reads, retaining `1/250` of the original input. So the probability of downsampling *both* members of a duplicate is `(1/250)*(1/250) = 1/62500`, and the downsampled set has approximately 400 duplicate pairs. But because of the random nature of this process, the number sampled may be significantly larger or smaller. In empirical tests, naively scaling up from a sample of `1/62500` has given results at least 25% off the true value.
 
-To obtain a more robust estimate, we use samtools to downsample reads aligned to a specific region of the human genome reference. Since both members of a duplicate should be aligned to the same locus, this method preserves duplicate pairs roughly in proportion to the fraction downsampled. (In fact there will be some variation as duplicates are not evenly distributed across the genome, but the result is still more robust than random downsampling.)
+To obtain a more robust estimate, we use samtools to downsample reads aligned to a specific region of the human genome. Since both members of a duplicate should be aligned to the same locus, this method preserves duplicate pairs roughly in proportion to the fraction downsampled. In fact there will be some variation as duplicates are not evenly distributed across the genome, but the result is still more robust than random downsampling.
 
-We apply downsampling for MarkDuplicates by choosing some or all of chromosome 1, which comprises about 8% of the human genome. The number of reads downsampled is not exact, as it depends on the coverage of our chosen region. Thresholds have been chosen to retain roughly between 1 million and 10 million reads. The lower end of this range is large enough for an informative sample of duplicate metrics; the upper end is small enough for MarkDuplicates to be run quickly without excessive memory usage.
+The number of reads downsampled by this method cannot be exactly predicted, as it depends on coverage of the chosen sub-region.
 
-### Downsampling MarkDuplicates thresholds
+### Parameters
 
-| Total input reads  | Downsample range         | Approx. fraction of genome |
-| -------------------|--------------------------|----------------------------|
-| <= 10<sup>7</sup>  | None                     | All                        |
-| <= 10<sup>8</sup>  | chr1                     | 1/12                       |
-| <= 10<sup>9</sup>  | chr1, 25 Mbase window    | 1/124                      |
-| <= 10<sup>10</sup> | chr1, 2.5 Mbase window   | 1/1240                     |
-| <= 10<sup>11</sup> | chr1, 0.25 Mbase window  | 1/12405                    |
-| > 10<sup>11</sup>  | chr1, 0.025 Mbase window | 1/124049                   |
+Downsampling is applied to specific chromosomes; and for very large files, to specific intervals within each chromosome. The chromosome and interval settings may be customised if needed.
 
-### TODO: Targeted sequencing
+#### WDL parameters
 
-For targeted sequencing which excludes chromosome 1, the above method will not work. See the relevant [Github issue](https://github.com/oicr-gsi/bam-qc/issues/13) for details.
+WDL parameters for downsampling are:
 
-## Downsampling: Other
+- `threshold`: Minimum number of reads for downsampling. Defaults to 10 million.
+- `chromosomes`: Array of chromosome names for downsampling. Defaults to `["chr12", "chr13"]`
+- `baseInterval`: Base width of interval for downsampling. Defaults to 15000.
+- `intervalStart`: Start of downsampling interval on each chromosome. Defaults to 100000.
+- `customRegions`: Custom downsampling regions. Format is string input to samtools, eg. `chr1:1-1000000 chr2:10001-20000`. Defaults to the empty string `""`. If set to a value other than `""`, this will override the `chromosomes`, `baseInterval`, and `intervalStart` parameters.
+
+#### Custom regions
+
+If the `customRegions` parameter is in effect, downsampling is very simple. If the number of reads is greater than `threshold`, reads are downsampled to the intervals specified in `customRegions`; otherwise, no downsampling is done.
+
+#### Interval construction
+
+The following section only applies if `customRegions` is *not* in effect.
+
+Let `R` be the number of reads and `T` be the minimum threshold for downsampling.
+
+- If `R <= T`, no downsampling takes place.
+- If `T < R <= 10T`, the entire sequence of the chromosomes specified in `chromosomes` is used for downsampling.
+- If `10T < R <= 100T`, the same interval is used within each chromosome. The interval begins at `intervalStart + 1` and ends at `intervalStart + baseInterval*1000`.
+- For larger values of R, the interval width is scaled down as shown in the table.
+
+| Input reads (R) vs. threshold (T)      | Width wrt base (B)  | Downsampling |
+| ---------------------------------------|---------------------|--------------|
+| R <= T                                 | None                | No           |
+| T < R <= 10T                           | (Entire chromosome) | Yes          |
+| 10T < R <= 10<sup>2</sup>T             | Bx10<sup>3</sup>    | Yes          |
+| 10<sup>2</sup>T < R <= 10<sup>3</sup>T | Bx10<sup>2</sup>    | Yes          |
+| 10<sup>3</sup>T < R <= 10<sup>4</sup>T | Bx10                | Yes          |
+| R > 10<sup>4</sup>T                    | B                   | Yes          |
+
+With the default interval values `T=10000000` and `B=15000`, and default chromosomes, we have:
+
+| Input reads (R)                        | DS chromosomes | Interval width      |
+| ---------------------------------------|----------------|---------------------|
+| R <= 10<sup>7</sup>                    | None           | None                |
+| 10<sup>7</sup> < R <= 10<sup>8</sup>   | chr12 & chr13  | (Entire chromosome) |
+| 10<sup>8</sup> < R <= 10<sup>9</sup>   | chr12 & chr13  | 1.5x10<sup>7</sup>  |
+| 10<sup>9</sup> < R <= 10<sup>10</sup>  | chr12 & chr13  | 1.5x10<sup>6</sup>  |
+| 10<sup>10</sup> < R <= 10<sup>11</sup> | chr12 & chr13  | 1.5x10<sup>5</sup>  |
+| R > 10<sup>11</sup>                    | chr12 & chr13  | 1.5x10<sup>4</sup>  |
+
+The default parameters were chosen so that, when downsampling a whole-genome BAM file, the downsampled set is roughly between 1 million and 10 million reads. Empirically, this size range has been large enough to give a reasonably accurate sample, but small enough for Picard MarkDuplicates to be tractable. (Note that the default chromosomes 12 and 13 together are approximately 8% of the human genome.)
+
+#### Parameters for targeted libraries
+
+We downsample reads aligned to chromosomes 12 and 13, because they appear in all targeted sequencing panels in use at OICR as of 2020-03-10. For an up-to-date list of panels, see the [interval-files repository](https://bitbucket.oicr.on.ca/projects/GSI/repos/interval-files/browse).
+
+We also need to consider what fraction of the targets falls within the targeted interval. Consider three example scenarios:
+
+1. *Too few reads*: None of the targeted regions fall within the downsampled chromosomes. The downsampled set contains no reads of interest, so analysis fails.
+2. *About enough reads*: Approximately 10% of the target regions fall within the downsampled chromosomes. Downsampling behaves roughly as on a whole-genome sample.
+3. *Too many reads*: All of the targeted regions fall within the downsampled chromosomes. The downsampled set is roughly 10 times larger than for a whole-genome sample. This may be acceptable; but could cause problems if the downsampled set is too large for Picard MarkDuplicates to be run efficiently.
+
+We need to choose a suitable *depth* and *range* of downsampling for a targeted library. This is done respectively by setting the `threshold` parameter; and setting either `customRegions` or the chromosome and interval parameters. For example, the "too many reads" scenario above can be addressed by reducing the threshold for downsampling.
+
+## Random Downsampling: Other Metrics
 
 For "slow" computationally intensive metrics other than MarkDuplicates, we downsample by choosing a subset of reads at random. "Fast" metrics do not require downsampling, and are always computed on the full-sized filtered input.
 
