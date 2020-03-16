@@ -435,6 +435,7 @@ task findDownsampleParams {
 	Int targetReads = 100000
 	Int minReadsAbsolute = 10000
 	Int minReadsRelative = 2
+	Int precision = 8
 	Float preDSMultiplier = 1.5
 	String modules = "python/3.6"
 	Int jobMemory = 16
@@ -451,6 +452,7 @@ task findDownsampleParams {
 	targetReads: "Desired number of reads in downsampled output"
 	minReadsAbsolute: "Minimum value of targetReads to allow pre-downsampling"
 	minReadsRelative: "Minimum value of (inputReads)/(targetReads) to allow pre-downsampling"
+	precision: "Number of decimal places in fraction for pre-downsampling"
 	preDSMultiplier: "Determines target size for pre-downsampled set (if any). Must have (preDSMultiplier) < (minReadsRelative)."
 	modules: "required environment modules"
 	jobMemory: "Memory allocated for this job"
@@ -472,6 +474,7 @@ task findDownsampleParams {
         import json, math, sys
         readsIn = ~{inputReads}
         readsTarget = ~{targetReads}
+	precision = ~{precision}
         print("Input reads param =", readsIn, file=sys.stderr)
         print("Target reads param =", readsTarget, file=sys.stderr)
         minReadsAbsolute = ~{minReadsAbsolute}
@@ -494,7 +497,6 @@ task findDownsampleParams {
           applyPreDownsample = True
           applyDownsample = True
           probability = (readsTarget * preDownsampleMultiplier)/readsIn
-          precision = 6 # number of decimal places to keep
           formatString = "{:0"+str(precision)+"d}"
           preDownsampleTarget = formatString.format(int(math.floor(probability * 10**precision)))
           downSampleTarget = str(readsTarget)
