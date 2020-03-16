@@ -44,7 +44,7 @@ WDL parameters for downsampling are:
 - `chromosomes`: Array of chromosome names for downsampling. Defaults to `["chr12", "chr13"]`
 - `baseInterval`: Base width of interval for downsampling. Defaults to 15000.
 - `intervalStart`: Start of downsampling interval on each chromosome. Defaults to 100000.
-- `customRegions`: Custom downsampling regions. Format is string input to samtools, eg. `chr1:1-1000000 chr2:10001-20000`. Defaults to the empty string `""`. If set to a value other than `""`, this will override the `chromosomes`, `baseInterval`, and `intervalStart` parameters.
+- `customRegions`: Custom downsampling regions. Format is string input to samtools, eg. `chr1:1-1000000 chr2:10001-20000`. Defaults to the empty string `""`. If set to a value other than `""`, this will **override** the `chromosomes`, `baseInterval`, and `intervalStart` parameters.
 
 #### Custom regions
 
@@ -52,7 +52,7 @@ If the `customRegions` parameter is in effect, downsampling is very simple. If t
 
 #### Interval construction
 
-The following section only applies if `customRegions` is *not* in effect.
+The following only applies if `customRegions` is *not* in effect.
 
 Let `R` be the number of reads and `T` be the minimum threshold for downsampling.
 
@@ -65,9 +65,9 @@ Let `R` be the number of reads and `T` be the minimum threshold for downsampling
 | ---------------------------------------|---------------------|--------------|
 | R <= T                                 | None                | No           |
 | T < R <= 10T                           | (Entire chromosome) | Yes          |
-| 10T < R <= 10<sup>2</sup>T             | Bx10<sup>3</sup>    | Yes          |
-| 10<sup>2</sup>T < R <= 10<sup>3</sup>T | Bx10<sup>2</sup>    | Yes          |
-| 10<sup>3</sup>T < R <= 10<sup>4</sup>T | Bx10                | Yes          |
+| 10T < R <= 10<sup>2</sup>T             | 10<sup>3</sup>B     | Yes          |
+| 10<sup>2</sup>T < R <= 10<sup>3</sup>T | 10<sup>2</sup>B     | Yes          |
+| 10<sup>3</sup>T < R <= 10<sup>4</sup>T | 10B                 | Yes          |
 | R > 10<sup>4</sup>T                    | B                   | Yes          |
 
 With the default interval values `T=10000000` and `B=15000`, and default chromosomes, we have:
@@ -85,7 +85,7 @@ The default parameters were chosen so that, when downsampling a whole-genome BAM
 
 #### Parameters for targeted libraries
 
-We downsample reads aligned to chromosomes 12 and 13, because they appear in all targeted sequencing panels in use at OICR as of 2020-03-10. For an up-to-date list of panels, see the [interval-files repository](https://bitbucket.oicr.on.ca/projects/GSI/repos/interval-files/browse).
+By default we downsample reads aligned to chromosomes 12 and 13, because they appear in all targeted sequencing panels in use at OICR as of 2020-03-10. For an up-to-date list of panels, see the [interval-files repository](https://bitbucket.oicr.on.ca/projects/GSI/repos/interval-files/browse).
 
 We also need to consider what fraction of the targets falls within the targeted interval. Consider three example scenarios:
 

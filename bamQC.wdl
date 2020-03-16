@@ -599,7 +599,7 @@ task findDownsampleParamsMarkDup {
             end = start + interval - 1
         if ds:
             status = "true"
-            if customRegions:
+            if customRegions != "":
                 region = customRegions
             elif end == None:
                 region = " ".join(chromosomes)
