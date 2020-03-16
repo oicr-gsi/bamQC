@@ -57,6 +57,7 @@
 		    "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
 		    "bamQC.bamFile": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam",
 		    "bamQC.findDownsampleParams.targetReads": 100000,
+		    "bamQC.findDownsampleParamsMarkDup.threshold": 100000,
 		    "bamQC.metadata": {
 			"donor": "Xenomorph",
 			"group id": "Weyland-Yutani",
