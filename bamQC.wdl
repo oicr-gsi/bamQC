@@ -474,7 +474,7 @@ task findDownsampleParams {
         import json, math, sys
         readsIn = ~{inputReads}
         readsTarget = ~{targetReads}
-	precision = ~{precision}
+        precision = ~{precision}
         print("Input reads param =", readsIn, file=sys.stderr)
         print("Target reads param =", readsTarget, file=sys.stderr)
         minReadsAbsolute = ~{minReadsAbsolute}
