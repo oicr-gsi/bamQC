@@ -61,7 +61,7 @@ workflow bamQC {
     }
 
     if (dsMarkDup) {
-	call downsampleChromosome {
+	call downsampleRegion {
 	    input:
 	    bamFile = filter.filteredBam,
 	    outputFileNamePrefix = outputFileNamePrefix,
@@ -69,12 +69,11 @@ workflow bamQC {
 	}
     }
 
+    Array[File?] markDupInputs = [downsampleRegion.result, filter.filteredBam]
     call markDuplicates {
 	input:
-	bamFile = filter.filteredBam,
-	outputFileNamePrefix = outputFileNamePrefix,
-	downsampled = dsMarkDup,
-	bamFileDownsampled = downsampleChromosome.result
+	bamFile = select_first(markDupInputs),
+	outputFileNamePrefix = outputFileNamePrefix
     }
 
     call bamQCMetrics {
@@ -305,7 +304,7 @@ task downsample {
 
 }
 
-task downsampleChromosome {
+task downsampleRegion {
 
     # downsample a specific chromosomal region for MarkDuplicates
     # this keeps a proportionate level of duplicates in the downsampled data
@@ -320,7 +319,7 @@ task downsampleChromosome {
 	Int timeout = 4
     }
 
-    String resultName = "~{outputFileNamePrefix}.downsampledChromosome.bam"
+    String resultName = "~{outputFileNamePrefix}.downsampledRegion.bam"
 
     # need to index the (filtered) BAM file before viewing a specific chromosome
 
@@ -638,8 +637,6 @@ task markDuplicates {
     input {
 	File bamFile
 	String outputFileNamePrefix
-	Boolean downsampled
-	File? bamFileDownsampled
 	Int opticalDuplicatePixelDistance=100
 	Int picardMaxMemMb=6000
 	String modules = "picard/2.21.2"
@@ -653,10 +650,8 @@ task markDuplicates {
     parameter_meta {
 	bamFile: "Input BAM file, after filtering and downsampling (if any)"
 	outputFileNamePrefix: "Prefix for output file"
-	downsampled: "True if downsampling has been applied"
 	opticalDuplicatePixelDistance: "Maximum offset between optical duplicate clusters"
 	picardMaxMemMb: "Memory requirement in MB for running Picard JAR"
-	bamFileDownsampled: "(Optional) downsampled subset of reads from bamFile"
 	modules: "required environment modules"
 	jobMemory: "Memory allocated for this job"
 	threads: "Requested CPU threads"
@@ -666,13 +661,11 @@ task markDuplicates {
     String outFileBam = "~{outputFileNamePrefix}.markDuplicates.bam"
     String outFileText = "~{outputFileNamePrefix}.markDuplicates.txt"
 
-    File inputBam = if downsampled then bamFileDownsampled else bamFile
-
     command <<<
 	java -Xmx~{picardMaxMemMb}M \
 	-jar ${PICARD_ROOT}/picard.jar \
 	MarkDuplicates \
-	INPUT=~{inputBam} \
+	INPUT=~{bamFile} \
 	OUTPUT=~{outFileBam} \
 	VALIDATION_STRINGENCY=SILENT \
 	TMP_DIR=${PWD} \
