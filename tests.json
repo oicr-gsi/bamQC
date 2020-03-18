@@ -1,0 +1,95 @@
+{
+  "defaults": {
+    "description": "bamQC workflow test",
+    "metrics_calculate": "calculate.sh",
+    "metrics_compare": "compare.sh",
+    "output_metrics_dir": "/.mounts/labs/gsi/testdata/bamqc/output_expectation",
+    "parameters": {
+          "wdl_options": {
+            "write_to_cache": false,
+            "read_from_cache": false
+           }
+         }
+  },
+    "tests": [
+	{
+	    "id": "bamQC_test_with_downsample",
+	    "parameters": {
+		"wdl_inputs": {
+		    "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
+		    "bamQC.bamFile": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_with_downsample/neat_5x_EX_hg19_chr21.bam",
+		    "bamQC.findDownsampleParams.targetReads": 20000,
+		    "bamQC.metadata": {
+			"donor": "Xenomorph",
+			"group id": "Weyland-Yutani",
+			"library design": "WY-1001",
+			"tissue origin": "LV-426",
+			"tissue type": "Claw fragment"
+		    },
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		}
+	    }
+	},
+	{
+	    "id": "bamQC_test_without_downsample",
+	    "parameters": {
+		"wdl_inputs": {
+		    "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
+		    "bamQC.bamFile": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_without_downsample/neat_5x_EX_hg19_chr21.bam",
+		    "bamQC.findDownsampleParams.targetReads": 100000,
+		    "bamQC.metadata": {
+			"donor": "Xenomorph",
+			"group id": "Weyland-Yutani",
+			"library design": "WY-1001",
+			"tissue origin": "LV-426",
+			"tissue type": "Claw fragment"
+		    },
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		}
+	    }
+	},
+	{
+	    "id": "bamQC_test_CRE",
+	    "parameters": {
+		"wdl_inputs": {
+		    "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
+		    "bamQC.bamFile": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam",
+		    "bamQC.findDownsampleParams.targetReads": 100000,
+		    "bamQC.findDownsampleParamsMarkDup.threshold": 100000,
+		    "bamQC.metadata": {
+			"donor": "Xenomorph",
+			"group id": "Weyland-Yutani",
+			"library design": "WY-1001",
+			"tissue origin": "LV-426",
+			"tissue type": "Claw fragment"
+		    },
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		}
+	    }
+	},
+	{
+	    "id": "bamQC_test_CRE_custom",
+	    "parameters": {
+		"wdl_inputs": {
+		    "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
+		    "bamQC.bamFile": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam",
+		    "bamQC.findDownsampleParams.targetReads": 100000,
+		    "bamQC.findDownsampleParamsMarkDup.threshold": 100000,
+		    "bamQC.findDownsampleParamsMarkDup.customRegions": "chr1:100000001-200000000 chr2:100000001-200000000",
+		    "bamQC.metadata": {
+			"donor": "Xenomorph",
+			"group id": "Weyland-Yutani",
+			"library design": "WY-1001",
+			"tissue origin": "LV-426",
+			"tissue type": "Claw fragment"
+		    },
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		}
+	    }
+	}
+    ]
+}
