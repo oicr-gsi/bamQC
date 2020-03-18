@@ -42,7 +42,7 @@ We combine two ways of downsampling with samtools.
 
 #### Approximate downsampling
 
-This is done using `samtools view -s $FOO.$BAR`, where `$FOO` is a random seed and `$BAR` is a decimal expressing the probability of retaining a read. For example, to sample reads with a probability of 0.05 and random seed 99, use `samtools view -s 99.05`.
+This is done using `samtools view -s $SEED.$PROB`, where `$SEED` is a random seed and `$PROB` is a decimal expressing the probability of retaining a read. For example, to sample reads with a probability of 0.05 and random seed 99, use `samtools view -s 99.05`.
 
 This method is very fast. Because it is probabilistic in nature, it does not sample an exact number of reads. Given 1 million reads and a sampling parameter of 0.05, it will iterate over the reads one by one, with a 0.05 probability of keeping each read. This will retain approximately 50000 reads, but the final total could plausibly be 49993 or 50010.
 

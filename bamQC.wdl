@@ -508,10 +508,10 @@ task findDownsampleParams {
           "ds": downSampleTarget
         }
         statusFile = open("~{statusFile}", "w")
-        print(json.dumps(status), file=statusFile)
+        json.dump(status, statusFile)
         statusFile.close()
         targetFile = open("~{targetsFile}", "w")
-        print(json.dumps(targets), file=targetFile)
+        json.dump(targets, targetFile)
         targetFile.close()
         CODE
     >>>
@@ -741,7 +741,7 @@ task updateMetadata {
         metadata["unmapped reads meta"] = ~{unmappedReads}
         metadata["low-quality reads meta"] = ~{lowQualityReads}
         outFile = open("~{outFileName}", "w")
-        print(json.dumps(metadata), file=outFile)
+        json.dump(metadata, outFile)
         outFile.close()
         CODE
     >>>
