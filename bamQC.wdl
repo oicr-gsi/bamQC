@@ -406,11 +406,12 @@ task filter {
 	timeout: "~{timeout}"
     }
 
+    # record read totals as String, not Int, to avoid integer overflow error
     output {
-	Int totalInputReads = read_int("~{totalInputReadsFile}")
-	Int nonPrimaryReads = read_int("~{totalNonPrimaryReadsFile}")
-	Int unmappedReads = read_int("~{totalUnmappedReadsFile}")
-	Int lowQualityReads = read_int("~{totalLowQualityReadsFile}")
+	String totalInputReads = read_string("~{totalInputReadsFile}")
+	String nonPrimaryReads = read_string("~{totalNonPrimaryReadsFile}")
+	String unmappedReads = read_string("~{totalUnmappedReadsFile}")
+	String lowQualityReads = read_string("~{totalLowQualityReadsFile}")
 	File filteredBam = "~{resultName}"
     }
 
@@ -699,10 +700,10 @@ task updateMetadata {
     input {
 	Map[String, String] metadata
 	String outputFileNamePrefix
-	Int totalInputReads
-	Int nonPrimaryReads
-	Int unmappedReads
-	Int lowQualityReads
+	String totalInputReads
+	String nonPrimaryReads
+	String unmappedReads
+	String lowQualityReads
 	String modules = "python/3.6"
 	Int jobMemory = 16
 	Int threads = 4
@@ -731,6 +732,9 @@ task updateMetadata {
 
     File metadataJson = write_json(metadata)
     String outFileName = "~{outputFileNamePrefix}.updated_metadata.json"
+
+    # Read totals are Strings in WDL to avoid integer overflow in Cromwell
+    # Python3 can handle arbitrarily large integers
 
     command <<<
         python3 <<CODE

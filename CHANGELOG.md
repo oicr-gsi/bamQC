@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 4.0.1 - 2020-04-24
+- [GP-2353](https://jira.oicr.on.ca/browse/GP-2353) - Fix integer overflow error in Cromwell
 ## 4.0.0 - 2020-03-18
 - [GP-2123](https://jira.oicr.on.ca/browse/GP-2123) - WDL workflow for bamQC
 - Remove decider and convert previous Niassa workflow to Niassa-WDL
