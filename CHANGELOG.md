@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 4.0.2 - 2020-05-07
+- [GP-2374](https://jira.oicr.on.ca/browse/GP-2374) - Fix another integer overflow error
+- Update README.md with `gsi-wdl-tools`
 ## 4.0.1 - 2020-04-24
 - [GP-2353](https://jira.oicr.on.ca/browse/GP-2353) - Fix integer overflow error in Cromwell
 ## 4.0.0 - 2020-03-18

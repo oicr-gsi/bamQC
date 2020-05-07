@@ -219,7 +219,7 @@ task countInputReads {
     >>>
     
     output {
-	Int result = read_int(stdout())
+	String result = read_string(stdout())
     }
 
     meta {
@@ -317,6 +317,16 @@ task downsampleRegion {
 	Int jobMemory = 16
 	Int threads = 4
 	Int timeout = 4
+    }
+
+    parameter_meta {
+	bamFile: "Input BAM file"
+	outputFileNamePrefix: "Prefix for output file"
+	region: "Region argument for samtools"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
     }
 
     String resultName = "~{outputFileNamePrefix}.downsampledRegion.bam"
@@ -431,7 +441,7 @@ task findDownsampleParams {
 
     input {
 	String outputFileNamePrefix
-	Int inputReads
+	String inputReads
 	Int targetReads = 100000
 	Int minReadsAbsolute = 10000
 	Int minReadsRelative = 2
@@ -448,7 +458,7 @@ task findDownsampleParams {
 
     parameter_meta {
 	outputFileNamePrefix: "Prefix for output file"
-	inputReads: "Number of reads in input bamFile"
+	inputReads: "Number of reads in input bamFile (represented as string to avoid integer overflow)"
 	targetReads: "Desired number of reads in downsampled output"
 	minReadsAbsolute: "Minimum value of targetReads to allow pre-downsampling"
 	minReadsRelative: "Minimum value of (inputReads)/(targetReads) to allow pre-downsampling"
@@ -547,7 +557,7 @@ task findDownsampleParamsMarkDup {
 
     input {
 	String outputFileNamePrefix
-	Int inputReads
+	String inputReads
 	Int threshold = 10000000
 	Array[String] chromosomes = ["chr12", "chr13", "chrXII", "chrXIII"]
 	Int baseInterval = 15000
