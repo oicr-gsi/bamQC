@@ -6,7 +6,8 @@ QC metrics for BAM files
 
 bamQC runs Picard MarkDuplicates and GSI bam-qc-metrics on the input BAM file. See `bamqc_wdl.png` for workflow structure.
 
-Filtering is applied to non-primary alignments, unmapped reads, and low-quality reads to exclude them from QC. For large input files, downsampling is applied separately for MarkDuplicates and bam-qc-metrics. See `filter_downsample.md` for details.
+Filtering is applied to non-primary alignments, unmapped reads, and low-quality reads to exclude them from QC. For large input
+files, downsampling is applied separately for MarkDuplicates and bam-qc-metrics. See `filter_downsample.md` for details.
 
 ## Dependencies
 
@@ -30,6 +31,9 @@ Parameter|Value|Description
 ---|---|---
 `bamFile`|File|Input BAM file on which to compute QC metrics
 `metadata`|Map[String,String]|JSON file containing metadata
+`bamQCMetrics.refFasta`|String|Path to human genome FASTA reference
+`bamQCMetrics.refSizesBed`|String|Path to human genome BED reference with chromosome sizes
+`bamQCMetrics.workflowVersion`|String|Workflow version string
 
 
 #### Optional workflow parameters:
@@ -78,19 +82,16 @@ Parameter|Value|Default|Description
 `downsample.jobMemory`|Int|16|Memory allocated for this job
 `downsample.threads`|Int|4|Requested CPU threads
 `downsample.timeout`|Int|4|hours before task timeout
-`downsampleRegion.modules`|String|"samtools/1.9"|
-`downsampleRegion.jobMemory`|Int|16|
-`downsampleRegion.threads`|Int|4|
-`downsampleRegion.timeout`|Int|4|
+`downsampleRegion.modules`|String|"samtools/1.9"|required environment modules
+`downsampleRegion.jobMemory`|Int|16|Memory allocated for this job
+`downsampleRegion.threads`|Int|4|Requested CPU threads
+`downsampleRegion.timeout`|Int|4|hours before task timeout
 `markDuplicates.opticalDuplicatePixelDistance`|Int|100|Maximum offset between optical duplicate clusters
 `markDuplicates.picardMaxMemMb`|Int|6000|Memory requirement in MB for running Picard JAR
 `markDuplicates.modules`|String|"picard/2.21.2"|required environment modules
 `markDuplicates.jobMemory`|Int|16|Memory allocated for this job
 `markDuplicates.threads`|Int|4|Requested CPU threads
 `markDuplicates.timeout`|Int|4|hours before task timeout
-`bamQCMetrics.refFasta`|String|None|Path to human genome FASTA reference
-`bamQCMetrics.refSizesBed`|String|None|Path to human genome BED reference with chromosome sizes
-`bamQCMetrics.workflowVersion`|String|None|Workflow version string
 `bamQCMetrics.normalInsertMax`|Int|1500|Maximum of expected insert size range
 `bamQCMetrics.modules`|String|"bam-qc-metrics/0.2.5"|required environment modules
 `bamQCMetrics.jobMemory`|Int|16|Memory allocated for this job
@@ -133,4 +134,4 @@ mvn clean verify \
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 
-_Generated with wdl_doc_gen (https://github.com/oicr-gsi/wdl_doc_gen/)_
+_Generated with generate-markdown-readme (https://github.com/oicr-gsi/gsi-wdl-tools/)_
