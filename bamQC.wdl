@@ -35,6 +35,11 @@ workflow bamQC {
 	bamFile = filter.filteredBam,
     }
 
+    call indexBamFile {
+	input:
+	bamFile = filter.filteredBam,
+    }
+
     call findDownsampleParams {
 	input:
 	outputFileNamePrefix = outputFileNamePrefix,
@@ -64,6 +69,7 @@ workflow bamQC {
 	call downsampleRegion {
 	    input:
 	    bamFile = filter.filteredBam,
+	    bamIndex = indexBamFile.index,
 	    outputFileNamePrefix = outputFileNamePrefix,
 	    region = findDownsampleParamsMarkDup.region
 	}
@@ -86,6 +92,18 @@ workflow bamQC {
 	bamFileDownsampled = downsample.result
     }
 
+    call runMosdepth {
+	input:
+	bamFile = filter.filteredBam,
+	bamIndex = indexBamFile.index
+    }
+
+    # TODO use mosdepth result and result of countInputReads
+    # write a JSON histogram with inline Python
+    # add to bamQCMetrics result in a separate task, with inline Python
+    
+}
+    
     output {
 	File result = bamQCMetrics.result
     }
@@ -200,7 +218,7 @@ task countInputReads {
     }
 
     parameter_meta {
-	bamFile: "Input BAM file of aligned rnaSeqQC data"
+	bamFile: "Input BAM file of aligned data"
 	modules: "required environment modules"
 	jobMemory: "Memory allocated for this job"
 	threads: "Requested CPU threads"
@@ -311,6 +329,7 @@ task downsampleRegion {
 
     input {
 	File bamFile
+	File bamIndex
 	String outputFileNamePrefix
 	String region
 	String modules = "samtools/1.9"
@@ -321,6 +340,7 @@ task downsampleRegion {
 
     parameter_meta {
 	bamFile: "Input BAM file"
+	bamIndex: "BAM index file in BAI format"
 	outputFileNamePrefix: "Prefix for output file"
 	region: "Region argument for samtools"
 	modules: "required environment modules"
@@ -335,7 +355,6 @@ task downsampleRegion {
 
     command <<<
 	set -e
-	samtools index ~{bamFile}
 	samtools view -b -h ~{bamFile} ~{region} > ~{resultName}
     >>>
 
@@ -643,6 +662,50 @@ task findDownsampleParamsMarkDup {
     }
 }
 
+task indexBamFile {
+
+    input {
+	File bamFile
+	String modules = "samtools/1.9"
+	Int jobMemory = 16
+	Int threads = 4
+	Int timeout = 4
+    }
+
+    parameter_meta {
+	bamFile: "Input BAM file of aligned data"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+    String bamName = basename(~{bamFile})
+    String indexName = "~{bamName}.bai"
+    
+    command <<<
+	samtools index ~{bamFile}
+    >>>
+    
+    output {
+	File index = ~{indexName}
+    }
+
+    meta {
+	output_meta: {
+            index: "Index file in BAI format"
+	}
+  }
+
+}
+
 task markDuplicates {
 
     input {
@@ -700,6 +763,50 @@ task markDuplicates {
             result: "Text file with Picard markDuplicates metrics"
 	}
     }
+
+}
+
+task runMosdepth {
+
+    input {
+	File bamFile
+	File bamIndex
+	String modules = "mosdepth/0.2.9"
+	Int jobMemory = 16
+	Int threads = 4
+	Int timeout = 4
+    }
+
+    parameter_meta {
+	bamFile: "Input BAM file of aligned data"
+	bamIndex: "Index file in samtools .bai format"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+    
+    command <<<
+	MOSDEPTH_PRECISION=8 ../mosdepth -x -n -t 3 bamqc ~{bamFile}
+    >>>
+    
+    output {
+	File dist = "bamqc.mosdepth.global.dist.txt"
+    }
+
+    meta {
+	output_meta: {
+            output1: "Number of reads in input BAM file"
+	}
+  }
 
 }
 
