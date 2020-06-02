@@ -258,7 +258,7 @@ task collateResults {
         for key in metadata.keys():
             data[key] = metadata[key]
         out = open("~{outputFileName}", "w")
-        json.dumps(data, out, sort_keys=True)
+        json.dump(data, out, sort_keys=True)
         out.close()
         CODE
     >>>
