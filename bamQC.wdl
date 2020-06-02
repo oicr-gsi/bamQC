@@ -933,7 +933,7 @@ task runMosdepth {
     command <<<
 	set -eo pipefail
 	# run mosdepth
-	MOSDEPTH_PRECISION=8 ../mosdepth -x -n -t 3 bamqc ~{bamFile}
+	MOSDEPTH_PRECISION=8 mosdepth -x -n -t 3 bamqc ~{bamFile}
 	# parse and validate total number of bases from summary file
 	TOTAL=`grep "^total" bamqc.mosdepth.summary.txt | cut -f 3`
 	[[ $TOTAL =~ ^[0-9]+$ ]] || \
