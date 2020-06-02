@@ -87,7 +87,6 @@ workflow bamQC {
 	bamFile = filter.filteredBam,
 	outputFileNamePrefix = outputFileNamePrefix,
 	markDuplicates = markDuplicates.result,
-	metadata = updateMetadata.result,
 	downsampled = ds,
 	bamFileDownsampled = downsample.result
     }
@@ -107,6 +106,7 @@ workflow bamQC {
     call collateResults {
 	input:
 	bamQCMetricsResult = bamQCMetrics.result,
+	metadata = updateMetadata.result,
 	histogram = cumulativeDistToHistogram.histogram,
 	outputFileNamePrefix = outputFileNamePrefix
     }
@@ -151,7 +151,6 @@ task bamQCMetrics {
 	File bamFile
 	String outputFileNamePrefix
 	File markDuplicates
-	File metadata
 	Boolean downsampled
 	File? bamFileDownsampled
 	String refFasta
@@ -167,7 +166,6 @@ task bamQCMetrics {
     parameter_meta {
 	bamFile: "Input BAM file of aligned rnaSeqQC data. Not downsampled; may be filtered."
 	outputFileNamePrefix: "Prefix for output file"
-	metadata: "JSON file containing metadata (including filtered read totals)"
 	markDuplicates: "Text file output from markDuplicates task"
 	downsampled: "True if downsampling has been applied"
 	bamFileDownsampled: "(Optional) downsampled subset of reads from bamFile."
@@ -190,7 +188,6 @@ task bamQCMetrics {
 	-d ~{markDuplicates} \
 	--debug \
 	-i ~{normalInsertMax} \
-	-m ~{metadata} \
 	-o ~{resultName} \
 	-r ~{refFasta} \
 	-t ~{refSizesBed} \
@@ -223,6 +220,7 @@ task collateResults {
     input {
 	File bamQCMetricsResult
 	File histogram
+	File metadata
 	String outputFileNamePrefix
 	String modules = "python/3.6"
 	Int jobMemory = 8
@@ -233,6 +231,7 @@ task collateResults {
     parameter_meta {
 	bamQCMetricsResult: "JSON result file from bamQCMetrics"
 	histogram: "JSON file with coverage histogram"
+	metadata: "JSON file with additional metadata"
 	outputFileNamePrefix: "Prefix for output file"
 	modules: "required environment modules"
 	jobMemory: "Memory allocated for this job"
@@ -249,18 +248,19 @@ task collateResults {
 
     String outputFileName = "~{outputFileNamePrefix}.bamQC.json"
 
-    # TODO use this task to replace metadata input to bam-qc-metrics
-
     command <<<
-	python3 <<CODE
-	import json
-	data = json.loads(open("~{bamQCMetricsResult}").read())
-	histogram = json.loads(open("~{histogram}").read())
-	data["coverage_histogram_fulldepth"] = histogram
-	out = open("~{outputFileName}", "w")
-	json.dumps(data, out, sort_keys=True)
-	out.close()
-	CODE
+        python3 <<CODE
+        import json
+        data = json.loads(open("~{bamQCMetricsResult}").read())
+        histogram = json.loads(open("~{histogram}").read())
+        data["coverage_histogram"] = histogram
+        metadata = json.loads(open("~{bamQCMetricsResult}").read())
+        for key in metadata.keys():
+            data[key] = metadata[key]
+        out = open("~{outputFileName}", "w")
+        json.dumps(data, out, sort_keys=True)
+        out.close()
+        CODE
     >>>
 
     output {
