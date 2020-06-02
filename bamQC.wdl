@@ -32,12 +32,12 @@ workflow bamQC {
 
     call countInputReads {
 	input:
-	bamFile = filter.filteredBam,
+	bamFile = filter.filteredBam
     }
 
     call indexBamFile {
 	input:
-	bamFile = filter.filteredBam,
+	bamFile = filter.filteredBam
     }
 
     call findDownsampleParams {
@@ -98,12 +98,19 @@ workflow bamQC {
 	bamIndex = indexBamFile.index
     }
 
-    # TODO use mosdepth result and result of countInputReads
-    # write a JSON histogram with inline Python
-    # add to bamQCMetrics result in a separate task, with inline Python
-    
-}
-    
+    call cumulativeDistToHistogram {
+	input:
+	globalDist = runMosdepth.globalDist,
+	totalBases = runMosdepth.totalBases
+    }
+
+    call collateResults {
+	input:
+	bamQCMetricsResult = bamQCMetrics.result,
+	histogram = cumulativeDistToHistogram.histogram,
+	outputFileNamePrefix = outputFileNamePrefix
+    }
+
     output {
 	File result = bamQCMetrics.result
     }
@@ -128,6 +135,10 @@ workflow bamQC {
 	{
 	    name: "bam-qc-metrics/0.2.5",
 	    url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
+	},
+	    {
+	    name: "mosdepth/0.2.9",
+	    url: "https://github.com/brentp/mosdepth"
 	}
 	]
     }
@@ -201,10 +212,66 @@ task bamQCMetrics {
 
     meta {
 	output_meta: {
-            output1: "Placeholder text file for BAMQC output; TODO replace with JSON"
+            output1: "JSON file with bam-qc-metrics output"
 	}
   }
 
+}
+
+task collateResults {
+
+    input {
+	File bamQCMetricsResult
+	File histogram
+	String outputFileNamePrefix
+	String modules = "python/3.6"
+	Int jobMemory = 8
+	Int threads = 4
+	Int timeout = 1
+    }
+
+    parameter_meta {
+	bamQCMetricsResult: "JSON result file from bamQCMetrics"
+	histogram: "JSON file with coverage histogram"
+	outputFileNamePrefix: "Prefix for output file"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+    String outputFileName = "~{outputFileNamePrefix}.bamQC.json"
+
+    # TODO use this task to replace metadata input to bam-qc-metrics
+
+    command <<<
+	python3 <<CODE
+	import json
+	data = json.loads(open("~{bamQCMetricsResult}").read())
+	histogram = json.loads(open("~{histogram}").read())
+	data["coverage_histogram_fulldepth"] = histogram
+	out = open("~{outputFileName}", "w")
+	json.dumps(data, out, sort_keys=True)
+	out.close()
+	CODE
+    >>>
+
+    output {
+	File result = "~{outputFileName}"
+    }
+
+    meta {
+	output_meta: {
+            output1: "JSON file of collated results"
+	}
+    }
 }
 
 task countInputReads {
@@ -244,7 +311,77 @@ task countInputReads {
 	output_meta: {
             output1: "Number of reads in input BAM file"
 	}
-  }
+    }
+}
+
+task cumulativeDistToHistogram {
+
+    input {
+	File globalDist
+	String totalBases
+	String modules = "python/3.6"
+	Int jobMemory = 8
+	Int threads = 4
+	Int timeout = 1
+    }
+
+    parameter_meta {
+	globalDist: "Global coverage distribution output from mosdepth"
+	totalBases: "Total number of bases processed by mosdepth"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
+    String outFileName = "coverage_histogram.json"
+
+    # mosdepth writes a global coverage distribution with 3 columns:
+    # 1) Chromsome name, or "total" for overall totals
+    # 2) Depth of coverage
+    # 3) Probability of coverage less than or equal to (2)
+    # want to convert the above cumulative probability distribution to a histogram
+
+    command <<<
+        python3 <<CODE
+        import csv, json
+        totalBases = "~{totalBases}"
+        inLines = open("~{globalDist}").readlines()
+        reader = csv.reader(inLines, delimiter="\t")
+        cumDist = {}
+        for row in reader:
+            if row[0] != "total":
+                continue
+            cumDist[int(row[1])] = float(row[2])
+        depths = sorted(cumDist.keys())
+        histogram = {}
+        for i in range(len(depths)-1):
+            depth = depths[i]
+            nextDepth = depths[i+1]
+            histogram[depth] = int(round((cumDist[depth] - cumDist[nextDepth])*totalBases, 0))
+        histogram[depths[-1]] = int(round(cumDist[depths[-1]]*totalBases, 0))
+        out = open("~{outFileName}", "w")
+        json.dump(histogram, out, sort_keys=True)
+        out.close()
+        CODE
+    >>>
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+    output {
+	File histogram = "~{outFileName}"
+    }
+
+    meta {
+	output_meta: {
+	    histogram: "Coverage histogram in JSON format"
+	}
+    }
 }
 
 task downsample {
@@ -687,7 +824,7 @@ task indexBamFile {
 	timeout: "~{timeout}"
     }
 
-    String bamName = basename(~{bamFile})
+    String bamName = basename(bamFile)
     String indexName = "~{bamName}.bai"
     
     command <<<
@@ -695,7 +832,7 @@ task indexBamFile {
     >>>
     
     output {
-	File index = ~{indexName}
+	File index = indexName
     }
 
     meta {
@@ -793,18 +930,29 @@ task runMosdepth {
 	timeout: "~{timeout}"
     }
 
-    
     command <<<
+	set -eo pipefail
+	# run mosdepth
 	MOSDEPTH_PRECISION=8 ../mosdepth -x -n -t 3 bamqc ~{bamFile}
+	# parse and validate total number of bases from summary file
+	TOTAL=`grep "^total" bamqc.mosdepth.summary.txt | cut -f 3`
+	[[ $TOTAL =~ ^[0-9]+$ ]] || \
+	{ echo 1>&2 "Error: Total bases must be an integer"; exit 1; }
+	echo $TOTAL > totalBases.txt
     >>>
+
     
+    # represent totalBases as String, not Integer to avoid overflow error
+
     output {
-	File dist = "bamqc.mosdepth.global.dist.txt"
+	File globalDist = "bamqc.mosdepth.global.dist.txt"
+	String totalBases = read_string("totalBases.txt")
     }
 
     meta {
 	output_meta: {
-            output1: "Number of reads in input BAM file"
+            globalDist: "Global distribution of coverage",
+	    totalBases: "Total bases in coverage"
 	}
   }
 
