@@ -345,7 +345,7 @@ task cumulativeDistToHistogram {
     command <<<
         python3 <<CODE
         import csv, json
-        totalBases = "~{totalBases}"
+        totalBases = int("~{totalBases}")
         inLines = open("~{globalDist}").readlines()
         reader = csv.reader(inLines, delimiter="\t")
         cumDist = {}
