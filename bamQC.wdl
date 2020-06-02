@@ -828,7 +828,7 @@ task indexBamFile {
     String indexName = "~{bamName}.bai"
     
     command <<<
-	samtools index ~{bamFile}
+	samtools index -b ~{bamFile} ~{indexName}
     >>>
     
     output {
