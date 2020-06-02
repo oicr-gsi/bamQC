@@ -930,13 +930,13 @@ task runMosdepth {
 	timeout: "~{timeout}"
     }
 
-    bamFileName = basename(bamFile)
+    String bamFileName = basename(bamFile)
 
     command <<<
 	set -eo pipefail
 	# ensure BAM file and index are symlinked to working directory
 	ln -s ~{bamFile}
-	ln -s ~{bamFileIndex}
+	ln -s ~{bamIndex}
 	# run mosdepth
 	MOSDEPTH_PRECISION=8 mosdepth -x -n -t 3 bamqc ~{bamFileName}
 	# parse and validate total number of bases from summary file
