@@ -486,13 +486,17 @@ task downsampleRegion {
 	timeout: "hours before task timeout"
     }
 
+    String bamFileName = basename(bamFile)
     String resultName = "~{outputFileNamePrefix}.downsampledRegion.bam"
 
     # need to index the (filtered) BAM file before viewing a specific chromosome
 
     command <<<
 	set -e
-	samtools view -b -h ~{bamFile} ~{region} > ~{resultName}
+	# ensure BAM file and index are symlinked to working directory
+	ln -s ~{bamFile}
+	ln -s ~{bamIndex}
+	samtools view -b -h ~{bamFileName} ~{region} > ~{resultName}
     >>>
 
     runtime {
