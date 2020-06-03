@@ -360,6 +360,11 @@ task cumulativeDistToHistogram {
             nextDepth = depths[i+1]
             histogram[depth] = int(round((cumDist[depth] - cumDist[nextDepth])*totalBases, 0))
         histogram[depths[-1]] = int(round(cumDist[depths[-1]]*totalBases, 0))
+	# fill in any missing values with zero
+        maxKey = max(histogram.keys())
+        for i in range(maxKey):
+            if i not in histogram:
+                histogram[i] = 0
         out = open("~{outFileName}", "w")
         json.dump(histogram, out, sort_keys=True)
         out.close()
