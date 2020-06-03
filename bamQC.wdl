@@ -112,7 +112,7 @@ workflow bamQC {
     }
 
     output {
-	File result = bamQCMetrics.result
+	File result = collateResults.result
     }
 
     meta {
@@ -246,7 +246,7 @@ task collateResults {
 	timeout: "~{timeout}"
     }
 
-    String outputFileName = "~{outputFileNamePrefix}.bamQC.json"
+    String outputFileName = "~{outputFileNamePrefix}.bamQC_results.json"
 
     command <<<
         python3 <<CODE
