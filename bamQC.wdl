@@ -100,7 +100,7 @@ workflow bamQC {
     call cumulativeDistToHistogram {
 	input:
 	globalDist = runMosdepth.globalDist,
-	totalBases = runMosdepth.totalBases
+	summary = runMosdepth.summary
     }
 
     call collateResults {
@@ -318,7 +318,7 @@ task cumulativeDistToHistogram {
 
     input {
 	File globalDist
-	String totalBases
+	File summary
 	String modules = "python/3.6"
 	Int jobMemory = 8
 	Int threads = 4
@@ -327,7 +327,7 @@ task cumulativeDistToHistogram {
 
     parameter_meta {
 	globalDist: "Global coverage distribution output from mosdepth"
-	totalBases: "Total number of bases processed by mosdepth"
+	summary: "Summary output from mosdepth"
 	modules: "required environment modules"
 	jobMemory: "Memory allocated for this job"
 	threads: "Requested CPU threads"
@@ -340,35 +340,55 @@ task cumulativeDistToHistogram {
     # 1) Chromsome name, or "total" for overall totals
     # 2) Depth of coverage
     # 3) Probability of coverage less than or equal to (2)
-    # want to convert the above cumulative probability distribution to a histogram
+    # Want to convert the above cumulative probability distribution to a histogram
+    # The "total" section of the summary discards some information
+    # So, we process the outputs for each chromosome to construct the histogram
 
     command <<<
         python3 <<CODE
         import csv, json
-        totalBases = int("~{totalBases}")
-        inLines = open("~{globalDist}").readlines()
-        reader = csv.reader(inLines, delimiter="\t")
+        summary = open("~{summary}").readlines()
+        globalDist = open("~{globalDist}").readlines()
+        # read chromosome lengths from the summary
+        summaryReader = csv.reader(summary, delimiter="\t")
+        lengthByChr = {}
+        for row in summaryReader:
+            if row[0] == 'chrom' or row[0] == 'total':
+            continue # skip initial header row, and final total row
+        lengthByChr[row[0]] = int(row[1])
+        chromosomes = sorted(lengthByChr.keys())
+        # read the cumulative distribution for each chromosome
+        globalReader = csv.reader(globalDist, delimiter="\t")
         cumDist = {}
-        for row in reader:
-            if row[0] != "total":
-                continue
-            cumDist[int(row[1])] = float(row[2])
-        depths = sorted(cumDist.keys())
-        histogram = {}
-        for i in range(len(depths)-1):
-            depth = depths[i]
-            nextDepth = depths[i+1]
-            histogram[depth] = int(round((cumDist[depth] - cumDist[nextDepth])*totalBases, 0))
-        histogram[depths[-1]] = int(round(cumDist[depths[-1]]*totalBases, 0))
-	# fill in any missing values with zero
-        maxKey = max(histogram.keys())
-        for i in range(maxKey):
-            if i not in histogram:
-                histogram[i] = 0
-        out = open("~{outFileName}", "w")
-        json.dump(histogram, out, sort_keys=True)
-        out.close()
-        CODE
+        for k in chromosomes:
+            cumDist[k] = {}
+        for row in globalReader:
+        if row[0]=="total":
+            continue
+        cumDist[row[0]][int(row[1])] = float(row[2])
+       # convert the cumulative distributions to non-cumulative and populate histogram
+       histogram = {}
+       for k in chromosomes:
+           depths = sorted(cumDist[k].keys())
+           dist = {}
+           for i in range(len(depths)-1):
+               depth = depths[i]
+               nextDepth = depths[i+1]
+               dist[depth] = (cumDist[k][depth] - cumDist[k][nextDepth])
+           maxDepth = max(depths)
+           dist[maxDepth] = cumDist[k][maxDepth]
+       # now find the number of loci at each depth of coverage to construct the histogram
+       for depth in depths:
+           loci = int(round(dist[depth]*lengthByChr[k], 0))
+           histogram[depth] = histogram.get(depth, 0) + loci
+       # fill in zero values for missing depths
+       for i in range(max(histogram.keys())):
+           if i not in histogram:
+               histogram[i] = 0
+       out = open("~{outFileName}", "w")
+       json.dump(histogram, out, sort_keys=True)
+       out.close()
+       CODE
     >>>
 
     runtime {
@@ -948,25 +968,17 @@ task runMosdepth {
 	ln -s ~{bamIndex}
 	# run mosdepth
 	MOSDEPTH_PRECISION=8 mosdepth -x -n -t 3 bamqc ~{bamFileName}
-	# parse and validate total number of bases from summary file
-	TOTAL=`grep "^total" bamqc.mosdepth.summary.txt | cut -f 3`
-	[[ $TOTAL =~ ^[0-9]+$ ]] || \
-	{ echo 1>&2 "Error: Total bases must be an integer"; exit 1; }
-	echo $TOTAL > totalBases.txt
     >>>
-
-    
-    # represent totalBases as String, not Integer to avoid overflow error
 
     output {
 	File globalDist = "bamqc.mosdepth.global.dist.txt"
-	String totalBases = read_string("totalBases.txt")
+	File summary = "bamqc.mosdepth.summary.txt"
     }
 
     meta {
 	output_meta: {
             globalDist: "Global distribution of coverage",
-	    totalBases: "Total bases in coverage"
+	    summary: "Total bases in coverage"
 	}
   }
 
