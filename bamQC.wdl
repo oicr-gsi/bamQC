@@ -355,7 +355,7 @@ task cumulativeDistToHistogram {
         for row in summaryReader:
             if row[0] == 'chrom' or row[0] == 'total':
                 continue # skip initial header row, and final total row
-        lengthByChr[row[0]] = int(row[1])
+            lengthByChr[row[0]] = int(row[1])
         chromosomes = sorted(lengthByChr.keys())
         # read the cumulative distribution for each chromosome
         globalReader = csv.reader(globalDist, delimiter="\t")
@@ -363,9 +363,9 @@ task cumulativeDistToHistogram {
         for k in chromosomes:
             cumDist[k] = {}
         for row in globalReader:
-        if row[0]=="total":
-            continue
-        cumDist[row[0]][int(row[1])] = float(row[2])
+            if row[0]=="total":
+                continue
+            cumDist[row[0]][int(row[1])] = float(row[2])
         # convert the cumulative distributions to non-cumulative and populate histogram
         histogram = {}
         for k in chromosomes:
@@ -374,13 +374,13 @@ task cumulativeDistToHistogram {
             for i in range(len(depths)-1):
                 depth = depths[i]
                 nextDepth = depths[i+1]
-                dist[depth] = (cumDist[k][depth] - cumDist[k][nextDepth])
+                dist[depth] = cumDist[k][depth] - cumDist[k][nextDepth]
             maxDepth = max(depths)
             dist[maxDepth] = cumDist[k][maxDepth]
-        # now find the number of loci at each depth of coverage to construct the histogram
-        for depth in depths:
-            loci = int(round(dist[depth]*lengthByChr[k], 0))
-            histogram[depth] = histogram.get(depth, 0) + loci
+            # now find the number of loci at each depth of coverage to construct the histogram
+            for depth in depths:
+                loci = int(round(dist[depth]*lengthByChr[k], 0))
+                histogram[depth] = histogram.get(depth, 0) + loci
         # fill in zero values for missing depths
         for i in range(max(histogram.keys())):
             if i not in histogram:
