@@ -366,29 +366,29 @@ task cumulativeDistToHistogram {
         if row[0]=="total":
             continue
         cumDist[row[0]][int(row[1])] = float(row[2])
-       # convert the cumulative distributions to non-cumulative and populate histogram
-       histogram = {}
-       for k in chromosomes:
-           depths = sorted(cumDist[k].keys())
-           dist = {}
-           for i in range(len(depths)-1):
-               depth = depths[i]
-               nextDepth = depths[i+1]
-               dist[depth] = (cumDist[k][depth] - cumDist[k][nextDepth])
-           maxDepth = max(depths)
-           dist[maxDepth] = cumDist[k][maxDepth]
-       # now find the number of loci at each depth of coverage to construct the histogram
-       for depth in depths:
-           loci = int(round(dist[depth]*lengthByChr[k], 0))
-           histogram[depth] = histogram.get(depth, 0) + loci
-       # fill in zero values for missing depths
-       for i in range(max(histogram.keys())):
-           if i not in histogram:
-               histogram[i] = 0
-       out = open("~{outFileName}", "w")
-       json.dump(histogram, out, sort_keys=True)
-       out.close()
-       CODE
+        # convert the cumulative distributions to non-cumulative and populate histogram
+        histogram = {}
+        for k in chromosomes:
+            depths = sorted(cumDist[k].keys())
+            dist = {}
+            for i in range(len(depths)-1):
+                depth = depths[i]
+                nextDepth = depths[i+1]
+                dist[depth] = (cumDist[k][depth] - cumDist[k][nextDepth])
+            maxDepth = max(depths)
+            dist[maxDepth] = cumDist[k][maxDepth]
+        # now find the number of loci at each depth of coverage to construct the histogram
+        for depth in depths:
+            loci = int(round(dist[depth]*lengthByChr[k], 0))
+            histogram[depth] = histogram.get(depth, 0) + loci
+        # fill in zero values for missing depths
+        for i in range(max(histogram.keys())):
+            if i not in histogram:
+                histogram[i] = 0
+        out = open("~{outFileName}", "w")
+        json.dump(histogram, out, sort_keys=True)
+        out.close()
+        CODE
     >>>
 
     runtime {
