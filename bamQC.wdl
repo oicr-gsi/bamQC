@@ -354,7 +354,7 @@ task cumulativeDistToHistogram {
         lengthByChr = {}
         for row in summaryReader:
             if row[0] == 'chrom' or row[0] == 'total':
-            continue # skip initial header row, and final total row
+                continue # skip initial header row, and final total row
         lengthByChr[row[0]] = int(row[1])
         chromosomes = sorted(lengthByChr.keys())
         # read the cumulative distribution for each chromosome
