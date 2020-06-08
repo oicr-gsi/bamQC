@@ -8,6 +8,8 @@ _Filtering_ removes undesirable reads. _Downsampling_ obtains a subset of larger
 
 Picard MarkDuplicates has a separate downsampling method from other metrics. The two downsampling operations are implemented as separate WDL tasks, which can be efficiently parallelized by Cromwell.
 
+Downsampling is not applied when using the mosdepth tool to compute depth of coverage.
+
 ## Filtering
 
 We remove the following undesirable read types:

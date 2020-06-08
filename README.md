@@ -4,10 +4,16 @@ QC metrics for BAM files
 
 ## Overview
 
-bamQC runs Picard MarkDuplicates and GSI bam-qc-metrics on the input BAM file. See `bamqc_wdl.png` for workflow structure.
+bamQC runs the following tools:
+- *Picard MarkDuplicates:* Identifies duplicate reads
+- *mosdepth:* Fast tool to compute depth of coverage
+- *bam-qc-metrics:* Package developed at GSI to compute an assortment of samtools, bedtools, and custom metrics on BAM files.
+
+See `bamqc_wdl.png` for workflow structure.
 
 Filtering is applied to non-primary alignments, unmapped reads, and low-quality reads to exclude them from QC. For large input
 files, downsampling is applied separately for MarkDuplicates and bam-qc-metrics. See `filter_downsample.md` for details.
+
 
 ## Dependencies
 
@@ -15,6 +21,7 @@ files, downsampling is applied separately for MarkDuplicates and bam-qc-metrics.
 * [picard 2.21.2](https://broadinstitute.github.io/picard/command-line-overview.html)
 * [python 3.6](https://www.python.org/downloads/)
 * [bam-qc-metrics 0.2.5](https://github.com/oicr-gsi/bam-qc-metrics.git)
+* [mosdepth 0.2.9](https://github.com/brentp/mosdepth)
 
 
 ## Usage
@@ -58,6 +65,10 @@ Parameter|Value|Default|Description
 `countInputReads.jobMemory`|Int|16|Memory allocated for this job
 `countInputReads.threads`|Int|4|Requested CPU threads
 `countInputReads.timeout`|Int|4|hours before task timeout
+`indexBamFile.modules`|String|"samtools/1.9"|required environment modules
+`indexBamFile.jobMemory`|Int|16|Memory allocated for this job
+`indexBamFile.threads`|Int|4|Requested CPU threads
+`indexBamFile.timeout`|Int|4|hours before task timeout
 `findDownsampleParams.targetReads`|Int|100000|Desired number of reads in downsampled output
 `findDownsampleParams.minReadsAbsolute`|Int|10000|Minimum value of targetReads to allow pre-downsampling
 `findDownsampleParams.minReadsRelative`|Int|2|Minimum value of (inputReads)/(targetReads) to allow pre-downsampling
@@ -97,6 +108,18 @@ Parameter|Value|Default|Description
 `bamQCMetrics.jobMemory`|Int|16|Memory allocated for this job
 `bamQCMetrics.threads`|Int|4|Requested CPU threads
 `bamQCMetrics.timeout`|Int|4|hours before task timeout
+`runMosdepth.modules`|String|"mosdepth/0.2.9"|required environment modules
+`runMosdepth.jobMemory`|Int|16|Memory allocated for this job
+`runMosdepth.threads`|Int|4|Requested CPU threads
+`runMosdepth.timeout`|Int|4|hours before task timeout
+`cumulativeDistToHistogram.modules`|String|"python/3.6"|required environment modules
+`cumulativeDistToHistogram.jobMemory`|Int|8|Memory allocated for this job
+`cumulativeDistToHistogram.threads`|Int|4|Requested CPU threads
+`cumulativeDistToHistogram.timeout`|Int|1|hours before task timeout
+`collateResults.modules`|String|"python/3.6"|required environment modules
+`collateResults.jobMemory`|Int|8|Memory allocated for this job
+`collateResults.threads`|Int|4|Requested CPU threads
+`collateResults.timeout`|Int|1|hours before task timeout
 
 
 ### Outputs
