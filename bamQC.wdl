@@ -32,7 +32,12 @@ workflow bamQC {
 
     call countInputReads {
 	input:
-	bamFile = filter.filteredBam,
+	bamFile = filter.filteredBam
+    }
+
+    call indexBamFile {
+	input:
+	bamFile = filter.filteredBam
     }
 
     call findDownsampleParams {
@@ -64,6 +69,7 @@ workflow bamQC {
 	call downsampleRegion {
 	    input:
 	    bamFile = filter.filteredBam,
+	    bamIndex = indexBamFile.index,
 	    outputFileNamePrefix = outputFileNamePrefix,
 	    region = findDownsampleParamsMarkDup.region
 	}
@@ -81,13 +87,32 @@ workflow bamQC {
 	bamFile = filter.filteredBam,
 	outputFileNamePrefix = outputFileNamePrefix,
 	markDuplicates = markDuplicates.result,
-	metadata = updateMetadata.result,
 	downsampled = ds,
 	bamFileDownsampled = downsample.result
     }
 
+    call runMosdepth {
+	input:
+	bamFile = filter.filteredBam,
+	bamIndex = indexBamFile.index
+    }
+
+    call cumulativeDistToHistogram {
+	input:
+	globalDist = runMosdepth.globalDist,
+	summary = runMosdepth.summary
+    }
+
+    call collateResults {
+	input:
+	bamQCMetricsResult = bamQCMetrics.result,
+	metadata = updateMetadata.result,
+	histogram = cumulativeDistToHistogram.histogram,
+	outputFileNamePrefix = outputFileNamePrefix
+    }
+
     output {
-	File result = bamQCMetrics.result
+	File result = collateResults.result
     }
 
     meta {
@@ -110,6 +135,10 @@ workflow bamQC {
 	{
 	    name: "bam-qc-metrics/0.2.5",
 	    url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
+	},
+	    {
+	    name: "mosdepth/0.2.9",
+	    url: "https://github.com/brentp/mosdepth"
 	}
 	]
     }
@@ -122,7 +151,6 @@ task bamQCMetrics {
 	File bamFile
 	String outputFileNamePrefix
 	File markDuplicates
-	File metadata
 	Boolean downsampled
 	File? bamFileDownsampled
 	String refFasta
@@ -138,7 +166,6 @@ task bamQCMetrics {
     parameter_meta {
 	bamFile: "Input BAM file of aligned rnaSeqQC data. Not downsampled; may be filtered."
 	outputFileNamePrefix: "Prefix for output file"
-	metadata: "JSON file containing metadata (including filtered read totals)"
 	markDuplicates: "Text file output from markDuplicates task"
 	downsampled: "True if downsampling has been applied"
 	bamFileDownsampled: "(Optional) downsampled subset of reads from bamFile."
@@ -161,7 +188,6 @@ task bamQCMetrics {
 	-d ~{markDuplicates} \
 	--debug \
 	-i ~{normalInsertMax} \
-	-m ~{metadata} \
 	-o ~{resultName} \
 	-r ~{refFasta} \
 	-t ~{refSizesBed} \
@@ -183,10 +209,69 @@ task bamQCMetrics {
 
     meta {
 	output_meta: {
-            output1: "Placeholder text file for BAMQC output; TODO replace with JSON"
+            output1: "JSON file with bam-qc-metrics output"
 	}
   }
 
+}
+
+task collateResults {
+
+    input {
+	File bamQCMetricsResult
+	File histogram
+	File metadata
+	String outputFileNamePrefix
+	String modules = "python/3.6"
+	Int jobMemory = 8
+	Int threads = 4
+	Int timeout = 1
+    }
+
+    parameter_meta {
+	bamQCMetricsResult: "JSON result file from bamQCMetrics"
+	histogram: "JSON file with coverage histogram"
+	metadata: "JSON file with additional metadata"
+	outputFileNamePrefix: "Prefix for output file"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+    String outputFileName = "~{outputFileNamePrefix}.bamQC_results.json"
+
+    command <<<
+        python3 <<CODE
+        import json
+        data = json.loads(open("~{bamQCMetricsResult}").read())
+        histogram = json.loads(open("~{histogram}").read())
+        data["coverage_histogram"] = histogram
+        metadata = json.loads(open("~{metadata}").read())
+        for key in metadata.keys():
+            data[key] = metadata[key]
+        out = open("~{outputFileName}", "w")
+        json.dump(data, out, sort_keys=True)
+        out.close()
+        CODE
+    >>>
+
+    output {
+	File result = "~{outputFileName}"
+    }
+
+    meta {
+	output_meta: {
+            output1: "JSON file of collated results"
+	}
+    }
 }
 
 task countInputReads {
@@ -200,7 +285,7 @@ task countInputReads {
     }
 
     parameter_meta {
-	bamFile: "Input BAM file of aligned rnaSeqQC data"
+	bamFile: "Input BAM file of aligned data"
 	modules: "required environment modules"
 	jobMemory: "Memory allocated for this job"
 	threads: "Requested CPU threads"
@@ -226,7 +311,102 @@ task countInputReads {
 	output_meta: {
             output1: "Number of reads in input BAM file"
 	}
-  }
+    }
+}
+
+task cumulativeDistToHistogram {
+
+    input {
+	File globalDist
+	File summary
+	String modules = "python/3.6"
+	Int jobMemory = 8
+	Int threads = 4
+	Int timeout = 1
+    }
+
+    parameter_meta {
+	globalDist: "Global coverage distribution output from mosdepth"
+	summary: "Summary output from mosdepth"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
+    String outFileName = "coverage_histogram.json"
+
+    # mosdepth writes a global coverage distribution with 3 columns:
+    # 1) Chromsome name, or "total" for overall totals
+    # 2) Depth of coverage
+    # 3) Probability of coverage less than or equal to (2)
+    # Want to convert the above cumulative probability distribution to a histogram
+    # The "total" section of the summary discards some information
+    # So, we process the outputs for each chromosome to construct the histogram
+
+    command <<<
+        python3 <<CODE
+        import csv, json
+        summary = open("~{summary}").readlines()
+        globalDist = open("~{globalDist}").readlines()
+        # read chromosome lengths from the summary
+        summaryReader = csv.reader(summary, delimiter="\t")
+        lengthByChr = {}
+        for row in summaryReader:
+            if row[0] == 'chrom' or row[0] == 'total':
+                continue # skip initial header row, and final total row
+            lengthByChr[row[0]] = int(row[1])
+        chromosomes = sorted(lengthByChr.keys())
+        # read the cumulative distribution for each chromosome
+        globalReader = csv.reader(globalDist, delimiter="\t")
+        cumDist = {}
+        for k in chromosomes:
+            cumDist[k] = {}
+        for row in globalReader:
+            if row[0]=="total":
+                continue
+            cumDist[row[0]][int(row[1])] = float(row[2])
+        # convert the cumulative distributions to non-cumulative and populate histogram
+        histogram = {}
+        for k in chromosomes:
+            depths = sorted(cumDist[k].keys())
+            dist = {}
+            for i in range(len(depths)-1):
+                depth = depths[i]
+                nextDepth = depths[i+1]
+                dist[depth] = cumDist[k][depth] - cumDist[k][nextDepth]
+            maxDepth = max(depths)
+            dist[maxDepth] = cumDist[k][maxDepth]
+            # now find the number of loci at each depth of coverage to construct the histogram
+            for depth in depths:
+                loci = int(round(dist[depth]*lengthByChr[k], 0))
+                histogram[depth] = histogram.get(depth, 0) + loci
+        # fill in zero values for missing depths
+        for i in range(max(histogram.keys())):
+            if i not in histogram:
+                histogram[i] = 0
+        out = open("~{outFileName}", "w")
+        json.dump(histogram, out, sort_keys=True)
+        out.close()
+        CODE
+    >>>
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+    output {
+	File histogram = "~{outFileName}"
+    }
+
+    meta {
+	output_meta: {
+	    histogram: "Coverage histogram in JSON format"
+	}
+    }
 }
 
 task downsample {
@@ -311,6 +491,7 @@ task downsampleRegion {
 
     input {
 	File bamFile
+	File bamIndex
 	String outputFileNamePrefix
 	String region
 	String modules = "samtools/1.9"
@@ -321,6 +502,7 @@ task downsampleRegion {
 
     parameter_meta {
 	bamFile: "Input BAM file"
+	bamIndex: "BAM index file in BAI format"
 	outputFileNamePrefix: "Prefix for output file"
 	region: "Region argument for samtools"
 	modules: "required environment modules"
@@ -329,14 +511,17 @@ task downsampleRegion {
 	timeout: "hours before task timeout"
     }
 
+    String bamFileName = basename(bamFile)
     String resultName = "~{outputFileNamePrefix}.downsampledRegion.bam"
 
     # need to index the (filtered) BAM file before viewing a specific chromosome
 
     command <<<
 	set -e
-	samtools index ~{bamFile}
-	samtools view -b -h ~{bamFile} ~{region} > ~{resultName}
+	# ensure BAM file and index are symlinked to working directory
+	ln -s ~{bamFile}
+	ln -s ~{bamIndex}
+	samtools view -b -h ~{bamFileName} ~{region} > ~{resultName}
     >>>
 
     runtime {
@@ -643,6 +828,50 @@ task findDownsampleParamsMarkDup {
     }
 }
 
+task indexBamFile {
+
+    input {
+	File bamFile
+	String modules = "samtools/1.9"
+	Int jobMemory = 16
+	Int threads = 4
+	Int timeout = 4
+    }
+
+    parameter_meta {
+	bamFile: "Input BAM file of aligned data"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+    String bamName = basename(bamFile)
+    String indexName = "~{bamName}.bai"
+    
+    command <<<
+	samtools index -b ~{bamFile} ~{indexName}
+    >>>
+    
+    output {
+	File index = indexName
+    }
+
+    meta {
+	output_meta: {
+            index: "Index file in BAI format"
+	}
+  }
+
+}
+
 task markDuplicates {
 
     input {
@@ -700,6 +929,58 @@ task markDuplicates {
             result: "Text file with Picard markDuplicates metrics"
 	}
     }
+
+}
+
+task runMosdepth {
+
+    input {
+	File bamFile
+	File bamIndex
+	String modules = "mosdepth/0.2.9"
+	Int jobMemory = 16
+	Int threads = 4
+	Int timeout = 4
+    }
+
+    parameter_meta {
+	bamFile: "Input BAM file of aligned data"
+	bamIndex: "Index file in samtools .bai format"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+    String bamFileName = basename(bamFile)
+
+    command <<<
+	set -eo pipefail
+	# ensure BAM file and index are symlinked to working directory
+	ln -s ~{bamFile}
+	ln -s ~{bamIndex}
+	# run mosdepth
+	MOSDEPTH_PRECISION=8 mosdepth -x -n -t 3 bamqc ~{bamFileName}
+    >>>
+
+    output {
+	File globalDist = "bamqc.mosdepth.global.dist.txt"
+	File summary = "bamqc.mosdepth.summary.txt"
+    }
+
+    meta {
+	output_meta: {
+            globalDist: "Global distribution of coverage",
+	    summary: "Total bases in coverage"
+	}
+  }
 
 }
 
