@@ -1,0 +1,6 @@
+{
+  "default_runtime_attributes": {
+    "docker": "g3chen/bamqc@sha256:2af0fc53ffe86e0f44d110c659035139561b6682cd1f2bc9c2193b132506e009",
+    "docker_volume": "/home/ubuntu/Downloads/sample_data:/data"
+  }
+}

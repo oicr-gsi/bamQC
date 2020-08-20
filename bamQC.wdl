@@ -179,7 +179,6 @@ task bamQCMetrics {
 	timeout: "hours before task timeout"
     }
 
-    String dsInput = if downsampled then "-S ~{bamFileDownsampled}" else ""
     String resultName = "~{outputFileNamePrefix}.metrics.json"
 
     command <<<
@@ -193,7 +192,7 @@ task bamQCMetrics {
 	-t ~{refSizesBed} \
 	-T . \
 	-w ~{workflowVersion} \
-	~{dsInput}
+	~{"-S " + bamFileDownsampled}
     >>>
 
     runtime {
