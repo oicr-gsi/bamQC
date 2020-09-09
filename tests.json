@@ -26,8 +26,8 @@
 			"tissue origin": "LV-426",
 			"tissue type": "Claw fragment"
 		    },
-		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
-		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
 		}
 	    }
 	},
@@ -45,8 +45,8 @@
 			"tissue origin": "LV-426",
 			"tissue type": "Claw fragment"
 		    },
-		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
-		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
 		}
 	    }
 	},
@@ -65,8 +65,8 @@
 			"tissue origin": "LV-426",
 			"tissue type": "Claw fragment"
 		    },
-		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
-		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
 		}
 	    }
 	},
@@ -86,8 +86,8 @@
 			"tissue origin": "LV-426",
 			"tissue type": "Claw fragment"
 		    },
-		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
-		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
 		}
 	    }
 	},
@@ -105,8 +105,8 @@
 			"tissue origin": "LV-426",
 			"tissue type": "Claw fragment"
 		    },
-		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
-		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
 		}
 	    }
 	}
