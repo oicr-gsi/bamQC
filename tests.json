@@ -96,7 +96,7 @@
 	    "parameters": {
 		"wdl_inputs": {
 		    "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
-		    "bamQC.bamFile": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_with_downsample/neat_5x_EX_hg19_chr21.bam",
+		    "bamQC.bamFile": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_empty_input/neat_5x_EX_hg19_chr21.bam",
 		    "bamQC.findDownsampleParams.targetReads": 20000,
 		    "bamQC.metadata": {
 			"donor": "Xenomorph",
