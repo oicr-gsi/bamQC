@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 4.0.4 - 2020-09-09
+- [GP-2469](https://jira.oicr.on.ca/browse/GP-2469) - Bugfix for empty BAM input, with test
 ## 4.0.3 - 2020-06-08
 - [GP-2397](https://jira.oicr.on.ca/browse/GP-2397) - Use the mosdepth tool for fast calculation of coverage depth
 ## 4.0.2 - 2020-05-07
