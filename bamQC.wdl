@@ -367,7 +367,7 @@ task cumulativeDistToHistogram {
                 continue
             cumDist[row[0]][int(row[1])] = float(row[2])
         # convert the cumulative distributions to non-cumulative and populate histogram
-	# if the input BAM is empty, chromosomes and histogram will also be empty
+        # if the input BAM is empty, chromosomes and histogram will also be empty
         histogram = {}
         for k in chromosomes:
             depths = sorted(cumDist[k].keys())
