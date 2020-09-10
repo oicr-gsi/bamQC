@@ -26,8 +26,8 @@
 			"tissue origin": "LV-426",
 			"tissue type": "Claw fragment"
 		    },
-		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
-		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
 		}
 	    }
 	},
@@ -45,8 +45,8 @@
 			"tissue origin": "LV-426",
 			"tissue type": "Claw fragment"
 		    },
-		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
-		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
 		}
 	    }
 	},
@@ -65,8 +65,8 @@
 			"tissue origin": "LV-426",
 			"tissue type": "Claw fragment"
 		    },
-		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
-		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
 		}
 	    }
 	},
@@ -86,8 +86,27 @@
 			"tissue origin": "LV-426",
 			"tissue type": "Claw fragment"
 		    },
-		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
-		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
+		}
+	    }
+	},
+	{
+	    "id": "bamQC_test_empty_input",
+	    "parameters": {
+		"wdl_inputs": {
+		    "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
+		    "bamQC.bamFile": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_empty_input/neat_5x_EX_hg19_chr21.bam",
+		    "bamQC.findDownsampleParams.targetReads": 20000,
+		    "bamQC.metadata": {
+			"donor": "Xenomorph",
+			"group id": "Weyland-Yutani",
+			"library design": "WY-1001",
+			"tissue origin": "LV-426",
+			"tissue type": "Claw fragment"
+		    },
+		    "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+		    "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed"
 		}
 	    }
 	}
