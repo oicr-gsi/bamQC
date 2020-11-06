@@ -253,7 +253,7 @@ task collateResults {
         import json
         data = json.loads(open("~{bamQCMetricsResult}").read())
         histogram = json.loads(open("~{histogram}").read())
-        data["coverage_histogram"] = histogram
+        data["coverage histogram"] = histogram
         metadata = json.loads(open("~{metadata}").read())
         for key in metadata.keys():
             data[key] = metadata[key]
