@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 4.0.5 - 2020-11-09
+- [GR-1243](https://jira.oicr.on.ca/browse/GR-1243) - Bugfix to fix `coverage histogram` and remove invalid `coverage_histogram`
 ## 4.0.4 - 2020-09-09
 - [GP-2469](https://jira.oicr.on.ca/browse/GP-2469) - Bugfix for empty BAM input, with test
 ## 4.0.3 - 2020-06-08
