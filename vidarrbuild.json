@@ -1,0 +1,8 @@
+{
+    "names": [
+        "bamqc_by_tumor_group",
+        "bamqc_call_ready",
+        "bamqc_lane_level"
+    ],
+    "wdl": "bamQC.wdl"
+}

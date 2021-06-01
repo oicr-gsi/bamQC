@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 5.0.0 - 2021-06-01
+- Migration from Niassa to Vidarr
 ## 4.0.5 - 2020-11-09
 - [GR-1243](https://jira.oicr.on.ca/browse/GR-1243) - Bugfix to fix `coverage histogram` and remove invalid `coverage_histogram`
 ## 4.0.4 - 2020-09-09
