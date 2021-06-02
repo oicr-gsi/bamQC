@@ -1,0 +1,582 @@
+[
+    {
+        "arguments": {
+            "bamQC.bamFile": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_with_downsample/neat_5x_EX_hg19_chr21.bam",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "bamQC.bamQCMetrics.jobMemory": null,
+            "bamQC.bamQCMetrics.modules": null,
+            "bamQC.bamQCMetrics.normalInsertMax": null,
+            "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+            "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed",
+            "bamQC.bamQCMetrics.threads": null,
+            "bamQC.bamQCMetrics.timeout": null,
+            "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
+            "bamQC.collateResults.jobMemory": null,
+            "bamQC.collateResults.modules": null,
+            "bamQC.collateResults.threads": null,
+            "bamQC.collateResults.timeout": null,
+            "bamQC.countInputReads.jobMemory": null,
+            "bamQC.countInputReads.modules": null,
+            "bamQC.countInputReads.threads": null,
+            "bamQC.countInputReads.timeout": null,
+            "bamQC.cumulativeDistToHistogram.jobMemory": null,
+            "bamQC.cumulativeDistToHistogram.modules": null,
+            "bamQC.cumulativeDistToHistogram.threads": null,
+            "bamQC.cumulativeDistToHistogram.timeout": null,
+            "bamQC.downsample.downsampleSuffix": null,
+            "bamQC.downsample.jobMemory": null,
+            "bamQC.downsample.modules": null,
+            "bamQC.downsample.randomSeed": null,
+            "bamQC.downsample.threads": null,
+            "bamQC.downsample.timeout": null,
+            "bamQC.downsampleRegion.jobMemory": null,
+            "bamQC.downsampleRegion.modules": null,
+            "bamQC.downsampleRegion.threads": null,
+            "bamQC.downsampleRegion.timeout": null,
+            "bamQC.filter.jobMemory": null,
+            "bamQC.filter.minQuality": null,
+            "bamQC.filter.modules": null,
+            "bamQC.filter.threads": null,
+            "bamQC.filter.timeout": null,
+            "bamQC.findDownsampleParams.jobMemory": null,
+            "bamQC.findDownsampleParams.minReadsAbsolute": null,
+            "bamQC.findDownsampleParams.minReadsRelative": null,
+            "bamQC.findDownsampleParams.modules": null,
+            "bamQC.findDownsampleParams.preDSMultiplier": null,
+            "bamQC.findDownsampleParams.precision": null,
+            "bamQC.findDownsampleParams.targetReads": 20000,
+            "bamQC.findDownsampleParams.threads": null,
+            "bamQC.findDownsampleParams.timeout": null,
+            "bamQC.findDownsampleParamsMarkDup.baseInterval": null,
+            "bamQC.findDownsampleParamsMarkDup.chromosomes": null,
+            "bamQC.findDownsampleParamsMarkDup.customRegions": null,
+            "bamQC.findDownsampleParamsMarkDup.intervalStart": null,
+            "bamQC.findDownsampleParamsMarkDup.jobMemory": null,
+            "bamQC.findDownsampleParamsMarkDup.modules": null,
+            "bamQC.findDownsampleParamsMarkDup.threads": null,
+            "bamQC.findDownsampleParamsMarkDup.threshold": null,
+            "bamQC.findDownsampleParamsMarkDup.timeout": null,
+            "bamQC.indexBamFile.jobMemory": null,
+            "bamQC.indexBamFile.modules": null,
+            "bamQC.indexBamFile.threads": null,
+            "bamQC.indexBamFile.timeout": null,
+            "bamQC.markDuplicates.jobMemory": null,
+            "bamQC.markDuplicates.modules": null,
+            "bamQC.markDuplicates.opticalDuplicatePixelDistance": null,
+            "bamQC.markDuplicates.picardMaxMemMb": null,
+            "bamQC.markDuplicates.threads": null,
+            "bamQC.markDuplicates.timeout": null,
+            "bamQC.metadata": {
+                "donor": "Xenomorph",
+                "group id": "Weyland-Yutani",
+                "library design": "WY-1001",
+                "tissue origin": "LV-426",
+                "tissue type": "Claw fragment"
+            },
+            "bamQC.outputFileNamePrefix": null,
+            "bamQC.runMosdepth.jobMemory": null,
+            "bamQC.runMosdepth.modules": null,
+            "bamQC.runMosdepth.threads": null,
+            "bamQC.runMosdepth.timeout": null,
+            "bamQC.updateMetadata.jobMemory": null,
+            "bamQC.updateMetadata.modules": null,
+            "bamQC.updateMetadata.threads": null,
+            "bamQC.updateMetadata.timeout": null
+        },
+        "description": "bamQC workflow test",
+        "engineArguments": {},
+        "id": "bamQC_test_with_downsample",
+        "metadata": {
+            "bamQC.result": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_with_downsample_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/./calculate.sh",
+                "metrics_compare": "@CHECKOUT@/./compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/bamQC_test_with_downsample.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "bamQC.bamFile": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_without_downsample/neat_5x_EX_hg19_chr21.bam",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "bamQC.bamQCMetrics.jobMemory": null,
+            "bamQC.bamQCMetrics.modules": null,
+            "bamQC.bamQCMetrics.normalInsertMax": null,
+            "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+            "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed",
+            "bamQC.bamQCMetrics.threads": null,
+            "bamQC.bamQCMetrics.timeout": null,
+            "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
+            "bamQC.collateResults.jobMemory": null,
+            "bamQC.collateResults.modules": null,
+            "bamQC.collateResults.threads": null,
+            "bamQC.collateResults.timeout": null,
+            "bamQC.countInputReads.jobMemory": null,
+            "bamQC.countInputReads.modules": null,
+            "bamQC.countInputReads.threads": null,
+            "bamQC.countInputReads.timeout": null,
+            "bamQC.cumulativeDistToHistogram.jobMemory": null,
+            "bamQC.cumulativeDistToHistogram.modules": null,
+            "bamQC.cumulativeDistToHistogram.threads": null,
+            "bamQC.cumulativeDistToHistogram.timeout": null,
+            "bamQC.downsample.downsampleSuffix": null,
+            "bamQC.downsample.jobMemory": null,
+            "bamQC.downsample.modules": null,
+            "bamQC.downsample.randomSeed": null,
+            "bamQC.downsample.threads": null,
+            "bamQC.downsample.timeout": null,
+            "bamQC.downsampleRegion.jobMemory": null,
+            "bamQC.downsampleRegion.modules": null,
+            "bamQC.downsampleRegion.threads": null,
+            "bamQC.downsampleRegion.timeout": null,
+            "bamQC.filter.jobMemory": null,
+            "bamQC.filter.minQuality": null,
+            "bamQC.filter.modules": null,
+            "bamQC.filter.threads": null,
+            "bamQC.filter.timeout": null,
+            "bamQC.findDownsampleParams.jobMemory": null,
+            "bamQC.findDownsampleParams.minReadsAbsolute": null,
+            "bamQC.findDownsampleParams.minReadsRelative": null,
+            "bamQC.findDownsampleParams.modules": null,
+            "bamQC.findDownsampleParams.preDSMultiplier": null,
+            "bamQC.findDownsampleParams.precision": null,
+            "bamQC.findDownsampleParams.targetReads": 100000,
+            "bamQC.findDownsampleParams.threads": null,
+            "bamQC.findDownsampleParams.timeout": null,
+            "bamQC.findDownsampleParamsMarkDup.baseInterval": null,
+            "bamQC.findDownsampleParamsMarkDup.chromosomes": null,
+            "bamQC.findDownsampleParamsMarkDup.customRegions": null,
+            "bamQC.findDownsampleParamsMarkDup.intervalStart": null,
+            "bamQC.findDownsampleParamsMarkDup.jobMemory": null,
+            "bamQC.findDownsampleParamsMarkDup.modules": null,
+            "bamQC.findDownsampleParamsMarkDup.threads": null,
+            "bamQC.findDownsampleParamsMarkDup.threshold": null,
+            "bamQC.findDownsampleParamsMarkDup.timeout": null,
+            "bamQC.indexBamFile.jobMemory": null,
+            "bamQC.indexBamFile.modules": null,
+            "bamQC.indexBamFile.threads": null,
+            "bamQC.indexBamFile.timeout": null,
+            "bamQC.markDuplicates.jobMemory": null,
+            "bamQC.markDuplicates.modules": null,
+            "bamQC.markDuplicates.opticalDuplicatePixelDistance": null,
+            "bamQC.markDuplicates.picardMaxMemMb": null,
+            "bamQC.markDuplicates.threads": null,
+            "bamQC.markDuplicates.timeout": null,
+            "bamQC.metadata": {
+                "donor": "Xenomorph",
+                "group id": "Weyland-Yutani",
+                "library design": "WY-1001",
+                "tissue origin": "LV-426",
+                "tissue type": "Claw fragment"
+            },
+            "bamQC.outputFileNamePrefix": null,
+            "bamQC.runMosdepth.jobMemory": null,
+            "bamQC.runMosdepth.modules": null,
+            "bamQC.runMosdepth.threads": null,
+            "bamQC.runMosdepth.timeout": null,
+            "bamQC.updateMetadata.jobMemory": null,
+            "bamQC.updateMetadata.modules": null,
+            "bamQC.updateMetadata.threads": null,
+            "bamQC.updateMetadata.timeout": null
+        },
+        "description": "bamQC workflow test",
+        "engineArguments": {},
+        "id": "bamQC_test_without_downsample",
+        "metadata": {
+            "bamQC.result": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_without_downsample_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/./calculate.sh",
+                "metrics_compare": "@CHECKOUT@/./compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/bamQC_test_without_downsample.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "bamQC.bamFile": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "bamQC.bamQCMetrics.jobMemory": null,
+            "bamQC.bamQCMetrics.modules": null,
+            "bamQC.bamQCMetrics.normalInsertMax": null,
+            "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+            "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed",
+            "bamQC.bamQCMetrics.threads": null,
+            "bamQC.bamQCMetrics.timeout": null,
+            "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
+            "bamQC.collateResults.jobMemory": null,
+            "bamQC.collateResults.modules": null,
+            "bamQC.collateResults.threads": null,
+            "bamQC.collateResults.timeout": null,
+            "bamQC.countInputReads.jobMemory": null,
+            "bamQC.countInputReads.modules": null,
+            "bamQC.countInputReads.threads": null,
+            "bamQC.countInputReads.timeout": null,
+            "bamQC.cumulativeDistToHistogram.jobMemory": null,
+            "bamQC.cumulativeDistToHistogram.modules": null,
+            "bamQC.cumulativeDistToHistogram.threads": null,
+            "bamQC.cumulativeDistToHistogram.timeout": null,
+            "bamQC.downsample.downsampleSuffix": null,
+            "bamQC.downsample.jobMemory": null,
+            "bamQC.downsample.modules": null,
+            "bamQC.downsample.randomSeed": null,
+            "bamQC.downsample.threads": null,
+            "bamQC.downsample.timeout": null,
+            "bamQC.downsampleRegion.jobMemory": null,
+            "bamQC.downsampleRegion.modules": null,
+            "bamQC.downsampleRegion.threads": null,
+            "bamQC.downsampleRegion.timeout": null,
+            "bamQC.filter.jobMemory": null,
+            "bamQC.filter.minQuality": null,
+            "bamQC.filter.modules": null,
+            "bamQC.filter.threads": null,
+            "bamQC.filter.timeout": null,
+            "bamQC.findDownsampleParams.jobMemory": null,
+            "bamQC.findDownsampleParams.minReadsAbsolute": null,
+            "bamQC.findDownsampleParams.minReadsRelative": null,
+            "bamQC.findDownsampleParams.modules": null,
+            "bamQC.findDownsampleParams.preDSMultiplier": null,
+            "bamQC.findDownsampleParams.precision": null,
+            "bamQC.findDownsampleParams.targetReads": 100000,
+            "bamQC.findDownsampleParams.threads": null,
+            "bamQC.findDownsampleParams.timeout": null,
+            "bamQC.findDownsampleParamsMarkDup.baseInterval": null,
+            "bamQC.findDownsampleParamsMarkDup.chromosomes": null,
+            "bamQC.findDownsampleParamsMarkDup.customRegions": null,
+            "bamQC.findDownsampleParamsMarkDup.intervalStart": null,
+            "bamQC.findDownsampleParamsMarkDup.jobMemory": null,
+            "bamQC.findDownsampleParamsMarkDup.modules": null,
+            "bamQC.findDownsampleParamsMarkDup.threads": null,
+            "bamQC.findDownsampleParamsMarkDup.threshold": 100000,
+            "bamQC.findDownsampleParamsMarkDup.timeout": null,
+            "bamQC.indexBamFile.jobMemory": null,
+            "bamQC.indexBamFile.modules": null,
+            "bamQC.indexBamFile.threads": null,
+            "bamQC.indexBamFile.timeout": null,
+            "bamQC.markDuplicates.jobMemory": null,
+            "bamQC.markDuplicates.modules": null,
+            "bamQC.markDuplicates.opticalDuplicatePixelDistance": null,
+            "bamQC.markDuplicates.picardMaxMemMb": null,
+            "bamQC.markDuplicates.threads": null,
+            "bamQC.markDuplicates.timeout": null,
+            "bamQC.metadata": {
+                "donor": "Xenomorph",
+                "group id": "Weyland-Yutani",
+                "library design": "WY-1001",
+                "tissue origin": "LV-426",
+                "tissue type": "Claw fragment"
+            },
+            "bamQC.outputFileNamePrefix": null,
+            "bamQC.runMosdepth.jobMemory": null,
+            "bamQC.runMosdepth.modules": null,
+            "bamQC.runMosdepth.threads": null,
+            "bamQC.runMosdepth.timeout": null,
+            "bamQC.updateMetadata.jobMemory": null,
+            "bamQC.updateMetadata.modules": null,
+            "bamQC.updateMetadata.threads": null,
+            "bamQC.updateMetadata.timeout": null
+        },
+        "description": "bamQC workflow test",
+        "engineArguments": {},
+        "id": "bamQC_test_CRE",
+        "metadata": {
+            "bamQC.result": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_CRE_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/./calculate.sh",
+                "metrics_compare": "@CHECKOUT@/./compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/bamQC_test_CRE.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "bamQC.bamFile": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "bamQC.bamQCMetrics.jobMemory": null,
+            "bamQC.bamQCMetrics.modules": null,
+            "bamQC.bamQCMetrics.normalInsertMax": null,
+            "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+            "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed",
+            "bamQC.bamQCMetrics.threads": null,
+            "bamQC.bamQCMetrics.timeout": null,
+            "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
+            "bamQC.collateResults.jobMemory": null,
+            "bamQC.collateResults.modules": null,
+            "bamQC.collateResults.threads": null,
+            "bamQC.collateResults.timeout": null,
+            "bamQC.countInputReads.jobMemory": null,
+            "bamQC.countInputReads.modules": null,
+            "bamQC.countInputReads.threads": null,
+            "bamQC.countInputReads.timeout": null,
+            "bamQC.cumulativeDistToHistogram.jobMemory": null,
+            "bamQC.cumulativeDistToHistogram.modules": null,
+            "bamQC.cumulativeDistToHistogram.threads": null,
+            "bamQC.cumulativeDistToHistogram.timeout": null,
+            "bamQC.downsample.downsampleSuffix": null,
+            "bamQC.downsample.jobMemory": null,
+            "bamQC.downsample.modules": null,
+            "bamQC.downsample.randomSeed": null,
+            "bamQC.downsample.threads": null,
+            "bamQC.downsample.timeout": null,
+            "bamQC.downsampleRegion.jobMemory": null,
+            "bamQC.downsampleRegion.modules": null,
+            "bamQC.downsampleRegion.threads": null,
+            "bamQC.downsampleRegion.timeout": null,
+            "bamQC.filter.jobMemory": null,
+            "bamQC.filter.minQuality": null,
+            "bamQC.filter.modules": null,
+            "bamQC.filter.threads": null,
+            "bamQC.filter.timeout": null,
+            "bamQC.findDownsampleParams.jobMemory": null,
+            "bamQC.findDownsampleParams.minReadsAbsolute": null,
+            "bamQC.findDownsampleParams.minReadsRelative": null,
+            "bamQC.findDownsampleParams.modules": null,
+            "bamQC.findDownsampleParams.preDSMultiplier": null,
+            "bamQC.findDownsampleParams.precision": null,
+            "bamQC.findDownsampleParams.targetReads": 100000,
+            "bamQC.findDownsampleParams.threads": null,
+            "bamQC.findDownsampleParams.timeout": null,
+            "bamQC.findDownsampleParamsMarkDup.baseInterval": null,
+            "bamQC.findDownsampleParamsMarkDup.chromosomes": null,
+            "bamQC.findDownsampleParamsMarkDup.customRegions": "chr1:100000001-200000000 chr2:100000001-200000000",
+            "bamQC.findDownsampleParamsMarkDup.intervalStart": null,
+            "bamQC.findDownsampleParamsMarkDup.jobMemory": null,
+            "bamQC.findDownsampleParamsMarkDup.modules": null,
+            "bamQC.findDownsampleParamsMarkDup.threads": null,
+            "bamQC.findDownsampleParamsMarkDup.threshold": 100000,
+            "bamQC.findDownsampleParamsMarkDup.timeout": null,
+            "bamQC.indexBamFile.jobMemory": null,
+            "bamQC.indexBamFile.modules": null,
+            "bamQC.indexBamFile.threads": null,
+            "bamQC.indexBamFile.timeout": null,
+            "bamQC.markDuplicates.jobMemory": null,
+            "bamQC.markDuplicates.modules": null,
+            "bamQC.markDuplicates.opticalDuplicatePixelDistance": null,
+            "bamQC.markDuplicates.picardMaxMemMb": null,
+            "bamQC.markDuplicates.threads": null,
+            "bamQC.markDuplicates.timeout": null,
+            "bamQC.metadata": {
+                "donor": "Xenomorph",
+                "group id": "Weyland-Yutani",
+                "library design": "WY-1001",
+                "tissue origin": "LV-426",
+                "tissue type": "Claw fragment"
+            },
+            "bamQC.outputFileNamePrefix": null,
+            "bamQC.runMosdepth.jobMemory": null,
+            "bamQC.runMosdepth.modules": null,
+            "bamQC.runMosdepth.threads": null,
+            "bamQC.runMosdepth.timeout": null,
+            "bamQC.updateMetadata.jobMemory": null,
+            "bamQC.updateMetadata.modules": null,
+            "bamQC.updateMetadata.threads": null,
+            "bamQC.updateMetadata.timeout": null
+        },
+        "description": "bamQC workflow test",
+        "engineArguments": {},
+        "id": "bamQC_test_CRE_custom",
+        "metadata": {
+            "bamQC.result": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_CRE_custom_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/./calculate.sh",
+                "metrics_compare": "@CHECKOUT@/./compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/bamQC_test_CRE_custom.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "bamQC.bamFile": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_empty_input/neat_5x_EX_hg19_chr21.bam",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "bamQC.bamQCMetrics.jobMemory": null,
+            "bamQC.bamQCMetrics.modules": null,
+            "bamQC.bamQCMetrics.normalInsertMax": null,
+            "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
+            "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed",
+            "bamQC.bamQCMetrics.threads": null,
+            "bamQC.bamQCMetrics.timeout": null,
+            "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
+            "bamQC.collateResults.jobMemory": null,
+            "bamQC.collateResults.modules": null,
+            "bamQC.collateResults.threads": null,
+            "bamQC.collateResults.timeout": null,
+            "bamQC.countInputReads.jobMemory": null,
+            "bamQC.countInputReads.modules": null,
+            "bamQC.countInputReads.threads": null,
+            "bamQC.countInputReads.timeout": null,
+            "bamQC.cumulativeDistToHistogram.jobMemory": null,
+            "bamQC.cumulativeDistToHistogram.modules": null,
+            "bamQC.cumulativeDistToHistogram.threads": null,
+            "bamQC.cumulativeDistToHistogram.timeout": null,
+            "bamQC.downsample.downsampleSuffix": null,
+            "bamQC.downsample.jobMemory": null,
+            "bamQC.downsample.modules": null,
+            "bamQC.downsample.randomSeed": null,
+            "bamQC.downsample.threads": null,
+            "bamQC.downsample.timeout": null,
+            "bamQC.downsampleRegion.jobMemory": null,
+            "bamQC.downsampleRegion.modules": null,
+            "bamQC.downsampleRegion.threads": null,
+            "bamQC.downsampleRegion.timeout": null,
+            "bamQC.filter.jobMemory": null,
+            "bamQC.filter.minQuality": null,
+            "bamQC.filter.modules": null,
+            "bamQC.filter.threads": null,
+            "bamQC.filter.timeout": null,
+            "bamQC.findDownsampleParams.jobMemory": null,
+            "bamQC.findDownsampleParams.minReadsAbsolute": null,
+            "bamQC.findDownsampleParams.minReadsRelative": null,
+            "bamQC.findDownsampleParams.modules": null,
+            "bamQC.findDownsampleParams.preDSMultiplier": null,
+            "bamQC.findDownsampleParams.precision": null,
+            "bamQC.findDownsampleParams.targetReads": 20000,
+            "bamQC.findDownsampleParams.threads": null,
+            "bamQC.findDownsampleParams.timeout": null,
+            "bamQC.findDownsampleParamsMarkDup.baseInterval": null,
+            "bamQC.findDownsampleParamsMarkDup.chromosomes": null,
+            "bamQC.findDownsampleParamsMarkDup.customRegions": null,
+            "bamQC.findDownsampleParamsMarkDup.intervalStart": null,
+            "bamQC.findDownsampleParamsMarkDup.jobMemory": null,
+            "bamQC.findDownsampleParamsMarkDup.modules": null,
+            "bamQC.findDownsampleParamsMarkDup.threads": null,
+            "bamQC.findDownsampleParamsMarkDup.threshold": null,
+            "bamQC.findDownsampleParamsMarkDup.timeout": null,
+            "bamQC.indexBamFile.jobMemory": null,
+            "bamQC.indexBamFile.modules": null,
+            "bamQC.indexBamFile.threads": null,
+            "bamQC.indexBamFile.timeout": null,
+            "bamQC.markDuplicates.jobMemory": null,
+            "bamQC.markDuplicates.modules": null,
+            "bamQC.markDuplicates.opticalDuplicatePixelDistance": null,
+            "bamQC.markDuplicates.picardMaxMemMb": null,
+            "bamQC.markDuplicates.threads": null,
+            "bamQC.markDuplicates.timeout": null,
+            "bamQC.metadata": {
+                "donor": "Xenomorph",
+                "group id": "Weyland-Yutani",
+                "library design": "WY-1001",
+                "tissue origin": "LV-426",
+                "tissue type": "Claw fragment"
+            },
+            "bamQC.outputFileNamePrefix": null,
+            "bamQC.runMosdepth.jobMemory": null,
+            "bamQC.runMosdepth.modules": null,
+            "bamQC.runMosdepth.threads": null,
+            "bamQC.runMosdepth.timeout": null,
+            "bamQC.updateMetadata.jobMemory": null,
+            "bamQC.updateMetadata.modules": null,
+            "bamQC.updateMetadata.threads": null,
+            "bamQC.updateMetadata.timeout": null
+        },
+        "description": "bamQC workflow test",
+        "engineArguments": {},
+        "id": "bamQC_test_empty_input",
+        "metadata": {
+            "bamQC.result": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_empty_input_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/./calculate.sh",
+                "metrics_compare": "@CHECKOUT@/./compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/bamQC_test_empty_input.metrics",
+                "type": "script"
+            }
+        ]
+    }
+]

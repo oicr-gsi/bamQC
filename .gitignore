@@ -47,3 +47,5 @@ proguard/
 # cromwell output
 cromwell-executions
 cromwell-workflow-logs
+v.out
+vidarrtest-regression.json
