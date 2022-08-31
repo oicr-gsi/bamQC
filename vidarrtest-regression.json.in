@@ -94,7 +94,10 @@
             "bamQC.updateMetadata.timeout": null
         },
         "description": "bamQC workflow test",
-        "engineArguments": {},
+        "engineArguments": {
+           "write_to_cache": false,
+           "read_from_cache": false
+        },
         "id": "bamQC_test_with_downsample",
         "metadata": {
             "bamQC.result": {
@@ -210,7 +213,10 @@
             "bamQC.updateMetadata.timeout": null
         },
         "description": "bamQC workflow test",
-        "engineArguments": {},
+        "engineArguments": {
+           "write_to_cache": false,
+           "read_from_cache": false
+        },
         "id": "bamQC_test_without_downsample",
         "metadata": {
             "bamQC.result": {
@@ -326,7 +332,10 @@
             "bamQC.updateMetadata.timeout": null
         },
         "description": "bamQC workflow test",
-        "engineArguments": {},
+        "engineArguments": {
+           "write_to_cache": false,
+           "read_from_cache": false
+        },
         "id": "bamQC_test_CRE",
         "metadata": {
             "bamQC.result": {
@@ -442,7 +451,10 @@
             "bamQC.updateMetadata.timeout": null
         },
         "description": "bamQC workflow test",
-        "engineArguments": {},
+        "engineArguments": {
+           "write_to_cache": false,
+           "read_from_cache": false
+        },
         "id": "bamQC_test_CRE_custom",
         "metadata": {
             "bamQC.result": {
@@ -558,7 +570,10 @@
             "bamQC.updateMetadata.timeout": null
         },
         "description": "bamQC workflow test",
-        "engineArguments": {},
+        "engineArguments": {
+           "write_to_cache": false,
+           "read_from_cache": false
+        },
         "id": "bamQC_test_empty_input",
         "metadata": {
             "bamQC.result": {
