@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 5.0.1 - 2022-08-31
+- Update workflow name to `bamqc_call_ready_by_tumor_group` for clinical
 ## 5.0.0 - 2021-06-01
 - Migration from Niassa to Vidarr
 ## 4.0.5 - 2020-11-09
