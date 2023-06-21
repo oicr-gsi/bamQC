@@ -1,35 +1,11 @@
 version 1.0
 
-struct BamAndBamIndex {
-  File bam
-  File bamIndex
-}
-
 struct InputGroup {
   String outputIdentifier
-  Array[BamAndBamIndex]+ bamAndBamIndexInputs
-}
-
-struct CollectionGroup {
-    String outputIdentifier
-    String outputFileName
-    Array[File] bams
-    Array[File] bamIndexes
-}
-
-struct InputGroups {
-  Array[InputGroup] inputGroups
-}
-
-struct CollectionGroups {
-  Array[CollectionGroup] collectionGroups
-}
-
-struct OutputGroup {
-  String outputIdentifier
   File bam
   File bamIndex
 }
+
 
 workflow bamQC {
 
@@ -46,46 +22,29 @@ workflow bamQC {
   }
 
 	scatter (i in inputGroups) {
-		scatter(bamAndBamIndexInput in i.bamAndBamIndexInputs) {
-			File inputGroupBam = bamAndBamIndexInput.bam
-			File inputGroupBamIndex = bamAndBamIndexInput.bamIndex
-		}
-		Array[File] inputGroupBams = inputGroupBam
-		Array[File] inputGroupBamIndexes = inputGroupBamIndex
 
-		call preprocessBam {
+		call preFilterBam {
 			input:
-			bams = inputGroupBams,
-			bamIndexes = inputGroupBamIndexes,
+			inputBam = i.bam,
+			inputBamIndex = i.bamIndex,
 			outputFileName = i.outputIdentifier,
 			doFilter = doFilter,
 		}
 	}
 
-	Array[File] preprocessedBams = preprocessBam.preprocessedBam
-    Array[File] preprocessedBamIndexes = preprocessBam.preprocessedBamIndex
+	Array[File] preFilteredBams = preFilterBam.preFilteredBam
+  Array[File] preFilteredBamIndexes = preFilterBam.preFilteredBamIndex
+  String outputFileName = inputGroups[0].outputIdentifier
 
-	call collectFilesBySample {
-    input:
-      inputGroups = inputGroups,
-      bams = preprocessedBams,
-      bamIndexes = preprocessedBamIndexes
-	}
-
-	scatter(o in collectFilesBySample.filesByOutputIdentifier.collectionGroups) {
-		if(length(o.bams) > 1) {
-		call mergeBams as mergeSplitByIntervalBams {
+	call mergeBams {
 			input:
-			bams = o.bams,
-			outputFileName = o.outputFileName,
-			suffix = "" # collectFilesBySample task generates the file name
+			bams = preFilteredBams,
+			outputFileName = outputFileName,
+			suffix = "" 
 		}
-		}
-		String outputprefix = o.outputIdentifier
-	}
 
 	output {
-		Array[String] outputPrefix = outputprefix
+		String outputName = outputFileName
 	}
 
 
@@ -94,32 +53,32 @@ workflow bamQC {
 	email: "ibancarz@oicr.on.ca"
 	description: "QC metrics for BAM files"
 	dependencies: [
-	{
-	    name: "samtools/1.9",
-	    url: "https://github.com/samtools/samtools"
-	},
-	{
-	    name: "picard/2.21.2",
-	    url: "https://broadinstitute.github.io/picard/command-line-overview.html"
-	},
-	{
-	    name: "python/3.6",
-	    url: "https://www.python.org/downloads/"
-	},
-	{
-	    name: "bam-qc-metrics/0.2.5",
-	    url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
-	},
-	    {
-	    name: "mosdepth/0.2.9",
-	    url: "https://github.com/brentp/mosdepth"
-	}
-	]
-    }
+      {
+          name: "samtools/1.9",
+          url: "https://github.com/samtools/samtools"
+      },
+      {
+          name: "picard/2.21.2",
+          url: "https://broadinstitute.github.io/picard/command-line-overview.html"
+      },
+      {
+          name: "python/3.6",
+          url: "https://www.python.org/downloads/"
+      },
+      {
+          name: "bam-qc-metrics/0.2.5",
+          url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
+      },
+          {
+          name: "mosdepth/0.2.9",
+          url: "https://github.com/brentp/mosdepth"
+      }
+    ]
+  }
 
 }
 
-task preprocessBam {
+task preFilterBam {
   input {
     Boolean doFilter = true
     String outputFileName
@@ -129,8 +88,8 @@ task preprocessBam {
     # $TMP is set by Univa
     String temporaryWorkingDir = ""
 
-    Array[File] bams
-    Array[File] bamIndexes
+    File inputBam
+    File inputBamIndex
 
     # filter parameters
     String filterSuffix = ".filter"
@@ -146,77 +105,35 @@ task preprocessBam {
   }
 
   String workingDir = if temporaryWorkingDir == "" then "" else "~{temporaryWorkingDir}/"
-
-  String baseFileName = "~{outputFileName}"
-
-  String filteredFileName = if doFilter then
-                            "~{baseFileName}.filter"
-                           else
-                            "~{baseFileName}"
-  String filteredFilePath = "~{filteredFileName}"
+  String filteredFileName = "~{outputFileName}.filtered"
 
 
   command <<<
     set -euxo pipefail
-    inputBams="~{sep=" " bams}"
-    inputBamIndexes="~{sep=" " bamIndexes}"
 
-    # filter
+    # filtercd
     if [ "~{doFilter}" = true ]; then
-      outputBams=()
-      outputBamIndexes=()
-      for inputBam in $inputBams; do
-        filename="$(basename $inputBam ".bam")"
-        outputBam="~{workingDir}${filename}.filtered.bam"
-        outputBamIndex="~{workingDir}${filename}.filtered.bai"
-        samtools view -b \
-        -F ~{filterFlags} \
-        ~{"-q " + minMapQuality} \
-        ~{filterAdditionalParams} \
-        $inputBam > $outputBam
-        samtools index $outputBam $outputBamIndex
-        outputBams+=("$outputBam")
-        outputBamIndexes+=("$outputBamIndex")
-      done
-      # set inputs for next step
-      inputBams=("${outputBams[@]}")
-      inputBamIndexes=("${outputBamIndexes[@]}")
+      filename="$(basename ~{inputBam} ".bam")"
+      outputBam="~{workingDir}${filename}.filtered.bam"
+      outputBamIndex="~{workingDir}${filename}.filtered.bai"
+      samtools view -b \
+      -F ~{filterFlags} \
+      ~{"-q " + minMapQuality} \
+      ~{filterAdditionalParams} \
+      ~{inputBam} > $outputBam
+      samtools index $outputBam $outputBamIndex
     else
-      outputBams=()
-      outputBamIndexes=()
-      for inputBam in $inputBams; do
-        filename="$(basename $inputBam ".bam")"
-        outputBam="~{workingDir}${filename}.bam"
-        outputBamIndex="~{workingDir}${filename}.bai"
-        samtools view -b \
-        $inputBam > $outputBam
-        samtools index $outputBam $outputBamIndex
-        outputBams+=("$outputBam")
-        outputBamIndexes+=("$outputBamIndex")
-      done
-      # set inputs for next step
-      inputBams=("${outputBams[@]}")
-      inputBamIndexes=("${outputBamIndexes[@]}")
+      filename="$(basename ~{inputBam} ".bam")"
+      outputBam="~{workingDir}${filename}.bam"
+      outputBamIndex="~{workingDir}${filename}.bai"
+      ln -s ~{inputBam} $outputBam
+      ln -s ~{inputBamIndex} $outputBamIndex
     fi
-
-
-      gatk --java-options "-Xmx~{jobMemory - overhead}G" MergeSamFiles \
-      ${inputBams[@]/#/--INPUT=} \
-      --OUTPUT="~{filteredFileName}.bam" \
-      --CREATE_INDEX=true \
-      --SORT_ORDER=coordinate \
-      --ASSUME_SORTED=false \
-      --USE_THREADING=true \
-      --VALIDATION_STRINGENCY=SILENT
   >>>
 
   output {
-    File preprocessedBam =  if doFilter then
-                            "~{filteredFilePath}.bam"
-                           else "~{filteredFileName}.bam"
-    File preprocessedBamIndex = if doFilter then
-                                  "~{filteredFilePath}.bai"
-                                else "~{filteredFileName}.bai"
+    File preFilteredBam =  "~{filteredFileName}.bam"
+    File preFilteredBamIndex = "~{filteredFileName}.bai"
   }
 
   runtime {
@@ -229,9 +146,9 @@ task preprocessBam {
   parameter_meta {
     doFilter: "Enable/disable Samtools filtering."
     outputFileName: "Output files will be prefixed with this."
-    temporaryWorkingDir: "Where to write out intermediary bam files. Only the final preprocessed bam will be written to task working directory if this is set to local tmp."
-    bams: "Array of bam files to merge together."
-    bamIndexes: "Array of index files for input bams."
+    temporaryWorkingDir: "Where to write out intermediary bam files. Only the final preFiltered bam will be written to task working directory if this is set to local tmp."
+    inputBam: "bam files to filter."
+    inputBamIndex: "index file for input bam."
     filterSuffix: "Suffix to use for filtered bams."
     filterFlags: "Samtools filter flags to apply."
     minMapQuality: "Samtools minimum mapping quality filter to apply."
@@ -244,82 +161,6 @@ task preprocessBam {
   }
 }
 
-task collectFilesBySample {
-  input {
-    Array[InputGroup] inputGroups
-    Array[File] bams
-    Array[File] bamIndexes
-
-    Int jobMemory = 1
-    Int cores = 1
-    Int timeout = 1
-    String modules = "python/3.7"
-  }
-
-  InputGroups wrappedInputGroups = {"inputGroups": inputGroups}
-
-  command <<<
-    set -euo pipefail
-
-    python3 <<CODE
-    import json
-    import os
-    import re
-
-    with open('~{write_json(wrappedInputGroups)}') as f:
-        inputGroups = json.load(f)
-    with open('~{write_lines(bams)}') as f:
-        bamFiles = f.read().splitlines()
-    with open('~{write_lines(bamIndexes)}') as f:
-        bamIndexFiles = f.read().splitlines()
-
-    filesByOutputIdentifier = []
-    for outputIdentifier in [inputGroup['outputIdentifier'] for inputGroup in inputGroups['inputGroups']]:
-        # select bams and bamIndexes for outputIdentifier (preprocessBam prefixes the outputIdentifier, so include that too)
-        bams = [bam for bam in bamFiles if re.match("^" + outputIdentifier + "\.", os.path.basename(bam))]
-        bais = [bai for bai in bamIndexFiles if re.match("^" + outputIdentifier + "\.", os.path.basename(bai))]
-
-        fileNames = list(set([os.path.splitext(os.path.basename(f))[0] for f in bams + bais]))
-        if len(fileNames) != 1:
-            raise Exception("Unable to determine unique fileName from fileNames = [" + ','.join(f for f in fileNames) + "]")
-        else:
-            fileName = fileNames[0]
-
-        filesByOutputIdentifier.append({
-            'outputIdentifier': outputIdentifier,
-            'outputFileName': fileName,
-            'bams': bams,
-            'bamIndexes': bais})
-
-    # wrap the array into collectionGroups object
-    wrappedFilesByOutputIdentifier = {'collectionGroups': filesByOutputIdentifier}
-
-    with open('filesByOutputIdentifier.json', 'w') as f:
-        json.dump(wrappedFilesByOutputIdentifier, f, indent=4)
-    CODE
-  >>>
-
-  output {
-    CollectionGroups filesByOutputIdentifier = read_json("filesByOutputIdentifier.json")
-  }
-
-  runtime {
-    memory: "~{jobMemory} GB"
-    cpu: "~{cores}"
-    timeout: "~{timeout}"
-    modules: "~{modules}"
-  }
-
-  parameter_meta {
-    inputGroups: "Array of objects describing output file groups. The output file group name is used to partition input bams by name."
-    bams: "Array of bams to partition by inputGroup output file name."
-    bamIndexes: "Array of index files for input bams."
-    jobMemory:  "Memory allocated to job (in GB)."
-    cores: "The number of cores to allocate to the job."
-    timeout: "Maximum amount of time (in hours) the task can run for."
-    modules: "Environment module name and version to load (space separated) before command execution."
-  }
-}
 
 task mergeBams {
   input {
@@ -327,7 +168,6 @@ task mergeBams {
     String outputFileName
     String suffix = ".merge"
     String? additionalParams
-
     Int jobMemory = 24
     Int overhead = 6
     Int cores = 1
@@ -372,4 +212,3 @@ task mergeBams {
     modules: "Environment module name and version to load (space separated) before command execution."
   }
 }
-
