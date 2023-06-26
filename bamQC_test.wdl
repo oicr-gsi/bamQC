@@ -58,7 +58,7 @@ task preFilterBam {
     Int jobMemory = 24
     Int overhead = 6
     Int cores = 1
-    Int timeout = 6
+    Int timeout = 24
     String modules = "samtools/1.9 gatk/4.1.6.0"
   }
   String filteredFileName = "~{outputFileName}.filtered"
@@ -95,7 +95,7 @@ task mergeBams {
     Int jobMemory = 24
     Int overhead = 6
     Int cores = 1
-    Int timeout = 6
+    Int timeout = 24
     String modules = "gatk/4.1.6.0"
   }
 
