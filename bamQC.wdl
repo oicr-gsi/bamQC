@@ -1,43 +1,89 @@
 version 1.0
 
+struct InputGroup {
+  File bam
+  File bamIndex
+}
+
 workflow bamQC {
 
-    input {
-	File bamFile
-	Map[String, String] metadata
-	String outputFileNamePrefix = "bamQC"
-    }
+  input {
+    Array[InputGroup] inputGroups
+    Map[String, String] metadata
+    String outputFileNamePrefix = "bamQC"
+    String intervalsToParallelizeByString = "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY,chrM"
+  }
 
-    parameter_meta {
-	bamFile: "Input BAM file on which to compute QC metrics"
+  parameter_meta {
+	inputGroups: "Array of objects describing sets of bams to merge together and on which to compute QC metrics"
 	metadata: "JSON file containing metadata"
 	outputFileNamePrefix: "Prefix for output files"
+    intervalsToParallelizeByString: "Comma separated list of intervals to split by (e.g. chr1,chr2,chr3+chr4)."
     }
 
-    call filter {
-	input:
-	bamFile = bamFile,
-	outputFileNamePrefix = outputFileNamePrefix
+  call splitStringToArray {
+    input:
+      str = intervalsToParallelizeByString
+  }
+  Array[Array[String]] intervalsToParallelizeBy = splitStringToArray.out
+
+  scatter (i in inputGroups) {
+    scatter (intervals in intervalsToParallelizeBy) {
+      call filter {
+        input:
+        bamFile = i.bam,
+        bamIndex = i.bamIndex,
+        intervals = intervals,
+        outputFileName = outputFileNamePrefix
+      }
     }
 
-    call updateMetadata {
+	Array[File] filteredBams = filter.filteredBam
+    Array[String] totalInputReadsArray = filter.totalInputReads
+    Array[String] nonPrimaryReadsArray = filter.nonPrimaryReads
+    Array[String] unmappedReadsArray = filter.unmappedReads
+    Array[String] lowQualityReadsArray = filter.lowQualityReads
+
+  call mergeFiles as mergeSplitByIntervalFiles {
+    input:
+      bams = filteredBams,
+      outputFileName = outputFileNamePrefix,
+      totalInputReads = totalInputReadsArray,
+      nonPrimaryReads = nonPrimaryReadsArray,
+      unmappedReads = unmappedReadsArray,
+      lowQualityReads = lowQualityReadsArray
+    }
+  }
+
+  Array[File] processedBams = mergeSplitByIntervalFiles.mergedBam
+  Array[File] sumTotalInputReads = mergeSplitByIntervalFiles.sumTotalInputReads
+  Array[File] sumNonPrimaryReads = mergeSplitByIntervalFiles.sumNonPrimaryReads
+  Array[File] sumUnmappedReads = mergeSplitByIntervalFiles.sumUnmappedReads
+  Array[File] sumLowQualityReads = mergeSplitByIntervalFiles.sumLowQualityReads
+
+	call mergeFiles {
+			input:
+			bams = processedBams,
+            outputFileName = outputFileNamePrefix,
+            totalInputReads = sumTotalInputReads,
+            nonPrimaryReads = sumNonPrimaryReads,
+            unmappedReads = sumUnmappedReads,
+            lowQualityReads = sumLowQualityReads
+		}
+
+  call updateMetadata {
 	input:
 	metadata = metadata,
 	outputFileNamePrefix = outputFileNamePrefix,
-	totalInputReads = filter.totalInputReads,
-	nonPrimaryReads = filter.nonPrimaryReads,
-	unmappedReads = filter.unmappedReads,
-	lowQualityReads = filter.lowQualityReads
+	totalInputReads = mergeFiles.sumTotalInputReads,
+	nonPrimaryReads = mergeFiles.sumNonPrimaryReads,
+	unmappedReads = mergeFiles.sumUnmappedReads,
+	lowQualityReads = mergeFiles.sumLowQualityReads
     }
 
     call countInputReads {
 	input:
-	bamFile = filter.filteredBam
-    }
-
-    call indexBamFile {
-	input:
-	bamFile = filter.filteredBam
+	bamFile = mergeFiles.mergedBam
     }
 
     call findDownsampleParams {
@@ -58,7 +104,7 @@ workflow bamQC {
     if (ds) {
 	call downsample {
 	    input:
-	    bamFile = filter.filteredBam,
+	    bamFile = mergeFiles.mergedBam,
 	    outputFileNamePrefix = outputFileNamePrefix,
 	    downsampleStatus = findDownsampleParams.status,
 	    downsampleTargets = findDownsampleParams.targets,
@@ -68,14 +114,14 @@ workflow bamQC {
     if (dsMarkDup) {
 	call downsampleRegion {
 	    input:
-	    bamFile = filter.filteredBam,
-	    bamIndex = indexBamFile.index,
+	    bamFile = mergeFiles.mergedBam,
+	    bamIndex = mergeFiles.mergedBamIndex,
 	    outputFileNamePrefix = outputFileNamePrefix,
 	    region = findDownsampleParamsMarkDup.region
 	}
     }
 
-    Array[File?] markDupInputs = [downsampleRegion.result, filter.filteredBam]
+    Array[File?] markDupInputs = [downsampleRegion.result, mergeFiles.mergedBam]
     call markDuplicates {
 	input:
 	bamFile = select_first(markDupInputs),
@@ -84,7 +130,7 @@ workflow bamQC {
 
     call bamQCMetrics {
 	input:
-	bamFile = filter.filteredBam,
+	bamFile = mergeFiles.mergedBam,
 	outputFileNamePrefix = outputFileNamePrefix,
 	markDuplicates = markDuplicates.result,
 	downsampled = ds,
@@ -93,8 +139,8 @@ workflow bamQC {
 
     call runMosdepth {
 	input:
-	bamFile = filter.filteredBam,
-	bamIndex = indexBamFile.index
+	bamFile = mergeFiles.mergedBam,
+	bamIndex = mergeFiles.mergedBamIndex
     }
 
     call cumulativeDistToHistogram {
@@ -115,34 +161,184 @@ workflow bamQC {
 	File result = collateResults.result
     }
 
-    meta {
-	author: "Iain Bancarz"
-	email: "ibancarz@oicr.on.ca"
-	description: "QC metrics for BAM files"
-	dependencies: [
-	{
-	    name: "samtools/1.9",
-	    url: "https://github.com/samtools/samtools"
-	},
-	{
-	    name: "picard/2.21.2",
-	    url: "https://broadinstitute.github.io/picard/command-line-overview.html"
-	},
-	{
-	    name: "python/3.6",
-	    url: "https://www.python.org/downloads/"
-	},
-	{
-	    name: "bam-qc-metrics/0.2.5",
-	    url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
-	},
-	    {
-	    name: "mosdepth/0.2.9",
-	    url: "https://github.com/brentp/mosdepth"
-	}
-	]
+  meta {
+	description: "test"
+  }
+
+}
+
+task splitStringToArray {
+  input {
+    String str
+    String lineSeparator = ","
+    String recordSeparator = "+"
+
+    Int jobMemory = 1
+    Int cores = 1
+    Int timeout = 1
+    String modules = ""
+  }
+
+  command <<<
+    set -euo pipefail
+
+    echo "~{str}" | tr '~{lineSeparator}' '\n' | tr '~{recordSeparator}' '\t'
+  >>>
+
+  output {
+    Array[Array[String]] out = read_tsv(stdout())
+  }
+
+  runtime {
+    memory: "~{jobMemory} GB"
+    cpu: "~{cores}"
+    timeout: "~{timeout}"
+    modules: "~{modules}"
+  }
+
+  parameter_meta {
+    str: "Interval string to split (e.g. chr1,chr2,chr3+chr4)."
+    lineSeparator: "Interval group separator - these are the intervals to split by."
+    recordSeparator: "Interval interval group separator - this can be used to combine multiple intervals into one group."
+    jobMemory: "Memory allocated to job (in GB)."
+    cores: "The number of cores to allocate to the job."
+    timeout: "Maximum amount of time (in hours) the task can run for."
+    modules: "Environment module name and version to load (space separated) before command execution."
+  }
+}
+
+task filter {
+
+    # filter out non-primary, unmapped, and low-quality aligned reads
+    # count the number of reads filtered out at each step
+    # return filtered read counts and the filtered BAM file
+
+    input {
+	File bamFile
+    File bamIndex
+    Array [String] intervals
+	String outputFileName
+	Int minQuality = 30
+	String modules = "samtools/1.9"
+	Int jobMemory = 16
+	Int threads = 4
+	Int timeout = 4
     }
 
+    parameter_meta {
+	bamFile: "Input BAM file of aligned rnaSeqQC data"
+    bamIndex: "Index file for the input bam"
+    intervals: "One or more genomic intervals over which to operate."
+	outputFileName: "Prefix for output file"
+	minQuality: "Minimum alignment quality to pass filter"
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
+    String resultName = "~{outputFileName}.filtered.bam"
+    String totalInputReadsFile = "total_input_reads.txt"
+    String totalNonPrimaryReadsFile = "total_non_primary_reads.txt"
+    String totalUnmappedReadsFile = "total_unmapped_reads.txt"
+    String totalLowQualityReadsFile = "total_low_quality_reads.txt"
+    String nonPrimaryReadsFile = "non_primary_reads.bam"
+    String unmappedReadsFile = "unmapped_reads.bam"
+    String lowQualityReadsFile = "low_quality_reads.bam"
+
+    # -F 2304 excludes secondary and supplementary alignments
+    # -F 4 excludes unmapped reads
+
+    command <<<
+	set -e
+	set -o pipefail
+	samtools view -h -b -F 2304 -U ~{nonPrimaryReadsFile} ~{bamFile} ~{sep=" " intervals} | \
+	samtools view -h -b -F 4 -U ~{unmappedReadsFile} | \
+	samtools view -h -b -q ~{minQuality} -U ~{lowQualityReadsFile} \
+	> ~{resultName}
+	samtools view -c ~{bamFile} > ~{totalInputReadsFile}
+	samtools view -c ~{nonPrimaryReadsFile} > ~{totalNonPrimaryReadsFile}
+	samtools view -c ~{unmappedReadsFile} > ~{totalUnmappedReadsFile}
+	samtools view -c ~{lowQualityReadsFile} > ~{totalLowQualityReadsFile}
+    >>>
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+    # record read totals as String, not Int, to avoid integer overflow error
+    output {
+	String totalInputReads = read_string("~{totalInputReadsFile}")
+	String nonPrimaryReads = read_string("~{totalNonPrimaryReadsFile}")
+	String unmappedReads = read_string("~{totalUnmappedReadsFile}")
+	String lowQualityReads = read_string("~{totalLowQualityReadsFile}")
+	File filteredBam = "~{resultName}"
+    }
+
+    meta {
+	output_meta: {
+	    totalInputReads: "Total reads in original input BAM file",
+	    nonPrimaryReads: "Total reads excluded as non-primary",
+	    unmappedReads: "Total reads excluded as unmapped",
+	    lowQualityReads: "Total reads excluded as low alignment quality",
+            filteredBam: "Filtered BAM file"
+	}
+    }
+
+}
+
+task mergeFiles {
+  input {
+    Array[File] bams
+    String outputFileName
+    Array[String] totalInputReads
+    Array[String] nonPrimaryReads
+    Array[String] unmappedReads
+    Array[String] lowQualityReads
+    String suffix = ".merge"
+    Int jobMemory = 24
+    Int overhead = 6
+    Int cores = 1
+    Int timeout = 24
+    String modules = "gatk/4.1.6.0"
+  }
+
+  command <<<
+    set -euo pipefail
+
+    gatk --java-options "-Xmx~{jobMemory - overhead}G" MergeSamFiles \
+    ~{sep=" " prefix("--INPUT=", bams)} \
+    --OUTPUT="~{outputFileName}~{suffix}.bam" \
+    --CREATE_INDEX=true \
+    --SORT_ORDER=coordinate \
+    --ASSUME_SORTED=false \
+    --USE_THREADING=true \
+    --VALIDATION_STRINGENCY=SILENT 
+
+    echo $(("~{sep="+" totalInputReads}")) > "sumTotalInputReads.txt"
+    echo $(("~{sep="+" nonPrimaryReads}")) > "sumNonPrimaryReads.txt"
+    echo $(("~{sep="+" unmappedReads}")) > "sumUnmappedReads.txt"
+    echo $(("~{sep="+" lowQualityReads}")) > "sumLowQualityReads.txt"  
+  >>>
+
+  output {
+    File mergedBam = "~{outputFileName}~{suffix}.bam"
+    File mergedBamIndex = "~{outputFileName}~{suffix}.bai"
+    String sumTotalInputReads = read_string("sumTotalInputReads.txt")
+    String sumNonPrimaryReads = read_string("sumNonPrimaryReads.txt")
+    String sumUnmappedReads = read_string("sumUnmappedReads.txt")
+    String sumLowQualityReads = read_string("sumLowQualityReads.txt")
+  }
+
+  runtime {
+    memory: "~{jobMemory} GB"
+    cpu: "~{cores}"
+    timeout: "~{timeout}"
+    modules: "~{modules}"
+  }
 }
 
 task bamQCMetrics {
@@ -544,85 +740,6 @@ task downsampleRegion {
 
 }
 
-task filter {
-
-    # filter out non-primary, unmapped, and low-quality aligned reads
-    # count the number of reads filtered out at each step
-    # return filtered read counts and the filtered BAM file
-
-    input {
-	File bamFile
-	String outputFileNamePrefix
-	Int minQuality = 30
-	String modules = "samtools/1.9"
-	Int jobMemory = 16
-	Int threads = 4
-	Int timeout = 4
-    }
-
-    parameter_meta {
-	bamFile: "Input BAM file of aligned rnaSeqQC data"
-	outputFileNamePrefix: "Prefix for output file"
-	minQuality: "Minimum alignment quality to pass filter"
-	modules: "required environment modules"
-	jobMemory: "Memory allocated for this job"
-	threads: "Requested CPU threads"
-	timeout: "hours before task timeout"
-    }
-
-    String resultName = "~{outputFileNamePrefix}.filtered.bam"
-    String totalInputReadsFile = "total_input_reads.txt"
-    String totalNonPrimaryReadsFile = "total_non_primary_reads.txt"
-    String totalUnmappedReadsFile = "total_unmapped_reads.txt"
-    String totalLowQualityReadsFile = "total_low_quality_reads.txt"
-    String nonPrimaryReadsFile = "non_primary_reads.bam"
-    String unmappedReadsFile = "unmapped_reads.bam"
-    String lowQualityReadsFile = "low_quality_reads.bam"
-
-    # -F 2304 excludes secondary and supplementary alignments
-    # -F 4 excludes unmapped reads
-
-    command <<<
-	set -e
-	set -o pipefail
-	samtools view -h -b -F 2304 -U ~{nonPrimaryReadsFile} ~{bamFile} | \
-	samtools view -h -b -F 4 -U ~{unmappedReadsFile} | \
-	samtools view -h -b -q ~{minQuality} -U ~{lowQualityReadsFile} \
-	> ~{resultName}
-	samtools view -c ~{bamFile} > ~{totalInputReadsFile}
-	samtools view -c ~{nonPrimaryReadsFile} > ~{totalNonPrimaryReadsFile}
-	samtools view -c ~{unmappedReadsFile} > ~{totalUnmappedReadsFile}
-	samtools view -c ~{lowQualityReadsFile} > ~{totalLowQualityReadsFile}
-    >>>
-
-    runtime {
-	modules: "~{modules}"
-	memory:  "~{jobMemory} GB"
-	cpu:     "~{threads}"
-	timeout: "~{timeout}"
-    }
-
-    # record read totals as String, not Int, to avoid integer overflow error
-    output {
-	String totalInputReads = read_string("~{totalInputReadsFile}")
-	String nonPrimaryReads = read_string("~{totalNonPrimaryReadsFile}")
-	String unmappedReads = read_string("~{totalUnmappedReadsFile}")
-	String lowQualityReads = read_string("~{totalLowQualityReadsFile}")
-	File filteredBam = "~{resultName}"
-    }
-
-    meta {
-	output_meta: {
-	    totalInputReads: "Total reads in original input BAM file",
-	    nonPrimaryReads: "Total reads excluded as non-primary",
-	    unmappedReads: "Total reads excluded as unmapped",
-	    lowQualityReads: "Total reads excluded as low alignment quality",
-            filteredBam: "Filtered BAM file"
-	}
-    }
-
-}
-
 task findDownsampleParams {
 
     input {
@@ -827,50 +944,6 @@ task findDownsampleParamsMarkDup {
 	    region: "String to specify downsampled region for samtools"
 	}
     }
-}
-
-task indexBamFile {
-
-    input {
-	File bamFile
-	String modules = "samtools/1.9"
-	Int jobMemory = 16
-	Int threads = 4
-	Int timeout = 4
-    }
-
-    parameter_meta {
-	bamFile: "Input BAM file of aligned data"
-	modules: "required environment modules"
-	jobMemory: "Memory allocated for this job"
-	threads: "Requested CPU threads"
-	timeout: "hours before task timeout"
-    }
-
-    runtime {
-	modules: "~{modules}"
-	memory:  "~{jobMemory} GB"
-	cpu:     "~{threads}"
-	timeout: "~{timeout}"
-    }
-
-    String bamName = basename(bamFile)
-    String indexName = "~{bamName}.bai"
-    
-    command <<<
-	samtools index -b ~{bamFile} ~{indexName}
-    >>>
-    
-    output {
-	File index = indexName
-    }
-
-    meta {
-	output_meta: {
-            index: "Index file in BAI format"
-	}
-  }
-
 }
 
 task markDuplicates {
