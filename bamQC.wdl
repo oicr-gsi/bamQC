@@ -123,10 +123,11 @@ workflow bamQC {
 	}
     }
 
-    Array[File?] markDupInputs = [downsampleRegion.result, mergeFiles.mergedBam]
+    File mergedBamFile = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam[0]])
+
     call markDuplicates {
 	input:
-	bamFile = select_first(markDupInputs),
+	bamFile = select_first([downsampleRegion.result, mergedBamFile]),
 	outputFileNamePrefix = outputFileNamePrefix
     }
 
