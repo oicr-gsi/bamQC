@@ -100,7 +100,7 @@
                 "tissue origin": "LV-426",
                 "tissue type": "Claw fragment"
             },
-            "bamQC.outputFileNamePrefix": null,
+            "bamQC.outputFileNamePrefix": "test_with_downsample",
             "bamQC.runMosdepth.jobMemory": null,
             "bamQC.runMosdepth.modules": null,
             "bamQC.runMosdepth.threads": null,
@@ -272,7 +272,7 @@
                 "tissue origin": "LV-426",
                 "tissue type": "Claw fragment"
             },
-            "bamQC.outputFileNamePrefix": null,
+            "bamQC.outputFileNamePrefix": "test_without_downsample",
             "bamQC.runMosdepth.jobMemory": null,
             "bamQC.runMosdepth.modules": null,
             "bamQC.runMosdepth.threads": null,
@@ -426,7 +426,7 @@
                 "tissue origin": "LV-426",
                 "tissue type": "Claw fragment"
             },
-            "bamQC.outputFileNamePrefix": null,
+            "bamQC.outputFileNamePrefix": "test_CRE",
             "bamQC.runMosdepth.jobMemory": null,
             "bamQC.runMosdepth.modules": null,
             "bamQC.runMosdepth.threads": null,
@@ -580,7 +580,7 @@
                 "tissue origin": "LV-426",
                 "tissue type": "Claw fragment"
             },
-            "bamQC.outputFileNamePrefix": null,
+            "bamQC.outputFileNamePrefix": "test_CRE_custom",
             "bamQC.runMosdepth.jobMemory": null,
             "bamQC.runMosdepth.modules": null,
             "bamQC.runMosdepth.threads": null,
@@ -734,7 +734,7 @@
                 "tissue origin": "LV-426",
                 "tissue type": "Claw fragment"
             },
-            "bamQC.outputFileNamePrefix": null,
+            "bamQC.outputFileNamePrefix": "test_empty_input",
             "bamQC.runMosdepth.jobMemory": null,
             "bamQC.runMosdepth.modules": null,
             "bamQC.runMosdepth.threads": null,
@@ -914,7 +914,7 @@
                 "tissue origin": "LV-426",
                 "tissue type": "Claw fragment"
             },
-            "bamQC.outputFileNamePrefix": null,
+            "bamQC.outputFileNamePrefix": "test_multiple_bams_input",
             "bamQC.runMosdepth.jobMemory": null,
             "bamQC.runMosdepth.modules": null,
             "bamQC.runMosdepth.threads": null,
