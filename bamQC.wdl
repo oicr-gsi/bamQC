@@ -71,21 +71,21 @@ workflow bamQC {
             unmappedReads = sumUnmappedReads,
             lowQualityReads = sumLowQualityReads
 		}
-  }
+  } 
 	
   call updateMetadata {
 	input:
 	metadata = metadata,
 	outputFileNamePrefix = outputFileNamePrefix,
-	totalInputReads = select_first([mergeFiles.sumTotalInputReads, mergeSplitByIntervalFiles.sumTotalInputReads]),
-	nonPrimaryReads = select_first([mergeFiles.sumNonPrimaryReads, mergeSplitByIntervalFiles.sumNonPrimaryReads]),
-	unmappedReads = select_first([mergeFiles.sumUnmappedReads, mergeSplitByIntervalFiles.sumUnmappedReads]),
-	lowQualityReads = select_first([mergeFiles.sumLowQualityReads, mergeSplitByIntervalFiles.sumLowQualityReads])
+	totalInputReads = select_first([mergeFiles.sumTotalInputReads, mergeSplitByIntervalFiles.sumTotalInputReads[0]]),
+	nonPrimaryReads = select_first([mergeFiles.sumNonPrimaryReads, mergeSplitByIntervalFiles.sumNonPrimaryReads[0]]),
+	unmappedReads = select_first([mergeFiles.sumUnmappedReads, mergeSplitByIntervalFiles.sumUnmappedReads[0]]),
+	lowQualityReads = select_first([mergeFiles.sumLowQualityReads, mergeSplitByIntervalFiles.sumLowQualityReads[0]])
     }
 
     call countInputReads {
 	input:
-	bamFile = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam])
+	bamFile = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam[0]])
     }
 
     call findDownsampleParams {
@@ -106,7 +106,7 @@ workflow bamQC {
     if (ds) {
 	call downsample {
 	    input:
-	    bamFile = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam]),
+	    bamFile = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam[0]]),
 	    outputFileNamePrefix = outputFileNamePrefix,
 	    downsampleStatus = findDownsampleParams.status,
 	    downsampleTargets = findDownsampleParams.targets,
@@ -116,8 +116,8 @@ workflow bamQC {
     if (dsMarkDup) {
 	call downsampleRegion {
 	    input:
-	    bamFile = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam]),
-	    bamIndex = select_first([mergeFiles.mergedBamIndex, mergeSplitByIntervalFiles.mergedBamIndex]),
+	    bamFile = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam[0]]),
+	    bamIndex = select_first([mergeFiles.mergedBamIndex, mergeSplitByIntervalFiles.mergedBamIndex[0]]),
 	    outputFileNamePrefix = outputFileNamePrefix,
 	    region = findDownsampleParamsMarkDup.region
 	}
@@ -132,7 +132,7 @@ workflow bamQC {
 
     call bamQCMetrics {
 	input:
-	bamFile = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam]),
+	bamFile = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam[0]]),
 	outputFileNamePrefix = outputFileNamePrefix,
 	markDuplicates = markDuplicates.result,
 	downsampled = ds,
@@ -141,8 +141,8 @@ workflow bamQC {
 
     call runMosdepth {
 	input:
-	bamFile = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam]),
-	bamIndex = select_first([mergeFiles.mergedBamIndex, mergeSplitByIntervalFiles.mergedBamIndex])
+	bamFile = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam[0]]),
+	bamIndex = select_first([mergeFiles.mergedBamIndex, mergeSplitByIntervalFiles.mergedBamIndex[0]])
     }
 
     call cumulativeDistToHistogram {
@@ -258,7 +258,7 @@ task filter {
 	samtools view -h -b -F 4 -U ~{unmappedReadsFile} | \
 	samtools view -h -b -q ~{minQuality} -U ~{lowQualityReadsFile} \
 	> ~{resultName}
-	samtools view -c ~{bamFile} > ~{totalInputReadsFile}
+	samtools view -c ~{bamFile} ~{sep=" " intervals} > ~{totalInputReadsFile}
 	samtools view -c ~{nonPrimaryReadsFile} > ~{totalNonPrimaryReadsFile}
 	samtools view -c ~{unmappedReadsFile} > ~{totalUnmappedReadsFile}
 	samtools view -c ~{lowQualityReadsFile} > ~{totalLowQualityReadsFile}
