@@ -3,7 +3,6 @@
 QC metrics for BAM files
 
 ## Overview
-
 bamQC runs the following tools:
 - *Picard MarkDuplicates:* Identifies duplicate reads
 - *mosdepth:* Fast tool to compute depth of coverage
@@ -13,7 +12,6 @@ See `bamqc_wdl.png` for workflow structure.
 
 Filtering is applied to non-primary alignments, unmapped reads, and low-quality reads to exclude them from QC. For large input
 files, downsampling is applied separately for MarkDuplicates and bam-qc-metrics. See `filter_downsample.md` for details.
-
 
 ## Dependencies
 
@@ -36,7 +34,7 @@ java -jar cromwell.jar run bamQC.wdl --inputs inputs.json
 #### Required workflow parameters:
 Parameter|Value|Description
 ---|---|---
-`bamFile`|File|Input BAM file on which to compute QC metrics
+`inputGroups`|Array[InputGroup]|Array of objects describing sets of bams to merge together and on which to compute QC metrics
 `metadata`|Map[String,String]|JSON file containing metadata
 `bamQCMetrics.refFasta`|String|Path to human genome FASTA reference
 `bamQCMetrics.refSizesBed`|String|Path to human genome BED reference with chromosome sizes
@@ -47,16 +45,35 @@ Parameter|Value|Description
 Parameter|Value|Default|Description
 ---|---|---|---
 `outputFileNamePrefix`|String|"bamQC"|Prefix for output files
+`intervalsToParallelizeByString`|String|"chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY,chrM"|Comma separated list of intervals to split by (e.g. chr1,chr2,chr3+chr4).
 
 
 #### Optional task parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
+`splitStringToArray.lineSeparator`|String|","|Interval group separator - these are the intervals to split by.
+`splitStringToArray.recordSeparator`|String|"+"|Interval interval group separator - this can be used to combine multiple intervals into one group.
+`splitStringToArray.jobMemory`|Int|1|Memory allocated to job (in GB).
+`splitStringToArray.cores`|Int|1|The number of cores to allocate to the job.
+`splitStringToArray.timeout`|Int|1|Maximum amount of time (in hours) the task can run for.
+`splitStringToArray.modules`|String|""|Environment module name and version to load (space separated) before command execution.
 `filter.minQuality`|Int|30|Minimum alignment quality to pass filter
 `filter.modules`|String|"samtools/1.9"|required environment modules
 `filter.jobMemory`|Int|16|Memory allocated for this job
 `filter.threads`|Int|4|Requested CPU threads
 `filter.timeout`|Int|4|hours before task timeout
+`mergeSplitByIntervalFiles.suffix`|String|".merge"|suffix to use for merged bam
+`mergeSplitByIntervalFiles.jobMemory`|Int|24|Memory allocated to job (in GB).
+`mergeSplitByIntervalFiles.overhead`|Int|6|Java overhead memory (in GB). jobMemory - overhead == java Xmx/heap memory.
+`mergeSplitByIntervalFiles.cores`|Int|1|The number of cores to allocate to the job.
+`mergeSplitByIntervalFiles.timeout`|Int|24|Maximum amount of time (in hours) the task can run for.
+`mergeSplitByIntervalFiles.modules`|String|"gatk/4.1.6.0"|Environment module name and version to load (space separated) before command execution.
+`mergeFiles.suffix`|String|".merge"|suffix to use for merged bam
+`mergeFiles.jobMemory`|Int|24|Memory allocated to job (in GB).
+`mergeFiles.overhead`|Int|6|Java overhead memory (in GB). jobMemory - overhead == java Xmx/heap memory.
+`mergeFiles.cores`|Int|1|The number of cores to allocate to the job.
+`mergeFiles.timeout`|Int|24|Maximum amount of time (in hours) the task can run for.
+`mergeFiles.modules`|String|"gatk/4.1.6.0"|Environment module name and version to load (space separated) before command execution.
 `updateMetadata.modules`|String|"python/3.6"|required environment modules
 `updateMetadata.jobMemory`|Int|16|Memory allocated for this job
 `updateMetadata.threads`|Int|4|Requested CPU threads
@@ -65,10 +82,6 @@ Parameter|Value|Default|Description
 `countInputReads.jobMemory`|Int|16|Memory allocated for this job
 `countInputReads.threads`|Int|4|Requested CPU threads
 `countInputReads.timeout`|Int|4|hours before task timeout
-`indexBamFile.modules`|String|"samtools/1.9"|required environment modules
-`indexBamFile.jobMemory`|Int|16|Memory allocated for this job
-`indexBamFile.threads`|Int|4|Requested CPU threads
-`indexBamFile.timeout`|Int|4|hours before task timeout
 `findDownsampleParams.targetReads`|Int|100000|Desired number of reads in downsampled output
 `findDownsampleParams.minReadsAbsolute`|Int|10000|Minimum value of targetReads to allow pre-downsampling
 `findDownsampleParams.minReadsRelative`|Int|2|Minimum value of (inputReads)/(targetReads) to allow pre-downsampling
@@ -126,34 +139,11 @@ Parameter|Value|Default|Description
 
 Output | Type | Description
 ---|---|---
-`result`|File|None
+`result`|File|json file that contains metrics and meta data described in https://github.com/oicr-gsi/bam-qc-metrics/blob/master/metrics.md
 
 
-## Niassa + Cromwell
 
-This WDL workflow is wrapped in a Niassa workflow (https://github.com/oicr-gsi/pipedev/tree/master/pipedev-niassa-cromwell-workflow) so that it can used with the Niassa metadata tracking system (https://github.com/oicr-gsi/niassa).
-
-* Building
-```
-mvn clean install
-```
-
-* Testing
-```
-mvn clean verify \
--Djava_opts="-Xmx1g -XX:+UseG1GC -XX:+UseStringDeduplication" \
--DrunTestThreads=2 \
--DskipITs=false \
--DskipRunITs=false \
--DworkingDirectory=/path/to/tmp/ \
--DschedulingHost=niassa_oozie_host \
--DwebserviceUrl=http://niassa-url:8080 \
--DwebserviceUser=niassa_user \
--DwebservicePassword=niassa_user_password \
--Dcromwell-host=http://cromwell-url:8000
-```
-
-## Support
+ ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 

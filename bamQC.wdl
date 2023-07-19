@@ -38,7 +38,7 @@ workflow bamQC {
       }
     }
 
-	Array[File] filteredBams = filter.filteredBam
+    Array[File] filteredBams = filter.filteredBam
     Array[String] totalInputReadsArray = filter.totalInputReads
     Array[String] nonPrimaryReadsArray = filter.nonPrimaryReads
     Array[String] unmappedReadsArray = filter.unmappedReads
@@ -164,9 +164,36 @@ workflow bamQC {
 	File result = collateResults.result
     }
 
-  meta {
-	description: "test"
-  }
+    meta {
+        author: "Iain Bancarz"
+        email: "ibancarz@oicr.on.ca"
+        description: "QC metrics for BAM files"
+        dependencies: [
+            {
+                name: "samtools/1.9",
+                url: "https://github.com/samtools/samtools"
+            },
+            {
+                name: "picard/2.21.2",
+                url: "https://broadinstitute.github.io/picard/command-line-overview.html"
+            },
+            {
+                name: "python/3.6",
+                url: "https://www.python.org/downloads/"
+            },
+            {
+                name: "bam-qc-metrics/0.2.5",
+                url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
+            },
+                {
+                name: "mosdepth/0.2.9",
+                url: "https://github.com/brentp/mosdepth"
+            }
+        ]
+        output_meta: {
+            result: "json file that contains metrics and meta data described in https://github.com/oicr-gsi/bam-qc-metrics/blob/master/metrics.md"
+        }
+    }
 
 }
 
@@ -309,6 +336,21 @@ task mergeFiles {
     String modules = "gatk/4.1.6.0"
   }
 
+  parameter_meta {
+    bams: "Array of bam files to merge together."
+    outputFileName: "Output files will be prefixed with this."
+    totalInputReads: "Array of metrics totalInputReads to merge together"
+    nonPrimaryReads: "Array of metrics nonPrimaryReads to merge togather"
+    unmappedReads: "Array of metrics unmappedReads to merge together"
+    lowQualityReads: "Array of metrics lowQualityReads to merge together"
+    suffix: "suffix to use for merged bam"
+    jobMemory: "Memory allocated to job (in GB)."
+    overhead: "Java overhead memory (in GB). jobMemory - overhead == java Xmx/heap memory."
+    cores: "The number of cores to allocate to the job."
+    timeout: "Maximum amount of time (in hours) the task can run for."
+    modules: "Environment module name and version to load (space separated) before command execution."
+  }
+
   command <<<
     set -euo pipefail
 
@@ -342,6 +384,7 @@ task mergeFiles {
     timeout: "~{timeout}"
     modules: "~{modules}"
   }
+
 }
 
 task bamQCMetrics {
