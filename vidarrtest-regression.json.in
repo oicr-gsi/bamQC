@@ -934,7 +934,7 @@
             "bamQC.result": {
                 "contents": [
                     {
-                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_empty_input_@JENKINSID@"
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_multiple_bams_input_@JENKINSID@"
                     }
                 ],
                 "type": "ALL"
@@ -944,7 +944,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/bamQC_test_merge_bams.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/bamQC_test_multiple_bams_input.metrics",
                 "type": "script"
             }
         ]
