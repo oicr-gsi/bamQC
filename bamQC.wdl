@@ -18,19 +18,23 @@ workflow bamQC {
   parameter_meta {
 	inputGroups: "Array of objects describing sets of bams to merge together and on which to compute QC metrics"
 	metadata: "JSON file containing metadata"
+    mode: "running mode for the workflow, only allow value 'lane_level' and 'call_ready'"
 	outputFileNamePrefix: "Prefix for output files"
     intervalsToParallelizeByString: "Comma separated list of intervals to split by (e.g. chr1,chr2,chr3+chr4)."
     }
 
+  if (( mode == "lane_level") && (length(inputGroups) ==1 )) {
+    File laneLevelBam = inputGroups[0].bam
+    File laneLevelBamIndex = inputGroups[0].bamIndex
+  }
 
-
-  if (mode == "call ready") {
+  if (mode == "call_ready") {
     call splitStringToArray {
-    input:
-        str = intervalsToParallelizeByString
-    }
+        input:
+            str = intervalsToParallelizeByString
+        }
     
-  Array[Array[String]] intervalsToParallelizeBy = splitStringToArray.out
+    Array[Array[String]] intervalsToParallelizeBy = splitStringToArray.out
     scatter (i in inputGroups) {
         scatter (intervals in intervalsToParallelizeBy) {
         call preFilter {
@@ -62,10 +66,6 @@ workflow bamQC {
     File mergedBam = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam[0]])
     File mergedBamIndex = select_first([mergeFiles.mergedBamIndex, mergeSplitByIntervalFiles.mergedBamIndex[0]])
   }	
-  if (( mode == "lane level") && (length(inputGroups) ==1 )) {
-    File laneLevelBam = inputGroups[0].bam
-    File laneLevelBamIndex = inputGroups[0].bamIndex
-  }
 
   File qcReadyBam = select_first([laneLevelBam, mergedBam])
   File qcReadyBamIndex = select_first([laneLevelBamIndex, mergedBamIndex])
@@ -75,7 +75,6 @@ workflow bamQC {
     bamFile = qcReadyBam,
     outputFileNamePrefix = outputFileNamePrefix
   }
-
 
   call updateMetadata {
 	input:
