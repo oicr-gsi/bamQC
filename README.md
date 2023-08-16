@@ -2,6 +2,17 @@
 
 QC metrics for BAM files
 
+## Overview
+
+bamQC runs the following tools:
+- *Picard MarkDuplicates:* Identifies duplicate reads
+- *mosdepth:* Fast tool to compute depth of coverage
+- *bam-qc-metrics:* Package developed at GSI to compute an assortment of samtools, bedtools, and custom metrics on BAM files.
+
+See `bamqc_wdl.png` for workflow structure.
+
+Filtering is applied to non-primary alignments, unmapped reads, and low-quality reads to exclude them from QC. For large input
+files, downsampling is applied separately for MarkDuplicates and bam-qc-metrics. See `filter_downsample.md` for details.
 
 ## Dependencies
 
