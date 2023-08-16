@@ -2,7 +2,6 @@
 
 QC metrics for BAM files
 
-## Overview
 
 ## Dependencies
 
@@ -142,7 +141,7 @@ Output | Type | Description
 
 
 ## Commands
- This section lists command(s) run by WORKFLOW workflow
+ This section lists command(s) run by bamQC workflow
  
  ### Run bamQCMetrics
  
