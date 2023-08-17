@@ -1,5 +1,6 @@
 # CHANGELOG
-
+## 5.1.0 -2023-08-17
+- Creat two modes lane_levl and call_ready, for different inputs. The formal run bamQC steps as before woth single lane level bam, the latter filter and multiple baminputs before other bamQC steps. 
 ## 5.0.2 - 2022-08-31
 - Modify python module loading during validation
 ## 5.0.1 - 2022-08-31

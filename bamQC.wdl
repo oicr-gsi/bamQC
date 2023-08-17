@@ -1,43 +1,94 @@
 version 1.0
 
+struct InputGroup {
+  File bam
+  File bamIndex
+}
+
 workflow bamQC {
 
-    input {
-	File bamFile
-	Map[String, String] metadata
-	String outputFileNamePrefix = "bamQC"
-    }
+  input {
+    Array[InputGroup] inputGroups
+    Map[String, String] metadata
+    String mode
+    String outputFileNamePrefix = "bamQC"
+    String intervalsToParallelizeByString = "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY,chrM"
+  }
 
-    parameter_meta {
-	bamFile: "Input BAM file on which to compute QC metrics"
+  parameter_meta {
+	inputGroups: "Array of objects describing sets of bams to merge together and on which to compute QC metrics"
 	metadata: "JSON file containing metadata"
+    mode: "running mode for the workflow, only allow value 'lane_level' and 'call_ready'"
 	outputFileNamePrefix: "Prefix for output files"
+    intervalsToParallelizeByString: "Comma separated list of intervals to split by (e.g. chr1,chr2,chr3+chr4)."
     }
 
-    call filter {
-	input:
-	bamFile = bamFile,
-	outputFileNamePrefix = outputFileNamePrefix
-    }
+  if (( mode == "lane_level") && (length(inputGroups) ==1 )) {
+    File laneLevelBam = inputGroups[0].bam
+    File laneLevelBamIndex = inputGroups[0].bamIndex
+  }
 
-    call updateMetadata {
+  if (mode == "call_ready") {
+    call splitStringToArray {
+        input:
+            str = intervalsToParallelizeByString
+        }
+    
+    Array[Array[String]] intervalsToParallelizeBy = splitStringToArray.out
+    scatter (i in inputGroups) {
+        scatter (intervals in intervalsToParallelizeBy) {
+        call preFilter {
+            input:
+            bamFile = i.bam,
+            bamIndex = i.bamIndex,
+            intervals = intervals,
+            outputFileName = outputFileNamePrefix
+        }
+        }
+
+        Array[File] filteredBams = preFilter.filteredBam
+
+        call mergeFiles as mergeSplitByIntervalFiles {
+            input:
+            bams = filteredBams,
+            outputFileName = outputFileNamePrefix
+        }
+    }
+    Array[File] processedBams = mergeSplitByIntervalFiles.mergedBam
+
+    if (length(processedBams) > 1) {
+        call mergeFiles {
+                input:
+                bams = processedBams,
+                outputFileName = outputFileNamePrefix
+            }
+    } 
+    File mergedBam = select_first([mergeFiles.mergedBam, mergeSplitByIntervalFiles.mergedBam[0]])
+    File mergedBamIndex = select_first([mergeFiles.mergedBamIndex, mergeSplitByIntervalFiles.mergedBamIndex[0]])
+  }	
+
+  File qcReadyBam = select_first([laneLevelBam, mergedBam])
+  File qcReadyBamIndex = select_first([laneLevelBamIndex, mergedBamIndex])
+
+  call filterBamQC {
+    input:
+    bamFile = qcReadyBam,
+    outputFileNamePrefix = outputFileNamePrefix
+  }
+
+  call updateMetadata {
 	input:
 	metadata = metadata,
 	outputFileNamePrefix = outputFileNamePrefix,
-	totalInputReads = filter.totalInputReads,
-	nonPrimaryReads = filter.nonPrimaryReads,
-	unmappedReads = filter.unmappedReads,
-	lowQualityReads = filter.lowQualityReads
+	totalInputReads = filterBamQC.totalInputReads,
+	nonPrimaryReads = filterBamQC.nonPrimaryReads,
+	unmappedReads = filterBamQC.unmappedReads,
+	lowQualityReads = filterBamQC.lowQualityReads
     }
 
     call countInputReads {
 	input:
-	bamFile = filter.filteredBam
-    }
-
-    call indexBamFile {
-	input:
-	bamFile = filter.filteredBam
+	bamFile = qcReadyBam
     }
 
     call findDownsampleParams {
@@ -58,7 +109,7 @@ workflow bamQC {
     if (ds) {
 	call downsample {
 	    input:
-	    bamFile = filter.filteredBam,
+	    bamFile = qcReadyBam,
 	    outputFileNamePrefix = outputFileNamePrefix,
 	    downsampleStatus = findDownsampleParams.status,
 	    downsampleTargets = findDownsampleParams.targets,
@@ -68,23 +119,22 @@ workflow bamQC {
     if (dsMarkDup) {
 	call downsampleRegion {
 	    input:
-	    bamFile = filter.filteredBam,
-	    bamIndex = indexBamFile.index,
+	    bamFile = qcReadyBam,
+	    bamIndex = qcReadyBamIndex,
 	    outputFileNamePrefix = outputFileNamePrefix,
 	    region = findDownsampleParamsMarkDup.region
 	}
     }
 
-    Array[File?] markDupInputs = [downsampleRegion.result, filter.filteredBam]
     call markDuplicates {
 	input:
-	bamFile = select_first(markDupInputs),
+	bamFile = qcReadyBam,
 	outputFileNamePrefix = outputFileNamePrefix
     }
 
     call bamQCMetrics {
 	input:
-	bamFile = filter.filteredBam,
+	bamFile = qcReadyBam,
 	outputFileNamePrefix = outputFileNamePrefix,
 	markDuplicates = markDuplicates.result,
 	downsampled = ds,
@@ -93,8 +143,8 @@ workflow bamQC {
 
     call runMosdepth {
 	input:
-	bamFile = filter.filteredBam,
-	bamIndex = indexBamFile.index
+	bamFile = qcReadyBam,
+	bamIndex = qcReadyBamIndex
     }
 
     call cumulativeDistToHistogram {
@@ -116,31 +166,34 @@ workflow bamQC {
     }
 
     meta {
-	author: "Iain Bancarz"
-	email: "ibancarz@oicr.on.ca"
-	description: "QC metrics for BAM files"
-	dependencies: [
-	{
-	    name: "samtools/1.9",
-	    url: "https://github.com/samtools/samtools"
-	},
-	{
-	    name: "picard/2.21.2",
-	    url: "https://broadinstitute.github.io/picard/command-line-overview.html"
-	},
-	{
-	    name: "python/3.6",
-	    url: "https://www.python.org/downloads/"
-	},
-	{
-	    name: "bam-qc-metrics/0.2.5",
-	    url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
-	},
-	    {
-	    name: "mosdepth/0.2.9",
-	    url: "https://github.com/brentp/mosdepth"
-	}
-	]
+        author: "Iain Bancarz"
+        email: "ibancarz@oicr.on.ca"
+        description: "QC metrics for BAM files"
+        dependencies: [
+            {
+                name: "samtools/1.9",
+                url: "https://github.com/samtools/samtools"
+            },
+            {
+                name: "picard/2.21.2",
+                url: "https://broadinstitute.github.io/picard/command-line-overview.html"
+            },
+            {
+                name: "python/3.6",
+                url: "https://www.python.org/downloads/"
+            },
+            {
+                name: "bam-qc-metrics/0.2.5",
+                url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
+            },
+                {
+                name: "mosdepth/0.2.9",
+                url: "https://github.com/brentp/mosdepth"
+            }
+        ]
+        output_meta: {
+            result: "json file that contains metrics and meta data described in https://github.com/oicr-gsi/bam-qc-metrics/blob/master/metrics.md"
+        }
     }
 
 }
@@ -544,13 +597,13 @@ task downsampleRegion {
 
 }
 
-task filter {
+task filterBamQC {
 
     # filter out non-primary, unmapped, and low-quality aligned reads
     # count the number of reads filtered out at each step
     # return filtered read counts and the filtered BAM file
 
-    input {
+   input {
 	File bamFile
 	String outputFileNamePrefix
 	Int minQuality = 30
@@ -617,7 +670,7 @@ task filter {
 	    nonPrimaryReads: "Total reads excluded as non-primary",
 	    unmappedReads: "Total reads excluded as unmapped",
 	    lowQualityReads: "Total reads excluded as low alignment quality",
-            filteredBam: "Filtered BAM file"
+        filteredBam: "Filtered BAM file"
 	}
     }
 
@@ -829,50 +882,6 @@ task findDownsampleParamsMarkDup {
     }
 }
 
-task indexBamFile {
-
-    input {
-	File bamFile
-	String modules = "samtools/1.9"
-	Int jobMemory = 16
-	Int threads = 4
-	Int timeout = 4
-    }
-
-    parameter_meta {
-	bamFile: "Input BAM file of aligned data"
-	modules: "required environment modules"
-	jobMemory: "Memory allocated for this job"
-	threads: "Requested CPU threads"
-	timeout: "hours before task timeout"
-    }
-
-    runtime {
-	modules: "~{modules}"
-	memory:  "~{jobMemory} GB"
-	cpu:     "~{threads}"
-	timeout: "~{timeout}"
-    }
-
-    String bamName = basename(bamFile)
-    String indexName = "~{bamName}.bai"
-    
-    command <<<
-	samtools index -b ~{bamFile} ~{indexName}
-    >>>
-    
-    output {
-	File index = indexName
-    }
-
-    meta {
-	output_meta: {
-            index: "Index file in BAI format"
-	}
-  }
-
-}
-
 task markDuplicates {
 
     input {
@@ -933,6 +942,114 @@ task markDuplicates {
 
 }
 
+task mergeFiles {
+  input {
+    Array[File] bams
+    String outputFileName
+    String suffix = ".merge"
+    Int jobMemory = 24
+    Int overhead = 6
+    Int cores = 1
+    Int timeout = 24
+    String modules = "gatk/4.1.6.0"
+  }
+
+  parameter_meta {
+    bams: "Array of bam files to merge together."
+    outputFileName: "Output files will be prefixed with this."
+    suffix: "suffix to use for merged bam"
+    jobMemory: "Memory allocated to job (in GB)."
+    overhead: "Java overhead memory (in GB). jobMemory - overhead == java Xmx/heap memory."
+    cores: "The number of cores to allocate to the job."
+    timeout: "Maximum amount of time (in hours) the task can run for."
+    modules: "Environment module name and version to load (space separated) before command execution."
+  }
+
+  command <<<
+    set -euo pipefail
+
+    gatk --java-options "-Xmx~{jobMemory - overhead}G" MergeSamFiles \
+    ~{sep=" " prefix("--INPUT=", bams)} \
+    --OUTPUT="~{outputFileName}~{suffix}.bam" \
+    --CREATE_INDEX=true \
+    --SORT_ORDER=coordinate \
+    --ASSUME_SORTED=false \
+    --USE_THREADING=true \
+    --VALIDATION_STRINGENCY=SILENT 
+
+  >>>
+
+  output {
+    File mergedBam = "~{outputFileName}~{suffix}.bam"
+    File mergedBamIndex = "~{outputFileName}~{suffix}.bai"
+  }
+
+  runtime {
+    memory: "~{jobMemory} GB"
+    cpu: "~{cores}"
+    timeout: "~{timeout}"
+    modules: "~{modules}"
+  }
+
+}
+
+task preFilter {
+    input {
+    File bamFile
+    File bamIndex
+    Array [String] intervals
+    String outputFileName
+    Int filterFlags = 260
+    Int? minMapQuality
+    String? filterAdditionalParams
+    String modules = "samtools/1.9"
+    Int jobMemory = 16
+    Int threads = 4
+    Int timeout = 4
+    }
+    parameter_meta {
+	bamFile: "Input BAM file of aligned rnaSeqQC data"
+	outputFileName: "Prefix for output file"
+	minMapQuality: "Minimum alignment quality to pass filter"
+    filterFlags: "Samtools filter flags to apply."
+    filterAdditionalParams: "Additional parameters to pass to samtools."
+	modules: "required environment modules"
+	jobMemory: "Memory allocated for this job"
+	threads: "Requested CPU threads"
+	timeout: "hours before task timeout"
+    }
+
+    String resultName = "~{outputFileName}.filtered.bam"
+   command <<<
+   set -e
+   set -o pipefail
+   samtools view -b \
+        -F ~{filterFlags} \
+        ~{"-q " + minMapQuality} \
+        ~{filterAdditionalParams} \
+        ~{bamFile} \
+        ~{sep=" " intervals} > ~{resultName}
+    >>> 
+
+    output {
+    File filteredBam = "~{resultName}"
+    }
+
+    meta {
+	output_meta: {
+        filteredBam: "Filtered BAM file"
+	}
+    }
+
+    runtime {
+	modules: "~{modules}"
+	memory:  "~{jobMemory} GB"
+	cpu:     "~{threads}"
+	timeout: "~{timeout}"
+    }
+
+}
+
 task runMosdepth {
 
     input {
@@ -983,6 +1100,46 @@ task runMosdepth {
 	}
   }
 
+}
+
+task splitStringToArray {
+  input {
+    String str
+    String lineSeparator = ","
+    String recordSeparator = "+"
+
+    Int jobMemory = 1
+    Int cores = 1
+    Int timeout = 1
+    String modules = ""
+  }
+
+  command <<<
+    set -euo pipefail
+
+    echo "~{str}" | tr '~{lineSeparator}' '\n' | tr '~{recordSeparator}' '\t'
+  >>>
+
+  output {
+    Array[Array[String]] out = read_tsv(stdout())
+  }
+
+  runtime {
+    memory: "~{jobMemory} GB"
+    cpu: "~{cores}"
+    timeout: "~{timeout}"
+    modules: "~{modules}"
+  }
+
+  parameter_meta {
+    str: "Interval string to split (e.g. chr1,chr2,chr3+chr4)."
+    lineSeparator: "Interval group separator - these are the intervals to split by."
+    recordSeparator: "Interval interval group separator - this can be used to combine multiple intervals into one group."
+    jobMemory: "Memory allocated to job (in GB)."
+    cores: "The number of cores to allocate to the job."
+    timeout: "Maximum amount of time (in hours) the task can run for."
+    modules: "Environment module name and version to load (space separated) before command execution."
+  }
 }
 
 task updateMetadata {
