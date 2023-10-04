@@ -70,7 +70,7 @@ workflow bamQC {
   File qcReadyBam = select_first([laneLevelBam, mergedBam])
   File qcReadyBamIndex = select_first([laneLevelBamIndex, mergedBamIndex])
 
-  call filterBamQC {
+  call filter {
     input:
     bamFile = qcReadyBam,
     outputFileNamePrefix = outputFileNamePrefix
@@ -80,27 +80,22 @@ workflow bamQC {
 	input:
 	metadata = metadata,
 	outputFileNamePrefix = outputFileNamePrefix,
-	totalInputReads = filterBamQC.totalInputReads,
-	nonPrimaryReads = filterBamQC.nonPrimaryReads,
-	unmappedReads = filterBamQC.unmappedReads,
-	lowQualityReads = filterBamQC.lowQualityReads
-    }
-
-    call countInputReads {
-	input:
-	bamFile = qcReadyBam
+	totalInputReads = filter.totalInputReads,
+	nonPrimaryReads = filter.nonPrimaryReads,
+	unmappedReads = filter.unmappedReads,
+	lowQualityReads = filter.lowQualityReads
     }
 
     call findDownsampleParams {
 	input:
 	outputFileNamePrefix = outputFileNamePrefix,
-	inputReads = countInputReads.result
+	inputReads = filter.totalInputReads
     }
 
     call findDownsampleParamsMarkDup {
 	input:
 	outputFileNamePrefix = outputFileNamePrefix,
-	inputReads = countInputReads.result
+	inputReads = filter.totalInputReads
     }
 
     Boolean ds = findDownsampleParams.status["ds"]
@@ -109,7 +104,7 @@ workflow bamQC {
     if (ds) {
 	call downsample {
 	    input:
-	    bamFile = qcReadyBam,
+	    bamFile = filter.filteredBam,
 	    outputFileNamePrefix = outputFileNamePrefix,
 	    downsampleStatus = findDownsampleParams.status,
 	    downsampleTargets = findDownsampleParams.targets,
@@ -119,22 +114,23 @@ workflow bamQC {
     if (dsMarkDup) {
 	call downsampleRegion {
 	    input:
-	    bamFile = qcReadyBam,
-	    bamIndex = qcReadyBamIndex,
+	    bamFile = filter.filteredBam,
+        bamIndex = filter.filteredBai,
 	    outputFileNamePrefix = outputFileNamePrefix,
 	    region = findDownsampleParamsMarkDup.region
 	}
     }
 
+    Array[File?] markDupInputs = [downsampleRegion.result, filter.filteredBam]
     call markDuplicates {
 	input:
-	bamFile = qcReadyBam,
+	bamFile = select_first(markDupInputs),
 	outputFileNamePrefix = outputFileNamePrefix
     }
 
     call bamQCMetrics {
 	input:
-	bamFile = qcReadyBam,
+	bamFile = filter.filteredBam,
 	outputFileNamePrefix = outputFileNamePrefix,
 	markDuplicates = markDuplicates.result,
 	downsampled = ds,
@@ -143,8 +139,8 @@ workflow bamQC {
 
     call runMosdepth {
 	input:
-	bamFile = qcReadyBam,
-	bamIndex = qcReadyBamIndex
+	bamFile = filter.filteredBam,
+	bamIndex = filter.filteredBai
     }
 
     call cumulativeDistToHistogram {
@@ -323,46 +319,6 @@ task collateResults {
     meta {
 	output_meta: {
             output1: "JSON file of collated results"
-	}
-    }
-}
-
-task countInputReads {
-
-    input {
-	File bamFile
-	String modules = "samtools/1.9"
-	Int jobMemory = 16
-	Int threads = 4
-	Int timeout = 4
-    }
-
-    parameter_meta {
-	bamFile: "Input BAM file of aligned data"
-	modules: "required environment modules"
-	jobMemory: "Memory allocated for this job"
-	threads: "Requested CPU threads"
-	timeout: "hours before task timeout"
-    }
-
-    runtime {
-	modules: "~{modules}"
-	memory:  "~{jobMemory} GB"
-	cpu:     "~{threads}"
-	timeout: "~{timeout}"
-    }
-
-    command <<<
-	samtools view -c ~{bamFile}
-    >>>
-    
-    output {
-	String result = read_string(stdout())
-    }
-
-    meta {
-	output_meta: {
-            output1: "Number of reads in input BAM file"
 	}
     }
 }
@@ -597,7 +553,7 @@ task downsampleRegion {
 
 }
 
-task filterBamQC {
+task filter {
 
     # filter out non-primary, unmapped, and low-quality aligned reads
     # count the number of reads filtered out at each step
@@ -624,6 +580,7 @@ task filterBamQC {
     }
 
     String resultName = "~{outputFileNamePrefix}.filtered.bam"
+    String resultIndexName = "~{outputFileNamePrefix}.filtered.bam.bai"
     String totalInputReadsFile = "total_input_reads.txt"
     String totalNonPrimaryReadsFile = "total_non_primary_reads.txt"
     String totalUnmappedReadsFile = "total_unmapped_reads.txt"
@@ -636,16 +593,17 @@ task filterBamQC {
     # -F 4 excludes unmapped reads
 
     command <<<
-	set -e
-	set -o pipefail
-	samtools view -h -b -F 2304 -U ~{nonPrimaryReadsFile} ~{bamFile} | \
-	samtools view -h -b -F 4 -U ~{unmappedReadsFile} | \
-	samtools view -h -b -q ~{minQuality} -U ~{lowQualityReadsFile} \
-	> ~{resultName}
-	samtools view -c ~{bamFile} > ~{totalInputReadsFile}
-	samtools view -c ~{nonPrimaryReadsFile} > ~{totalNonPrimaryReadsFile}
-	samtools view -c ~{unmappedReadsFile} > ~{totalUnmappedReadsFile}
-	samtools view -c ~{lowQualityReadsFile} > ~{totalLowQualityReadsFile}
+    set -e
+    set -o pipefail
+    samtools view -h -b -F 2304 -U ~{nonPrimaryReadsFile} ~{bamFile} | \
+    samtools view -h -b -F 4 -U ~{unmappedReadsFile} | \
+    samtools view -h -b -q ~{minQuality} -U ~{lowQualityReadsFile} \
+    > ~{resultName}
+    samtools view -c ~{bamFile} > ~{totalInputReadsFile}
+    samtools view -c ~{nonPrimaryReadsFile} > ~{totalNonPrimaryReadsFile}
+    samtools view -c ~{unmappedReadsFile} > ~{totalUnmappedReadsFile}
+    samtools view -c ~{lowQualityReadsFile} > ~{totalLowQualityReadsFile}
+    samtools index ~{resultName} ~{resultIndexName}
     >>>
 
     runtime {
@@ -657,20 +615,22 @@ task filterBamQC {
 
     # record read totals as String, not Int, to avoid integer overflow error
     output {
-	String totalInputReads = read_string("~{totalInputReadsFile}")
-	String nonPrimaryReads = read_string("~{totalNonPrimaryReadsFile}")
-	String unmappedReads = read_string("~{totalUnmappedReadsFile}")
-	String lowQualityReads = read_string("~{totalLowQualityReadsFile}")
-	File filteredBam = "~{resultName}"
+    String totalInputReads = read_string("~{totalInputReadsFile}")
+    String nonPrimaryReads = read_string("~{totalNonPrimaryReadsFile}")
+    String unmappedReads = read_string("~{totalUnmappedReadsFile}")
+    String lowQualityReads = read_string("~{totalLowQualityReadsFile}")
+    File filteredBam = "~{resultName}"
+    File filteredBai = "~{resultIndexName}"
     }
 
     meta {
 	output_meta: {
-	    totalInputReads: "Total reads in original input BAM file",
-	    nonPrimaryReads: "Total reads excluded as non-primary",
-	    unmappedReads: "Total reads excluded as unmapped",
-	    lowQualityReads: "Total reads excluded as low alignment quality",
-        filteredBam: "Filtered BAM file"
+    totalInputReads: "Total reads in original input BAM file",
+    nonPrimaryReads: "Total reads excluded as non-primary",
+    unmappedReads: "Total reads excluded as unmapped",
+    lowQualityReads: "Total reads excluded as low alignment quality",
+    filteredBam: "Filtered BAM file",
+    filteredBai: "Filtered bam index"
 	}
     }
 
