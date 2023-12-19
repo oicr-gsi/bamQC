@@ -1041,7 +1041,7 @@ task preFilter {
         ~{"-q " + minMapQuality} \
         ~{filterAdditionalParams} \
         ~{bamFile} \
-        interval > ~{resultName}
+        ~{interval} > ~{resultName}
     >>> 
 
     output {
