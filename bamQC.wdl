@@ -20,7 +20,7 @@ workflow bamQC {
 	metadata: "JSON file containing metadata"
     mode: "running mode for the workflow, only allow value 'lane_level' and 'call_ready'"
 	outputFileNamePrefix: "Prefix for output files"
-    intervalsToParallelizeByString: "Comma separated list of intervals to split by (e.g. chr1,chr2,chr3+chr4)."
+    intervalsToParallelizeByString: "Comma separated list of intervals to split by (e.g. chr1,chr2,chr3,chr4)."
     }
 
   if (( mode == "lane_level") && (length(inputGroups) ==1 )) {
@@ -34,14 +34,20 @@ workflow bamQC {
             str = intervalsToParallelizeByString
         }
     
-    Array[Array[String]] intervalsToParallelizeBy = splitStringToArray.out
+    Array[String] intervalsToParallelizeBy = flatten(splitStringToArray.out)
     scatter (i in inputGroups) {
-        scatter (intervals in intervalsToParallelizeBy) {
+        scatter (interval in intervalsToParallelizeBy) {
+        call getChrCoefficient {
+            input:
+            bamFile = i.bam,
+            chromosome = interval
+        } 
         call preFilter {
             input:
             bamFile = i.bam,
             bamIndex = i.bamIndex,
-            intervals = intervals,
+            interval = interval,
+            scaleCoefficient = getChrCoefficient.coeff,
             outputFileName = outputFileNamePrefix
         }
         }
@@ -167,7 +173,7 @@ workflow bamQC {
         description: "QC metrics for BAM files"
         dependencies: [
             {
-                name: "samtools/1.9",
+                name: "samtools/1.14",
                 url: "https://github.com/samtools/samtools"
             },
             {
@@ -193,6 +199,50 @@ workflow bamQC {
     }
 
 }
+
+# ================================================================
+#  Scaling coefficient - use to scale RAM allocation by chromosome
+# ================================================================
+task getChrCoefficient {
+  input {
+    Int memory = 2
+    Int timeout = 1
+    String chromosome
+    String modules = "samtools/1.14"
+    File bamFile
+  }
+
+  parameter_meta {
+    bamFile: ".bam file to process, we just need the header"
+    timeout: "Hours before task timeout"
+    chromosome: "Chromosome to check"
+    memory: "Memory allocated for this job"
+    modules: "Names and versions of modules to load"
+  }
+
+  command <<<
+    CHROM_LEN=$(samtools view -H ~{bamFile} | grep ^@SQ | grep -v _ | grep -w ~{chromosome} | cut -f 3 | sed 's/LN://')
+    LARGEST=$(samtools view -H ~{bamFile} | grep ^@SQ | grep -v _ | cut -f 3 | sed 's/LN://' | sort -n | tail -n 1)
+    echo | awk -v chrom_len=$CHROM_LEN -v largest=$LARGEST '{print int((chrom_len/largest + 0.1) * 10)/10}'
+  >>>
+
+  runtime {
+    memory:  "~{memory} GB"
+    modules: "~{modules}"
+    timeout: "~{timeout}"
+  }
+
+  output {
+    String coeff = read_string(stdout())
+  }
+
+  meta {
+    output_meta: {
+      coeff: "Length ratio as relative to the largest chromosome."
+    }
+  }
+}
+
 
 task bamQCMetrics {
 
@@ -430,7 +480,7 @@ task downsample {
 	Map[String, String] downsampleTargets
 	String downsampleSuffix = "downsampled.bam"
 	Int randomSeed = 42
-	String modules = "samtools/1.9"
+	String modules = "samtools/1.14"
 	Int jobMemory = 16
 	Int threads = 4
 	Int timeout = 4
@@ -504,7 +554,7 @@ task downsampleRegion {
 	File bamIndex
 	String outputFileNamePrefix
 	String region
-	String modules = "samtools/1.9"
+	String modules = "samtools/1.14"
 	Int jobMemory = 16
 	Int threads = 4
 	Int timeout = 4
@@ -563,7 +613,7 @@ task filter {
 	File bamFile
 	String outputFileNamePrefix
 	Int minQuality = 30
-	String modules = "samtools/1.9"
+	String modules = "samtools/1.14"
 	Int jobMemory = 16
 	Int threads = 4
 	Int timeout = 4
@@ -957,13 +1007,14 @@ task preFilter {
     input {
     File bamFile
     File bamIndex
-    Array [String] intervals
+    String interval
     String outputFileName
     Int filterFlags = 260
     Int? minMapQuality
+    Float scaleCoefficient = 1.0
     String? filterAdditionalParams
-    String modules = "samtools/1.9"
-    Int jobMemory = 16
+    String modules = "samtools/1.14"
+    Int jobMemory = 6
     Int threads = 4
     Int timeout = 4
     }
@@ -971,9 +1022,11 @@ task preFilter {
 	bamFile: "Input BAM file of aligned rnaSeqQC data"
 	outputFileName: "Prefix for output file"
 	minMapQuality: "Minimum alignment quality to pass filter"
-    filterFlags: "Samtools filter flags to apply."
-    filterAdditionalParams: "Additional parameters to pass to samtools."
+        filterFlags: "Samtools filter flags to apply."
+        filterAdditionalParams: "Additional parameters to pass to samtools."
+        interval: "Usually, a chromosome id as it would appear in input .bam header"
 	modules: "required environment modules"
+        scaleCoefficient: "Chromosome-dependent RAM scaling coefficient"
 	jobMemory: "Memory allocated for this job"
 	threads: "Requested CPU threads"
 	timeout: "hours before task timeout"
@@ -988,7 +1041,7 @@ task preFilter {
         ~{"-q " + minMapQuality} \
         ~{filterAdditionalParams} \
         ~{bamFile} \
-        ~{sep=" " intervals} > ~{resultName}
+        interval > ~{resultName}
     >>> 
 
     output {
@@ -1003,7 +1056,7 @@ task preFilter {
 
     runtime {
 	modules: "~{modules}"
-	memory:  "~{jobMemory} GB"
+	memory:  "~{round(jobMemory * scaleCoefficient)} GB"
 	cpu:     "~{threads}"
 	timeout: "~{timeout}"
     }
@@ -1067,7 +1120,6 @@ task splitStringToArray {
     String str
     String lineSeparator = ","
     String recordSeparator = "+"
-
     Int jobMemory = 1
     Int cores = 1
     Int timeout = 1
@@ -1076,7 +1128,6 @@ task splitStringToArray {
 
   command <<<
     set -euo pipefail
-
     echo "~{str}" | tr '~{lineSeparator}' '\n' | tr '~{recordSeparator}' '\t'
   >>>
 
@@ -1094,7 +1145,7 @@ task splitStringToArray {
   parameter_meta {
     str: "Interval string to split (e.g. chr1,chr2,chr3+chr4)."
     lineSeparator: "Interval group separator - these are the intervals to split by."
-    recordSeparator: "Interval interval group separator - this can be used to combine multiple intervals into one group."
+    recordSeparator: "Record separator - a delimiter for joining records"
     jobMemory: "Memory allocated to job (in GB)."
     cores: "The number of cores to allocate to the job."
     timeout: "Maximum amount of time (in hours) the task can run for."

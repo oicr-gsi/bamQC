@@ -1,4 +1,6 @@
 # CHANGELOG
+## 5.1.2 -2023-12-18
+- [GRD-728](https://jira.oicr.on.ca/browse/GRD-728), add RAM scaling by chromosome
 ## 5.1.1 -2023-10-12
 - [GBS-4314] https://jira.oicr.on.ca/browse/GBS-4314, Update bamQC to reflect previous version
 ## 5.1.0 -2023-08-17
