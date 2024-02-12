@@ -58,7 +58,7 @@
             "bamQC.downsampleRegion.threads": null,
             "bamQC.downsampleRegion.timeout": null,
             "bamQC.filter.jobMemory": null,
-            "bamQC.filter.minMemory": null,
+            "bamQC.preFilter.minMemory": null,
             "bamQC.filter.minQuality": null,
             "bamQC.filter.modules": null,
             "bamQC.filter.threads": null,
@@ -239,7 +239,7 @@
             "bamQC.downsampleRegion.threads": null,
             "bamQC.downsampleRegion.timeout": null,
             "bamQC.filter.jobMemory": null,
-            "bamQC.filter.minMemory": null,
+            "bamQC.preFilter.minMemory": null,
             "bamQC.filter.minQuality": null,
             "bamQC.filter.modules": null,
             "bamQC.filter.threads": null,
@@ -402,7 +402,7 @@
             "bamQC.downsampleRegion.threads": null,
             "bamQC.downsampleRegion.timeout": null,
             "bamQC.filter.jobMemory": null,
-            "bamQC.filter.minMemory": null,
+            "bamQC.preFilter.minMemory": null,
             "bamQC.filter.minQuality": null,
             "bamQC.filter.modules": null,
             "bamQC.filter.threads": null,
@@ -565,7 +565,7 @@
             "bamQC.downsampleRegion.threads": null,
             "bamQC.downsampleRegion.timeout": null,
             "bamQC.filter.jobMemory": null,
-            "bamQC.filter.minMemory": null,
+            "bamQC.preFilter.minMemory": null,
             "bamQC.filter.minQuality": null,
             "bamQC.filter.modules": null,
             "bamQC.filter.threads": null,
@@ -728,7 +728,7 @@
             "bamQC.downsampleRegion.threads": null,
             "bamQC.downsampleRegion.timeout": null,
             "bamQC.filter.jobMemory": null,
-            "bamQC.filter.minMemory": null,
+            "bamQC.preFilter.minMemory": null,
             "bamQC.filter.minQuality": null,
             "bamQC.filter.modules": null,
             "bamQC.filter.threads": null,
@@ -917,7 +917,7 @@
             "bamQC.downsampleRegion.threads": null,
             "bamQC.downsampleRegion.timeout": null,
             "bamQC.filter.jobMemory": null,
-            "bamQC.filter.minMemory": null,
+            "bamQC.preFilter.minMemory": null,
             "bamQC.filter.minQuality": null,
             "bamQC.filter.modules": null,
             "bamQC.filter.threads": null,
@@ -1003,4 +1003,4 @@
             }
         ]
     }
-]
+
