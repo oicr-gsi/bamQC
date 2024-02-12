@@ -57,6 +57,7 @@ Parameter|Value|Default|Description
 `preFilter.filterAdditionalParams`|String?|None|Additional parameters to pass to samtools.
 `preFilter.modules`|String|"samtools/1.14"|required environment modules
 `preFilter.jobMemory`|Int|6|Memory allocated for this job
+`preFilter.minMemory`|Int|2|Minimum amount of RAM allocated to the task
 `preFilter.threads`|Int|4|Requested CPU threads
 `preFilter.timeout`|Int|4|hours before task timeout
 `mergeSplitByIntervalFiles.suffix`|String|".merge"|suffix to use for merged bam

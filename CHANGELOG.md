@@ -1,4 +1,6 @@
 # CHANGELOG
+## 5.1.3 -2024-02-12
+- [GRD-728](https://jira.oicr.on.ca/browse/GRD-728), add minMemory parameter to RAM-scaling tasks
 ## 5.1.2 -2023-12-18
 - [GRD-728](https://jira.oicr.on.ca/browse/GRD-728), add RAM scaling by chromosome
 ## 5.1.1 -2023-10-12

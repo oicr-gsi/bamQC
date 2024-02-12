@@ -1015,6 +1015,7 @@ task preFilter {
     String? filterAdditionalParams
     String modules = "samtools/1.14"
     Int jobMemory = 6
+    Int minMemory = 2
     Int threads = 4
     Int timeout = 4
     }
@@ -1028,11 +1029,14 @@ task preFilter {
 	modules: "required environment modules"
         scaleCoefficient: "Chromosome-dependent RAM scaling coefficient"
 	jobMemory: "Memory allocated for this job"
+        minMemory: "Minimum amount of RAM allocated to the task"
 	threads: "Requested CPU threads"
 	timeout: "hours before task timeout"
     }
 
-    String resultName = "~{outputFileName}.filtered.bam"
+   String resultName = "~{outputFileName}.filtered.bam"
+   Int allocatedMemory = if minMemory > round(jobMemory * scaleCoefficient) then minMemory else round(jobMemory * scaleCoefficient)
+
    command <<<
    set -e
    set -o pipefail
@@ -1056,7 +1060,7 @@ task preFilter {
 
     runtime {
 	modules: "~{modules}"
-	memory:  "~{round(jobMemory * scaleCoefficient)} GB"
+	memory:  "~{allocatedMemory} GB"
 	cpu:     "~{threads}"
 	timeout: "~{timeout}"
     }
