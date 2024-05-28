@@ -1,6 +1,6 @@
 # bamQC
 
-QC metrics for BAM files
+bamQC workflow collects a number of metrics which are computed using several methods (by employing third-party software tools along with some custom code) and outputs the results in JSON format. The output also contains metadata, such as the instrument and lane names. Also, it contains the estimate of ribosomal rRNA contamination and other information. bamQC supports downsampling for faster analysis and splits some tasks by chromosome, which also increases speed.
 
 ## Overview
 
