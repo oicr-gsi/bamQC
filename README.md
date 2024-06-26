@@ -136,9 +136,9 @@ Parameter|Value|Default|Description
 
 ### Outputs
 
-Output | Type | Description
----|---|---
-`result`|File|json file that contains metrics and meta data described in https://github.com/oicr-gsi/bam-qc-metrics/blob/master/metrics.md
+Output | Type | Description | Labels
+---|---|---|---
+`result`|File|json file that contains metrics and meta data described in https://github.com/oicr-gsi/bam-qc-metrics/blob/master/metrics.md|vidarr_label: result
 
 
 This section lists command(s) run by WORKFLOW workflow
@@ -168,247 +168,250 @@ This section lists command(s) run by WORKFLOW workflow
    -w ~{workflowVersion} \
    ~{dsInput}
 ```
+ 
 ### Run collateResults
-
-```
-  python3 <<CODE
-  import json
-  data = json.loads(open("~{bamQCMetricsResult}").read())
-  histogram = json.loads(open("~{histogram}").read())
-  data["coverage histogram"] = histogram
-  metadata = json.loads(open("~{metadata}").read())
-  for key in metadata.keys():
-      data[key] = metadata[key]
-  out = open("~{outputFileName}", "w")
-  json.dump(data, out, sort_keys=True)
-  out.close()
-  CODE
-```
-
-### Run cumulativeDistToHistogram
-
-```
-  python3 <<CODE
-  import csv, json
-  summary = open("~{summary}").readlines()
-  globalDist = open("~{globalDist}").readlines()
-  # read chromosome lengths from the summary
-  summaryReader = csv.reader(summary, delimiter="\t")
-  lengthByChr = {}
-  for row in summaryReader:
-      if row[0] == 'chrom' or row[0] == 'total':
-	  continue # skip initial header row, and final total row
-      lengthByChr[row[0]] = int(row[1])
-  chromosomes = sorted(lengthByChr.keys())
-  # read the cumulative distribution for each chromosome
-  globalReader = csv.reader(globalDist, delimiter="\t")
-  cumDist = {}
-  for k in chromosomes:
-      cumDist[k] = {}
-  for row in globalReader:
-      if row[0]=="total":
-	  continue
-      cumDist[row[0]][int(row[1])] = float(row[2])
-  # convert the cumulative distributions to non-cumulative and populate histogram
-  # if the input BAM is empty, chromosomes and histogram will also be empty
-  histogram = {}
-  for k in chromosomes:
-      depths = sorted(cumDist[k].keys())
-      dist = {}
-      for i in range(len(depths)-1):
-	  depth = depths[i]
-	  nextDepth = depths[i+1]
-	  dist[depth] = cumDist[k][depth] - cumDist[k][nextDepth]
-      maxDepth = max(depths)
-      dist[maxDepth] = cumDist[k][maxDepth]
-      # now find the number of loci at each depth of coverage to construct the histogram
-      for depth in depths:
-	  loci = int(round(dist[depth]*lengthByChr[k], 0))
-	  histogram[depth] = histogram.get(depth, 0) + loci
-  # if histogram is non-empty, fill in zero values for missing depths
-  for i in range(max(histogram.keys(), default=0)):
-      if i not in histogram:
-	  histogram[i] = 0
-  out = open("~{outFileName}", "w")
-  json.dump(histogram, out, sort_keys=True)
-  out.close()
-  CODE
-```
-
-### Run downsample 
-
-```
-  	set -e
-  	set -o pipefail
-  	samtools view -b -h ~{bamFile} | \
-  	~{preDownsampleCommand} ~{downsampleCommand} \
-  	samtools view -b > ~{resultName}
-```
-
-### downsampleRegion
-
-```
-  	set -e
-  	# ensure BAM file and index are symlinked to working directory
-  	ln -s ~{bamFile}
-  	ln -s ~{bamIndex}
-  	samtools view -b -h ~{bamFileName} ~{region} > ~{resultName}
-```
-
-### Run filter
-
-```
-  	set -e
-  	set -o pipefail
-  	samtools view -h -b -F 2304 -U ~{nonPrimaryReadsFile} ~{bamFile} | \
-  	samtools view -h -b -F 4 -U ~{unmappedReadsFile} | \
-  	samtools view -h -b -q ~{minQuality} -U ~{lowQualityReadsFile} \
-  	> ~{resultName}
-  	samtools view -c ~{bamFile} > ~{totalInputReadsFile}
-  	samtools view -c ~{nonPrimaryReadsFile} > ~{totalNonPrimaryReadsFile}
-  	samtools view -c ~{unmappedReadsFile} > ~{totalUnmappedReadsFile}
-  	samtools view -c ~{lowQualityReadsFile} > ~{totalLowQualityReadsFile}
-    samtools index ~{bamFile} > ~{resultIndexName}
-```
-
-### Run findDownsampleParams
-
-```
-  python3 <<CODE
-  import json, math, sys
-  readsIn = ~{inputReads}
-  readsTarget = ~{targetReads}
-  precision = ~{precision}
-  print("Input reads param =", readsIn, file=sys.stderr)
-  print("Target reads param =", readsTarget, file=sys.stderr)
-  minReadsAbsolute = ~{minReadsAbsolute}
-  minReadsRelative = ~{minReadsRelative}
-  preDownsampleMultiplier = ~{preDSMultiplier}
-  if readsIn <= readsTarget:
-    # absolutely no downsampling
-    applyPreDownsample = False
-    applyDownsample = False
-    preDownsampleTarget = "no_pre_downsample"
-    downSampleTarget = "no_downsample"
-  elif readsIn < readsTarget * minReadsRelative or readsTarget < minReadsAbsolute:
-    # no predownsampling
-    applyPreDownsample = False
-    applyDownsample = True
-    preDownsampleTarget = "no_pre_downsample"
-    downSampleTarget = str(readsTarget)
-  else:
-    # predownsampling and downsampling
-    applyPreDownsample = True
-    applyDownsample = True
-    probability = (readsTarget * preDownsampleMultiplier)/readsIn
-    formatString = "{:0"+str(precision)+"d}"
-    preDownsampleTarget = formatString.format(int(math.floor(probability * 10**precision)))
-    downSampleTarget = str(readsTarget)
-  status = {
-    "pre_ds": applyPreDownsample,
-    "ds": applyDownsample
-  }
-  targets = {
-    "pre_ds": preDownsampleTarget,
-    "ds": downSampleTarget
-  }
-  statusFile = open("~{statusFile}", "w")
-  json.dump(status, statusFile)
-  statusFile.close()
-  targetFile = open("~{targetsFile}", "w")
-  json.dump(targets, targetFile)
-  targetFile.close()
-  CODE
-```
-
-### Run findDownsampleParamsMarkDup
-
-```
-  python3 <<CODE
-  readsIn = ~{inputReads}
-  threshold = ~{threshold}
-  interval = ~{baseInterval}
-  start = ~{intervalStart} + 1 # start of sub-chromosome window, if needed; exclude telomeres
-  chromosomes = [line.strip() for line in open("~{chromosomesText}").readlines()]
-  customRegions = "~{customRegions}" # overrides other chromosome/interval parameters
-  ds = True # True if downsampling, false otherwise
-  end = None # end of window, if needed
-  if readsIn <= threshold:
-      ds = False # no downsampling
-  elif readsIn <= threshold*10:
-      pass # default to chr12 & chr13 =~ 8% of genome
-  elif readsIn <= threshold*10**2:
-      end = start + interval*10**3 - 1 # default 2*15 million base window ~ 1% of genome
-  elif readsIn <= threshold*10**3:
-      end = start + interval*10**2 - 1
-  elif readsIn <= threshold*10**4:
-      end = start + interval*10 - 1
-  else:
-      end = start + interval - 1
-  if ds:
-      status = "true"
-      if customRegions != "":
-	  region = customRegions
-      elif end == None:
-	  region = " ".join(chromosomes)
-      else:
-	  regions = ["%s:%i-%i" % (chromosome, start, end) for chromosome in chromosomes ]
-	  region = " ".join(regions)
-  else:
-      status = "false"
-      region = ""
-  outStatus = open("~{outputStatus}", "w")
-  print(status, file=outStatus)
-  outStatus.close()
-  outRegion = open("~{outputRegion}", "w")
-  print(region, file=outRegion)
-  outRegion.close()
-  CODE
- ```
- ### Run markDuplicates 
-  ```
-  	java -Xmx~{picardMaxMemMb}M \
-  	-jar ${PICARD_ROOT}/picard.jar \
-  	MarkDuplicates \
-  	INPUT=~{bamFile} \
-  	OUTPUT=~{outFileBam} \
-  	VALIDATION_STRINGENCY=SILENT \
-  	TMP_DIR=${PWD} \
-  	METRICS_FILE=~{outFileText} \
-  	OPTICAL_DUPLICATE_PIXEL_DISTANCE=~{opticalDuplicatePixelDistance}
-```
-
-### Run MergeFiles
  
 ```
-      set -euo pipefail
-  
-      gatk --java-options "-Xmx~{jobMemory - overhead}G" MergeSamFiles \
-      ~{sep=" " prefix("--INPUT=", bams)} \
-      --OUTPUT="~{outputFileName}~{suffix}.bam" \
-      --CREATE_INDEX=true \
-      --SORT_ORDER=coordinate \
-      --ASSUME_SORTED=false \
-      --USE_THREADING=true \
-      --VALIDATION_STRINGENCY=SILENT 
-  
+   python3 <<CODE
+   import json
+   data = json.loads(open("~{bamQCMetricsResult}").read())
+   histogram = json.loads(open("~{histogram}").read())
+   data["coverage histogram"] = histogram
+   metadata = json.loads(open("~{metadata}").read())
+   for key in metadata.keys():
+       data[key] = metadata[key]
+   out = open("~{outputFileName}", "w")
+   json.dump(data, out, sort_keys=True)
+   out.close()
+   CODE
 ```
-
-### Run prefilter
-
+ 
+### Run cumulativeDistToHistogram
+ 
+```
+   python3 <<CODE
+   import csv, json
+   summary = open("~{summary}").readlines()
+   globalDist = open("~{globalDist}").readlines()
+   # read chromosome lengths from the summary
+   summaryReader = csv.reader(summary, delimiter="\t")
+   lengthByChr = {}
+   for row in summaryReader:
+       if row[0] == 'chrom' or row[0] == 'total':
+ 	  continue # skip initial header row, and final total row
+       lengthByChr[row[0]] = int(row[1])
+   chromosomes = sorted(lengthByChr.keys())
+   # read the cumulative distribution for each chromosome
+   globalReader = csv.reader(globalDist, delimiter="\t")
+   cumDist = {}
+   for k in chromosomes:
+       cumDist[k] = {}
+   for row in globalReader:
+       if row[0]=="total":
+ 	  continue
+       cumDist[row[0]][int(row[1])] = float(row[2])
+   # convert the cumulative distributions to non-cumulative and populate histogram
+   # if the input BAM is empty, chromosomes and histogram will also be empty
+   histogram = {}
+   for k in chromosomes:
+       depths = sorted(cumDist[k].keys())
+       dist = {}
+       for i in range(len(depths)-1):
+ 	  depth = depths[i]
+ 	  nextDepth = depths[i+1]
+ 	  dist[depth] = cumDist[k][depth] - cumDist[k][nextDepth]
+       maxDepth = max(depths)
+       dist[maxDepth] = cumDist[k][maxDepth]
+       # now find the number of loci at each depth of coverage to construct the histogram
+       for depth in depths:
+ 	  loci = int(round(dist[depth]*lengthByChr[k], 0))
+ 	  histogram[depth] = histogram.get(depth, 0) + loci
+   # if histogram is non-empty, fill in zero values for missing depths
+   for i in range(max(histogram.keys(), default=0)):
+       if i not in histogram:
+ 	  histogram[i] = 0
+   out = open("~{outFileName}", "w")
+   json.dump(histogram, out, sort_keys=True)
+   out.close()
+   CODE
+```
+ 
+### Run downsample 
+ 
 ```
      set -e
      set -o pipefail
-     samtools view -b \
-          -F ~{filterFlags} \
-          ~{"-q " + minMapQuality} \
-          ~{filterAdditionalParams} \
-          ~{bamFile} \
-          ~{sep=" " intervals} > ~{resultName}
+     samtools view -b -h ~{bamFile} | \
+     ~{preDownsampleCommand} ~{downsampleCommand} \
+     samtools view -b > ~{resultName}
 ```
-
+ 
+### downsampleRegion
+ 
+```
+     set -e
+     # ensure BAM file and index are symlinked to working directory
+     ln -s ~{bamFile}
+     ln -s ~{bamIndex}
+     samtools view -b -h ~{bamFileName} ~{region} > ~{resultName}
+```
+ 
+### Run filter
+ 
+```
+     set -e
+     set -o pipefail
+     samtools view -h -b -F 2304 -U ~{nonPrimaryReadsFile} ~{bamFile} | \
+     samtools view -h -b -F 4 -U ~{unmappedReadsFile} | \
+     samtools view -h -b -q ~{minQuality} -U ~{lowQualityReadsFile} \
+     > ~{resultName}
+     samtools view -c ~{bamFile} > ~{totalInputReadsFile}
+     samtools view -c ~{nonPrimaryReadsFile} > ~{totalNonPrimaryReadsFile}
+     samtools view -c ~{unmappedReadsFile} > ~{totalUnmappedReadsFile}
+     samtools view -c ~{lowQualityReadsFile} > ~{totalLowQualityReadsFile}
+     samtools index ~{bamFile} > ~{resultIndexName}
+```
+ 
+### Run findDownsampleParams
+ 
+```
+     python3 <<CODE
+     import json, math, sys
+     readsIn = ~{inputReads}
+     readsTarget = ~{targetReads}
+     precision = ~{precision}
+     print("Input reads param =", readsIn, file=sys.stderr)
+     print("Target reads param =", readsTarget, file=sys.stderr)
+     minReadsAbsolute = ~{minReadsAbsolute}
+     minReadsRelative = ~{minReadsRelative}
+     preDownsampleMultiplier = ~{preDSMultiplier}
+     if readsIn <= readsTarget:
+       # absolutely no downsampling
+       applyPreDownsample = False
+       applyDownsample = False
+       preDownsampleTarget = "no_pre_downsample"
+       downSampleTarget = "no_downsample"
+     elif readsIn < readsTarget * minReadsRelative or readsTarget < minReadsAbsolute:
+       # no predownsampling
+       applyPreDownsample = False
+       applyDownsample = True
+       preDownsampleTarget = "no_pre_downsample"
+       downSampleTarget = str(readsTarget)
+     else:
+       # predownsampling and downsampling
+       applyPreDownsample = True
+       applyDownsample = True
+       probability = (readsTarget * preDownsampleMultiplier)/readsIn
+       formatString = "{:0"+str(precision)+"d}"
+       preDownsampleTarget = formatString.format(int(math.floor(probability * 10**precision)))
+       downSampleTarget = str(readsTarget)
+     status = {
+       "pre_ds": applyPreDownsample,
+       "ds": applyDownsample
+     }
+     targets = {
+       "pre_ds": preDownsampleTarget,
+       "ds": downSampleTarget
+     }
+     statusFile = open("~{statusFile}", "w")
+     json.dump(status, statusFile)
+     statusFile.close()
+     targetFile = open("~{targetsFile}", "w")
+     json.dump(targets, targetFile)
+     targetFile.close()
+     CODE
+```
+ 
+### Run findDownsampleParamsMarkDup
+ 
+```
+     python3 <<CODE
+     readsIn = ~{inputReads}
+     threshold = ~{threshold}
+     interval = ~{baseInterval}
+     start = ~{intervalStart} + 1 # start of sub-chromosome window, if needed; exclude telomeres
+     chromosomes = [line.strip() for line in open("~{chromosomesText}").readlines()]
+     customRegions = "~{customRegions}" # overrides other chromosome/interval parameters
+     ds = True # True if downsampling, false otherwise
+     end = None # end of window, if needed
+     if readsIn <= threshold:
+         ds = False # no downsampling
+     elif readsIn <= threshold*10:
+         pass # default to chr12 & chr13 =~ 8% of genome
+     elif readsIn <= threshold*10**2:
+         end = start + interval*10**3 - 1 # default 2*15 million base window ~ 1% of genome
+     elif readsIn <= threshold*10**3:
+         end = start + interval*10**2 - 1
+     elif readsIn <= threshold*10**4:
+         end = start + interval*10 - 1
+     else:
+         end = start + interval - 1
+     if ds:
+         status = "true"
+         if customRegions != "":
+             region = customRegions
+         elif end == None:
+             region = " ".join(chromosomes)
+         else:
+             regions = ["%s:%i-%i" % (chromosome, start, end) for chromosome in chromosomes ]
+             region = " ".join(regions)
+     else:
+         status = "false"
+         region = ""
+     outStatus = open("~{outputStatus}", "w")
+     print(status, file=outStatus)
+     outStatus.close()
+     outRegion = open("~{outputRegion}", "w")
+     print(region, file=outRegion)
+     outRegion.close()
+     CODE
+```
+ 
+### Run markDuplicates 
+ 
+```
+     java -Xmx~{picardMaxMemMb}M \
+     -jar ${PICARD_ROOT}/picard.jar \
+     MarkDuplicates \
+     INPUT=~{bamFile} \
+     OUTPUT=~{outFileBam} \
+     VALIDATION_STRINGENCY=SILENT \
+     TMP_DIR=${PWD} \
+     METRICS_FILE=~{outFileText} \
+     OPTICAL_DUPLICATE_PIXEL_DISTANCE=~{opticalDuplicatePixelDistance}
+```
+ 
+### Run MergeFiles
+  
+```
+    set -euo pipefail
+  
+    gatk --java-options "-Xmx~{jobMemory - overhead}G" MergeSamFiles \
+    ~{sep=" " prefix("--INPUT=", bams)} \
+    --OUTPUT="~{outputFileName}~{suffix}.bam" \
+    --CREATE_INDEX=true \
+    --SORT_ORDER=coordinate \
+    --ASSUME_SORTED=false \
+    --USE_THREADING=true \
+    --VALIDATION_STRINGENCY=SILENT 
+   
+```
+ 
+### Run prefilter
+ 
+```
+  set -e
+  set -o pipefail
+  samtools view -b \
+       -F ~{filterFlags} \
+       ~{"-q " + minMapQuality} \
+       ~{filterAdditionalParams} \
+       ~{bamFile} \
+       ~{sep=" " intervals} > ~{resultName}
+```
+ 
 ### Run runMosdepth 
-
+ 
 ```
   set -eo pipefail
   # ensure BAM file and index are symlinked to working directory
@@ -417,31 +420,30 @@ This section lists command(s) run by WORKFLOW workflow
   # run mosdepth
   MOSDEPTH_PRECISION=8 mosdepth -x -n -t 3 bamqc ~{bamFileName}
 ```
-
+ 
 ### splitStringToArray
-
+ 
 ```
-  set -euo pipefail
-
-  echo "~{str}" | tr '~{lineSeparator}' '\n' | tr '~{recordSeparator}' '\t'
+   set -euo pipefail
+   
+   echo "~{str}" | tr '~{lineSeparator}' '\n' | tr '~{recordSeparator}' '\t'
 ```
-
+ 
 ### Run updateMetadata
-
+ 
 ```
-  python3 <<CODE
-  import json
-  metadata = json.loads(open("~{metadataJson}").read())
-  metadata["total input reads meta"] = ~{totalInputReads}
-  metadata["non-primary reads meta"] = ~{nonPrimaryReads}
-  metadata["unmapped reads meta"] = ~{unmappedReads}
-  metadata["low-quality reads meta"] = ~{lowQualityReads}
-  outFile = open("~{outFileName}", "w")
-  json.dump(metadata, outFile)
-  outFile.close()
-  CODE
+   python3 <<CODE
+   import json
+   metadata = json.loads(open("~{metadataJson}").read())
+   metadata["total input reads meta"] = ~{totalInputReads}
+   metadata["non-primary reads meta"] = ~{nonPrimaryReads}
+   metadata["unmapped reads meta"] = ~{unmappedReads}
+   metadata["low-quality reads meta"] = ~{lowQualityReads}
+   outFile = open("~{outFileName}", "w")
+   json.dump(metadata, outFile)
+   outFile.close()
+   CODE
 ```
-
 ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .

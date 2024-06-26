@@ -193,9 +193,12 @@ workflow bamQC {
                 url: "https://github.com/brentp/mosdepth"
             }
         ]
-        output_meta: {
-            result: "json file that contains metrics and meta data described in https://github.com/oicr-gsi/bam-qc-metrics/blob/master/metrics.md"
-        }
+    output_meta: {
+    result: {
+        description: "json file that contains metrics and meta data described in https://github.com/oicr-gsi/bam-qc-metrics/blob/master/metrics.md",
+        vidarr_label: "result"
+    }
+}
     }
 
 }
