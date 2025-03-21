@@ -9,22 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add vidarr labels to outputs (changes to medata only).
 - [GRD-797](https://jira.oicr.on.ca/browse/GRD-797) 
 
-## [5.1.3] -2024-02-12
+## [5.1.3] - 2024-02-12
 ### Added
 - Add minMemory parameter to RAM-scaling tasks.
 - [GRD-728](https://jira.oicr.on.ca/browse/GRD-728)
 
-## [5.1.2] -2023-12-18
+## [5.1.2] - 2023-12-18
 ### Added
 - Add RAM scaling by chromosome.
 - [GRD-728](https://jira.oicr.on.ca/browse/GRD-728)
 
-## [5.1.1] -2023-10-12
+## [5.1.1] - 2023-10-12
 ### Changed
 - Update bamQC to reflect previous version.
 - [GBS-4314] https://jira.oicr.on.ca/browse/GBS-4314
 
-## [5.1.0] -2023-08-17
+## [5.1.0] - 2023-08-17
 ### Added
 - Create two modes lane_levl and call_ready, for different inputs. The formal run bamQC steps as before woth single lane level bam, the latter filter and multiple baminputs before other bamQC steps. 
 
