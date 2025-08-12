@@ -104,10 +104,10 @@
             "bamQC.markDuplicates.timeout": null,
             "bamQC.metadata": {
                 "donor": "Xenomorph",
-                "group id": "TEST",
-                "library design": "Test_0001",
-                "tissue origin": "LV",
-                "tissue type": "Claw"
+                "group id": "Weyland-Yutani",
+                "library design": "WY-1001",
+                "tissue origin": "LV-426",
+                "tissue type": "Claw fragment"
             },
             "bamQC.outputFileNamePrefix": "test_with_downsample",
             "bamQC.runMosdepth.jobMemory": null,
@@ -285,10 +285,10 @@
             "bamQC.markDuplicates.timeout": null,
             "bamQC.metadata": {
                 "donor": "Xenomorph",
-                "group id": "TEST",
-                "library design": "Test_0001",
-                "tissue origin": "LV",
-                "tissue type": "Claw"
+                "group id": "Weyland-Yutani",
+                "library design": "WY-1001",
+                "tissue origin": "LV-426",
+                "tissue type": "Claw fragment"
             },
             "bamQC.outputFileNamePrefix": "test_without_downsample",
             "bamQC.runMosdepth.jobMemory": null,
@@ -448,10 +448,10 @@
             "bamQC.markDuplicates.timeout": null,
             "bamQC.metadata": {
                 "donor": "Xenomorph",
-                "group id": "TEST",
-                "library design": "Test_0001",
-                "tissue origin": "LV",
-                "tissue type": "Claw"
+                "group id": "Weyland-Yutani",
+                "library design": "WY-1001",
+                "tissue origin": "LV-426",
+                "tissue type": "Claw fragment"
             },
             "bamQC.outputFileNamePrefix": "test_CRE",
             "bamQC.runMosdepth.jobMemory": null,
@@ -611,10 +611,10 @@
             "bamQC.markDuplicates.timeout": null,
             "bamQC.metadata": {
                 "donor": "Xenomorph",
-                "group id": "TEST",
-                "library design": "Test_0001",
-                "tissue origin": "LV",
-                "tissue type": "Claw"
+                "group id": "Weyland-Yutani",
+                "library design": "WY-1001",
+                "tissue origin": "LV-426",
+                "tissue type": "Claw fragment"
             },
             "bamQC.outputFileNamePrefix": "test_CRE_custom",
             "bamQC.runMosdepth.jobMemory": null,
@@ -774,10 +774,10 @@
             "bamQC.markDuplicates.timeout": null,
             "bamQC.metadata": {
                 "donor": "Xenomorph",
-                "group id": "TEST",
-                "library design": "Test_0001",
-                "tissue origin": "LV",
-                "tissue type": "Claw"
+                "group id": "Weyland-Yutani",
+                "library design": "WY-1001",
+                "tissue origin": "LV-426",
+                "tissue type": "Claw fragment"
             },
             "bamQC.outputFileNamePrefix": "test_empty_input",
             "bamQC.runMosdepth.jobMemory": null,
@@ -963,10 +963,10 @@
             "bamQC.markDuplicates.timeout": null,
             "bamQC.metadata": {
                 "donor": "Xenomorph",
-                "group id": "TEST",
-                "library design": "Test_0001",
-                "tissue origin": "LV",
-                "tissue type": "Claw"
+                "group id": "Weyland-Yutani",
+                "library design": "WY-1001",
+                "tissue origin": "LV-426",
+                "tissue type": "Claw fragment"
             },
             "bamQC.outputFileNamePrefix": "test_multiple_bams_input",
             "bamQC.runMosdepth.jobMemory": null,
