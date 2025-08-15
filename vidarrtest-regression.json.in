@@ -5,7 +5,7 @@
                 {
                     "bam": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_with_downsample/neat_5x_EX_hg19_chr21.bam",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/neat_Test01.bam",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -17,7 +17,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_with_downsample/neat_5x_EX_hg19_chr21.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/neat_Test01.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -30,124 +30,61 @@
                 }
             ],
             "bamQC.mode": "lane_level",
-            "bamQC.intervalsToParallelizeByString": "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY,chrM",
+            "bamQC.bamQCMetrics.bamQClite": null,
             "bamQC.bamQCMetrics.jobMemory": null,
             "bamQC.bamQCMetrics.modules": null,
-            "bamQC.bamQCMetrics.normalInsertMax": null,
-            "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
-            "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed",
-            "bamQC.bamQCMetrics.threads": null,
+            "bamQC.bamQCMetrics.targetBed": null,
             "bamQC.bamQCMetrics.timeout": null,
-            "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
-            "bamQC.collateResults.jobMemory": null,
-            "bamQC.collateResults.modules": null,
-            "bamQC.collateResults.threads": null,
-            "bamQC.collateResults.timeout": null,
+            "bamQC.bamQCMetrics.workflowVersion": "5.3.0",
             "bamQC.cumulativeDistToHistogram.jobMemory": null,
             "bamQC.cumulativeDistToHistogram.modules": null,
             "bamQC.cumulativeDistToHistogram.threads": null,
             "bamQC.cumulativeDistToHistogram.timeout": null,
-            "bamQC.downsample.downsampleSuffix": null,
-            "bamQC.downsample.jobMemory": null,
-            "bamQC.downsample.modules": null,
-            "bamQC.downsample.randomSeed": null,
-            "bamQC.downsample.threads": null,
-            "bamQC.downsample.timeout": null,
-            "bamQC.downsampleRegion.jobMemory": null,
-            "bamQC.downsampleRegion.modules": null,
-            "bamQC.downsampleRegion.threads": null,
-            "bamQC.downsampleRegion.timeout": null,
-            "bamQC.filter.jobMemory": null,
-            "bamQC.preFilter.minMemory": null,
-            "bamQC.filter.minQuality": null,
-            "bamQC.filter.modules": null,
-            "bamQC.filter.threads": null,
-            "bamQC.filter.timeout": null,
-            "bamQC.getChrCoefficient.memory": null,
-            "bamQC.getChrCoefficient.timeout": null,
-            "bamQC.getChrCoefficient.modules": "samtools/1.14",
-            "bamQC.preFilter.jobMemory": null,
-            "bamQC.preFilter.minMapQuality": null,
-            "bamQC.preFilter.filterFlags": null,
-            "bamQC.preFilter.filterAdditionalParams": null,
-            "bamQC.preFilter.modules": null,
-            "bamQC.preFilter.threads": null,
-            "bamQC.preFilter.timeout": null,
-            "bamQC.preFilter.scaleCoefficient": null,
-            "bamQC.findDownsampleParams.jobMemory": null,
-            "bamQC.findDownsampleParams.minReadsAbsolute": null,
-            "bamQC.findDownsampleParams.minReadsRelative": null,
-            "bamQC.findDownsampleParams.modules": null,
-            "bamQC.findDownsampleParams.preDSMultiplier": null,
-            "bamQC.findDownsampleParams.precision": null,
-            "bamQC.findDownsampleParams.targetReads": 20000,
-            "bamQC.findDownsampleParams.threads": null,
-            "bamQC.findDownsampleParams.timeout": null,
-            "bamQC.findDownsampleParamsMarkDup.baseInterval": null,
-            "bamQC.findDownsampleParamsMarkDup.chromosomes": null,
-            "bamQC.findDownsampleParamsMarkDup.customRegions": null,
-            "bamQC.findDownsampleParamsMarkDup.intervalStart": null,
-            "bamQC.findDownsampleParamsMarkDup.jobMemory": null,
-            "bamQC.findDownsampleParamsMarkDup.modules": null,
-            "bamQC.findDownsampleParamsMarkDup.threads": null,
-            "bamQC.findDownsampleParamsMarkDup.threshold": null,
-            "bamQC.findDownsampleParamsMarkDup.timeout": null,
-            "bamQC.indexBamFile.jobMemory": null,
-            "bamQC.indexBamFile.modules": null,
-            "bamQC.indexBamFile.threads": null,
-            "bamQC.indexBamFile.timeout": null,
+            "bamQC.downsampleToReads": 500000,
+            "bamQC.getUniqueReadsCount.jobMemory": null,
+            "bamQC.getUniqueReadsCount.modules": null,
+            "bamQC.getUniqueReadsCount.timeout": null,
+            "bamQC.markDuplicates.additionalParam": null,
             "bamQC.markDuplicates.jobMemory": null,
             "bamQC.markDuplicates.modules": null,
-            "bamQC.markDuplicates.opticalDuplicatePixelDistance": null,
-            "bamQC.markDuplicates.picardMaxMemMb": null,
+            "bamQC.markDuplicates.samblaster": null,
             "bamQC.markDuplicates.threads": null,
             "bamQC.markDuplicates.timeout": null,
+            "bamQC.mergeReports.bamQCmerger": null,
+            "bamQC.mergeReports.jobMemory": null,
+            "bamQC.mergeReports.modules": null,
+            "bamQC.mergeReports.timeout": null,
             "bamQC.metadata": {
-                "donor": "Xenomorph",
-                "group id": "Weyland-Yutani",
-                "library design": "WY-1001",
-                "tissue origin": "LV-426",
-                "tissue type": "Claw fragment"
+               "donor": "Xenomorph",
+               "group id": "Weyland-Yutani",
+               "library design": "WY-1001",
+               "tissue origin": "LV-426",
+               "tissue type": "Claw fragment"
             },
-            "bamQC.outputFileNamePrefix": "test_with_downsample",
+            "bamQC.outputFileNamePrefix": "LANE_LEVEL",
+            "bamQC.reference": "hg19",
+            "bamQC.runBedtools": null,
+            "bamQC.runBedtoolsIntersect.jobMemory": null,
+            "bamQC.runBedtoolsIntersect.modules": null,
+            "bamQC.runBedtoolsIntersect.timeout": null,
             "bamQC.runMosdepth.jobMemory": null,
             "bamQC.runMosdepth.modules": null,
-            "bamQC.runMosdepth.threads": null,
             "bamQC.runMosdepth.timeout": null,
-            "bamQC.mergeFiles.cores": null,
-            "bamQC.mergeFiles.modules": null,
-            "bamQC.mergeFiles.suffix": null,
-            "bamQC.mergeFiles.jobMemory": null,
-            "bamQC.mergeFiles.overhead": null,
-            "bamQC.mergeFiles.timeout": null,
-            "bamQC.mergeSplitByIntervalFiles.jobMemory": null,
-            "bamQC.mergeSplitByIntervalFiles.overhead": null,
-            "bamQC.mergeSplitByIntervalFiles.suffix": null,
-            "bamQC.mergeSplitByIntervalFiles.cores": null,
-            "bamQC.mergeSplitByIntervalFiles.timeout": null,
-            "bamQC.mergeSplitByIntervalFiles.modules": null,
-            "bamQC.splitStringToArray.cores": null,
-            "bamQC.splitStringToArray.lineSeparator": null,
-            "bamQC.splitStringToArray.jobMemory": null,
-            "bamQC.splitStringToArray.recordSeparator": null,
-            "bamQC.splitStringToArray.timeout": null,
-            "bamQC.splitStringToArray.modules": null,
-            "bamQC.updateMetadata.jobMemory": null,
-            "bamQC.updateMetadata.modules": null,
-            "bamQC.updateMetadata.threads": null,
-            "bamQC.updateMetadata.timeout": null
+            "bamQC.samstats.jobMemory": null,
+            "bamQC.samstats.timeout": null,
+            "bamQC.targetBed": null
         },
-        "description": "bamQC workflow test",
+        "description": "bamQC lane-level test",
         "engineArguments": {
            "write_to_cache": false,
            "read_from_cache": false
         },
-        "id": "bamQC_test_with_downsample",
+        "id": "test_lane_level",
         "metadata": {
             "bamQC.result": {
                 "contents": [
                     {
-                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_with_downsample_@JENKINSID@"
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_test_lane_level_@JENKINSID@"
                     }
                 ],
                 "type": "ALL"
@@ -157,7 +94,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.1.1/bamQC_test_with_downsample.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.3.0/bamQC_test_lane_level.metrics",
                 "type": "script"
             }
         ]
@@ -168,7 +105,7 @@
                 {
                     "bam": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_without_downsample/neat_5x_EX_hg19_chr21.bam",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.annotated.subset.bam",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -180,7 +117,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_without_downsample/neat_5x_EX_hg19_chr21.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.annotated.subset.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -193,96 +130,30 @@
                 }
             ],
             "bamQC.mode": "lane_level",
-            "bamQC.intervalsToParallelizeByString": "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY,chrM",
-            "bamQC.mergeFiles.cores": null,
-            "bamQC.mergeFiles.modules": null,
-            "bamQC.mergeFiles.suffix": null,
-            "bamQC.mergeFiles.jobMemory": null,
-            "bamQC.mergeFiles.overhead": null,
-            "bamQC.mergeFiles.timeout": null,
-            "bamQC.mergeSplitByIntervalFiles.jobMemory": null,
-            "bamQC.mergeSplitByIntervalFiles.overhead": null,
-            "bamQC.mergeSplitByIntervalFiles.suffix": null,
-            "bamQC.mergeSplitByIntervalFiles.cores": null,
-            "bamQC.mergeSplitByIntervalFiles.timeout": null,
-            "bamQC.mergeSplitByIntervalFiles.modules": null,
-            "bamQC.splitStringToArray.cores": null,
-            "bamQC.splitStringToArray.lineSeparator": null,
-            "bamQC.splitStringToArray.jobMemory": null,
-            "bamQC.splitStringToArray.recordSeparator": null,
-            "bamQC.splitStringToArray.timeout": null,
-            "bamQC.splitStringToArray.modules": null,
+            "bamQC.bamQCMetrics.bamQClite": null,
             "bamQC.bamQCMetrics.jobMemory": null,
             "bamQC.bamQCMetrics.modules": null,
-            "bamQC.bamQCMetrics.normalInsertMax": null,
-            "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
-            "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed",
-            "bamQC.bamQCMetrics.threads": null,
+            "bamQC.bamQCMetrics.targetBed": null,
             "bamQC.bamQCMetrics.timeout": null,
-            "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
-            "bamQC.collateResults.jobMemory": null,
-            "bamQC.collateResults.modules": null,
-            "bamQC.collateResults.threads": null,
-            "bamQC.collateResults.timeout": null,
+            "bamQC.bamQCMetrics.workflowVersion": "5.3.0",
             "bamQC.cumulativeDistToHistogram.jobMemory": null,
             "bamQC.cumulativeDistToHistogram.modules": null,
             "bamQC.cumulativeDistToHistogram.threads": null,
             "bamQC.cumulativeDistToHistogram.timeout": null,
-            "bamQC.downsample.downsampleSuffix": null,
-            "bamQC.downsample.jobMemory": null,
-            "bamQC.downsample.modules": null,
-            "bamQC.downsample.randomSeed": null,
-            "bamQC.downsample.threads": null,
-            "bamQC.downsample.timeout": null,
-            "bamQC.downsampleRegion.jobMemory": null,
-            "bamQC.downsampleRegion.modules": null,
-            "bamQC.downsampleRegion.threads": null,
-            "bamQC.downsampleRegion.timeout": null,
-            "bamQC.filter.jobMemory": null,
-            "bamQC.preFilter.minMemory": null,
-            "bamQC.filter.minQuality": null,
-            "bamQC.filter.modules": null,
-            "bamQC.filter.threads": null,
-            "bamQC.filter.timeout": null,
-            "bamQC.getChrCoefficient.memory": null,
-            "bamQC.getChrCoefficient.timeout": null,
-            "bamQC.getChrCoefficient.modules": "samtools/1.14",
-            "bamQC.preFilter.jobMemory": null,
-            "bamQC.preFilter.minMapQuality": null,
-            "bamQC.preFilter.filterFlags": null,
-            "bamQC.preFilter.filterAdditionalParams": null,
-            "bamQC.preFilter.modules": null,
-            "bamQC.preFilter.threads": null,
-            "bamQC.preFilter.timeout": null,
-            "bamQC.preFilter.scaleCoefficient": null,
-            "bamQC.findDownsampleParams.jobMemory": null,
-            "bamQC.findDownsampleParams.minReadsAbsolute": null,
-            "bamQC.findDownsampleParams.minReadsRelative": null,
-            "bamQC.findDownsampleParams.modules": null,
-            "bamQC.findDownsampleParams.preDSMultiplier": null,
-            "bamQC.findDownsampleParams.precision": null,
-            "bamQC.findDownsampleParams.targetReads": 100000,
-            "bamQC.findDownsampleParams.threads": null,
-            "bamQC.findDownsampleParams.timeout": null,
-            "bamQC.findDownsampleParamsMarkDup.baseInterval": null,
-            "bamQC.findDownsampleParamsMarkDup.chromosomes": null,
-            "bamQC.findDownsampleParamsMarkDup.customRegions": null,
-            "bamQC.findDownsampleParamsMarkDup.intervalStart": null,
-            "bamQC.findDownsampleParamsMarkDup.jobMemory": null,
-            "bamQC.findDownsampleParamsMarkDup.modules": null,
-            "bamQC.findDownsampleParamsMarkDup.threads": null,
-            "bamQC.findDownsampleParamsMarkDup.threshold": null,
-            "bamQC.findDownsampleParamsMarkDup.timeout": null,
-            "bamQC.indexBamFile.jobMemory": null,
-            "bamQC.indexBamFile.modules": null,
-            "bamQC.indexBamFile.threads": null,
-            "bamQC.indexBamFile.timeout": null,
+            "bamQC.downsampleToReads": 500000,
+            "bamQC.getUniqueReadsCount.jobMemory": null,
+            "bamQC.getUniqueReadsCount.modules": null,
+            "bamQC.getUniqueReadsCount.timeout": null,
+            "bamQC.markDuplicates.additionalParam": null,
             "bamQC.markDuplicates.jobMemory": null,
             "bamQC.markDuplicates.modules": null,
-            "bamQC.markDuplicates.opticalDuplicatePixelDistance": null,
-            "bamQC.markDuplicates.picardMaxMemMb": null,
+            "bamQC.markDuplicates.samblaster": null,
             "bamQC.markDuplicates.threads": null,
             "bamQC.markDuplicates.timeout": null,
+            "bamQC.mergeReports.bamQCmerger": null,
+            "bamQC.mergeReports.jobMemory": null,
+            "bamQC.mergeReports.modules": null,
+            "bamQC.mergeReports.timeout": null,
             "bamQC.metadata": {
                 "donor": "Xenomorph",
                 "group id": "Weyland-Yutani",
@@ -290,27 +161,30 @@
                 "tissue origin": "LV-426",
                 "tissue type": "Claw fragment"
             },
-            "bamQC.outputFileNamePrefix": "test_without_downsample",
+            "bamQC.outputFileNamePrefix": "TEST01",
+            "bamQC.reference": "hg19",
+            "bamQC.runBedtools": null,
+            "bamQC.runBedtoolsIntersect.jobMemory": null,
+            "bamQC.runBedtoolsIntersect.modules": null,
+            "bamQC.runBedtoolsIntersect.timeout": null,
             "bamQC.runMosdepth.jobMemory": null,
             "bamQC.runMosdepth.modules": null,
-            "bamQC.runMosdepth.threads": null,
             "bamQC.runMosdepth.timeout": null,
-            "bamQC.updateMetadata.jobMemory": null,
-            "bamQC.updateMetadata.modules": null,
-            "bamQC.updateMetadata.threads": null,
-            "bamQC.updateMetadata.timeout": null
+            "bamQC.samstats.jobMemory": null,
+            "bamQC.samstats.timeout": null,
+            "bamQC.targetBed": null
         },
-        "description": "bamQC workflow test",
+        "description": "bamQC workflow 01 test",
         "engineArguments": {
            "write_to_cache": false,
            "read_from_cache": false
         },
-        "id": "bamQC_test_without_downsample",
+        "id": "bamQC_test_01",
         "metadata": {
             "bamQC.result": {
                 "contents": [
                     {
-                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_without_downsample_@JENKINSID@"
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_01_@JENKINSID@"
                     }
                 ],
                 "type": "ALL"
@@ -320,7 +194,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.1.1/bamQC_test_without_downsample.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.3.0/bamQC_test_01.metrics",
                 "type": "script"
             }
         ]
@@ -331,7 +205,7 @@
                 {
                     "bam": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.annotated.subset.bam",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -343,7 +217,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.annotated.subset.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -356,96 +230,30 @@
                 }
             ],
             "bamQC.mode": "lane_level",
-            "bamQC.intervalsToParallelizeByString": "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY,chrM",
-            "bamQC.mergeFiles.cores": null,
-            "bamQC.mergeFiles.modules": null,
-            "bamQC.mergeFiles.suffix": null,
-            "bamQC.mergeFiles.jobMemory": null,
-            "bamQC.mergeFiles.overhead": null,
-            "bamQC.mergeFiles.timeout": null,
-            "bamQC.mergeSplitByIntervalFiles.jobMemory": null,
-            "bamQC.mergeSplitByIntervalFiles.overhead": null,
-            "bamQC.mergeSplitByIntervalFiles.suffix": null,
-            "bamQC.mergeSplitByIntervalFiles.cores": null,
-            "bamQC.mergeSplitByIntervalFiles.timeout": null,
-            "bamQC.mergeSplitByIntervalFiles.modules": null,
-            "bamQC.splitStringToArray.cores": null,
-            "bamQC.splitStringToArray.lineSeparator": null,
-            "bamQC.splitStringToArray.jobMemory": null,
-            "bamQC.splitStringToArray.recordSeparator": null,
-            "bamQC.splitStringToArray.timeout": null,
-            "bamQC.splitStringToArray.modules": null,
+            "bamQC.bamQCMetrics.bamQClite": null,
             "bamQC.bamQCMetrics.jobMemory": null,
             "bamQC.bamQCMetrics.modules": null,
-            "bamQC.bamQCMetrics.normalInsertMax": null,
-            "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
-            "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed",
-            "bamQC.bamQCMetrics.threads": null,
+            "bamQC.bamQCMetrics.targetBed": null,
             "bamQC.bamQCMetrics.timeout": null,
-            "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
-            "bamQC.collateResults.jobMemory": null,
-            "bamQC.collateResults.modules": null,
-            "bamQC.collateResults.threads": null,
-            "bamQC.collateResults.timeout": null,
+            "bamQC.bamQCMetrics.workflowVersion": "5.3.0",
             "bamQC.cumulativeDistToHistogram.jobMemory": null,
             "bamQC.cumulativeDistToHistogram.modules": null,
             "bamQC.cumulativeDistToHistogram.threads": null,
             "bamQC.cumulativeDistToHistogram.timeout": null,
-            "bamQC.downsample.downsampleSuffix": null,
-            "bamQC.downsample.jobMemory": null,
-            "bamQC.downsample.modules": null,
-            "bamQC.downsample.randomSeed": null,
-            "bamQC.downsample.threads": null,
-            "bamQC.downsample.timeout": null,
-            "bamQC.downsampleRegion.jobMemory": null,
-            "bamQC.downsampleRegion.modules": null,
-            "bamQC.downsampleRegion.threads": null,
-            "bamQC.downsampleRegion.timeout": null,
-            "bamQC.filter.jobMemory": null,
-            "bamQC.preFilter.minMemory": null,
-            "bamQC.filter.minQuality": null,
-            "bamQC.filter.modules": null,
-            "bamQC.filter.threads": null,
-            "bamQC.filter.timeout": null,
-            "bamQC.getChrCoefficient.memory": null,
-            "bamQC.getChrCoefficient.timeout": null,
-            "bamQC.getChrCoefficient.modules": "samtools/1.14",
-            "bamQC.preFilter.jobMemory": null,
-            "bamQC.preFilter.minMapQuality": null,
-            "bamQC.preFilter.filterFlags": null,
-            "bamQC.preFilter.filterAdditionalParams": null,
-            "bamQC.preFilter.modules": null,
-            "bamQC.preFilter.threads": null,
-            "bamQC.preFilter.timeout": null,
-            "bamQC.preFilter.scaleCoefficient": null,
-            "bamQC.findDownsampleParams.jobMemory": null,
-            "bamQC.findDownsampleParams.minReadsAbsolute": null,
-            "bamQC.findDownsampleParams.minReadsRelative": null,
-            "bamQC.findDownsampleParams.modules": null,
-            "bamQC.findDownsampleParams.preDSMultiplier": null,
-            "bamQC.findDownsampleParams.precision": null,
-            "bamQC.findDownsampleParams.targetReads": 100000,
-            "bamQC.findDownsampleParams.threads": null,
-            "bamQC.findDownsampleParams.timeout": null,
-            "bamQC.findDownsampleParamsMarkDup.baseInterval": null,
-            "bamQC.findDownsampleParamsMarkDup.chromosomes": null,
-            "bamQC.findDownsampleParamsMarkDup.customRegions": null,
-            "bamQC.findDownsampleParamsMarkDup.intervalStart": null,
-            "bamQC.findDownsampleParamsMarkDup.jobMemory": null,
-            "bamQC.findDownsampleParamsMarkDup.modules": null,
-            "bamQC.findDownsampleParamsMarkDup.threads": null,
-            "bamQC.findDownsampleParamsMarkDup.threshold": 100000,
-            "bamQC.findDownsampleParamsMarkDup.timeout": null,
-            "bamQC.indexBamFile.jobMemory": null,
-            "bamQC.indexBamFile.modules": null,
-            "bamQC.indexBamFile.threads": null,
-            "bamQC.indexBamFile.timeout": null,
+            "bamQC.downsampleToReads": 500000,
+            "bamQC.getUniqueReadsCount.jobMemory": null,
+            "bamQC.getUniqueReadsCount.modules": null,
+            "bamQC.getUniqueReadsCount.timeout": null,
+            "bamQC.markDuplicates.additionalParam": null,
             "bamQC.markDuplicates.jobMemory": null,
             "bamQC.markDuplicates.modules": null,
-            "bamQC.markDuplicates.opticalDuplicatePixelDistance": null,
-            "bamQC.markDuplicates.picardMaxMemMb": null,
+            "bamQC.markDuplicates.samblaster": null,
             "bamQC.markDuplicates.threads": null,
             "bamQC.markDuplicates.timeout": null,
+            "bamQC.mergeReports.bamQCmerger": null,
+            "bamQC.mergeReports.jobMemory": null,
+            "bamQC.mergeReports.modules": null,
+            "bamQC.mergeReports.timeout": null,
             "bamQC.metadata": {
                 "donor": "Xenomorph",
                 "group id": "Weyland-Yutani",
@@ -453,27 +261,30 @@
                 "tissue origin": "LV-426",
                 "tissue type": "Claw fragment"
             },
-            "bamQC.outputFileNamePrefix": "test_CRE",
+            "bamQC.outputFileNamePrefix": "TARGETED",
+            "bamQC.reference": "hg19",
+            "bamQC.runBedtools": true,
+            "bamQC.runBedtoolsIntersect.jobMemory": null,
+            "bamQC.runBedtoolsIntersect.modules": null,
+            "bamQC.runBedtoolsIntersect.timeout": null,
             "bamQC.runMosdepth.jobMemory": null,
             "bamQC.runMosdepth.modules": null,
-            "bamQC.runMosdepth.threads": null,
             "bamQC.runMosdepth.timeout": null,
-            "bamQC.updateMetadata.jobMemory": null,
-            "bamQC.updateMetadata.modules": null,
-            "bamQC.updateMetadata.threads": null,
-            "bamQC.updateMetadata.timeout": null
+            "bamQC.samstats.jobMemory": null,
+            "bamQC.samstats.timeout": null,
+            "bamQC.targetBed": "/.mounts/labs/gsi/testdata/bamqc/input_data/intervals/hg19_knownGenes.chr21.bed"
         },
-        "description": "bamQC workflow test",
+        "description": "bamQC workflow test targeted",
         "engineArguments": {
            "write_to_cache": false,
            "read_from_cache": false
         },
-        "id": "bamQC_test_CRE",
+        "id": "bamQC_test_targeted",
         "metadata": {
             "bamQC.result": {
                 "contents": [
                     {
-                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_CRE_@JENKINSID@"
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_targeted_@JENKINSID@"
                     }
                 ],
                 "type": "ALL"
@@ -483,333 +294,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.1.1/bamQC_test_CRE.metrics",
-                "type": "script"
-            }
-        ]
-    },
-    {
-        "arguments": {
-            "bamQC.inputGroups": [
-                {
-                    "bam": {
-                        "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam",
-                            "externalIds": [
-                                {
-                                    "id": "TEST",
-                                    "provider": "TEST"
-                                }
-                            ]
-                        },
-                        "type": "EXTERNAL"
-                    },
-                    "bamIndex": {
-                        "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam.bai",
-                            "externalIds": [
-                                {
-                                    "id": "TEST",
-                                    "provider": "TEST"
-                                }
-                            ]
-                        },
-                        "type": "EXTERNAL"
-                    }
-                }
-            ],
-            "bamQC.mode": "lane_level",
-            "bamQC.intervalsToParallelizeByString": "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY,chrM",
-            "bamQC.mergeFiles.cores": null,
-            "bamQC.mergeFiles.modules": null,
-            "bamQC.mergeFiles.suffix": null,
-            "bamQC.mergeFiles.jobMemory": null,
-            "bamQC.mergeFiles.overhead": null,
-            "bamQC.mergeFiles.timeout": null,
-            "bamQC.mergeSplitByIntervalFiles.jobMemory": null,
-            "bamQC.mergeSplitByIntervalFiles.overhead": null,
-            "bamQC.mergeSplitByIntervalFiles.suffix": null,
-            "bamQC.mergeSplitByIntervalFiles.cores": null,
-            "bamQC.mergeSplitByIntervalFiles.timeout": null,
-            "bamQC.mergeSplitByIntervalFiles.modules": null,
-            "bamQC.splitStringToArray.cores": null,
-            "bamQC.splitStringToArray.lineSeparator": null,
-            "bamQC.splitStringToArray.jobMemory": null,
-            "bamQC.splitStringToArray.recordSeparator": null,
-            "bamQC.splitStringToArray.timeout": null,
-            "bamQC.splitStringToArray.modules": null,
-            "bamQC.bamQCMetrics.jobMemory": null,
-            "bamQC.bamQCMetrics.modules": null,
-            "bamQC.bamQCMetrics.normalInsertMax": null,
-            "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
-            "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed",
-            "bamQC.bamQCMetrics.threads": null,
-            "bamQC.bamQCMetrics.timeout": null,
-            "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
-            "bamQC.collateResults.jobMemory": null,
-            "bamQC.collateResults.modules": null,
-            "bamQC.collateResults.threads": null,
-            "bamQC.collateResults.timeout": null,
-            "bamQC.cumulativeDistToHistogram.jobMemory": null,
-            "bamQC.cumulativeDistToHistogram.modules": null,
-            "bamQC.cumulativeDistToHistogram.threads": null,
-            "bamQC.cumulativeDistToHistogram.timeout": null,
-            "bamQC.downsample.downsampleSuffix": null,
-            "bamQC.downsample.jobMemory": null,
-            "bamQC.downsample.modules": null,
-            "bamQC.downsample.randomSeed": null,
-            "bamQC.downsample.threads": null,
-            "bamQC.downsample.timeout": null,
-            "bamQC.downsampleRegion.jobMemory": null,
-            "bamQC.downsampleRegion.modules": null,
-            "bamQC.downsampleRegion.threads": null,
-            "bamQC.downsampleRegion.timeout": null,
-            "bamQC.filter.jobMemory": null,
-            "bamQC.preFilter.minMemory": null,
-            "bamQC.filter.minQuality": null,
-            "bamQC.filter.modules": null,
-            "bamQC.filter.threads": null,
-            "bamQC.filter.timeout": null,
-            "bamQC.getChrCoefficient.memory": null,
-            "bamQC.getChrCoefficient.timeout": null,
-            "bamQC.getChrCoefficient.modules": "samtools/1.14",
-            "bamQC.preFilter.jobMemory": null,
-            "bamQC.preFilter.minMapQuality": null,
-            "bamQC.preFilter.filterFlags": null,
-            "bamQC.preFilter.filterAdditionalParams": null,
-            "bamQC.preFilter.modules": null,
-            "bamQC.preFilter.threads": null,
-            "bamQC.preFilter.timeout": null,
-            "bamQC.preFilter.scaleCoefficient": null,
-            "bamQC.findDownsampleParams.jobMemory": null,
-            "bamQC.findDownsampleParams.minReadsAbsolute": null,
-            "bamQC.findDownsampleParams.minReadsRelative": null,
-            "bamQC.findDownsampleParams.modules": null,
-            "bamQC.findDownsampleParams.preDSMultiplier": null,
-            "bamQC.findDownsampleParams.precision": null,
-            "bamQC.findDownsampleParams.targetReads": 100000,
-            "bamQC.findDownsampleParams.threads": null,
-            "bamQC.findDownsampleParams.timeout": null,
-            "bamQC.findDownsampleParamsMarkDup.baseInterval": null,
-            "bamQC.findDownsampleParamsMarkDup.chromosomes": null,
-            "bamQC.findDownsampleParamsMarkDup.customRegions": "chr1:100000001-200000000 chr2:100000001-200000000",
-            "bamQC.findDownsampleParamsMarkDup.intervalStart": null,
-            "bamQC.findDownsampleParamsMarkDup.jobMemory": null,
-            "bamQC.findDownsampleParamsMarkDup.modules": null,
-            "bamQC.findDownsampleParamsMarkDup.threads": null,
-            "bamQC.findDownsampleParamsMarkDup.threshold": 100000,
-            "bamQC.findDownsampleParamsMarkDup.timeout": null,
-            "bamQC.indexBamFile.jobMemory": null,
-            "bamQC.indexBamFile.modules": null,
-            "bamQC.indexBamFile.threads": null,
-            "bamQC.indexBamFile.timeout": null,
-            "bamQC.markDuplicates.jobMemory": null,
-            "bamQC.markDuplicates.modules": null,
-            "bamQC.markDuplicates.opticalDuplicatePixelDistance": null,
-            "bamQC.markDuplicates.picardMaxMemMb": null,
-            "bamQC.markDuplicates.threads": null,
-            "bamQC.markDuplicates.timeout": null,
-            "bamQC.metadata": {
-                "donor": "Xenomorph",
-                "group id": "Weyland-Yutani",
-                "library design": "WY-1001",
-                "tissue origin": "LV-426",
-                "tissue type": "Claw fragment"
-            },
-            "bamQC.outputFileNamePrefix": "test_CRE_custom",
-            "bamQC.runMosdepth.jobMemory": null,
-            "bamQC.runMosdepth.modules": null,
-            "bamQC.runMosdepth.threads": null,
-            "bamQC.runMosdepth.timeout": null,
-            "bamQC.updateMetadata.jobMemory": null,
-            "bamQC.updateMetadata.modules": null,
-            "bamQC.updateMetadata.threads": null,
-            "bamQC.updateMetadata.timeout": null
-        },
-        "description": "bamQC workflow test",
-        "engineArguments": {
-           "write_to_cache": false,
-           "read_from_cache": false
-        },
-        "id": "bamQC_test_CRE_custom",
-        "metadata": {
-            "bamQC.result": {
-                "contents": [
-                    {
-                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_CRE_custom_@JENKINSID@"
-                    }
-                ],
-                "type": "ALL"
-            }
-        },
-        "validators": [
-            {
-                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
-                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.1.1/bamQC_test_CRE_custom.metrics",
-                "type": "script"
-            }
-        ]
-    },
-    {
-        "arguments": {
-            "bamQC.inputGroups": [
-                {
-                    "bam": {
-                        "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_empty_input/neat_5x_EX_hg19_chr21.bam",
-                            "externalIds": [
-                                {
-                                    "id": "TEST",
-                                    "provider": "TEST"
-                                }
-                            ]
-                        },
-                        "type": "EXTERNAL"
-                    },
-                    "bamIndex": {
-                        "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_empty_input/neat_5x_EX_hg19_chr21.bam.bai",
-                            "externalIds": [
-                                {
-                                    "id": "TEST",
-                                    "provider": "TEST"
-                                }
-                            ]
-                        },
-                        "type": "EXTERNAL"
-                    }
-                }
-            ],
-            "bamQC.mode": "call_ready",
-            "bamQC.intervalsToParallelizeByString": "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY,chrM",
-            "bamQC.mergeFiles.cores": null,
-            "bamQC.mergeFiles.modules": null,
-            "bamQC.mergeFiles.suffix": null,
-            "bamQC.mergeFiles.jobMemory": null,
-            "bamQC.mergeFiles.overhead": null,
-            "bamQC.mergeFiles.timeout": null,
-            "bamQC.mergeSplitByIntervalFiles.jobMemory": null,
-            "bamQC.mergeSplitByIntervalFiles.overhead": null,
-            "bamQC.mergeSplitByIntervalFiles.suffix": null,
-            "bamQC.mergeSplitByIntervalFiles.cores": null,
-            "bamQC.mergeSplitByIntervalFiles.timeout": null,
-            "bamQC.mergeSplitByIntervalFiles.modules": null,
-            "bamQC.splitStringToArray.cores": null,
-            "bamQC.splitStringToArray.lineSeparator": null,
-            "bamQC.splitStringToArray.jobMemory": null,
-            "bamQC.splitStringToArray.recordSeparator": null,
-            "bamQC.splitStringToArray.timeout": null,
-            "bamQC.splitStringToArray.modules": null,
-            "bamQC.bamQCMetrics.jobMemory": null,
-            "bamQC.bamQCMetrics.modules": null,
-            "bamQC.bamQCMetrics.normalInsertMax": null,
-            "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
-            "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed",
-            "bamQC.bamQCMetrics.threads": null,
-            "bamQC.bamQCMetrics.timeout": null,
-            "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
-            "bamQC.collateResults.jobMemory": null,
-            "bamQC.collateResults.modules": null,
-            "bamQC.collateResults.threads": null,
-            "bamQC.collateResults.timeout": null,
-            "bamQC.cumulativeDistToHistogram.jobMemory": null,
-            "bamQC.cumulativeDistToHistogram.modules": null,
-            "bamQC.cumulativeDistToHistogram.threads": null,
-            "bamQC.cumulativeDistToHistogram.timeout": null,
-            "bamQC.downsample.downsampleSuffix": null,
-            "bamQC.downsample.jobMemory": null,
-            "bamQC.downsample.modules": null,
-            "bamQC.downsample.randomSeed": null,
-            "bamQC.downsample.threads": null,
-            "bamQC.downsample.timeout": null,
-            "bamQC.downsampleRegion.jobMemory": null,
-            "bamQC.downsampleRegion.modules": null,
-            "bamQC.downsampleRegion.threads": null,
-            "bamQC.downsampleRegion.timeout": null,
-            "bamQC.filter.jobMemory": null,
-            "bamQC.preFilter.minMemory": null,
-            "bamQC.filter.minQuality": null,
-            "bamQC.filter.modules": null,
-            "bamQC.filter.threads": null,
-            "bamQC.filter.timeout": null,
-            "bamQC.getChrCoefficient.memory": null,
-            "bamQC.getChrCoefficient.timeout": null,
-            "bamQC.getChrCoefficient.modules": "samtools/1.14",
-            "bamQC.preFilter.jobMemory": null,
-            "bamQC.preFilter.minMapQuality": null,
-            "bamQC.preFilter.filterFlags": null,
-            "bamQC.preFilter.filterAdditionalParams": null,
-            "bamQC.preFilter.modules": null,
-            "bamQC.preFilter.threads": null,
-            "bamQC.preFilter.timeout": null,
-            "bamQC.preFilter.scaleCoefficient": null,
-            "bamQC.findDownsampleParams.jobMemory": null,
-            "bamQC.findDownsampleParams.minReadsAbsolute": null,
-            "bamQC.findDownsampleParams.minReadsRelative": null,
-            "bamQC.findDownsampleParams.modules": null,
-            "bamQC.findDownsampleParams.preDSMultiplier": null,
-            "bamQC.findDownsampleParams.precision": null,
-            "bamQC.findDownsampleParams.targetReads": 20000,
-            "bamQC.findDownsampleParams.threads": null,
-            "bamQC.findDownsampleParams.timeout": null,
-            "bamQC.findDownsampleParamsMarkDup.baseInterval": null,
-            "bamQC.findDownsampleParamsMarkDup.chromosomes": null,
-            "bamQC.findDownsampleParamsMarkDup.customRegions": null,
-            "bamQC.findDownsampleParamsMarkDup.intervalStart": null,
-            "bamQC.findDownsampleParamsMarkDup.jobMemory": null,
-            "bamQC.findDownsampleParamsMarkDup.modules": null,
-            "bamQC.findDownsampleParamsMarkDup.threads": null,
-            "bamQC.findDownsampleParamsMarkDup.threshold": null,
-            "bamQC.findDownsampleParamsMarkDup.timeout": null,
-            "bamQC.indexBamFile.jobMemory": null,
-            "bamQC.indexBamFile.modules": null,
-            "bamQC.indexBamFile.threads": null,
-            "bamQC.indexBamFile.timeout": null,
-            "bamQC.markDuplicates.jobMemory": null,
-            "bamQC.markDuplicates.modules": null,
-            "bamQC.markDuplicates.opticalDuplicatePixelDistance": null,
-            "bamQC.markDuplicates.picardMaxMemMb": null,
-            "bamQC.markDuplicates.threads": null,
-            "bamQC.markDuplicates.timeout": null,
-            "bamQC.metadata": {
-                "donor": "Xenomorph",
-                "group id": "Weyland-Yutani",
-                "library design": "WY-1001",
-                "tissue origin": "LV-426",
-                "tissue type": "Claw fragment"
-            },
-            "bamQC.outputFileNamePrefix": "test_empty_input",
-            "bamQC.runMosdepth.jobMemory": null,
-            "bamQC.runMosdepth.modules": null,
-            "bamQC.runMosdepth.threads": null,
-            "bamQC.runMosdepth.timeout": null,
-            "bamQC.updateMetadata.jobMemory": null,
-            "bamQC.updateMetadata.modules": null,
-            "bamQC.updateMetadata.threads": null,
-            "bamQC.updateMetadata.timeout": null
-        },
-        "description": "bamQC workflow test",
-        "engineArguments": {
-           "write_to_cache": false,
-           "read_from_cache": false
-        },
-        "id": "bamQC_test_empty_input",
-        "metadata": {
-            "bamQC.result": {
-                "contents": [
-                    {
-                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_bamQC_bamQC_test_empty_input_@JENKINSID@"
-                    }
-                ],
-                "type": "ALL"
-            }
-        },
-        "validators": [
-            {
-                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
-                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.1.1/bamQC_test_empty_input.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.3.0/bamQC_test_targeted.metrics",
                 "type": "script"
             }
         ]
@@ -820,7 +305,7 @@
                 {
                     "bam":{
                         "contents": {
-                        "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.bam",
+                        "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.annotated.bam",
                         "externalIds": [
                             {
                                 "id": "TEST",
@@ -832,7 +317,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.annotated.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -846,7 +331,7 @@
                 {
                     "bam":{
                         "contents": {
-                        "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_with_downsample/neat_5x_EX_hg19_chr21.bam",
+                        "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/neat_Test01.bam",
                         "externalIds": [
                             {
                                 "id": "TEST",
@@ -858,7 +343,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_with_downsample/neat_5x_EX_hg19_chr21.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/neat_Test01.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -871,96 +356,30 @@
                 }
             ],
             "bamQC.mode": "call_ready",
-            "bamQC.intervalsToParallelizeByString": "chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY,chrM",
-            "bamQC.mergeFiles.cores": null,
-            "bamQC.mergeFiles.modules": null,
-            "bamQC.mergeFiles.suffix": null,
-            "bamQC.mergeFiles.jobMemory": null,
-            "bamQC.mergeFiles.overhead": null,
-            "bamQC.mergeFiles.timeout": null,
-            "bamQC.mergeSplitByIntervalFiles.jobMemory": null,
-            "bamQC.mergeSplitByIntervalFiles.overhead": null,
-            "bamQC.mergeSplitByIntervalFiles.suffix": null,
-            "bamQC.mergeSplitByIntervalFiles.cores": null,
-            "bamQC.mergeSplitByIntervalFiles.timeout": null,
-            "bamQC.mergeSplitByIntervalFiles.modules": null,
-            "bamQC.splitStringToArray.cores": null,
-            "bamQC.splitStringToArray.lineSeparator": null,
-            "bamQC.splitStringToArray.jobMemory": null,
-            "bamQC.splitStringToArray.recordSeparator": null,
-            "bamQC.splitStringToArray.timeout": null,
-            "bamQC.splitStringToArray.modules": null,
+            "bamQC.bamQCMetrics.bamQClite": null,
             "bamQC.bamQCMetrics.jobMemory": null,
             "bamQC.bamQCMetrics.modules": null,
-            "bamQC.bamQCMetrics.normalInsertMax": null,
-            "bamQC.bamQCMetrics.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19_random.fa",
-            "bamQC.bamQCMetrics.refSizesBed": "/.mounts/labs/gsi/modulator/sw/data/hg19-p13/hg19.chrom.sizes.bed",
-            "bamQC.bamQCMetrics.threads": null,
+            "bamQC.bamQCMetrics.targetBed": null,
             "bamQC.bamQCMetrics.timeout": null,
-            "bamQC.bamQCMetrics.workflowVersion": "4.0.0_TEST",
-            "bamQC.collateResults.jobMemory": null,
-            "bamQC.collateResults.modules": null,
-            "bamQC.collateResults.threads": null,
-            "bamQC.collateResults.timeout": null,
+            "bamQC.bamQCMetrics.workflowVersion": "5.3.0",
             "bamQC.cumulativeDistToHistogram.jobMemory": null,
             "bamQC.cumulativeDistToHistogram.modules": null,
             "bamQC.cumulativeDistToHistogram.threads": null,
             "bamQC.cumulativeDistToHistogram.timeout": null,
-            "bamQC.downsample.downsampleSuffix": null,
-            "bamQC.downsample.jobMemory": null,
-            "bamQC.downsample.modules": null,
-            "bamQC.downsample.randomSeed": null,
-            "bamQC.downsample.threads": null,
-            "bamQC.downsample.timeout": null,
-            "bamQC.downsampleRegion.jobMemory": null,
-            "bamQC.downsampleRegion.modules": null,
-            "bamQC.downsampleRegion.threads": null,
-            "bamQC.downsampleRegion.timeout": null,
-            "bamQC.filter.jobMemory": null,
-            "bamQC.preFilter.minMemory": null,
-            "bamQC.filter.minQuality": null,
-            "bamQC.filter.modules": null,
-            "bamQC.filter.threads": null,
-            "bamQC.filter.timeout": null,
-            "bamQC.getChrCoefficient.memory": null,
-            "bamQC.getChrCoefficient.timeout": null,
-            "bamQC.getChrCoefficient.modules": "samtools/1.14",
-            "bamQC.preFilter.jobMemory": null,
-            "bamQC.preFilter.minMapQuality": null,
-            "bamQC.preFilter.filterFlags": null,
-            "bamQC.preFilter.filterAdditionalParams": null,
-            "bamQC.preFilter.modules": null,
-            "bamQC.preFilter.threads": null,
-            "bamQC.preFilter.timeout": null,
-            "bamQC.preFilter.scaleCoefficient": null,
-            "bamQC.findDownsampleParams.jobMemory": null,
-            "bamQC.findDownsampleParams.minReadsAbsolute": null,
-            "bamQC.findDownsampleParams.minReadsRelative": null,
-            "bamQC.findDownsampleParams.modules": null,
-            "bamQC.findDownsampleParams.preDSMultiplier": null,
-            "bamQC.findDownsampleParams.precision": null,
-            "bamQC.findDownsampleParams.targetReads": 20000,
-            "bamQC.findDownsampleParams.threads": null,
-            "bamQC.findDownsampleParams.timeout": null,
-            "bamQC.findDownsampleParamsMarkDup.baseInterval": null,
-            "bamQC.findDownsampleParamsMarkDup.chromosomes": null,
-            "bamQC.findDownsampleParamsMarkDup.customRegions": null,
-            "bamQC.findDownsampleParamsMarkDup.intervalStart": null,
-            "bamQC.findDownsampleParamsMarkDup.jobMemory": null,
-            "bamQC.findDownsampleParamsMarkDup.modules": null,
-            "bamQC.findDownsampleParamsMarkDup.threads": null,
-            "bamQC.findDownsampleParamsMarkDup.threshold": null,
-            "bamQC.findDownsampleParamsMarkDup.timeout": null,
-            "bamQC.indexBamFile.jobMemory": null,
-            "bamQC.indexBamFile.modules": null,
-            "bamQC.indexBamFile.threads": null,
-            "bamQC.indexBamFile.timeout": null,
+            "bamQC.downsampleToReads": 500000,
+            "bamQC.getUniqueReadsCount.jobMemory": null,
+            "bamQC.getUniqueReadsCount.modules": null,
+            "bamQC.getUniqueReadsCount.timeout": null,
+            "bamQC.markDuplicates.additionalParam": null,
             "bamQC.markDuplicates.jobMemory": null,
             "bamQC.markDuplicates.modules": null,
-            "bamQC.markDuplicates.opticalDuplicatePixelDistance": null,
-            "bamQC.markDuplicates.picardMaxMemMb": null,
+            "bamQC.markDuplicates.samblaster": null,
             "bamQC.markDuplicates.threads": null,
             "bamQC.markDuplicates.timeout": null,
+            "bamQC.mergeReports.bamQCmerger": null,
+            "bamQC.mergeReports.jobMemory": null,
+            "bamQC.mergeReports.modules": null,
+            "bamQC.mergeReports.timeout": null,
             "bamQC.metadata": {
                 "donor": "Xenomorph",
                 "group id": "Weyland-Yutani",
@@ -968,17 +387,20 @@
                 "tissue origin": "LV-426",
                 "tissue type": "Claw fragment"
             },
-            "bamQC.outputFileNamePrefix": "test_multiple_bams_input",
+            "bamQC.outputFileNamePrefix": "CALL_READY",
+            "bamQC.reference": "hg19",
+            "bamQC.runBedtools": null,
+            "bamQC.runBedtoolsIntersect.jobMemory": null,
+            "bamQC.runBedtoolsIntersect.modules": null,
+            "bamQC.runBedtoolsIntersect.timeout": null,
             "bamQC.runMosdepth.jobMemory": null,
             "bamQC.runMosdepth.modules": null,
-            "bamQC.runMosdepth.threads": null,
             "bamQC.runMosdepth.timeout": null,
-            "bamQC.updateMetadata.jobMemory": null,
-            "bamQC.updateMetadata.modules": null,
-            "bamQC.updateMetadata.threads": null,
-            "bamQC.updateMetadata.timeout": null
+            "bamQC.samstats.jobMemory": null,
+            "bamQC.samstats.timeout": null,
+            "bamQC.targetBed": null
         },
-        "description": "bamQC workflow test",
+        "description": "bamQC workflow call ready test",
         "engineArguments": {
            "write_to_cache": false,
            "read_from_cache": false
@@ -998,7 +420,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.1.1/bamQC_test_multiple_bams_input.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.3.0/bamQC_test_multiple_bams_input.metrics",
                 "type": "script"
             }
         ]

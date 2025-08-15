@@ -2,7 +2,9 @@
     "names": [
         "bamqc_call_ready_by_tumor_group",
         "bamqc_call_ready",
-        "bamqc_lane_level"
+        "bamqc_lane_level",
+        "bamqc_lite_call_ready",
+        "bamqc_lite_lane_level"
     ],
     "wdl": "bamQC.wdl"
 }
