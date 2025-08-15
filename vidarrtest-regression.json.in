@@ -105,7 +105,7 @@
                 {
                     "bam": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.annotated.subset.bam",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.bam",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -117,7 +117,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.annotated.subset.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -205,7 +205,7 @@
                 {
                     "bam": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.annotated.subset.bam",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.bam",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -217,7 +217,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.annotated.subset.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -305,7 +305,7 @@
                 {
                     "bam":{
                         "contents": {
-                        "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.annotated.bam",
+                        "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.bam",
                         "externalIds": [
                             {
                                 "id": "TEST",
@@ -317,7 +317,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.annotated.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
