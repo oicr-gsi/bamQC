@@ -195,6 +195,7 @@
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
                 "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.3.0/bamQC_test_01.metrics",
+
                 "type": "script"
             }
         ]
