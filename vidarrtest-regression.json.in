@@ -5,7 +5,7 @@
                 {
                     "bam": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_with_downsample/neat_5x_EX_hg19_chr21.bam",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/neat_Test01.bam",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -17,7 +17,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_with_downsample/neat_5x_EX_hg19_chr21.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/neat_Test01.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -157,7 +157,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.1.1/bamQC_test_with_downsample.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.1.1/workflow_test_01.metrics",
                 "type": "script"
             }
         ]
@@ -168,7 +168,7 @@
                 {
                     "bam": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_without_downsample/neat_5x_EX_hg19_chr21.bam",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/neat_Test02.bam",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -180,7 +180,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_without_downsample/neat_5x_EX_hg19_chr21.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/neat_Test02.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -320,7 +320,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.1.1/bamQC_test_without_downsample.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.1.1/workflow_test_02.metrics",
                 "type": "script"
             }
         ]
@@ -331,7 +331,7 @@
                 {
                     "bam": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.bam",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -343,7 +343,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -483,7 +483,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.1.1/bamQC_test_CRE.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.1.1/workflow_test_03.metrics",
                 "type": "script"
             }
         ]
@@ -494,7 +494,7 @@
                 {
                     "bam": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.bam",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -506,7 +506,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.subset.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.subset.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -646,7 +646,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.1.1/bamQC_test_CRE_custom.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.1.1/workflow_test_04.metrics",
                 "type": "script"
             }
         ]
@@ -657,7 +657,7 @@
                 {
                     "bam": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_empty_input/neat_5x_EX_hg19_chr21.bam",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/neat_Test03.bam",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -669,7 +669,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_empty_input/neat_5x_EX_hg19_chr21.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/neat_Test03.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -809,7 +809,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.1.1/bamQC_test_empty_input.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.1.1/workflow_test_05.metrics",
                 "type": "script"
             }
         ]
@@ -820,7 +820,7 @@
                 {
                     "bam":{
                         "contents": {
-                        "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.bam",
+                        "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.bam",
                         "externalIds": [
                             {
                                 "id": "TEST",
@@ -832,7 +832,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_CRE/SWID_15949654_CRE_0002_Pb_R_PE_409_WG_200124_A00469_0077_BHNGLTDSXX_GAGACGAT-TAACCGGT_L002_001.annotated.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/SWID_Test01.annotated.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -846,7 +846,7 @@
                 {
                     "bam":{
                         "contents": {
-                        "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_with_downsample/neat_5x_EX_hg19_chr21.bam",
+                        "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/neat_Test01.bam",
                         "externalIds": [
                             {
                                 "id": "TEST",
@@ -858,7 +858,7 @@
                     },
                     "bamIndex": {
                         "contents": {
-                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/input_data/bamQC_test_with_downsample/neat_5x_EX_hg19_chr21.bam.bai",
+                            "configuration": "/.mounts/labs/gsi/testdata/bamqc/test_inputs/neat_Test01.bam.bai",
                             "externalIds": [
                                 {
                                     "id": "TEST",
@@ -998,7 +998,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_expectation/5.1.1/bamQC_test_multiple_bams_input.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.1.1/workflow_test_06.metrics",
                 "type": "script"
             }
         ]
