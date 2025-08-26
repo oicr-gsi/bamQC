@@ -6,7 +6,5 @@ set -o pipefail
 cd $1
 
 module load jq
-# load python only if it's not already loaded
-module is-loaded python || module load python/3.10.4
-# remove the Picard header because it includes temporary paths
-find . -xtype f -exec jq 'del(.picard | .header)' {} \; | python3 -mjson.tool --sort-keys
+# extract the data for selected metrics
+find . -xtype f -exec  jq '. | with_entries(select(.key | contains("mean","average","reads","total")))' {} \; 
