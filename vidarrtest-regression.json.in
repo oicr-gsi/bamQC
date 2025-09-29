@@ -278,7 +278,7 @@
             "bamQC.bamQCMetrics.targetBed": null,
             "bamQC.bamQCMetrics.timeout": null,
             "bamQC.bamQCMetrics.workflowVersion": "5.3.1",
-            "bamQC.coverageWindow": null,`
+            "bamQC.coverageWindow": null,
             "bamQC.cumulativeDistToHistogram.jobMemory": null,
             "bamQC.cumulativeDistToHistogram.modules": null,
             "bamQC.cumulativeDistToHistogram.threads": null,
