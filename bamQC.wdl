@@ -16,11 +16,10 @@ workflow bamQC {
     Array[InputGroup] inputGroups
     Map[String, String] metadata
     String? targetBed
-    String mode
     String reference
     String outputFileNamePrefix = "bamQC"
-    Boolean runBedtools = false
     Int downsampleToReads = 500000
+    Int coverageWindow = 1000
   }
 
   parameter_meta {
@@ -28,10 +27,9 @@ workflow bamQC {
     metadata: "JSON file containing metadata"
     targetBed: "Path to optional target bed file"
     reference: "Reference id, we need it to pick the right reference file"
-    mode: "running mode for the workflow, only allow value 'lane_level' and 'call_ready'"
     outputFileNamePrefix: "Prefix for output files"
-    runBedtools: "This is to run bedtools when targetBed is supplied, collect reads on target metric. Default False"
     downsampleToReads: "Downsample to this many reads when running unique read count, duplicate rate calculation and CIGAR analysis"
+    coverageWindow: "Coverage window to use with mosdepth for making coverage histogram, default is 1000b"
   }
 
   Map[String,Resources] resources = {
@@ -60,11 +58,12 @@ workflow bamQC {
         input:
           bamFile = i.bam,
           bamIndex = i.bamIndex,
-          targetBed = targetBed
+          targetBed = targetBed,
+          prefix = basename(i.bam, ".bam")
         }
 
         # Derive runs on target if there is a .bed file and metric is requested
-        if (defined(targetBed) && runBedtools) {
+        if (defined(targetBed)) {
           call runBedtoolsIntersect {
           input:
             inputBam = i.bam,
@@ -89,11 +88,30 @@ workflow bamQC {
            inputBam = i.bam,
            downsampleToReads = downsampleToReads
         }
+
+        # If we have multiple lanes, downsample bam files and run windowed coverage analysis
+        if (length(inputGroups) > 1) {
+
+           call downsampleBam {
+           input:
+             bamFile = i.bam,
+             prefix = basename(i.bam, ".bam"),
+             downsampleToReads = downsampleToReads
+           }
+
+          call runMosdepth as runWindowedMosdepth {
+          input:
+            bamFile = i.bam,
+            bamIndex = i.bamIndex,
+            prefix = basename(i.bam, ".bam"),
+            additionalParameters = "--by 1000"
+          } 
+
+        }
         
         # This task collates the results from prior steps but also runs CIGAR metrics collection on a downsampled file
         call bamQCMetrics {
         input:
-          mode = mode,
           metadata = metadata,
           bamFile = i.bam, 
           downsampleToReads = downsampleToReads,
@@ -109,11 +127,30 @@ workflow bamQC {
         }
 
   }
+
+  # We will call markDuplicate and coverage histogram-creating functions specific for call-ready data
+  # if we have multiple lanes of data
+  if (length(inputGroups) > 1) {
+   
+    call markDuplicatesMerged {
+        input:
+          bamFiles = select_all(downsampleBam.downsampledBam),
+          outputFileNamePrefix = outputFileNamePrefix
+        }
+
+    call mergedCoverageToHistogram {
+        input:
+          coverageFiles = select_all(runWindowedMosdepth.targetCoverage),
+          outputFileNamePrefix = outputFileNamePrefix
+    }
+  }
    
   # json merger will either merge multiple inputs or return single-lane report as the final report
   call mergeReports {
   input:
     inputs = bamQCMetrics.result,
+    mergedDupmarkingData = markDuplicatesMerged.result,
+    mergedCoverageData = mergedCoverageToHistogram.histogram,
     prefix = outputFileNamePrefix
   }
 
@@ -140,7 +177,7 @@ workflow bamQC {
                 url: "https://www.python.org/downloads/"
             },
             {
-                name: "bam-qc-metrics/0.2.6",
+                name: "bam-qc-metrics/0.2.7",
                 url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
             }, 
             {
@@ -168,7 +205,8 @@ task samstats {
    input {
     File bamFile
     String referenceFile
-    String modules 
+    String modules
+    String? additionalParameters
     Int jobMemory = 16
     Int timeout = 24
     }
@@ -177,17 +215,19 @@ task samstats {
     bamFile: "Input BAM file of aligned rnaSeqQC data"
     referenceFile: "Reference fasta file, needed for MPC stats"
     modules: "required environment modules"
+    additionalParameters: "Additional parameters for samtools, usually filtering flag"
     jobMemory: "Memory allocated for this job"
     timeout: "hours before task timeout"
     }
 
     String filePrefix = basename(bamFile, ".bam")
 
+    # Leaving this here in case we reconsider filtering:
     # -F 2304 excludes secondary and supplementary alignments
     # -F 4 excludes unmapped reads
 
     command <<<
-    samtools stats ~{bamFile} -r  ~{referenceFile} > ~{filePrefix}.stats
+    samtools stats ~{additionalParameters} ~{bamFile} -r  ~{referenceFile} > ~{filePrefix}.stats
     >>>
 
     runtime {
@@ -211,6 +251,51 @@ task samstats {
 
 
 # ================================================================
+#  Optional task for downsampling
+# ================================================================
+task downsampleBam {
+   
+    input {
+    File bamFile
+    String modules = "samtools/1.16.1"
+    String prefix
+    Int downsampleToReads
+    Int jobMemory = 16
+    Int timeout = 4
+    }
+
+    parameter_meta {
+    bamFile: "Input BAM file of aligned data"
+    modules: "required environment modules"
+    prefix: "prefix for output files"
+    jobMemory: "Memory allocated for this job"
+    timeout: "hours before task timeout"
+    }
+
+    runtime {
+    modules: "~{modules}"
+    memory:  "~{jobMemory} GB"
+    timeout: "~{timeout}"
+    }
+
+    String bamFileName = basename(bamFile)
+
+    command <<<
+    samtools head -n ~{downsampleToReads} ~{bamFile} | samtools view -hb > ~{prefix + ".downsampled.bam"}
+    >>>
+
+    output {
+    File downsampledBam = "~{prefix}.downsampled.bam"
+    }
+
+    meta {
+    output_meta: {
+        downsampledBam: "Downsampled BAM file"
+    }
+  }
+}
+
+# ================================================================
 #  2 of 8 : run Mosdepth, extract coverage distribution data
 # ================================================================
 task runMosdepth {
@@ -219,7 +304,9 @@ task runMosdepth {
     File bamFile
     File bamIndex
     String modules = "mosdepth/0.2.9"
+    String? additionalParameters
     String? targetBed
+    String prefix
     Int jobMemory = 16
     Int timeout = 4
     }
@@ -227,7 +314,9 @@ task runMosdepth {
     parameter_meta {
     bamFile: "Input BAM file of aligned data"
     bamIndex: "Index file in samtools .bai format"
+    additionalParameters: "Additional parameters for coverage calculation"
     modules: "required environment modules"
+    prefix: "prefix for output files"
     targetBed: "Optional target bed file"
     jobMemory: "Memory allocated for this job"
     timeout: "hours before task timeout"
@@ -247,19 +336,20 @@ task runMosdepth {
     ln -s ~{bamFile}
     ln -s ~{bamIndex}
     # run mosdepth
-    MOSDEPTH_PRECISION=8 mosdepth -x -n -t 3 bamqc ~{bamFileName} ~{"--by " + targetBed}
+    MOSDEPTH_PRECISION=8 mosdepth -x -n ~{"--by " + targetBed} ~{additionalParameters} -t 3 ~{prefix} ~{bamFileName}
     >>>
 
     output {
-    File globalDist = "bamqc.mosdepth.global.dist.txt"
-    File summary = "bamqc.mosdepth.summary.txt"
-    File? targetCoverage = "bamqc.regions.bed.gz"
+    File globalDist = "~{prefix}.mosdepth.global.dist.txt"
+    File summary = "~{prefix}.mosdepth.summary.txt"
+    File? targetCoverage = "~{prefix}.regions.bed.gz"
     }
 
     meta {
     output_meta: {
-            globalDist: "Global distribution of coverage",
-        summary: "Total bases in coverage"
+        globalDist: "Global distribution of coverage",
+        summary: "Total bases in coverage",
+        targetCoverage: "Optional data, targeted coverage"
     }
   }
 
@@ -267,14 +357,16 @@ task runMosdepth {
 
 
 # ================================================================
-#  3 of 8 : format histogram data using mosDepth output
+#  3a of 8 : format histogram data using mosDepth output
 # ================================================================
 task cumulativeDistToHistogram {
 
     input {
     File globalDist
     File summary
-    String modules = "python/3.6"
+    String modules = "bam-qc-metrics/0.2.7"
+    String coverageHistogram = "$BAM_QC_METRICS_ROOT/bin/bam_qc_coverage_histogram.py"
+    String outFileName = "coverage_histogram.json"
     Int jobMemory = 8
     Int threads = 4
     Int timeout = 1
@@ -284,12 +376,12 @@ task cumulativeDistToHistogram {
     globalDist: "Global coverage distribution output from mosdepth"
     summary: "Summary output from mosdepth"
     modules: "required environment modules"
+    coverageHistogram: "Path to script generating coverage histogram"
+    outFileName: "Output file name, default coverage_histogram.json"
     jobMemory: "Memory allocated for this job"
     threads: "Requested CPU threads"
     timeout: "hours before task timeout"
     }
-
-    String outFileName = "coverage_histogram.json"
 
     # mosdepth writes a global coverage distribution with 3 columns:
     # 1) Chromsome name, or "total" for overall totals
@@ -300,53 +392,7 @@ task cumulativeDistToHistogram {
     # So, we process the outputs for each chromosome to construct the histogram
 
     command <<<
-        python3 <<CODE
-        import csv, json
-        summary = open("~{summary}").readlines()
-        globalDist = open("~{globalDist}").readlines()
-        # read chromosome lengths from the summary
-        summaryReader = csv.reader(summary, delimiter="\t")
-        lengthByChr = {}
-        for row in summaryReader:
-          if row[0] == 'chrom' or row[0] == 'total':
-            continue # skip initial header row, and final total row
-          if row[0].endswith('_region'):
-            continue # skip contigs from target file, if passed
-          lengthByChr[row[0]] = int(row[1])
-        chromosomes = sorted(lengthByChr.keys())
-        # read the cumulative distribution for each chromosome
-        globalReader = csv.reader(globalDist, delimiter="\t")
-        cumDist = {}
-        for k in chromosomes:
-          cumDist[k] = {}
-        for row in globalReader:
-          if row[0]=="total":
-            continue
-          cumDist[row[0]][int(row[1])] = float(row[2])
-        # convert the cumulative distributions to non-cumulative and populate histogram
-        # if the input BAM is empty, chromosomes and histogram will also be empty
-        histogram = {}
-        for k in chromosomes:
-          depths = sorted(cumDist[k].keys())
-          dist = {}
-          for i in range(len(depths)-1):
-            depth = depths[i]
-            nextDepth = depths[i+1]
-            dist[depth] = cumDist[k][depth] - cumDist[k][nextDepth]
-          maxDepth = max(depths)
-          dist[maxDepth] = cumDist[k][maxDepth]
-          # now find the number of loci at each depth of coverage to construct the histogram
-          for depth in depths:
-            loci = int(round(dist[depth]*lengthByChr[k], 0))
-            histogram[depth] = histogram.get(depth, 0) + loci
-        # if histogram is non-empty, fill in zero values for missing depths
-        for i in range(max(histogram.keys(), default=0)):
-          if i not in histogram:
-            histogram[i] = 0
-        out = open("~{outFileName}", "w")
-        json.dump(histogram, out, sort_keys=True)
-        out.close()
-        CODE
+        python3 ~{coverageHistogram} -s ~{summary} -g ~{globalDist} -o ~{outFileName}
     >>>
 
     runtime {
@@ -369,13 +415,63 @@ task cumulativeDistToHistogram {
 
 
 # ================================================================
-#  4 of 8 : run samblaster to collect read duplicates stats
+#  3b of 8 : format histogram data using mosDepth output
+# ================================================================
+task mergedCoverageToHistogram {
+  
+    input {
+    Array[File] coverageFiles
+    String outputFileNamePrefix
+    String modules = "bam-qc-metrics/0.2.7"
+    String coverageMerge = "$BAM_QC_METRICS_ROOT/bin/bam_qc_coverage_merger.py"
+    Int jobMemory = 8
+    Int threads = 4
+    Int timeout = 1
+    }
+
+    parameter_meta {
+    coverageFiles: "Array of gzip-ed files with windowed coverage from mosDepth"
+    outputFileNamePrefix: "Output file name prefix"
+    modules: "required environment modules"
+    coverageMerge: "Path to coverage merging script"
+    jobMemory: "Memory allocated for this job"
+    threads: "Requested CPU threads"
+    timeout: "hours before task timeout"
+    }
+
+    String outFileName = "~{outputFileNamePrefix}_coverage_histogram.json"
+
+    command <<<
+    python3 ~{coverageMerge} -f ~{sep="," coverageFiles} \
+                             -o ~{outFileName} 
+    >>>
+
+    runtime {
+      modules: "~{modules}"
+      memory:  "~{jobMemory} GB"
+      timeout: "~{timeout}"
+    }
+
+    output {
+      File histogram = "~{outFileName}"
+    }
+
+    meta {
+    output_meta: {
+      result: "Text file with samblaster markDuplicates metrics"
+    }
+    }
+}
+
+
+# ================================================================
+#  4a of 8 : run samblaster to collect read duplicates stats
 # ================================================================
 task markDuplicates {
 
     input {
     File bamFile
-    String? additionalParam
+    String? additionalParameters
     Int downsampleToReads
     String modules = "samblaster/0.1.26 samtools/1.16.1"
     Int jobMemory = 16
@@ -385,7 +481,7 @@ task markDuplicates {
 
     parameter_meta {
     bamFile: "Input BAM file, after filtering and downsampling (if any)"
-    additionalParam: "Any additional parameters for samblaster"
+    additionalParameters: "Any additional parameters for samblaster"
     modules: "required environment modules"
     jobMemory: "Memory allocated for this job"
     threads: "Requested CPU threads"
@@ -397,9 +493,10 @@ task markDuplicates {
     command <<<
     set -euxo pipefail
     samtools head -n ~{downsampleToReads} ~{bamFile} | \
+    samtools view -h -F 2308 - | \
     samtools sort -n - | \
     samtools fixmate -m -O SAM - - | \
-    samblaster --ignoreUnmated ~{additionalParam} --output /dev/null 2> >(tee "~{filePrefix}.markDuplicates.txt")
+    samblaster --ignoreUnmated ~{additionalParameters} --output /dev/null 2> >(tee "~{filePrefix}.markDuplicates.txt")
     >>>
 
     runtime {
@@ -410,6 +507,58 @@ task markDuplicates {
 
     output {
       File result = "~{filePrefix}.markDuplicates.txt"
+    }
+
+    meta {
+    output_meta: {
+      result: "Text file with samblaster markDuplicates metrics"
+    }
+    }
+
+}
+
+# =====================================================================================
+#  4b of 8 : run samblaster to collect read duplicates stats on merged lane-level data
+# =====================================================================================
+task markDuplicatesMerged {
+
+    input {
+    Array[File] bamFiles
+    String outputFileNamePrefix
+    String? additionalParameters
+    String modules = "samblaster/0.1.26 samtools/1.16.1"
+    Int jobMemory = 16
+    Int threads = 4
+    Int timeout = 4
+    }
+
+    parameter_meta {
+    bamFiles: "Input BAM files, after filtering and downsampling (if any)"
+    outputFileNamePrefix: "Output file name prefix"
+    additionalParameters: "Any additional parameters for samblaster"
+    modules: "required environment modules"
+    jobMemory: "Memory allocated for this job"
+    threads: "Requested CPU threads"
+    timeout: "hours before task timeout"
+    }
+
+    command <<<
+    set -euxo pipefail
+    samtools cat ~{sep=" " bamFiles} | \
+    samtools view -h -F 2308 - | \
+    samtools sort -n - | \
+    samtools fixmate -m -O SAM - - | \
+    samblaster --ignoreUnmated ~{additionalParameters} --output /dev/null 2> >(tee "~{outputFileNamePrefix}.markDuplicates.txt")
+    >>>
+
+    runtime {
+      modules: "~{modules}"
+      memory:  "~{jobMemory} GB"
+      timeout: "~{timeout}"
+    }
+
+    output {
+      File result = "~{outputFileNamePrefix}.markDuplicates.txt"
     }
 
     meta {
@@ -510,7 +659,6 @@ task getUniqueReadsCount {
 task bamQCMetrics {
 
     input {
-    String mode
     File? bamFile
     Map[String, String] metadata
     String outputFileNamePrefix
@@ -523,15 +671,14 @@ task bamQCMetrics {
     Int? downsampleToReads
     Int? uniqueReads
     String referenceFileName
-    String workflowVersion = "5.3.0"
-    String modules = "bam-qc-metrics/0.2.6"
+    String workflowVersion = "5.3.1"
+    String modules = "bam-qc-metrics/0.2.7"
     String bamQClite = "$BAM_QC_METRICS_ROOT/bin/run_bam_qc_lite.py"
     Int jobMemory = 8
     Int timeout = 12
     }
 
     parameter_meta {
-    mode: "Either lane_level or call_ready"
     bamFile: "We pass a bam file only if we want to run CIGAR analysis (long)"
     bamQClite: "Path to bamQC lite script"
     outputFileNamePrefix: "Prefix for output file"
@@ -559,10 +706,7 @@ task bamQCMetrics {
 
     String outputFileName = "~{outputFileNamePrefix}.bamQC_results.json"
     File metadataJson = write_json(metadata)
-    #TODO: need to check that it runs without setting PYTHONPATH
     command <<<
-        set -euxo pipefail
-        # export PYTHONPATH=$PYTHONPATH:/.mounts/labs/gsi/testdata/bamqc/scripts/
         python3 ~{bamQClite} ~{"-b " + bamFile} \
         -s ~{samstatsFile} \
         -d ~{markDuplicatesStats} \
@@ -591,8 +735,10 @@ task bamQCMetrics {
 task mergeReports {
     input {
     Array[File] inputs
+    File? mergedDupmarkingData
+    File? mergedCoverageData
     String prefix
-    String modules = "bam-qc-metrics/0.2.6"
+    String modules = "bam-qc-metrics/0.2.7"
     String bamQCmerger = "$BAM_QC_METRICS_ROOT/bin/bam_qc_merger.py"
     Int jobMemory = 4
     Int timeout = 2
@@ -600,6 +746,8 @@ task mergeReports {
 
     parameter_meta {
       inputs: "Array of .json report files"
+      mergedDupmarkingData: "Optional merged (call-ready) duplicate marking report" 
+      mergedCoverageData: "Optional merged (call-ready) coverage histogram"
       prefix: "Prefix for output file"
       modules: "Runtime modules"
       bamQCmerger: "Path to the merger script"
@@ -614,11 +762,10 @@ task mergeReports {
     }
 
     String outputFileName = "~{prefix}.bamQC_results.json"
-    #TODO: need to check that it runs without setting PYTHONPATH
     command <<<
-        set -euxo pipefail
+        # set -euxo pipefail
         # export PYTHONPATH=$PYTHONPATH:/.mounts/labs/gsi/testdata/bamqc/scripts/ 
-        python3 ~{bamQCmerger} -l ~{sep="," inputs} -o ~{outputFileName}
+        python3 ~{bamQCmerger} -l ~{sep="," inputs} ~{"-d " + mergedDupmarkingData} ~{"-t " + mergedCoverageData} -o ~{outputFileName}
     >>>
 
     output {
