@@ -9,7 +9,7 @@ bamQC workflow collects a number of metrics which are computed using several met
 * [samtools 1.16.1](https://github.com/samtools/samtools)
 * [samblaster 0.1.26](https://github.com/GregoryFaust/samblaster)
 * [python 3.6](https://www.python.org/downloads/)
-* [bam-qc-metrics 0.2.6](https://github.com/oicr-gsi/bam-qc-metrics.git)
+* [bam-qc-metrics 0.2.7](https://github.com/oicr-gsi/bam-qc-metrics.git)
 * [mosdepth 0.2.9](https://github.com/brentp/mosdepth)
 
 
@@ -27,7 +27,6 @@ Parameter|Value|Description
 ---|---|---
 `inputGroups`|Array[InputGroup]|Array of objects describing sets of bams to merge together and on which to compute QC metrics
 `metadata`|Map[String,String]|JSON file containing metadata
-`mode`|String|running mode for the workflow, only allow value 'lane_level' and 'call_ready'
 `reference`|String|Reference id, we need it to pick the right reference file
 
 
@@ -36,40 +35,60 @@ Parameter|Value|Default|Description
 ---|---|---|---
 `targetBed`|String?|None|Path to optional target bed file
 `outputFileNamePrefix`|String|"bamQC"|Prefix for output files
-`runBedtools`|Boolean|false|This is to run bedtools when targetBed is supplied, collect reads on target metric. Default False
 `downsampleToReads`|Int|500000|Downsample to this many reads when running unique read count, duplicate rate calculation and CIGAR analysis
+`coverageWindow`|Int|1000|Coverage window to use with mosdepth for making coverage histogram, default is 1000b
 
 
 #### Optional task parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
+`samstats.additionalParameters`|String?|None|Additional parameters for samtools, usually filtering flag
 `samstats.jobMemory`|Int|16|Memory allocated for this job
 `samstats.timeout`|Int|24|hours before task timeout
 `runMosdepth.modules`|String|"mosdepth/0.2.9"|required environment modules
+`runMosdepth.additionalParameters`|String?|None|Additional parameters for coverage calculation
 `runMosdepth.jobMemory`|Int|16|Memory allocated for this job
 `runMosdepth.timeout`|Int|4|hours before task timeout
 `runBedtoolsIntersect.modules`|String|"samtools/1.16.1 bedtools/2.27"|required environment modules
 `runBedtoolsIntersect.jobMemory`|Int|16|Memory allocated for this job
 `runBedtoolsIntersect.timeout`|Int|12|hours before task timeout
-`cumulativeDistToHistogram.modules`|String|"python/3.6"|required environment modules
+`cumulativeDistToHistogram.modules`|String|"bam-qc-metrics/0.2.7"|required environment modules
+`cumulativeDistToHistogram.coverageHistogram`|String|"$BAM_QC_METRICS_ROOT/bin/bam_qc_coverage_histogram.py"|Path to script generating coverage histogram
+`cumulativeDistToHistogram.outFileName`|String|"coverage_histogram.json"|Output file name, default coverage_histogram.json
 `cumulativeDistToHistogram.jobMemory`|Int|8|Memory allocated for this job
 `cumulativeDistToHistogram.threads`|Int|4|Requested CPU threads
 `cumulativeDistToHistogram.timeout`|Int|1|hours before task timeout
-`markDuplicates.additionalParam`|String?|None|Any additional parameters for samblaster
-`markDuplicates.modules`|String|"samtools/1.16.1"|required environment modules
+`markDuplicates.additionalParameters`|String?|None|Any additional parameters for samblaster
+`markDuplicates.modules`|String|"samblaster/0.1.26 samtools/1.16.1"|required environment modules
 `markDuplicates.jobMemory`|Int|16|Memory allocated for this job
 `markDuplicates.threads`|Int|4|Requested CPU threads
 `markDuplicates.timeout`|Int|4|hours before task timeout
 `getUniqueReadsCount.modules`|String|"samtools/1.16.1"|required environment modules
 `getUniqueReadsCount.jobMemory`|Int|16|Memory allocated for this job
 `getUniqueReadsCount.timeout`|Int|18|hours before task timeout
-`bamQCMetrics.targetBed`|File?|None|Optional target bed
-`bamQCMetrics.workflowVersion`|String|"5.3.0"|Workflow version to put into report
-`bamQCMetrics.modules`|String|"bam-qc-metrics/0.2.6"|required environment modules
+`downsampleBam.modules`|String|"samtools/1.16.1"|required environment modules
+`downsampleBam.jobMemory`|Int|16|Memory allocated for this job
+`downsampleBam.timeout`|Int|4|hours before task timeout
+`runWindowedMosdepth.modules`|String|"mosdepth/0.2.9"|required environment modules
+`runWindowedMosdepth.targetBed`|String?|None|Optional target bed file
+`runWindowedMosdepth.jobMemory`|Int|16|Memory allocated for this job
+`runWindowedMosdepth.timeout`|Int|4|hours before task timeout
+`bamQCMetrics.workflowVersion`|String|"5.3.1"|Workflow version to put into report
+`bamQCMetrics.modules`|String|"bam-qc-metrics/0.2.7"|required environment modules
 `bamQCMetrics.bamQClite`|String|"$BAM_QC_METRICS_ROOT/bin/run_bam_qc_lite.py"|Path to bamQC lite script
 `bamQCMetrics.jobMemory`|Int|8|Memory allocated for this job
 `bamQCMetrics.timeout`|Int|12|hours before task timeout
-`mergeReports.modules`|String|"bam-qc-metrics/0.2.6"|Runtime modules
+`markDuplicatesMerged.additionalParameters`|String?|None|Any additional parameters for samblaster
+`markDuplicatesMerged.modules`|String|"samblaster/0.1.26 samtools/1.16.1"|required environment modules
+`markDuplicatesMerged.jobMemory`|Int|16|Memory allocated for this job
+`markDuplicatesMerged.threads`|Int|4|Requested CPU threads
+`markDuplicatesMerged.timeout`|Int|4|hours before task timeout
+`mergedCoverageToHistogram.modules`|String|"bam-qc-metrics/0.2.7"|required environment modules
+`mergedCoverageToHistogram.coverageMerge`|String|"$BAM_QC_METRICS_ROOT/bin/bam_qc_coverage_merger.py"|Path to coverage merging script
+`mergedCoverageToHistogram.jobMemory`|Int|8|Memory allocated for this job
+`mergedCoverageToHistogram.threads`|Int|4|Requested CPU threads
+`mergedCoverageToHistogram.timeout`|Int|1|hours before task timeout
+`mergeReports.modules`|String|"bam-qc-metrics/0.2.7"|Runtime modules
 `mergeReports.bamQCmerger`|String|"$BAM_QC_METRICS_ROOT/bin/bam_qc_merger.py"|Path to the merger script
 `mergeReports.jobMemory`|Int|4|RAM allocated to run the merging task
 `mergeReports.timeout`|Int|2|Timeout in hours for the merging task
@@ -83,6 +102,7 @@ Output | Type | Description | Labels
 
 
 ## Commands
+
 This section lists command(s) run by bamQC lite workflow
  
 * Running bamQC lite
@@ -104,75 +124,56 @@ It has fewer steps then the original bamQC but produces almost exact results.
      ln -s ~{bamFile}
      ln -s ~{bamIndex}
      # run mosdepth
-     MOSDEPTH_PRECISION=8 mosdepth -x -n -t 3 bamqc ~{bamFileName} ~{"--by " + targetBed}
+     MOSDEPTH_PRECISION=8 mosdepth -x -n ~{"--by " + targetBed} ~{additionalParameters} -t 3 ~{prefix} ~{bamFileName}
 ```
  
 ### Extract coverage histogram
  
+This step creates a lane-level coverage hitogram for each of the lane-level inputs
+ 
 ```
-         python3 <<CODE
-         import csv, json
-         summary = open("~{summary}").readlines()
-         globalDist = open("~{globalDist}").readlines()
-         # read chromosome lengths from the summary
-         summaryReader = csv.reader(summary, delimiter="\t")
-         lengthByChr = {}
-         for row in summaryReader:
-           if row[0] == 'chrom' or row[0] == 'total':
-             continue # skip initial header row, and final total row
-           if row[0].endswith('_region'):
-             continue # skip contigs from target file, if passed
-           lengthByChr[row[0]] = int(row[1])
-         chromosomes = sorted(lengthByChr.keys())
-         # read the cumulative distribution for each chromosome
-         globalReader = csv.reader(globalDist, delimiter="\t")
-         cumDist = {}
-         for k in chromosomes:
-           cumDist[k] = {}
-         for row in globalReader:
-           if row[0]=="total":
-             continue
-           cumDist[row[0]][int(row[1])] = float(row[2])
-         # convert the cumulative distributions to non-cumulative and populate histogram
-         # if the input BAM is empty, chromosomes and histogram will also be empty
-         histogram = {}
-         for k in chromosomes:
-           depths = sorted(cumDist[k].keys())
-           dist = {}
-           for i in range(len(depths)-1):
-             depth = depths[i]
-             nextDepth = depths[i+1]
-             dist[depth] = cumDist[k][depth] - cumDist[k][nextDepth]
-           maxDepth = max(depths)
-           dist[maxDepth] = cumDist[k][maxDepth]
-           # now find the number of loci at each depth of coverage to construct the histogram
-           for depth in depths:
-             loci = int(round(dist[depth]*lengthByChr[k], 0))
-             histogram[depth] = histogram.get(depth, 0) + loci
-         # if histogram is non-empty, fill in zero values for missing depths
-         for i in range(max(histogram.keys(), default=0)):
-           if i not in histogram:
-             histogram[i] = 0
-         out = open("~{outFileName}", "w")
-         json.dump(histogram, out, sort_keys=True)
-         out.close()
-         CODE
+     python3 ~{coverageHistogram} -s ~{summary} -g ~{globalDist} -o ~{outFileName}
 ```
  
-### Extract duplicate reads metrics with samblaster
+### Merge windowed coverage, generate coverage histogram
  
-samblaster uses downsampled data piped into the tool. This allows having a much reduced filesystem footprint
-as there are no intermediate files generated in the process
+Windowed coverage is used to create a call-ready coverage histogram. mosDepth produces windowed coverage in a format 
+suitable for merging if we have multiple lane-level inputs
+ 
+```
+     python3 ~{coverageMerge} -f ~{sep="," coverageFiles} \
+                              -o ~{outFileName} 
+```
+ 
+### Duplicate read marking with samblaster, lane-level mode
+ 
+This task runs on a lane-level BAM and produces Duplicate Read metrics later injected into the final report (in lane-level mode)
  
 ```
      set -euxo pipefail
      samtools head -n ~{downsampleToReads} ~{bamFile} | \
+     samtools view -h -F 2308 - | \
      samtools sort -n - | \
      samtools fixmate -m -O SAM - - | \
-     samblaster --ignoreUnmated ~{additionalParam} --output /dev/null 2> >(tee "~{filePrefix}.markDuplicates.txt")
+     samblaster --ignoreUnmated ~{additionalParameters} --output /dev/null 2> >(tee "~{filePrefix}.markDuplicates.txt")
+```
+ 
+### Duplicate read marking with samblaster, call-ready mode
+ 
+This task accepts multiple (downsampled) BAM files and merges them on the fly, piping the results into samblaster
+ 
+```
+     set -euxo pipefail
+     samtools cat ~{sep=" " bamFiles} | \
+     samtools view -h -F 2308 - | \
+     samtools sort -n - | \
+     samtools fixmate -m -O SAM - - | \
+     samblaster --ignoreUnmated ~{additionalParameters} --output /dev/null 2> >(tee "~{outputFileNamePrefix}.markDuplicates.txt")
 ```
  
 ### For targeted sequencing, count reads on target with bedtools
+ 
+ This runs only if we have a target .bed file supplied (targeted sequencing mode)
  
 ```
      bedtools intersect -a ~{inputBam} -b ~{targetBed} -u | samtools view -c | perl -pe 'chomp'
@@ -187,6 +188,9 @@ CIGAR metrics are generated using downsampled bam, this step uses the same rate 
 ```
  
 ### Run bamQC lite which aggregates metrics into lane-level json report
+ 
+This creates a lane-level report. In lane-level mode this is going to be the final output from the workflow.
+In call-ready mode these reports will be merged and the final merged metrics provisioned.
  
 ```
          set -euxo pipefail
@@ -206,11 +210,11 @@ CIGAR metrics are generated using downsampled bam, this step uses the same rate 
 This step will return lane-level report (exact copy of it's input) if there is one lane, but will
 combine metrics into call-ready report if there are multiple lanes
  
- 
 ```
          set -euxo pipefail
-         python3 ~{bamQCmerger} -l ~{sep="," inputs} -o ~{outputFileName}
+         python3 ~{bamQCmerger} -l ~{sep="," inputs} ~{"-d " + mergedDupmarkingData} ~{"-t " + mergedCoverageData} -o ~{outputFileName}
 ```
+
 ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
