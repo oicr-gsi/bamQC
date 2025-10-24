@@ -9,7 +9,7 @@ bamQC workflow collects a number of metrics which are computed using several met
 * [samtools 1.16.1](https://github.com/samtools/samtools)
 * [samblaster 0.1.26](https://github.com/GregoryFaust/samblaster)
 * [python 3.6](https://www.python.org/downloads/)
-* [bam-qc-metrics 0.2.7](https://github.com/oicr-gsi/bam-qc-metrics.git)
+* [bam-qc-metrics 0.2.8](https://github.com/oicr-gsi/bam-qc-metrics.git)
 * [mosdepth 0.2.9](https://github.com/brentp/mosdepth)
 
 
@@ -52,7 +52,7 @@ Parameter|Value|Default|Description
 `runBedtoolsIntersect.modules`|String|"samtools/1.16.1 bedtools/2.27"|required environment modules
 `runBedtoolsIntersect.jobMemory`|Int|16|Memory allocated for this job
 `runBedtoolsIntersect.timeout`|Int|12|hours before task timeout
-`cumulativeDistToHistogram.modules`|String|"bam-qc-metrics/0.2.7"|required environment modules
+`cumulativeDistToHistogram.modules`|String|"bam-qc-metrics/0.2.8"|required environment modules
 `cumulativeDistToHistogram.coverageHistogram`|String|"$BAM_QC_METRICS_ROOT/bin/bam_qc_coverage_histogram.py"|Path to script generating coverage histogram
 `cumulativeDistToHistogram.outFileName`|String|"coverage_histogram.json"|Output file name, default coverage_histogram.json
 `cumulativeDistToHistogram.jobMemory`|Int|8|Memory allocated for this job
@@ -73,8 +73,8 @@ Parameter|Value|Default|Description
 `runWindowedMosdepth.targetBed`|String?|None|Optional target bed file
 `runWindowedMosdepth.jobMemory`|Int|16|Memory allocated for this job
 `runWindowedMosdepth.timeout`|Int|4|hours before task timeout
-`bamQCMetrics.workflowVersion`|String|"5.3.1"|Workflow version to put into report
-`bamQCMetrics.modules`|String|"bam-qc-metrics/0.2.7"|required environment modules
+`bamQCMetrics.workflowVersion`|String|"5.3.2"|Workflow version to put into report
+`bamQCMetrics.modules`|String|"bam-qc-metrics/0.2.8"|required environment modules
 `bamQCMetrics.bamQClite`|String|"$BAM_QC_METRICS_ROOT/bin/run_bam_qc_lite.py"|Path to bamQC lite script
 `bamQCMetrics.jobMemory`|Int|8|Memory allocated for this job
 `bamQCMetrics.timeout`|Int|12|hours before task timeout
@@ -83,12 +83,12 @@ Parameter|Value|Default|Description
 `markDuplicatesMerged.jobMemory`|Int|16|Memory allocated for this job
 `markDuplicatesMerged.threads`|Int|4|Requested CPU threads
 `markDuplicatesMerged.timeout`|Int|4|hours before task timeout
-`mergedCoverageToHistogram.modules`|String|"bam-qc-metrics/0.2.7"|required environment modules
+`mergedCoverageToHistogram.modules`|String|"bam-qc-metrics/0.2.8"|required environment modules
 `mergedCoverageToHistogram.coverageMerge`|String|"$BAM_QC_METRICS_ROOT/bin/bam_qc_coverage_merger.py"|Path to coverage merging script
 `mergedCoverageToHistogram.jobMemory`|Int|8|Memory allocated for this job
 `mergedCoverageToHistogram.threads`|Int|4|Requested CPU threads
 `mergedCoverageToHistogram.timeout`|Int|1|hours before task timeout
-`mergeReports.modules`|String|"bam-qc-metrics/0.2.7"|Runtime modules
+`mergeReports.modules`|String|"bam-qc-metrics/0.2.8"|Runtime modules
 `mergeReports.bamQCmerger`|String|"$BAM_QC_METRICS_ROOT/bin/bam_qc_merger.py"|Path to the merger script
 `mergeReports.jobMemory`|Int|4|RAM allocated to run the merging task
 `mergeReports.timeout`|Int|2|Timeout in hours for the merging task
