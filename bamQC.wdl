@@ -177,7 +177,7 @@ workflow bamQC {
                 url: "https://www.python.org/downloads/"
             },
             {
-                name: "bam-qc-metrics/0.2.7",
+                name: "bam-qc-metrics/0.2.8",
                 url: "https://github.com/oicr-gsi/bam-qc-metrics.git"
             }, 
             {
@@ -364,7 +364,7 @@ task cumulativeDistToHistogram {
     input {
     File globalDist
     File summary
-    String modules = "bam-qc-metrics/0.2.7"
+    String modules = "bam-qc-metrics/0.2.8"
     String coverageHistogram = "$BAM_QC_METRICS_ROOT/bin/bam_qc_coverage_histogram.py"
     String outFileName = "coverage_histogram.json"
     Int jobMemory = 8
@@ -392,7 +392,7 @@ task cumulativeDistToHistogram {
     # So, we process the outputs for each chromosome to construct the histogram
 
     command <<<
-        python3 ~{coverageHistogram} -s ~{summary} -g ~{globalDist} -o ~{outFileName}
+    python3 ~{coverageHistogram} -s ~{summary} -g ~{globalDist} -o ~{outFileName}
     >>>
 
     runtime {
@@ -422,7 +422,7 @@ task mergedCoverageToHistogram {
     input {
     Array[File] coverageFiles
     String outputFileNamePrefix
-    String modules = "bam-qc-metrics/0.2.7"
+    String modules = "bam-qc-metrics/0.2.8"
     String coverageMerge = "$BAM_QC_METRICS_ROOT/bin/bam_qc_coverage_merger.py"
     Int jobMemory = 8
     Int threads = 4
@@ -671,8 +671,8 @@ task bamQCMetrics {
     Int? downsampleToReads
     Int? uniqueReads
     String referenceFileName
-    String workflowVersion = "5.3.1"
-    String modules = "bam-qc-metrics/0.2.7"
+    String workflowVersion = "5.3.2"
+    String modules = "bam-qc-metrics/0.2.8"
     String bamQClite = "$BAM_QC_METRICS_ROOT/bin/run_bam_qc_lite.py"
     Int jobMemory = 8
     Int timeout = 12
@@ -738,7 +738,7 @@ task mergeReports {
     File? mergedDupmarkingData
     File? mergedCoverageData
     String prefix
-    String modules = "bam-qc-metrics/0.2.7"
+    String modules = "bam-qc-metrics/0.2.8"
     String bamQCmerger = "$BAM_QC_METRICS_ROOT/bin/bam_qc_merger.py"
     Int jobMemory = 4
     Int timeout = 2
@@ -763,9 +763,9 @@ task mergeReports {
 
     String outputFileName = "~{prefix}.bamQC_results.json"
     command <<<
-        # set -euxo pipefail
-        # export PYTHONPATH=$PYTHONPATH:/.mounts/labs/gsi/testdata/bamqc/scripts/ 
-        python3 ~{bamQCmerger} -l ~{sep="," inputs} ~{"-d " + mergedDupmarkingData} ~{"-t " + mergedCoverageData} -o ~{outputFileName}
+    # set -euxo pipefail
+    # export PYTHONPATH=$PYTHONPATH:/.mounts/labs/gsi/testdata/bamqc/scripts/ 
+    python3 ~{bamQCmerger} -l ~{sep="," inputs} ~{"-d " + mergedDupmarkingData} ~{"-t " + mergedCoverageData} -o ~{outputFileName}
     >>>
 
     output {

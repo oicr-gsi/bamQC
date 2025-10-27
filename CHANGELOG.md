@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-##  [5.3.1] - 2024-09-29
+##  [5.3.2] - 2025-10-21
+### Added
+- previously omitted metadata fields in final report
+### Changed
+- duplicate read percentage are now reported as ratio (to make this metric back-compatible with picard-generated results)
+- Switched to bam-qc-metrics/0.2.8
+- [GRD-946](https://jira.oicr.on.ca/browse/GRD-946)
+
+##  [5.3.1] - 2025-09-29
 ### Added
 - tasks for handling coverage and duplicate marking data in call-ready mode
 ### Changed
@@ -13,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - removed histogram-generating python code from wdl (now handled by bam-qc-metrics scripts)
 - [GRD-946](https://jira.oicr.on.ca/browse/GRD-946) - still the same ticket, bamQC lite gets finalized
 
-##  [5.3.0] - 2024-08-10
+##  [5.3.0] - 2025-08-10
 ### Changed
 - Converted into a faster bamQC lite variant.
 - [GRD-946](https://jira.oicr.on.ca/browse/GRD-946)
