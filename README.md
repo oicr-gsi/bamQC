@@ -35,6 +35,7 @@ Parameter|Value|Default|Description
 ---|---|---|---
 `targetBed`|String?|None|Path to optional target bed file
 `outputFileNamePrefix`|String|"bamQC"|Prefix for output files
+`filterTargetedCoverage`|Boolean|true|Flag for enbling filtering when calculating reads on target
 `downsampleToReads`|Int|500000|Downsample to this many reads when running unique read count, duplicate rate calculation and CIGAR analysis
 `coverageWindow`|Int|1000|Coverage window to use with mosdepth for making coverage histogram, default is 1000b
 
@@ -173,10 +174,15 @@ This task accepts multiple (downsampled) BAM files and merges them on the fly, p
  
 ### For targeted sequencing, count reads on target with bedtools
  
- This runs only if we have a target .bed file supplied (targeted sequencing mode)
+ This runs only if we have a target .bed file supplied (targeted sequencing mode). A flag for filtering coverage (removing non-primary,
+ unmapped or supplementary alignments) is enabled by default but can be set to false
  
 ```
+   if [[ "~{filterCoverage}" == "true" ]]; then
+     samtools view  -F 2308 ~{inputBam} -b | bedtools intersect -a - -b ~{targetBed} -u | samtools view -c | perl -pe 'chomp'
+   else
      bedtools intersect -a ~{inputBam} -b ~{targetBed} -u | samtools view -c | perl -pe 'chomp'
+   fi
 ```
  
 ### Count unique reads on downsampled data (needed for CIGAR metrics)
@@ -184,7 +190,7 @@ This task accepts multiple (downsampled) BAM files and merges them on the fly, p
 CIGAR metrics are generated using downsampled bam, this step uses the same rate of downsampling
  
 ```
-     samtools head -n ~{downsampleToReads} ~{inputBam} | samtools view -F 256 -q 30 -c | perl -pe 'chomp'
+ samtools head -n ~{downsampleToReads} ~{inputBam} | samtools view -F 256 -q 30 -c | perl -pe 'chomp'
 ```
  
 ### Run bamQC lite which aggregates metrics into lane-level json report
@@ -193,16 +199,16 @@ This creates a lane-level report. In lane-level mode this is going to be the fin
 In call-ready mode these reports will be merged and the final merged metrics provisioned.
  
 ```
-         set -euxo pipefail
-         python3 ~{bamQClite} ~{"-b " + bamFile} \
-         -s ~{samstatsFile} \
-         -d ~{markDuplicatesStats} \
-         -c ~{histogram} \
-         -m ~{metadataJson} \
-         -w ~{workflowVersion} ~{"-tf " + targetBed} \
-         -r ~{referenceFileName} ~{"-S " + downsampleToReads} \
-         -o ~{outputFileName} \
-         -t ~{mosdepthSummary} ~{"-u " + uniqueReads} ~{"-ot " + readsOnTarget} 
+ set -euxo pipefail
+ python3 ~{bamQClite} ~{"-b " + bamFile} \
+ -s ~{samstatsFile} \
+ -d ~{markDuplicatesStats} \
+ -c ~{histogram} \
+ -m ~{metadataJson} \
+ -w ~{workflowVersion} ~{"-tf " + targetBed} \
+ -r ~{referenceFileName} ~{"-S " + downsampleToReads} \
+ -o ~{outputFileName} \
+ -t ~{mosdepthSummary} ~{"-u " + uniqueReads} ~{"-ot " + readsOnTarget} 
 ```
  
 ### Run merger script which will combine reports into call-ready report if there are multiple lanes
@@ -211,8 +217,8 @@ This step will return lane-level report (exact copy of it's input) if there is o
 combine metrics into call-ready report if there are multiple lanes
  
 ```
-         set -euxo pipefail
-         python3 ~{bamQCmerger} -l ~{sep="," inputs} ~{"-d " + mergedDupmarkingData} ~{"-t " + mergedCoverageData} -o ~{outputFileName}
+ set -euxo pipefail
+ python3 ~{bamQCmerger} -l ~{sep="," inputs} ~{"-d " + mergedDupmarkingData} ~{"-t " + mergedCoverageData} -o ~{outputFileName}
 ```
 
 ## Support

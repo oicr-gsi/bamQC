@@ -29,6 +29,7 @@
                     }
                 }
             ],
+            "bamQC.filterTargetedCoverage": null,
             "bamQC.bamQCMetrics.bamQClite": null,
             "bamQC.bamQCMetrics.jobMemory": null,
             "bamQC.bamQCMetrics.modules": null,
@@ -150,6 +151,7 @@
                     }
                 }
             ],
+            "bamQC.filterTargetedCoverage": null,
             "bamQC.bamQCMetrics.bamQClite": null,
             "bamQC.bamQCMetrics.jobMemory": null,
             "bamQC.bamQCMetrics.modules": null,
@@ -272,6 +274,7 @@
                     }
                 }
             ],
+            "bamQC.filterTargetedCoverage": false,
             "bamQC.bamQCMetrics.bamQClite": null,
             "bamQC.bamQCMetrics.jobMemory": null,
             "bamQC.bamQCMetrics.modules": null,
@@ -419,6 +422,7 @@
                     } 
                 }
             ],
+            "bamQC.filterTargetedCoverage": null,
             "bamQC.bamQCMetrics.bamQClite": null,
             "bamQC.bamQCMetrics.jobMemory": null,
             "bamQC.bamQCMetrics.modules": null,

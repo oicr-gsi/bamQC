@@ -69,10 +69,15 @@ This task accepts multiple (downsampled) BAM files and merges them on the fly, p
 
 ### For targeted sequencing, count reads on target with bedtools
 
-This runs only if we have a target .bed file supplied (targeted sequencing mode)
+This runs only if we have a target .bed file supplied (targeted sequencing mode). A flag for filtering coverage (removing non-primary,
+unmapped or supplementary alignments) is enabled by default but can be set to false
 
 ```
-    bedtools intersect -a ~{inputBam} -b ~{targetBed} -u | samtools view -c | perl -pe 'chomp'
+    if [[ "~{filterCoverage}" == "true" ]]; then
+      samtools view  -F 2308 ~{inputBam} -b | bedtools intersect -a - -b ~{targetBed} -u | samtools view -c | perl -pe 'chomp'
+    else
+      bedtools intersect -a ~{inputBam} -b ~{targetBed} -u | samtools view -c | perl -pe 'chomp'
+    fi
 ```
 
 ### Count unique reads on downsampled data (needed for CIGAR metrics)

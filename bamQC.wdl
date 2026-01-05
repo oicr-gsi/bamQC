@@ -18,6 +18,7 @@ workflow bamQC {
     String? targetBed
     String reference
     String outputFileNamePrefix = "bamQC"
+    Boolean filterTargetedCoverage = true
     Int downsampleToReads = 500000
     Int coverageWindow = 1000
   }
@@ -28,6 +29,7 @@ workflow bamQC {
     targetBed: "Path to optional target bed file"
     reference: "Reference id, we need it to pick the right reference file"
     outputFileNamePrefix: "Prefix for output files"
+    filterTargetedCoverage: "Flag for enbling filtering when calculating reads on target"
     downsampleToReads: "Downsample to this many reads when running unique read count, duplicate rate calculation and CIGAR analysis"
     coverageWindow: "Coverage window to use with mosdepth for making coverage histogram, default is 1000b"
   }
@@ -67,7 +69,8 @@ workflow bamQC {
           call runBedtoolsIntersect {
           input:
             inputBam = i.bam,
-            targetBed = targetBed
+            targetBed = targetBed,
+            filterCoverage = filterTargetedCoverage
           }
         }
 
@@ -577,6 +580,7 @@ task runBedtoolsIntersect {
     File inputBam
     File? targetBed
     String modules = "samtools/1.16.1 bedtools/2.27"
+    Boolean filterCoverage
     Int jobMemory = 16
     Int timeout = 12
     }
@@ -585,12 +589,18 @@ task runBedtoolsIntersect {
     inputBam: "Input BAM file, after filtering and downsampling (if any)"
     targetBed: "Target bed file"
     modules: "required environment modules"
+    filterCoverage: "Flag for filtering reeads before calculating reads on target"
     jobMemory: "Memory allocated for this job"
     timeout: "hours before task timeout"
     }
 
     command <<<
-    bedtools intersect -a ~{inputBam} -b ~{targetBed} -u | samtools view -c | perl -pe 'chomp'
+    if [[ "~{filterCoverage}" == "true" ]]; then
+      samtools view  -F 2308 ~{inputBam} -b | bedtools intersect -a - -b ~{targetBed} -u | samtools view -c | perl -pe 'chomp'
+    else
+      bedtools intersect -a ~{inputBam} -b ~{targetBed} -u | samtools view -c | perl -pe 'chomp'
+    fi
+
     >>>
 
     runtime {
