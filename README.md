@@ -35,7 +35,7 @@ Parameter|Value|Default|Description
 ---|---|---|---
 `targetBed`|String?|None|Path to optional target bed file
 `outputFileNamePrefix`|String|"bamQC"|Prefix for output files
-`filterTargetedCoverage`|Boolean|true|Flag for enbling filtering when calculating reads on target
+`filterTargetedCoverage`|Boolean|true|Flag for enabling filtering when calculating reads on target
 `downsampleToReads`|Int|500000|Downsample to this many reads when running unique read count, duplicate rate calculation and CIGAR analysis
 `coverageWindow`|Int|1000|Coverage window to use with mosdepth for making coverage histogram, default is 1000b
 

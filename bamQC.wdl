@@ -29,7 +29,7 @@ workflow bamQC {
     targetBed: "Path to optional target bed file"
     reference: "Reference id, we need it to pick the right reference file"
     outputFileNamePrefix: "Prefix for output files"
-    filterTargetedCoverage: "Flag for enbling filtering when calculating reads on target"
+    filterTargetedCoverage: "Flag for enabling filtering when calculating reads on target"
     downsampleToReads: "Downsample to this many reads when running unique read count, duplicate rate calculation and CIGAR analysis"
     coverageWindow: "Coverage window to use with mosdepth for making coverage histogram, default is 1000b"
   }
@@ -589,7 +589,7 @@ task runBedtoolsIntersect {
     inputBam: "Input BAM file, after filtering and downsampling (if any)"
     targetBed: "Target bed file"
     modules: "required environment modules"
-    filterCoverage: "Flag for filtering reeads before calculating reads on target"
+    filterCoverage: "Flag for filtering alignments before calculating reads on target"
     jobMemory: "Memory allocated for this job"
     timeout: "hours before task timeout"
     }
