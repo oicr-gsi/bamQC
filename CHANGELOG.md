@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.3.5] - 2026-01-10
+### Changed
+- for reads on target the type changed to String so that large numbers can be handled
+
 ## [5.3.4] - 2025-11-06
 ### Added
 - ability to calculate reads on target using filtered reads (no secondary unmapped or supplementary alignments)
