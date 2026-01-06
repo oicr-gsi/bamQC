@@ -29,12 +29,13 @@
                     }
                 }
             ],
+            "bamQC.filterTargetedCoverage": null,
             "bamQC.bamQCMetrics.bamQClite": null,
             "bamQC.bamQCMetrics.jobMemory": null,
             "bamQC.bamQCMetrics.modules": null,
             "bamQC.bamQCMetrics.targetBed": null,
             "bamQC.bamQCMetrics.timeout": null,
-            "bamQC.bamQCMetrics.workflowVersion": "5.3.2",
+            "bamQC.bamQCMetrics.workflowVersion": "5.3.4",
             "bamQC.coverageWindow": null,
             "bamQC.cumulativeDistToHistogram.jobMemory": null,
             "bamQC.cumulativeDistToHistogram.modules": null,
@@ -115,7 +116,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.3.2/bamQC_test_lane_level.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.3.4/bamQC_test_lane_level.metrics",
                 "type": "script"
             }
         ]
@@ -150,12 +151,13 @@
                     }
                 }
             ],
+            "bamQC.filterTargetedCoverage": null,
             "bamQC.bamQCMetrics.bamQClite": null,
             "bamQC.bamQCMetrics.jobMemory": null,
             "bamQC.bamQCMetrics.modules": null,
             "bamQC.bamQCMetrics.targetBed": null,
             "bamQC.bamQCMetrics.timeout": null,
-            "bamQC.bamQCMetrics.workflowVersion": "5.3.2",
+            "bamQC.bamQCMetrics.workflowVersion": "5.3.4",
             "bamQC.coverageWindow": null,
             "bamQC.cumulativeDistToHistogram.jobMemory": null,
             "bamQC.cumulativeDistToHistogram.modules": null,
@@ -236,7 +238,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.3.2/bamQC_test_01.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.3.4/bamQC_test_01.metrics",
 
                 "type": "script"
             }
@@ -272,12 +274,13 @@
                     }
                 }
             ],
+            "bamQC.filterTargetedCoverage": false,
             "bamQC.bamQCMetrics.bamQClite": null,
             "bamQC.bamQCMetrics.jobMemory": null,
             "bamQC.bamQCMetrics.modules": null,
             "bamQC.bamQCMetrics.targetBed": null,
             "bamQC.bamQCMetrics.timeout": null,
-            "bamQC.bamQCMetrics.workflowVersion": "5.3.2",
+            "bamQC.bamQCMetrics.workflowVersion": "5.3.4",
             "bamQC.coverageWindow": null,
             "bamQC.cumulativeDistToHistogram.jobMemory": null,
             "bamQC.cumulativeDistToHistogram.modules": null,
@@ -358,7 +361,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.3.2/bamQC_test_targeted.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.3.4/bamQC_test_targeted.metrics",
                 "type": "script"
             }
         ]
@@ -419,12 +422,13 @@
                     } 
                 }
             ],
+            "bamQC.filterTargetedCoverage": null,
             "bamQC.bamQCMetrics.bamQClite": null,
             "bamQC.bamQCMetrics.jobMemory": null,
             "bamQC.bamQCMetrics.modules": null,
             "bamQC.bamQCMetrics.targetBed": null,
             "bamQC.bamQCMetrics.timeout": null,
-            "bamQC.bamQCMetrics.workflowVersion": "5.3.2",
+            "bamQC.bamQCMetrics.workflowVersion": "5.3.4",
             "bamQC.coverageWindow": null,
             "bamQC.cumulativeDistToHistogram.jobMemory": null,
             "bamQC.cumulativeDistToHistogram.modules": null,
@@ -505,7 +509,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.3.2/bamQC_test_multiple_bams_input.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.3.4/bamQC_test_multiple_bams_input.metrics",
                 "type": "script"
             }
         ]
