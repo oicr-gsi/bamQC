@@ -74,7 +74,7 @@ Parameter|Value|Default|Description
 `runWindowedMosdepth.targetBed`|String?|None|Optional target bed file
 `runWindowedMosdepth.jobMemory`|Int|16|Memory allocated for this job
 `runWindowedMosdepth.timeout`|Int|4|hours before task timeout
-`bamQCMetrics.workflowVersion`|String|"5.3.2"|Workflow version to put into report
+`bamQCMetrics.workflowVersion`|String|"5.3.5"|Workflow version to put into report
 `bamQCMetrics.modules`|String|"bam-qc-metrics/0.2.8"|required environment modules
 `bamQCMetrics.bamQClite`|String|"$BAM_QC_METRICS_ROOT/bin/run_bam_qc_lite.py"|Path to bamQC lite script
 `bamQCMetrics.jobMemory`|Int|8|Memory allocated for this job

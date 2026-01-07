@@ -610,7 +610,7 @@ task runBedtoolsIntersect {
     }
     
     output {
-      Int readsOnTarget = read_int(stdout())
+      String readsOnTarget = read_string(stdout())
     }
 
     meta {
@@ -677,11 +677,11 @@ task bamQCMetrics {
     File markDuplicatesStats
     File mosdepthSummary
     File? targetBed
-    Int? readsOnTarget
+    String? readsOnTarget
     Int? downsampleToReads
     Int? uniqueReads
     String referenceFileName
-    String workflowVersion = "5.3.2"
+    String workflowVersion = "5.3.5"
     String modules = "bam-qc-metrics/0.2.8"
     String bamQClite = "$BAM_QC_METRICS_ROOT/bin/run_bam_qc_lite.py"
     Int jobMemory = 8
