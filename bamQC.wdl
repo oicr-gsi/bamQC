@@ -284,6 +284,7 @@ task downsampleBam {
     String bamFileName = basename(bamFile)
 
     command <<<
+    set -euxo pipefail
     samtools head -n ~{downsampleToReads} ~{bamFile} | samtools view -hb > ~{prefix + ".downsampled.bam"}
     >>>
 
@@ -595,6 +596,7 @@ task runBedtoolsIntersect {
     }
 
     command <<<
+    set -euxo pipefail
     if [[ "~{filterCoverage}" == "true" ]]; then
       samtools view  -F 2308 ~{inputBam} -b | bedtools intersect -a - -b ~{targetBed} -u | samtools view -c | perl -pe 'chomp'
     else
@@ -642,6 +644,7 @@ task getUniqueReadsCount {
     }
 
     command <<<
+    set -euxo pipefail
     samtools head -n ~{downsampleToReads} ~{inputBam} | samtools view -F 256 -q 30 -c | perl -pe 'chomp'
     >>>
 
@@ -773,8 +776,6 @@ task mergeReports {
 
     String outputFileName = "~{prefix}.bamQC_results.json"
     command <<<
-    # set -euxo pipefail
-    # export PYTHONPATH=$PYTHONPATH:/.mounts/labs/gsi/testdata/bamqc/scripts/ 
     python3 ~{bamQCmerger} -l ~{sep="," inputs} ~{"-d " + mergedDupmarkingData} ~{"-t " + mergedCoverageData} -o ~{outputFileName}
     >>>
 
