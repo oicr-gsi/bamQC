@@ -79,7 +79,7 @@
                 "mode": "lane_level"
             },
             "bamQC.outputFileNamePrefix": "LANE_LEVEL",
-            "bamQC.reference": "hg38",
+            "bamQC.reference": "hg19",
             "bamQC.runBedtoolsIntersect.jobMemory": null,
             "bamQC.runBedtoolsIntersect.modules": null,
             "bamQC.runBedtoolsIntersect.timeout": null,
@@ -201,7 +201,7 @@
                 "mode": "lane_level"
             },
             "bamQC.outputFileNamePrefix": "TEST01",
-            "bamQC.reference": "hg38",
+            "bamQC.reference": "hg19",
             "bamQC.runBedtoolsIntersect.jobMemory": null,
             "bamQC.runBedtoolsIntersect.modules": null,
             "bamQC.runBedtoolsIntersect.timeout": null,
@@ -472,7 +472,7 @@
                 "mode": "call_ready"
             },
             "bamQC.outputFileNamePrefix": "CALL_READY",
-            "bamQC.reference": "hg38",
+            "bamQC.reference": "hg19",
             "bamQC.runBedtoolsIntersect.jobMemory": null,
             "bamQC.runBedtoolsIntersect.modules": null,
             "bamQC.runBedtoolsIntersect.timeout": null,
