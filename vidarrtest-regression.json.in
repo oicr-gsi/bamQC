@@ -79,7 +79,7 @@
                 "mode": "lane_level"
             },
             "bamQC.outputFileNamePrefix": "LANE_LEVEL",
-            "bamQC.reference": "hg19",
+            "bamQC.reference": "hg38",
             "bamQC.runBedtoolsIntersect.jobMemory": null,
             "bamQC.runBedtoolsIntersect.modules": null,
             "bamQC.runBedtoolsIntersect.timeout": null,
@@ -116,7 +116,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.3.4/bamQC_test_lane_level.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.4.0/bamQC_test_lane_level.metrics",
                 "type": "script"
             }
         ]
@@ -201,7 +201,7 @@
                 "mode": "lane_level"
             },
             "bamQC.outputFileNamePrefix": "TEST01",
-            "bamQC.reference": "hg19",
+            "bamQC.reference": "hg38",
             "bamQC.runBedtoolsIntersect.jobMemory": null,
             "bamQC.runBedtoolsIntersect.modules": null,
             "bamQC.runBedtoolsIntersect.timeout": null,
@@ -238,7 +238,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.3.4/bamQC_test_01.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.4.0/bamQC_test_01.metrics",
 
                 "type": "script"
             }
@@ -361,7 +361,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.3.4/bamQC_test_targeted.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.4.0/bamQC_test_targeted.metrics",
                 "type": "script"
             }
         ]
@@ -472,7 +472,7 @@
                 "mode": "call_ready"
             },
             "bamQC.outputFileNamePrefix": "CALL_READY",
-            "bamQC.reference": "hg19",
+            "bamQC.reference": "hg38",
             "bamQC.runBedtoolsIntersect.jobMemory": null,
             "bamQC.runBedtoolsIntersect.modules": null,
             "bamQC.runBedtoolsIntersect.timeout": null,
@@ -509,7 +509,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.3.4/bamQC_test_multiple_bams_input.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/bamqc/output_metrics/5.4.0/bamQC_test_multiple_bams_input.metrics",
                 "type": "script"
             }
         ]

@@ -36,8 +36,8 @@ workflow bamQC {
 
   Map[String,Resources] resources = {
     "hg38": {
-      "refFasta": "$HG38_ROOT/hg38_random.fa",
-      "modules": "samtools/1.16.1 hg38/p12"
+      "refFasta": "$HG38_NOALT_ROOT/hg38_noAlt.fa",
+      "modules": "samtools/1.16.1 hg38-noalt/p12"
     },
     "hg19": {
       "refFasta": "$HG19_ROOT/hg19_random.fa",
