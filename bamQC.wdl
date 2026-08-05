@@ -35,13 +35,17 @@ workflow bamQC {
   }
 
   Map[String,Resources] resources = {
+    "hg19": {
+      "refFasta": "$HG19_ROOT/hg19_random.fa",
+      "modules": "samtools/1.16.1 hg19/p13"
+    },
     "hg38": {
       "refFasta": "$HG38_ROOT/hg38_random.fa",
       "modules": "samtools/1.16.1 hg38/p12"
     },
-    "hg19": {
-      "refFasta": "$HG19_ROOT/hg19_random.fa",
-      "modules": "samtools/1.16.1 hg19/p13"
+    "hg38_noAlt": {
+      "refFasta": "$HG38_NOALT_ROOT/hg38_noAlt.fa",
+      "modules": "samtools/1.16.1 hg38-noalt/p12"
     }
   }
 
@@ -101,13 +105,12 @@ workflow bamQC {
              prefix = basename(i.bam, ".bam"),
              downsampleToReads = downsampleToReads
            }
-
+          # This needs to be parametrized in olive using additionalPrameters '--by 1000 -F 2308'
           call runMosdepth as runWindowedMosdepth {
           input:
             bamFile = i.bam,
             bamIndex = i.bamIndex,
-            prefix = basename(i.bam, ".bam"),
-            additionalParameters = "--by 1000"
+            prefix = basename(i.bam, ".bam")
           } 
 
         }
@@ -776,6 +779,8 @@ task mergeReports {
 
     String outputFileName = "~{prefix}.bamQC_results.json"
     command <<<
+    # set -euxo pipefail
+    # export PYTHONPATH=$PYTHONPATH:/.mounts/labs/gsi/testdata/bamqc/scripts/ 
     python3 ~{bamQCmerger} -l ~{sep="," inputs} ~{"-d " + mergedDupmarkingData} ~{"-t " + mergedCoverageData} -o ~{outputFileName}
     >>>
 
